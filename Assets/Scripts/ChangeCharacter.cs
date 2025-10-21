@@ -6,7 +6,7 @@ public class ChangeCharacter : MonoBehaviour
 {
     public GameObject ghost;
     public GameObject esqueleto;
-    private bool showingGhost = false;
+    public bool showingGhost = false;
     // Start is called before the first frame update
     void Start()
     {

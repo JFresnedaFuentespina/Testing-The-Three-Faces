@@ -36,7 +36,10 @@ public class PlayerBehaviour : MonoBehaviour
 
         Vector3 movement = new Vector3(moveX, 0, moveZ).normalized * velocity * Time.deltaTime;
         transform.Translate(movement, Space.World);
-
+        if (!Physics.Raycast(transform.position, movement, 0.5f))
+        {
+            transform.Translate(movement, Space.World);
+        }
         // Salto (solo si está en el suelo)
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {

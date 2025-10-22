@@ -7,7 +7,6 @@ public class PlayerBehaviour : MonoBehaviour
     public float velocity = 10.0f;
     public float jumpForce = 5.0f;
     private Rigidbody rb;
-    private bool isGrounded = true;
 
     void Start()
     {
@@ -39,21 +38,6 @@ public class PlayerBehaviour : MonoBehaviour
         if (!Physics.Raycast(transform.position, movement, 0.5f))
         {
             transform.Translate(movement, Space.World);
-        }
-        // Salto (solo si está en el suelo)
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-        {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            isGrounded = false;
-        }
-    }
-
-    // Detectar si el jugador toca el suelo
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = true;
         }
     }
 }

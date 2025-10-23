@@ -8,6 +8,7 @@ TagManager:
   - PuertaIzquierda
   - PuertaDerecha
   - PuertaFrontal
+  - Enemy_Zombie
   layers:
   - Default
   - TransparentFX

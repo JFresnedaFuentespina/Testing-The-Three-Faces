@@ -7,6 +7,8 @@ public class PlayerAttack : MonoBehaviour
     private ChangeCharacter changeCharacter;
     public GameObject fireball;
     public float fireballSpeed = 2f;
+    public float spawnOffset = 1.0f; // distancia delante del jugador
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,7 +48,7 @@ public class PlayerAttack : MonoBehaviour
             direction.Normalize();
 
             // Posición de spawn: delante del jugador y un poco por encima
-            Vector3 spawnPos = transform.position;
+            Vector3 spawnPos = transform.position + direction * spawnOffset + Vector3.up * 0.5f;
 
             // Instanciar la bola
             GameObject newFireball = Instantiate(fireball, spawnPos, Quaternion.LookRotation(direction));

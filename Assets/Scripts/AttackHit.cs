@@ -39,5 +39,9 @@ public class AttackHit : MonoBehaviour
             }
             Destroy(gameObject);
         }
+        else if (other.CompareTag("Pared"))
+        {
+            Destroy(gameObject);
+        }
     }
 }

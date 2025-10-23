@@ -353,6 +353,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireball: {fileID: 1947871717301538, guid: a990e3ac1318b834488c784d851f42a9, type: 3}
   fireballSpeed: 10
+  spawnOffset: 1
 --- !u!1001 &238474334
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -489,7 +490,7 @@ GameObject:
   - component: {fileID: 442715984}
   m_Layer: 0
   m_Name: ParedFrontal
-  m_TagString: Untagged
+  m_TagString: Pared
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1303,7 +1304,7 @@ GameObject:
   - component: {fileID: 1479132767}
   m_Layer: 0
   m_Name: ParedIzquierda
-  m_TagString: Untagged
+  m_TagString: Pared
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1401,7 +1402,7 @@ GameObject:
   - component: {fileID: 1549058031}
   m_Layer: 0
   m_Name: CuartaPared
-  m_TagString: Untagged
+  m_TagString: Pared
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1742,7 +1743,7 @@ GameObject:
   - component: {fileID: 1980089380}
   m_Layer: 0
   m_Name: ParedDerecha
-  m_TagString: Untagged
+  m_TagString: Pared
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

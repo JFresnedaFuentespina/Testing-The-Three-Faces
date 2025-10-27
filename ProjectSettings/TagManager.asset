@@ -10,7 +10,7 @@ TagManager:
   - PuertaFrontal
   - Enemy_Zombie
   - Pared
-  - "Coraz\xF3n"
+  - Heart
   layers:
   - Default
   - TransparentFX

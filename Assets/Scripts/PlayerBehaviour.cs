@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerBehaviour : MonoBehaviour
 {
     public float velocity = 10.0f;
-    public float jumpForce = 5.0f;
     private Rigidbody rb;
 
     void Start()
@@ -13,7 +12,7 @@ public class PlayerBehaviour : MonoBehaviour
         rb = GetComponentInChildren<Rigidbody>();
         if (rb == null)
         {
-            Debug.LogError("⚠️ Este objeto necesita un Rigidbody para que el salto funcione.");
+            Debug.LogError("Este objeto necesita un Rigidbody para que el salto funcione.");
         }
     }
 

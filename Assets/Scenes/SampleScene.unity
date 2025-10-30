@@ -309,7 +309,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 120792743}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27a1c1202027c9440a70b5d6efd85bbf, type: 3}
   m_Name: 
@@ -330,6 +330,7 @@ GameObject:
   - component: {fileID: 181097222}
   - component: {fileID: 181097224}
   - component: {fileID: 181097225}
+  - component: {fileID: 181097226}
   m_Layer: 0
   m_Name: Character
   m_TagString: Player
@@ -426,6 +427,20 @@ MonoBehaviour:
   fireball: {fileID: 1947871717301538, guid: a990e3ac1318b834488c784d851f42a9, type: 3}
   fireballSpeed: 10
   spawnHeight: 1
+--- !u!114 &181097226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 181097219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27a1c1202027c9440a70b5d6efd85bbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthPoints: 0
+  hud: {fileID: 641544925}
 --- !u!1001 &238474334
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1249,7 +1264,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 742540397}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27a1c1202027c9440a70b5d6efd85bbf, type: 3}
   m_Name: 

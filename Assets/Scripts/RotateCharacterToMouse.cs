@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class RotateCharacterToMouse : MonoBehaviour
 {
-    public GameObject esqueleto;
-    public GameObject ghost;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,10 +27,9 @@ public class RotateCharacterToMouse : MonoBehaviour
             //Calcular la rotación hacia esa dirección
             if (direction.sqrMagnitude > 0.001f) //Evitar dividir entre 0
             {
-                GameObject model = esqueleto.activeSelf ? esqueleto : ghost;
                 Quaternion rotation = Quaternion.LookRotation(direction);
-                model.transform.rotation = Quaternion.Slerp(
-                    model.transform.rotation,
+                transform.rotation = Quaternion.Slerp(
+                    transform.rotation,
                     Quaternion.LookRotation(direction),
                     Time.deltaTime * 10f
                 );

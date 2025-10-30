@@ -7,7 +7,7 @@ public class PlayerAttack : MonoBehaviour
     private ChangeCharacter changeCharacter;
     public GameObject fireball;
     public float fireballSpeed = 2f;
-    public float spawnHeight = 1.0f; 
+    public float spawnHeight = 1.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -20,11 +20,11 @@ public class PlayerAttack : MonoBehaviour
     {
         if (changeCharacter != null)
         {
-            if (changeCharacter.showingGhost && Input.GetMouseButtonDown(0))
+            if (changeCharacter.showingGhost && (Input.GetMouseButtonDown(0) || Input.GetButtonDown("Fire")))
             {
                 ShootFireball();
             }
-            else if (!changeCharacter.showingGhost && Input.GetMouseButtonDown(0))
+            else if (!changeCharacter.showingGhost && (Input.GetMouseButtonDown(0) || Input.GetButtonDown("Fire")))
             {
                 Debug.Log("HYAAAA!");
             }
@@ -34,37 +34,23 @@ public class PlayerAttack : MonoBehaviour
     {
         Debug.Log("FIREBALL!");
 
-        // Rayo desde la cámara hacia el ratón
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Plane plane = new Plane(Vector3.up, transform.position); // plano a la altura del jugador
+        Vector3 direction = transform.forward;
 
-        if (plane.Raycast(ray, out float distance))
+        // Posición de spawn: delante del jugador y un poco por encima
+        Vector3 spawnPos = transform.position + Vector3.up * spawnHeight;
+
+        GameObject newFireball = Instantiate(fireball, spawnPos, Quaternion.LookRotation(direction));
+
+        // Asignar la dirección al script del proyectil
+        FireballBehaviour fbMove = newFireball.GetComponent<FireballBehaviour>();
+        if (fbMove != null)
         {
-            Vector3 target = ray.GetPoint(distance);
-
-            // Dirección desde el jugador hacia el ratón, solo XZ
-            Vector3 direction = (target - transform.position);
-            direction.y = 0f;
-            direction.Normalize();
-
-            // Posición de spawn: delante del jugador y un poco por encima
-            Vector3 spawnPos = transform.position + Vector3.up * spawnHeight;
-
-            // Instanciar la bola
-            GameObject newFireball = Instantiate(fireball, spawnPos, Quaternion.LookRotation(direction));
-
-            // Asignar la dirección al script del proyectil
-            FireballBehaviour fbMove = newFireball.GetComponent<FireballBehaviour>();
-            if (fbMove != null)
-            {
-                fbMove.direction = direction;
-                fbMove.speed = 10f; // opcional, puedes usar fireballSpeed de tu script
-            }
-
-            // Debug: línea de dirección
-            Debug.DrawRay(spawnPos, direction * 10f, Color.red, 2f);
+            fbMove.direction = direction;
+            fbMove.speed = 10f; // opcional, puedes usar fireballSpeed de tu script
         }
-    }
 
+        // Debug: línea de dirección
+        Debug.DrawRay(spawnPos, direction * 10f, Color.red, 2f);
+    }
 
 }

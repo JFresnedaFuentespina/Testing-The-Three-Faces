@@ -42,7 +42,16 @@ public class PlayerBehaviour : MonoBehaviour
     {
         float inputH = Input.GetAxis("Horizontal");
         float inputV = Input.GetAxis("Vertical");
-        Vector3 movement = (transform.forward * inputV + transform.right * inputH) * velocity * Time.deltaTime;
+
+        Vector3 movement = (Vector3.forward * inputV + Vector3.right * inputH);
+        if (movement.magnitude > 1)
+        {
+            movement.Normalize();
+        }
+
+        movement *= velocity * Time.deltaTime;
+        Debug.Log("MOVIMIENTO: " + movement);
         rb.MovePosition(rb.position + movement);
     }
+
 }

@@ -26,13 +26,13 @@ public class PlayerAttack : MonoBehaviour
             }
             else if (!changeCharacter.showingGhost && (Input.GetMouseButtonDown(0) || Input.GetButtonDown("Fire")))
             {
-                Debug.Log("HYAAAA!");
+                // Debug.Log("HYAAAA!");
             }
         }
     }
     void ShootFireball()
     {
-        Debug.Log("FIREBALL!");
+        // Debug.Log("FIREBALL!");
 
         Vector3 direction = transform.forward;
 

@@ -50,7 +50,7 @@ public class PlayerBehaviour : MonoBehaviour
         }
 
         movement *= velocity * Time.deltaTime;
-        Debug.Log("MOVIMIENTO: " + movement);
+        // Debug.Log("MOVIMIENTO: " + movement);
         rb.MovePosition(rb.position + movement);
     }
 

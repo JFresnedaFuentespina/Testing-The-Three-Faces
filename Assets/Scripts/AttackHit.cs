@@ -22,7 +22,7 @@ public class AttackHit : MonoBehaviour
     {
         if (other.CompareTag("Enemy_Zombie"))
         {
-            Debug.Log("ATAQUE A: " + other.gameObject.tag);
+            // Debug.Log("ATAQUE A: " + other.gameObject.tag);
 
             // Obtener el componente de vida del zombi
             ZombieLife zombieLife = other.GetComponent<ZombieLife>();

@@ -20,7 +20,7 @@ public class PlayerHealth : MonoBehaviour
             corazones.Add(child.gameObject);
         }
 
-        Debug.Log("Cantidad de estados de vida: " + corazones.Count);
+        // Debug.Log("Cantidad de estados de vida: " + corazones.Count);
         UpdateHUD();
     }
 
@@ -70,6 +70,6 @@ public class PlayerHealth : MonoBehaviour
             }
         }
 
-        Debug.Log($"HUD activo: {nombreHUD} (vida: {healthPoints})");
+        // Debug.Log($"HUD activo: {nombreHUD} (vida: {healthPoints})");
     }
 }

@@ -6,22 +6,21 @@ public class PlayerHealth : MonoBehaviour
 {
     private float maxHealth = 3f;
     private float minHealth = 0f;
-    public float healthPoints;   // Vida inicial (máx = 3)
-    public GameObject hud;            // HUD que contiene todos los estados de vida
+    public float healthPoints;
+    public GameObject hud;
 
     private List<GameObject> corazones = new List<GameObject>();
 
     void Start()
     {
-        this.healthPoints = this.maxHealth;
-        // Guarda todos los hijos del HUD
+        healthPoints = maxHealth;
+
         foreach (Transform child in hud.transform)
         {
             corazones.Add(child.gameObject);
         }
 
         Debug.Log("Cantidad de estados de vida: " + corazones.Count);
-
         UpdateHUD();
     }
 
@@ -29,18 +28,18 @@ public class PlayerHealth : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy_Zombie"))
         {
-            healthPoints -= 0.5f;              // Baja de medio en medio
+            healthPoints -= 0.5f;
         }
-
         else if (other.gameObject.CompareTag("Heart"))
         {
-
             healthPoints += 0.5f;
             Destroy(other.gameObject);
         }
-        healthPoints = Mathf.Clamp(healthPoints, minHealth, maxHealth); //Evita que salga de los limites
-        UpdateHUD();
 
+        // 🔒 Limita el valor antes de actualizar HUD
+        healthPoints = Mathf.Clamp(healthPoints, minHealth, maxHealth);
+
+        UpdateHUD();
     }
 
     private void UpdateHUD()
@@ -51,35 +50,17 @@ public class PlayerHealth : MonoBehaviour
             vida.SetActive(false);
         }
 
-        // Determina qué HUD debe mostrarse según healthPoints
-        string nombreHUD = "";
+        // Redondea para evitar errores de precisión de float
+        float vidaRedondeada = Mathf.Round(healthPoints * 2f) / 2f;
 
-        switch (healthPoints)
-        {
-            case 3f:
-                nombreHUD = "Vida_3_de_3";
-                break;
-            case 2.5f:
-                nombreHUD = "Vida_2_5_de_3";
-                break;
-            case 2f:
-                nombreHUD = "Vida_2_de_3";
-                break;
-            case 1.5f:
-                nombreHUD = "Vida_1_5_de_3";
-                break;
-            case 1f:
-                nombreHUD = "Vida_1_de_3";
-                break;
-            case 0.5f:
-                nombreHUD = "Vida_0_5_de_3";
-                break;
-            default:
-                nombreHUD = "Vida_0_de_3";
-                break;
-        }
+        // Determina qué HUD debe mostrarse
+        string nombreHUD = $"Vida_{vidaRedondeada.ToString().Replace(',', '_').Replace('.', '_')}_de_3";
 
-        // Activa solo el HUD que corresponde
+        // Si la vida es 0 o menor, asegura que muestre el vacío
+        if (vidaRedondeada <= 0)
+            nombreHUD = "Vida_0_de_3";
+
+        // Activa solo el HUD correcto
         foreach (GameObject vida in corazones)
         {
             if (vida.name == nombreHUD)
@@ -89,6 +70,6 @@ public class PlayerHealth : MonoBehaviour
             }
         }
 
-        Debug.Log("HUD activo: " + nombreHUD);
+        Debug.Log($"HUD activo: {nombreHUD} (vida: {healthPoints})");
     }
 }

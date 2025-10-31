@@ -5,8 +5,7 @@ using UnityEngine;
 public class ZombieLife : MonoBehaviour
 {
     // Start is called before the first frame update
-    public int maxHits = 3;
-    private int hitsCounter = 0;
+    public float totalHp = 10f;
     private bool isAlive = true;
     void Start()
     {
@@ -19,20 +18,17 @@ public class ZombieLife : MonoBehaviour
 
     }
 
-    public void Damage()
+    public void Damage(float hit)
     {
-        if (hitsCounter < maxHits)
-        {
-            hitsCounter++;
-        }
+        totalHp -= hit;
     }
 
     public void UpdateIsAlive()
     {
-        if (hitsCounter >= maxHits)
+        if(totalHp <= 0)
         {
+            totalHp = 0;
             isAlive = false;
-            hitsCounter = 0;
         }
     }
     

@@ -7,16 +7,8 @@ public class AttackHit : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    void Start()
-    {
+    public float attackDamage = 5;
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -28,7 +20,7 @@ public class AttackHit : MonoBehaviour
             ZombieLife zombieLife = other.GetComponent<ZombieLife>();
             if (zombieLife != null)
             {
-                zombieLife.Damage();
+                zombieLife.Damage(attackDamage);
                 zombieLife.UpdateIsAlive();
 
                 // Si el zombi muere, lo destruimos

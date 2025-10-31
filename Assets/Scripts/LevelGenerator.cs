@@ -10,9 +10,17 @@ public class LevelGenerator : MonoBehaviour
     public GameObject characterPrefab;
 
     [Header("Grid Settings")]
-    public int width = 5;
-    public int height = 5;
+    public int level1Width = 5;
+    public int level2Width = 7;
+    public int level3Width = 10;
+    public int levelHeight = 5;
+
+    public int actualWidth;
     public float offset = 100f;
+
+    private bool isLevel1 = true;
+    private bool isLevel2 = false;
+    private bool isLevel3 = false;
 
     [Header("Generation Settings")]
     [Range(0f, 1f)]
@@ -26,7 +34,20 @@ public class LevelGenerator : MonoBehaviour
 
     void Start()
     {
-        map = new bool[width, height];
+        if (isLevel1)
+        {
+            actualWidth = level1Width;
+        }
+        else if (isLevel2)
+        {
+            actualWidth = level2Width;
+        }
+        else
+        {
+            actualWidth = level3Width;
+        }
+
+        map = new bool[actualWidth, levelHeight];
 
         // Empezamos en el centro
         int startX = 0;
@@ -48,9 +69,9 @@ public class LevelGenerator : MonoBehaviour
 
     void GenerateRooms()
     {
-        for (int i = 0; i < width; i++)
+        for (int i = 0; i < actualWidth; i++)
         {
-            for (int j = 0; j < height; j++)
+            for (int j = 0; j < levelHeight; j++)
             {
                 if (map[i, j])
                 {
@@ -63,10 +84,9 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
-
     void TrySpawnNeighbor(int x, int y)
     {
-        if (x < 0 || y < 0 || x >= width || y >= height) return; // fuera de límites
+        if (x < 0 || y < 0 || x >= actualWidth || y >= levelHeight) return; // fuera de límites
         if (map[x, y]) return; // ya existe
 
         if (Random.value < roomSpawnChance)
@@ -77,9 +97,9 @@ public class LevelGenerator : MonoBehaviour
 
     void SpawnRooms()
     {
-        for (int i = 0; i < width; i++)
+        for (int i = 0; i < actualWidth; i++)
         {
-            for (int j = 0; j < height; j++)
+            for (int j = 0; j < levelHeight; j++)
             {
                 if (map[i, j])
                 {
@@ -105,7 +125,7 @@ public class LevelGenerator : MonoBehaviour
     void SetupRoomDoors(GameObject room, int i, int j)
     {
         // Derecha
-        bool hasRight = (i < width - 1 && map[i + 1, j]);
+        bool hasRight = (i < actualWidth - 1 && map[i + 1, j]);
         ToggleDoor(room, "ParedDerecha", hasRight, "Right");
 
         //Izquierda
@@ -121,7 +141,17 @@ public class LevelGenerator : MonoBehaviour
         if (bossRoomSpawned) return;
 
         int bossY = j + 1;
-        if (bossY >= height || map[i, bossY]) return; // fuera del mapa o ya hay algo
+
+        // Si está fuera del mapa, saltamos pero guardamos posición forzada
+        if (bossY >= levelHeight)
+        {
+            if (!forcedBossRoomPos.HasValue)
+                forcedBossRoomPos = roomPosition + new Vector3(0, 0, offset);
+            return;
+        }
+
+        // Si ya hay una habitación arriba, no se puede
+        if (map[i, bossY]) return;
 
         // Probabilidad de aparición
         if (Random.value < 0.3f)
@@ -132,21 +162,22 @@ public class LevelGenerator : MonoBehaviour
         }
         else
         {
-            // Si no se genera, guardamos una posición candidata
+            // Guardar una posición candidata solo si no tenemos una aún
             if (!forcedBossRoomPos.HasValue)
                 forcedBossRoomPos = roomPosition + new Vector3(0, 0, offset);
         }
     }
+
 
     void SpawnTreasureRoom()
     {
         List<Vector2Int> edges = new List<Vector2Int>();
 
         // Buscar habitaciones en los extremos izquierdo o derecho
-        for (int j = 0; j < height; j++)
+        for (int j = 0; j < levelHeight; j++)
         {
             if (map[0, j]) edges.Add(new Vector2Int(0, j)); // izquierda
-            if (map[width - 1, j]) edges.Add(new Vector2Int(width - 1, j)); // derecha
+            if (map[actualWidth - 1, j]) edges.Add(new Vector2Int(actualWidth - 1, j)); // derecha
         }
 
         // Si no hay extremos disponibles, no hacer nada
@@ -181,5 +212,18 @@ public class LevelGenerator : MonoBehaviour
         if (doorOpen != null) doorOpen.gameObject.SetActive(open);
         if (doorClosed != null) doorClosed.gameObject.SetActive(!open);
 
+    }
+
+    void setLevel1(bool active)
+    {
+        isLevel1 = active;
+    }
+    void setLevel2(bool active)
+    {
+        isLevel2 = active;
+    }
+    void setLevel3(bool active)
+    {
+        isLevel3 = active;
     }
 }

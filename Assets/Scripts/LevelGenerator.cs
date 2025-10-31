@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
 {
+    [Header("Prefabs")]
     public GameObject roomPrefab;
     public GameObject treasureRoomPrefab;
     public GameObject bossRoomPrefab;
@@ -13,61 +14,74 @@ public class LevelGenerator : MonoBehaviour
     public int level1Width = 5;
     public int level2Width = 7;
     public int level3Width = 10;
+    private int actualWidth;
     public int levelHeight = 5;
 
-    public int actualWidth;
-    public float offset = 100f;
-
-    private bool isLevel1 = true;
-    private bool isLevel2 = false;
-    private bool isLevel3 = false;
+    public float offsetW = 50f;
+    public float offsetH = 100f;
 
     [Header("Generation Settings")]
     [Range(0f, 1f)]
-    public float roomSpawnChance = 0.6f; // Probabilidad de crear habitación vecina
+    public float baseRoomSpawnChance = 0.6f;
 
-    private bool[,] map; // Cuadrícula de habitaciones
-    private int totalRooms = 0;
+    private bool[,] map;
 
     private bool bossRoomSpawned = false;
-    private Vector3? forcedBossRoomPos = null; // Guardamos posición para crear una si no sale aleatoriamente
+    private Vector3? forcedBossRoomPos = null;
 
     void Start()
     {
-        if (isLevel1)
-        {
-            actualWidth = level1Width;
-        }
-        else if (isLevel2)
-        {
-            actualWidth = level2Width;
-        }
-        else
-        {
-            actualWidth = level3Width;
-        }
+        // Generar los tres niveles uno encima del otro
+        int roomsLevel1 = GenerateLevel(level1Width, 0, "Level 1", baseRoomSpawnChance);
+        int roomsLevel2 = GenerateLevel(level2Width, 1, "Level 2", baseRoomSpawnChance + 0.1f, roomsLevel1);
+        int roomsLevel3 = GenerateLevel(level3Width, 2, "Level 3", baseRoomSpawnChance + 0.2f, roomsLevel2);
+        Debug.Log($"Generación completada: Nivel1={roomsLevel1}, Nivel2={roomsLevel2}, Nivel3={roomsLevel3}");
+    }
 
+    int GenerateLevel(int width, int levelIndex, string levelName, float spawnChance, int minRooms = 0)
+    {
+        int generatedRooms = 0;
+        int tries = 0;
+
+        do
+        {
+            tries++;
+            generatedRooms = GenerateSingleLevel(width, levelIndex, levelName, spawnChance);
+
+            if (generatedRooms <= minRooms)
+            {
+                spawnChance = Mathf.Min(spawnChance + 0.05f, 0.95f);
+            }
+
+        } while (generatedRooms <= minRooms && tries < 5);
+
+        Debug.Log($"✅ {levelName} completado con {generatedRooms} habitaciones normales (tras {tries} intentos)");
+        return generatedRooms;
+    }
+    int GenerateSingleLevel(int width, int levelIndex, string levelName, float spawnChance)
+    {
+        actualWidth = width;
         map = new bool[actualWidth, levelHeight];
+        bossRoomSpawned = false;
+        forcedBossRoomPos = null;
 
-        // Empezamos en el centro
-        int startX = 0;
-        int startY = 0;
-        map[startX, startY] = true;
+        map[0, 0] = true;
+        GenerateRooms(spawnChance);
+        int generatedRooms = SpawnRooms(levelIndex);
 
-        GenerateRooms();
-        SpawnRooms();
-
-        // Si no se generó ninguna BossRoom, creamos una forzada
+        // BossRoom de respaldo si no se generó ninguna
         if (!bossRoomSpawned && forcedBossRoomPos.HasValue)
         {
             Instantiate(bossRoomPrefab, forcedBossRoomPos.Value, Quaternion.identity, transform);
             bossRoomSpawned = true;
+            Debug.Log($"🟥 BossRoom forzada generada en {forcedBossRoomPos.Value} ({levelName})");
         }
 
-        Debug.Log($"[LevelGenerator] Total de habitaciones generadas: {totalRooms}");
+        Debug.Log($"✅ {levelName} completado. Total habitaciones: {generatedRooms}");
+        return generatedRooms;
     }
 
-    void GenerateRooms()
+    void GenerateRooms(float roomSpawnChance)
     {
         for (int i = 0; i < actualWidth; i++)
         {
@@ -75,8 +89,8 @@ public class LevelGenerator : MonoBehaviour
             {
                 if (map[i, j])
                 {
-                    TrySpawnNeighbor(i + 1, j);
-                    TrySpawnNeighbor(i - 1, j);
+                    TrySpawnNeighbor(i + 1, j, roomSpawnChance);
+                    TrySpawnNeighbor(i - 1, j, roomSpawnChance);
                     // TrySpawnNeighbor(i, j + 1);
                     // TrySpawnNeighbor(i, j - 1);
                 }
@@ -84,7 +98,7 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
-    void TrySpawnNeighbor(int x, int y)
+    void TrySpawnNeighbor(int x, int y, float roomSpawnChance)
     {
         if (x < 0 || y < 0 || x >= actualWidth || y >= levelHeight) return; // fuera de límites
         if (map[x, y]) return; // ya existe
@@ -95,21 +109,23 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
-    void SpawnRooms()
+    int SpawnRooms(int levelIndex)
     {
+        int roomsSpawned = 0;
+        float levelBaseY = levelIndex * offsetH;
         for (int i = 0; i < actualWidth; i++)
         {
             for (int j = 0; j < levelHeight; j++)
             {
                 if (map[i, j])
                 {
-                    Vector3 position = new Vector3(i * offset, 0, j * offset);
+                    Vector3 position = new Vector3(i * offsetW, levelBaseY, j * offsetW);
                     if (i == 0 && j == 0)
                     {
                         Instantiate(characterPrefab, position, Quaternion.identity);
                     }
                     GameObject room = Instantiate(roomPrefab, position, Quaternion.identity, transform);
-                    totalRooms++;
+                    roomsSpawned++;
 
                     SetupRoomDoors(room, i, j);
 
@@ -120,6 +136,7 @@ public class LevelGenerator : MonoBehaviour
             }
         }
         SpawnTreasureRoom();
+        return roomsSpawned;
     }
 
     void SetupRoomDoors(GameObject room, int i, int j)
@@ -146,7 +163,7 @@ public class LevelGenerator : MonoBehaviour
         if (bossY >= levelHeight)
         {
             if (!forcedBossRoomPos.HasValue)
-                forcedBossRoomPos = roomPosition + new Vector3(0, 0, offset);
+                forcedBossRoomPos = roomPosition + new Vector3(0, 0, offsetW);
             return;
         }
 
@@ -156,7 +173,7 @@ public class LevelGenerator : MonoBehaviour
         // Probabilidad de aparición
         if (Random.value < 0.3f)
         {
-            Vector3 bossPos = roomPosition + new Vector3(0, 0, offset);
+            Vector3 bossPos = roomPosition + new Vector3(0, 0, offsetW);
             Instantiate(bossRoomPrefab, bossPos, Quaternion.identity, transform);
             bossRoomSpawned = true;
         }
@@ -164,7 +181,7 @@ public class LevelGenerator : MonoBehaviour
         {
             // Guardar una posición candidata solo si no tenemos una aún
             if (!forcedBossRoomPos.HasValue)
-                forcedBossRoomPos = roomPosition + new Vector3(0, 0, offset);
+                forcedBossRoomPos = roomPosition + new Vector3(0, 0, offsetW);
         }
     }
 
@@ -185,12 +202,12 @@ public class LevelGenerator : MonoBehaviour
 
         // Elegir una habitación extrema aleatoria
         Vector2Int chosen = edges[Random.Range(0, edges.Count)];
-        Vector3 pos = new Vector3(chosen.x * offset, 0, chosen.y * offset);
+        Vector3 pos = new Vector3(chosen.x * offsetW, 0, chosen.y * offsetW);
 
         // Crear la TreasureRoom justo a su lado (afuera del mapa)
         Vector3 treasurePos = chosen.x == 0
-            ? pos + new Vector3(-offset, 0, 0)
-            : pos + new Vector3(offset, 0, 0);
+            ? pos + new Vector3(-offsetW, 0, 0)
+            : pos + new Vector3(offsetW, 0, 0);
 
         Instantiate(treasureRoomPrefab, treasurePos, Quaternion.identity, transform);
 
@@ -212,18 +229,5 @@ public class LevelGenerator : MonoBehaviour
         if (doorOpen != null) doorOpen.gameObject.SetActive(open);
         if (doorClosed != null) doorClosed.gameObject.SetActive(!open);
 
-    }
-
-    void setLevel1(bool active)
-    {
-        isLevel1 = active;
-    }
-    void setLevel2(bool active)
-    {
-        isLevel2 = active;
-    }
-    void setLevel3(bool active)
-    {
-        isLevel3 = active;
     }
 }

@@ -2,7 +2,7 @@
 Proyecto de desarrollo de un videojuego en Unity con la temática: Las dos caras de una moneda.
 
 ## Enlace a un resumen de la idea del proyecto:
-![https://drive.google.com/file/d/16r8iWhdHKg71vloVbCKTQ4l-xZijrhdn/view?usp=sharing]
+![https://drive.google.com/file/d/1I7N4RCpclo_JCFqlVTrsUAL3g1n7sUXu/view?usp=sharing]
 
 ## Credits:
 - Low Poly Fire de Indian ocean assets.

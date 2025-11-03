@@ -68,12 +68,23 @@ public class LevelGenerator : MonoBehaviour
         GenerateRooms(spawnChance);
         int generatedRooms = SpawnRooms(levelIndex);
 
-        // BossRoom de respaldo si no se generó ninguna
+        // Si no se generó la BossRoom, la forzamos
         if (!bossRoomSpawned && forcedBossRoomPos.HasValue)
         {
-            Instantiate(bossRoomPrefab, forcedBossRoomPos.Value, Quaternion.identity, transform);
+            Vector3 bossPos = forcedBossRoomPos.Value;
+            Instantiate(bossRoomPrefab, bossPos, Quaternion.identity, transform);
+
+            // Convertimos la posición del boss en coordenadas de mapa
+            int i = Mathf.RoundToInt(bossPos.x / offsetW);
+            int j = Mathf.RoundToInt(bossPos.z / offsetW);
+
+            if (i >= 0 && i < actualWidth && j >= 0 && j < levelHeight)
+                map[i, j] = true;
+
             bossRoomSpawned = true;
+            Debug.Log($"🟥 BossRoom forzada generada en {bossPos} ({levelName})");
         }
+
         return generatedRooms;
     }
 
@@ -107,6 +118,7 @@ public class LevelGenerator : MonoBehaviour
     {
         int roomsSpawned = 0;
         float levelBaseY = levelIndex * offsetH;
+
         for (int i = 0; i < actualWidth; i++)
         {
             for (int j = 0; j < levelHeight; j++)
@@ -114,19 +126,19 @@ public class LevelGenerator : MonoBehaviour
                 if (map[i, j])
                 {
                     Vector3 position = new Vector3(i * offsetW, levelBaseY, j * offsetW);
-                    if (i == 0 && j == 0)
-                    {
+
+                    if (i == 0 && j == 0 && levelIndex == 0)
                         Instantiate(characterPrefab, position, Quaternion.identity);
-                    }
+
                     GameObject room = Instantiate(roomPrefab, position, Quaternion.identity, transform);
                     roomsSpawned++;
 
                     TrySpawnBossRoom(i, j, position);
-
                     SetupRoomDoors(room, i, j);
                 }
             }
         }
+
         SpawnTreasureRoom(levelIndex);
         return roomsSpawned;
     }
@@ -148,6 +160,7 @@ public class LevelGenerator : MonoBehaviour
 
     void TrySpawnBossRoom(int i, int j, Vector3 roomPosition)
     {
+        Debug.Log($"Verificando BossRoom en ({i}, {j + 1})");
         if (bossRoomSpawned) return;
 
         int bossY = j + 1;
@@ -164,11 +177,15 @@ public class LevelGenerator : MonoBehaviour
         if (map[i, bossY]) return;
 
         // Probabilidad de aparición
-        if (Random.value < 0.3f)
+        float random = Random.value;
+        Debug.Log($"Intentando generar BossRoom en ({i}, {bossY}) - Aleatorio: {random}");
+        if (Random.value < 0.5f)
         {
             Vector3 bossPos = roomPosition + new Vector3(0, 0, offsetW);
             Instantiate(bossRoomPrefab, bossPos, Quaternion.identity, transform);
+
             map[i, bossY] = true;
+
             bossRoomSpawned = true;
         }
         else

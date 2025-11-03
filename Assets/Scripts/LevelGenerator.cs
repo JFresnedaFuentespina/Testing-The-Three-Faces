@@ -55,7 +55,7 @@ public class LevelGenerator : MonoBehaviour
 
         } while (generatedRooms <= minRooms && tries < 5);
 
-        Debug.Log($"✅ {levelName} completado con {generatedRooms} habitaciones normales (tras {tries} intentos)");
+        Debug.Log($"{levelName} completado con {generatedRooms} habitaciones normales (tras {tries} intentos)");
         return generatedRooms;
     }
     int GenerateSingleLevel(int width, int levelIndex, string levelName, float spawnChance)
@@ -74,10 +74,10 @@ public class LevelGenerator : MonoBehaviour
         {
             Instantiate(bossRoomPrefab, forcedBossRoomPos.Value, Quaternion.identity, transform);
             bossRoomSpawned = true;
-            Debug.Log($"🟥 BossRoom forzada generada en {forcedBossRoomPos.Value} ({levelName})");
+            Debug.Log($" BossRoom forzada generada en {forcedBossRoomPos.Value} ({levelName})");
         }
 
-        Debug.Log($"✅ {levelName} completado. Total habitaciones: {generatedRooms}");
+        Debug.Log($" {levelName} completado. Total habitaciones: {generatedRooms}");
         return generatedRooms;
     }
 
@@ -91,8 +91,6 @@ public class LevelGenerator : MonoBehaviour
                 {
                     TrySpawnNeighbor(i + 1, j, roomSpawnChance);
                     TrySpawnNeighbor(i - 1, j, roomSpawnChance);
-                    // TrySpawnNeighbor(i, j + 1);
-                    // TrySpawnNeighbor(i, j - 1);
                 }
             }
         }
@@ -135,7 +133,7 @@ public class LevelGenerator : MonoBehaviour
                 }
             }
         }
-        SpawnTreasureRoom();
+        SpawnTreasureRoom(levelIndex);
         return roomsSpawned;
     }
 
@@ -149,8 +147,6 @@ public class LevelGenerator : MonoBehaviour
         bool hasLeft = (i > 0 && map[i - 1, j]);
         ToggleDoor(room, "ParedIzquierda", hasLeft, "Left");
 
-        // bool hasFront = (j < height - 1 && map[i, j + 1]);
-        // ToggleDoor(room, "ParedFrontal", hasFront, "Front");
     }
 
     void TrySpawnBossRoom(int i, int j, Vector3 roomPosition)
@@ -186,7 +182,7 @@ public class LevelGenerator : MonoBehaviour
     }
 
 
-    void SpawnTreasureRoom()
+    void SpawnTreasureRoom(int levelIndex)
     {
         List<Vector2Int> edges = new List<Vector2Int>();
 
@@ -197,12 +193,13 @@ public class LevelGenerator : MonoBehaviour
             if (map[actualWidth - 1, j]) edges.Add(new Vector2Int(actualWidth - 1, j)); // derecha
         }
 
-        // Si no hay extremos disponibles, no hacer nada
         if (edges.Count == 0) return;
 
         // Elegir una habitación extrema aleatoria
         Vector2Int chosen = edges[Random.Range(0, edges.Count)];
-        Vector3 pos = new Vector3(chosen.x * offsetW, 0, chosen.y * offsetW);
+        float levelBaseY = levelIndex * offsetH;
+
+        Vector3 pos = new Vector3(chosen.x * offsetW, levelBaseY, chosen.y * offsetW);
 
         // Crear la TreasureRoom justo a su lado (afuera del mapa)
         Vector3 treasurePos = chosen.x == 0
@@ -211,8 +208,9 @@ public class LevelGenerator : MonoBehaviour
 
         Instantiate(treasureRoomPrefab, treasurePos, Quaternion.identity, transform);
 
-        Debug.Log($"🟦 TreasureRoom generada en {treasurePos} (basada en la habitación ({chosen.x}, {chosen.y}))");
+        Debug.Log($"🟦 TreasureRoom generada en {treasurePos} (Nivel {levelIndex + 1}, basada en ({chosen.x}, {chosen.y}))");
     }
+
 
 
     void ToggleDoor(GameObject room, string wallName, bool open, string direction)

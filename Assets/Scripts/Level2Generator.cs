@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class Level2Generator : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private int levelWidth = 7;
+
     void Start()
     {
-        
-    }
+        LevelGenerator levelGenerator = GetComponent<LevelGenerator>();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (levelGenerator == null)
+        {
+            Debug.LogError("No se encontró un componente LevelGenerator en este GameObject.");
+            return;
+        }
+
+        levelGenerator.GenerateLevel(levelWidth, 5); // Genera el mapa lógico
+        int totalRooms = levelGenerator.SpawnRooms(); // Genera las habitaciones físicas
+
+        Debug.Log($"Nivel 2 generado con {totalRooms} habitaciones normales + Boss + Tesoro");
     }
 }

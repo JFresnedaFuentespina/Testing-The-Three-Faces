@@ -41,7 +41,7 @@ public class RotateCharacterWithJoystick : MonoBehaviour
 
             // Rota el Rigidbody del objeto padre suavemente hacia la dirección del joystick.
             // Los hijos (esqueleto y ghost) se moverán con él.
-            rb.MoveRotation(Quaternion.RotateTowards(rb.rotation, rotacionObjetivo, velocidadRotacion * Time.fixedDeltaTime));
+            rb.MoveRotation(Quaternion.RotateTowards(rb.rotation, rotacionObjetivo, velocidadRotacion * Time.deltaTime));
         }
     }
 }

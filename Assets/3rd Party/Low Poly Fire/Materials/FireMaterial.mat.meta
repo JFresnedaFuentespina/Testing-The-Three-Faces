@@ -6,3 +6,10 @@ NativeFormatImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244190
+  packageName: Low Poly Fire
+  packageVersion: 1.0.0
+  assetPath: Assets/3rd Party/Low Poly Fire/Materials/FireMaterial.mat
+  uploadId: 571636

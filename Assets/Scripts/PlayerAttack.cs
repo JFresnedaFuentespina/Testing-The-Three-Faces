@@ -6,7 +6,7 @@ public class PlayerAttack : MonoBehaviour
 {
     private ChangeCharacter changeCharacter;
     public GameObject fireball;
-    public float fireballSpeed = 2f;
+    public float fireballSpeed = 5f;
     public float spawnHeight = 1.0f;
 
     // Start is called before the first frame update
@@ -46,7 +46,7 @@ public class PlayerAttack : MonoBehaviour
         if (fbMove != null)
         {
             fbMove.direction = direction;
-            fbMove.speed = 10f; // opcional, puedes usar fireballSpeed de tu script
+            fbMove.speed = fireballSpeed;
         }
 
         // Debug: línea de dirección

@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &23596392
 Light:
   m_ObjectHideFlags: 0
@@ -405,7 +405,6 @@ MonoBehaviour:
   levelWidth: 0
   levelBaseY: 0
   offsetW: 50
-  baseRoomSpawnChance: 0.7
 --- !u!114 &1611743358
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FireballBehaviour : MonoBehaviour
 {
-    public float speed = 10f;      // velocidad de la bola
+    public float speed = 100f;      // velocidad de la bola
     [HideInInspector]
     public Vector3 direction;      // dirección de movimiento
     // Start is called before the first frame update

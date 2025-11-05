@@ -43,7 +43,7 @@ public class LevelGenerator : MonoBehaviour
             levelMap.Add(false);
         }
 
-        Debug.Log($"🟩 Nivel generado con {totalRooms} habitaciones seguidas (min {minRooms}, max {levelWidth})");
+        Debug.Log($"Nivel generado con {totalRooms} habitaciones seguidas (min {minRooms}, max {levelWidth})");
     }
 
 
@@ -77,7 +77,7 @@ public class LevelGenerator : MonoBehaviour
         {
             Instantiate(bossRoomPrefab, forcedBossRoomPos.Value, Quaternion.identity, transform);
             bossRoomSpawned = true;
-            Debug.Log($"🟥 BossRoom forzada generada en {forcedBossRoomPos.Value}");
+            Debug.Log($"BossRoom forzada generada en {forcedBossRoomPos.Value}");
         }
 
         // Generar sala del tesoro

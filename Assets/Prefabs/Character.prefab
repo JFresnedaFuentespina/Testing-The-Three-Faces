@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireball: {fileID: 7251879486380165639, guid: c2f6a8962aac3814aa56cb9647c93470, type: 3}
-  fireballSpeed: 20
+  fireballSpeed: 10
   spawnHeight: 1
 --- !u!114 &7930126595310468040
 MonoBehaviour:

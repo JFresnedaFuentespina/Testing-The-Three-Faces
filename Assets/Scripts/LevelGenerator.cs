@@ -23,27 +23,33 @@ public class LevelGenerator : MonoBehaviour
     private bool bossRoomSpawned = false;
     private Vector3? forcedBossRoomPos = null;
 
+    public Dictionary<string, Vector3> roomsDictionary = new Dictionary<string, Vector3>();
+
     public void GenerateLevel(int width, int minRooms)
     {
         levelWidth = width;
         levelMap.Clear();
+        roomsDictionary.Clear();
 
-        // Determinar número total de habitaciones (bloque continuo)
-        int totalRooms = Random.Range(minRooms, levelWidth + 1); // +1 porque el límite superior es exclusivo
+        int totalRooms = Random.Range(minRooms, levelWidth + 1);
 
-        // Rellenar el mapa con habitaciones seguidas
         for (int i = 0; i < totalRooms; i++)
-        {
             levelMap.Add(true);
-        }
 
-        // Si sobran espacios hasta el ancho total, los marcamos como vacíos
         for (int i = totalRooms; i < levelWidth; i++)
-        {
             levelMap.Add(false);
+
+        Debug.Log($"🧩 Nivel generado con {totalRooms} habitaciones seguidas (min {minRooms}, max {levelWidth})");
+
+        // 🔹 Log detallado de levelMap y posiciones esperadas
+        string mapInfo = "🗺️  Level Map Info:\n";
+        for (int i = 0; i < levelMap.Count; i++)
+        {
+            Vector3 expectedPos = new Vector3(i * offsetW, levelBaseY, 0);
+            mapInfo += $"  ▪ Index {i} | Room: {levelMap[i]} | Posición esperada: {expectedPos}\n";
         }
 
-        Debug.Log($"Nivel generado con {totalRooms} habitaciones seguidas (min {minRooms}, max {levelWidth})");
+        Debug.Log(mapInfo);
     }
 
 
@@ -57,31 +63,35 @@ public class LevelGenerator : MonoBehaviour
             {
                 Vector3 position = new Vector3(i * offsetW, levelBaseY, 0);
 
-                // Primer personaje en la primera habitación
                 if (i == 0)
                     Instantiate(characterPrefab, position, Quaternion.identity);
 
                 GameObject room = Instantiate(roomPrefab, position, Quaternion.identity, transform);
+                roomsDictionary.Add($"Normal_{i}", position); // 🔹 Guardar tipo y posición
                 generatedRooms++;
 
-                // Intentar generar BossRoom
                 TrySpawnBossRoom(i, position);
-
-                // Configurar puertas
                 SetupRoomDoors(room, i);
             }
         }
 
-        // Si no se generó bossRoom, forzarla
         if (!bossRoomSpawned && forcedBossRoomPos.HasValue)
         {
             Instantiate(bossRoomPrefab, forcedBossRoomPos.Value, Quaternion.identity, transform);
+            roomsDictionary.Add("Boss_Forced", forcedBossRoomPos.Value);
             bossRoomSpawned = true;
-            Debug.Log($"BossRoom forzada generada en {forcedBossRoomPos.Value}");
+            Debug.Log($"👑 BossRoom forzada generada en {forcedBossRoomPos.Value}");
         }
 
-        // Generar sala del tesoro
         SpawnTreasureRoom();
+
+        // 🔹 Mostrar log final del diccionario
+        string dictInfo = "🏠 Rooms Dictionary:\n";
+        foreach (var kvp in roomsDictionary)
+        {
+            dictInfo += $"  • {kvp.Key} → {kvp.Value}\n";
+        }
+        Debug.Log(dictInfo);
 
         return generatedRooms;
     }
@@ -90,11 +100,11 @@ public class LevelGenerator : MonoBehaviour
     {
         if (bossRoomSpawned) return;
 
-        // Probabilidad del 30% de aparecer
         if (Random.value < 0.3f)
         {
             Vector3 bossPos = position + new Vector3(0, 0, offsetW);
             Instantiate(bossRoomPrefab, bossPos, Quaternion.identity, transform);
+            roomsDictionary.Add("Boss", bossPos); // 🔹 Añadir boss room
             bossRoomSpawned = true;
             bossRoomIndex = i;
         }
@@ -137,24 +147,20 @@ public class LevelGenerator : MonoBehaviour
     public void SpawnTreasureRoom()
     {
         List<int> edgeIndices = new List<int>();
-
-        // Buscar habitaciones en extremos
         if (levelMap[0]) edgeIndices.Add(0);
         if (levelMap[levelMap.Count - 1]) edgeIndices.Add(levelMap.Count - 1);
-
         if (edgeIndices.Count == 0) return;
 
         int chosen = edgeIndices[Random.Range(0, edgeIndices.Count)];
         Vector3 pos = new Vector3(chosen * offsetW, levelBaseY, 0);
-
         Vector3 treasurePos = chosen == 0
             ? pos + new Vector3(-offsetW, 0, 0)
             : pos + new Vector3(offsetW, 0, 0);
 
         Instantiate(treasureRoomPrefab, treasurePos, Quaternion.identity, transform);
-        Debug.Log($"🟦 TreasureRoom generada junto a la habitación {chosen}");
+        roomsDictionary.Add("Treasure", treasurePos); // 🔹 Añadir treasure room
+        Debug.Log($"💎 TreasureRoom generada en {treasurePos}");
     }
-
     public void NextLevel(int actualLevel)
     {
         string nextScene = "";

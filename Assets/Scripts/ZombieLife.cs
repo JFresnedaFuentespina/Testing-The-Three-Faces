@@ -7,16 +7,6 @@ public class ZombieLife : MonoBehaviour
     // Start is called before the first frame update
     public float totalHp = 10f;
     private bool isAlive = true;
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     public void Damage(float hit)
     {
@@ -25,15 +15,20 @@ public class ZombieLife : MonoBehaviour
 
     public void UpdateIsAlive()
     {
-        if(totalHp <= 0)
+        if (totalHp <= 0)
         {
             totalHp = 0;
             isAlive = false;
         }
     }
-    
+
     public bool GetIsAlive()
     {
         return isAlive;
+    }
+
+    public void Die()
+    {
+        Destroy(gameObject, 0.2f);
     }
 }

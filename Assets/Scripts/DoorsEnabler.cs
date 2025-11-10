@@ -4,6 +4,8 @@ using UnityEngine.PlayerLoop;
 public class DoorsEnabler : MonoBehaviour
 {
     private EnemiesGenerator generator;
+    private bool doorsEnabled = false;
+
     void Start()
     {
         generator = this.gameObject.GetComponent<EnemiesGenerator>();
@@ -11,9 +13,10 @@ public class DoorsEnabler : MonoBehaviour
 
     void Update()
     {
-        if (generator.enemiesSpawnedCount == 0)
+        if (generator.AllEnemiesDead())
         {
             EnableDoorsInRoom();
+            doorsEnabled = true;
         }
     }
 

@@ -598,6 +598,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3151105536900344456}
   - component: {fileID: -6379763231414335216}
+  - component: {fileID: 4644749237365189746}
   m_Layer: 0
   m_Name: "Habitaci\xF3n"
   m_TagString: Untagged
@@ -642,8 +643,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyType1Prefab: {fileID: 9087458546057062690, guid: 98c902062beffc44fabe5be7bb73401f, type: 3}
   maxEnemies: 3
+  enemiesSpawnedCount: 0
   spawnAreaX: 2
   spawnAreaZ: 2
+--- !u!114 &4644749237365189746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3151105536900344459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09c3ce05c6d88974fbb0fd5ef166cac7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DoorsEnabler
 --- !u!1001 &1756464671265118713
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1394,6 +1408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef1d71b71b2327c4a93734364bdd370d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NextRoomCalculator
+  enabledTemporarily: 0
 --- !u!54 &7527398144404604543
 Rigidbody:
   m_ObjectHideFlags: 0

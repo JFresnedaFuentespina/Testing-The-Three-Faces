@@ -6,7 +6,8 @@ using System.Collections.Generic;
 public class NextRoomCalculator : MonoBehaviour
 {
     private LevelGenerator level;
-
+    private EnemiesGenerator generator;
+    public bool enabledTemporarily = false;
     void Start()
     {
         level = FindAnyObjectByType<LevelGenerator>();
@@ -14,6 +15,9 @@ public class NextRoomCalculator : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        if (enabledTemporarily)
+            return;
+
         if (!other.CompareTag("Player"))
             return;
 
@@ -41,6 +45,7 @@ public class NextRoomCalculator : MonoBehaviour
         Transform oppositeDoor = FindOppositeDoor(targetRoomObj, doorName);
         Vector3 spawnPos = CalculateSpawnPosition(oppositeDoor);
 
+        DisableDoorsInRoom(targetRoomObj);
         // Mover jugador y cámara
         Transform root = other.transform.root;
         root.position = spawnPos;
@@ -124,6 +129,39 @@ public class NextRoomCalculator : MonoBehaviour
         spawnPos.y = 0f;
         return spawnPos;
     }
+
+    private void DisableDoorsInRoom(GameObject room)
+    {
+        if (room == null) return;
+
+        string[] doorPaths =
+        {
+        "ParedIzquierda/Door_Prefab_Closed_Left",
+        "ParedDerecha/Door_Prefab_Closed_Right",
+        "ParedFrontal/Door_Prefab_Closed_Front"
+    };
+
+        foreach (string path in doorPaths)
+        {
+            Transform door = room.transform.Find(path);
+            if (door != null)
+            {
+                var calc = door.GetComponent<NextRoomCalculator>();
+                var collider = door.GetComponent<Collider>();
+
+                // En lugar de desactivar el script, desactivamos el collider
+                if (collider != null)
+                    collider.enabled = false;
+
+                // También puedes usar una bandera interna
+                if (calc != null)
+                    calc.enabledTemporarily = true;
+
+                Debug.Log($"Desactivado collider de {door.name} en {room.name}");
+            }
+        }
+    }
+
     void MoveCamera(Vector3 roomPos)
     {
         if (Camera.main == null)
@@ -137,7 +175,7 @@ public class NextRoomCalculator : MonoBehaviour
         GameObject roomObj = FindRoomObject(roomPos);
         if (roomObj != null)
         {
-            var generator = roomObj.GetComponentInChildren<EnemiesGenerator>();
+            generator = roomObj.GetComponentInChildren<EnemiesGenerator>();
             if (generator != null)
                 generator.GenerateEnemiesInRoom(roomPos);
         }

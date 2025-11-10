@@ -4,7 +4,7 @@ public class EnemiesGenerator : MonoBehaviour
 {
     public GameObject enemyType1Prefab;
     public int maxEnemies = 3;
-    private int enemiesSpawnedCount = 0;
+    public int enemiesSpawnedCount = 0;
     public float spawnAreaX = 2f;
     public float spawnAreaZ = 2f;
 
@@ -34,7 +34,7 @@ public class EnemiesGenerator : MonoBehaviour
                 enemiesSpawnedCount++;
             }
 
-            Debug.Log($"Generados {enemyCount} enemigos en habitación {gameObject.name} ({transform.position})");
+            // Debug.Log($"Generados {enemyCount} enemigos en habitación {gameObject.name} ({transform.position})");
         }
     }
 }

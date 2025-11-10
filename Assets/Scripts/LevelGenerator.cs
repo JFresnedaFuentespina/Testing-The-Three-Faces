@@ -166,19 +166,6 @@ public class LevelGenerator : MonoBehaviour
         return treasurePos;
     }
 
-
-    public void GenerateEnemiesInRoom(Vector3 roomPos)
-    {
-        int enemyCount = Random.Range(1, maxEnemiesPerRoom + 1);
-        for (int i = 0; i < enemyCount; i++)
-        {
-            float offsetX = Random.Range(-10f, 10f);
-            float offsetZ = Random.Range(-10f, 10f);
-            Vector3 spawnPos = new Vector3(roomPos.x + offsetX, roomPos.y, roomPos.z + offsetZ);
-            Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
-        }
-    }
-
     public void NextLevel(int actualLevel)
     {
         string nextScene = "";

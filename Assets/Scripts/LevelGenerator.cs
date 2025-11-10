@@ -13,10 +13,13 @@ public class LevelGenerator : MonoBehaviour
     public GameObject bossRoomPrefab;
     public GameObject characterPrefab;
 
+    public GameObject enemyPrefab;
+
     [Header("Level Settings")]
     public int levelWidth;
     public float levelBaseY = 0f;
     public float offsetW = 50f;
+    public int maxEnemiesPerRoom = 3;
 
     [Header("Generation Settings")]
     private List<bool> levelMap = new List<bool>();
@@ -162,6 +165,20 @@ public class LevelGenerator : MonoBehaviour
         roomsDictionary.Add("Treasure", treasurePos);
         return treasurePos;
     }
+
+
+    public void GenerateEnemiesInRoom(Vector3 roomPos)
+    {
+        int enemyCount = Random.Range(1, maxEnemiesPerRoom + 1);
+        for (int i = 0; i < enemyCount; i++)
+        {
+            float offsetX = Random.Range(-10f, 10f);
+            float offsetZ = Random.Range(-10f, 10f);
+            Vector3 spawnPos = new Vector3(roomPos.x + offsetX, roomPos.y, roomPos.z + offsetZ);
+            Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
+        }
+    }
+
     public void NextLevel(int actualLevel)
     {
         string nextScene = "";

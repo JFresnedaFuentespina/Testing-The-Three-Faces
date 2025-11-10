@@ -451,6 +451,7 @@ MonoBehaviour:
   treasureRoomPrefab: {fileID: 6255862597455320277, guid: ef7569f98cd8558468b84a214f6ce4e9, type: 3}
   bossRoomPrefab: {fileID: 8213333198550572446, guid: 371ca3a3b749625468353f60baf52fba, type: 3}
   characterPrefab: {fileID: 7930126595310468033, guid: e94499e9e8effe247ace11156ea23664, type: 3}
+  enemyPrefab: {fileID: 9087458546057062690, guid: 98c902062beffc44fabe5be7bb73401f, type: 3}
   levelWidth: 0
   levelBaseY: 0
   offsetW: 50

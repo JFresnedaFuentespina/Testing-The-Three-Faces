@@ -17,8 +17,10 @@ public class ZombieLife : MonoBehaviour
     {
         if (totalHp <= 0)
         {
+            Debug.Log($"{gameObject.name} murió");
             totalHp = 0;
             isAlive = false;
+            Die();
         }
     }
 
@@ -29,6 +31,6 @@ public class ZombieLife : MonoBehaviour
 
     public void Die()
     {
-        Destroy(gameObject, 0.2f);
+        Destroy(gameObject);
     }
 }

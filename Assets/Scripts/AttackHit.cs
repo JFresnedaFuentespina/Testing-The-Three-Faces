@@ -19,12 +19,6 @@ public class AttackHit : MonoBehaviour
             {
                 zombieLife.Damage(attackDamage);
                 zombieLife.UpdateIsAlive();
-
-                // Si el zombi muere, lo destruimos
-                if (!zombieLife.GetIsAlive())
-                {
-                    zombieLife.Die();
-                }
             }
             Destroy(gameObject);
         }

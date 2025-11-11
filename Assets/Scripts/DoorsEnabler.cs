@@ -1,50 +1,24 @@
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
 public class DoorsEnabler : MonoBehaviour
 {
     private EnemiesGenerator generator;
-    private bool doorsEnabled = false;
+    private NextRoomCalculator nextRoomCalculator;
 
     void Start()
     {
-        generator = this.gameObject.GetComponent<EnemiesGenerator>();
-    }
+        generator = GetComponent<EnemiesGenerator>();
+        nextRoomCalculator = FindAnyObjectByType<NextRoomCalculator>();
 
-    void Update()
-    {
-        if (generator.AllEnemiesDead())
+        if (generator != null)
         {
-            EnableDoorsInRoom();
-            doorsEnabled = true;
+            generator.OnAllEnemiesDead += HandleAllEnemiesDead;
         }
     }
 
-    private void EnableDoorsInRoom()
+    private void HandleAllEnemiesDead()
     {
-        if (this.gameObject == null) return;
-
-        string[] doorPaths =
-        {
-        "ParedIzquierda/Door_Prefab_Closed_Left",
-        "ParedDerecha/Door_Prefab_Closed_Right",
-        "ParedFrontal/Door_Prefab_Closed_Front"
-    };
-
-        foreach (string path in doorPaths)
-        {
-            Transform door = this.gameObject.transform.Find(path);
-            if (door != null)
-            {
-                var calc = door.GetComponent<NextRoomCalculator>();
-                var collider = door.GetComponent<Collider>();
-
-                // Reactivar el collider
-                if (collider != null)
-                    collider.enabled = true;
-
-                Debug.Log($"Reactivado collider de {door.name} en {this.gameObject.name}");
-            }
-        }
+        Debug.Log($"Todos los enemigos muertos en {gameObject.name}, reactivando puertas...");
+        nextRoomCalculator.ReenableAllDoors(gameObject);
     }
 }

@@ -45,7 +45,7 @@ public class ZombieMove : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 10f * Time.deltaTime);
         }
 
-        Debug.Log("Siguiendo al jugador en: " + targetPos);
+        // Debug.Log("Siguiendo al jugador en: " + targetPos);
     }
 
     private void BuscarJugador()
@@ -56,8 +56,5 @@ public class ZombieMove : MonoBehaviour
         // 2. Si no lo encuentra, buscar por tag (más fiable)
         if (mainCharacter == null)
             mainCharacter = GameObject.FindGameObjectWithTag("Player");
-
-        if (mainCharacter != null)
-            Debug.Log("Jugador encontrado: " + mainCharacter.name);
     }
 }

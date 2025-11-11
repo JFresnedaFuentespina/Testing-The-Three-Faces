@@ -1,22 +1,86 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
+using System;
 
 public class EnemiesGenerator : MonoBehaviour
 {
-    // Start is called before the first frame update
     public GameObject enemyType1Prefab;
-    private int maxEnemies = 3;
-    private int minEnemies = 1;
+    public int maxEnemies = 3;
+    public float spawnAreaX = 2f;
+    public float spawnAreaZ = 2f;
 
-    void Start()
+    private bool enemiesSpawned = false;
+    private List<ZombieLife> spawnedEnemies = new List<ZombieLife>();
+    public event Action OnAllEnemiesDead;
+
+    // void Update()
+    // {
+    //     CheckEnemies();
+    // }
+
+    public void GenerateEnemiesInRoom(Vector3 roomPos)
     {
+        if (Vector3.Distance(transform.position, roomPos) < 1f && !enemiesSpawned)
+        {
+            enemiesSpawned = true;
 
+            int enemyCount = UnityEngine.Random.Range(1, maxEnemies + 1);
+            for (int i = 0; i < enemyCount; i++)
+            {
+                float offsetX = UnityEngine.Random.Range(-spawnAreaX, spawnAreaX);
+                float offsetZ = UnityEngine.Random.Range(-spawnAreaZ, spawnAreaZ);
+
+                Vector3 spawnPos = new Vector3(
+                    transform.position.x + offsetX,
+                    transform.position.y,
+                    transform.position.z + offsetZ
+                );
+
+                GameObject enemy = Instantiate(enemyType1Prefab, spawnPos, Quaternion.identity);
+
+                // Referencia al script de vida
+                ZombieLife life = enemy.GetComponent<ZombieLife>();
+                if (life != null)
+                    spawnedEnemies.Add(life);
+            }
+
+            Debug.Log($"Generados {spawnedEnemies.Count} enemigos en {gameObject.name}");
+        }
     }
 
-    public void generateEnemiesInRoom()
+    public int GetAliveEnemiesCount()
     {
-        
+        spawnedEnemies.RemoveAll(e => e == null);
+        int aliveCount = 0;
+
+        foreach (var enemy in spawnedEnemies)
+        {
+            if (enemy != null)
+                enemy.UpdateIsAlive();
+
+            if (enemy != null && enemy.GetIsAlive())
+                aliveCount++;
+        }
+
+        return aliveCount;
+    }
+
+    public bool AllEnemiesDead()
+    {
+        bool allDead = GetAliveEnemiesCount() == 0;
+        Debug.Log($"AllEnemiesDead check in {gameObject.name}: {allDead}");
+        if (allDead)
+            OnAllEnemiesDead?.Invoke(); // dispara el evento si todos los enemigos murieron
+
+        return allDead;
+    }
+
+    public void CheckEnemies()
+    {
+        if (AllEnemiesDead() && OnAllEnemiesDead != null)
+        {
+            OnAllEnemiesDead.Invoke();
+        }
     }
 
 }

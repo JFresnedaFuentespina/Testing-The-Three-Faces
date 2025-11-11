@@ -13,10 +13,13 @@ public class LevelGenerator : MonoBehaviour
     public GameObject bossRoomPrefab;
     public GameObject characterPrefab;
 
+    public GameObject enemyPrefab;
+
     [Header("Level Settings")]
     public int levelWidth;
     public float levelBaseY = 0f;
     public float offsetW = 50f;
+    public int maxEnemiesPerRoom = 3;
 
     [Header("Generation Settings")]
     private List<bool> levelMap = new List<bool>();
@@ -86,8 +89,6 @@ public class LevelGenerator : MonoBehaviour
 
         return generatedRooms;
     }
-
-
 
     public void TrySpawnBossRoom(int i, Vector3 position)
     {
@@ -162,11 +163,13 @@ public class LevelGenerator : MonoBehaviour
         roomsDictionary.Add("Treasure", treasurePos);
         return treasurePos;
     }
+
     public void NextLevel(int actualLevel)
     {
         string nextScene = "";
         switch (actualLevel)
         {
+            case 0: nextScene = "MainMenu"; break;
             case 1: nextScene = "Level1Scene"; break;
             case 2: nextScene = "Level2Scene"; break;
             case 3: nextScene = "Level3Scene"; break;

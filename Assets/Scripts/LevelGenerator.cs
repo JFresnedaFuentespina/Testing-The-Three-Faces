@@ -171,6 +171,7 @@ public class LevelGenerator : MonoBehaviour
         string nextScene = "";
         switch (actualLevel)
         {
+            case 0: nextScene = "MainMenu"; break;
             case 1: nextScene = "Level1Scene"; break;
             case 2: nextScene = "Level2Scene"; break;
             case 3: nextScene = "Level3Scene"; break;

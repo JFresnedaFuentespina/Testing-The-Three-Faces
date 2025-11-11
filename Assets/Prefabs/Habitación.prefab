@@ -369,8 +369,8 @@ Transform:
   m_GameObject: {fileID: 3151105536103396261}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.8958, y: 0, z: -2.6125236}
-  m_LocalScale: {x: 1.3145205, y: 1.1995, z: 1.1995}
+  m_LocalPosition: {x: -1.5053, y: 0, z: -3.1708}
+  m_LocalScale: {x: 0.99379885, y: 1.1995, z: 1.0570884}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3151105536900344456}
@@ -598,6 +598,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3151105536900344456}
   - component: {fileID: -6379763231414335216}
+  - component: {fileID: 4644749237365189746}
+  - component: {fileID: 7997259513853481830}
   m_Layer: 0
   m_Name: "Habitaci\xF3n"
   m_TagString: Untagged
@@ -635,12 +637,50 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3151105536900344459}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dfe9a59504764ea47ac3b8d2c1b5f4c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType1Prefab: {fileID: 9087458546057062690, guid: 98c902062beffc44fabe5be7bb73401f, type: 3}
+  maxEnemies: 3
+  spawnAreaX: 2
+  spawnAreaZ: 2
+--- !u!114 &4644749237365189746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3151105536900344459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09c3ce05c6d88974fbb0fd5ef166cac7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DoorsEnabler
+--- !u!114 &7997259513853481830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3151105536900344459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64d1fa46677476745b570036dae2cf97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GenerateRocksInRoom
+  rockPrefabs:
+  - {fileID: 8933749797280981253, guid: 46e654c102087004988f6462e5ae7133, type: 3}
+  - {fileID: 6173341499977504312, guid: 9cf4cca6be6d72b4191cec509848f6ac, type: 3}
+  - {fileID: 2290846898853941114, guid: b0abe2cf3d0874541a042aeb54738371, type: 3}
+  - {fileID: 2684695994064820914, guid: 86509780b07285a44a69b1eb089a3ed1, type: 3}
+  - {fileID: 7809331290410404023, guid: 0dd050efb10a21c4f8d1c3ab7e33f70b, type: 3}
+  maxRocks: 10
+  floor: {fileID: 3151105536103396261}
+  wallLeft: {fileID: 3151105535959561369}
+  wallRight: {fileID: 3151105535959561369}
+  wallFront: {fileID: 3151105535959561369}
 --- !u!1001 &1756464671265118713
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1391,6 +1431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef1d71b71b2327c4a93734364bdd370d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NextRoomCalculator
+  enabledTemporarily: 0
 --- !u!54 &7527398144404604543
 Rigidbody:
   m_ObjectHideFlags: 0

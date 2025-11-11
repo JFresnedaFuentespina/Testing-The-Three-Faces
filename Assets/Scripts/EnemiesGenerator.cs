@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class EnemiesGenerator : MonoBehaviour
 {
@@ -10,6 +11,12 @@ public class EnemiesGenerator : MonoBehaviour
 
     private bool enemiesSpawned = false;
     private List<ZombieLife> spawnedEnemies = new List<ZombieLife>();
+    public event Action OnAllEnemiesDead;
+
+    // void Update()
+    // {
+    //     CheckEnemies();
+    // }
 
     public void GenerateEnemiesInRoom(Vector3 roomPos)
     {
@@ -17,11 +24,11 @@ public class EnemiesGenerator : MonoBehaviour
         {
             enemiesSpawned = true;
 
-            int enemyCount = Random.Range(1, maxEnemies + 1);
+            int enemyCount = UnityEngine.Random.Range(1, maxEnemies + 1);
             for (int i = 0; i < enemyCount; i++)
             {
-                float offsetX = Random.Range(-spawnAreaX, spawnAreaX);
-                float offsetZ = Random.Range(-spawnAreaZ, spawnAreaZ);
+                float offsetX = UnityEngine.Random.Range(-spawnAreaX, spawnAreaX);
+                float offsetZ = UnityEngine.Random.Range(-spawnAreaZ, spawnAreaZ);
 
                 Vector3 spawnPos = new Vector3(
                     transform.position.x + offsetX,
@@ -43,7 +50,6 @@ public class EnemiesGenerator : MonoBehaviour
 
     public int GetAliveEnemiesCount()
     {
-        // Limpia enemigos destruidos y cuenta los que siguen vivos
         spawnedEnemies.RemoveAll(e => e == null);
         int aliveCount = 0;
 
@@ -61,6 +67,20 @@ public class EnemiesGenerator : MonoBehaviour
 
     public bool AllEnemiesDead()
     {
-        return GetAliveEnemiesCount() == 0;
+        bool allDead = GetAliveEnemiesCount() == 0;
+        Debug.Log($"AllEnemiesDead check in {gameObject.name}: {allDead}");
+        if (allDead)
+            OnAllEnemiesDead?.Invoke(); // dispara el evento si todos los enemigos murieron
+
+        return allDead;
     }
+
+    public void CheckEnemies()
+    {
+        if (AllEnemiesDead() && OnAllEnemiesDead != null)
+        {
+            OnAllEnemiesDead.Invoke();
+        }
+    }
+
 }

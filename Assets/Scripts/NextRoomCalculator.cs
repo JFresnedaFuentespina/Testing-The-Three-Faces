@@ -162,6 +162,30 @@ public class NextRoomCalculator : MonoBehaviour
         }
     }
 
+    public void ReenableAllDoors(GameObject room)
+    {
+        string[] doorPaths =
+        {
+        "ParedIzquierda/Door_Prefab_Closed_Left",
+        "ParedDerecha/Door_Prefab_Closed_Right",
+        "ParedFrontal/Door_Prefab_Closed_Front"
+    };
+
+        foreach (string path in doorPaths)
+        {
+            Transform door = room.transform.Find(path);
+            if (door != null)
+            {
+                var collider = door.GetComponent<Collider>();
+                if (collider != null)
+                    collider.enabled = true;
+
+                Debug.Log($"Reactivado collider de {door.name} en {room.name}");
+            }
+        }
+    }
+
+
     void MoveCamera(Vector3 roomPos)
     {
         if (Camera.main == null)

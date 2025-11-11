@@ -90,8 +90,6 @@ public class LevelGenerator : MonoBehaviour
         return generatedRooms;
     }
 
-
-
     public void TrySpawnBossRoom(int i, Vector3 position)
     {
         if (bossRoomSpawned) return;

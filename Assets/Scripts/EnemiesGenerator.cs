@@ -11,12 +11,6 @@ public class EnemiesGenerator : MonoBehaviour
 
     private bool enemiesSpawned = false;
     private List<ZombieLife> spawnedEnemies = new List<ZombieLife>();
-    public event Action OnAllEnemiesDead;
-
-    // void Update()
-    // {
-    //     CheckEnemies();
-    // }
 
     public void GenerateEnemiesInRoom(Vector3 roomPos)
     {
@@ -69,18 +63,7 @@ public class EnemiesGenerator : MonoBehaviour
     {
         bool allDead = GetAliveEnemiesCount() == 0;
         Debug.Log($"AllEnemiesDead check in {gameObject.name}: {allDead}");
-        if (allDead)
-            OnAllEnemiesDead?.Invoke(); // dispara el evento si todos los enemigos murieron
-
         return allDead;
-    }
-
-    public void CheckEnemies()
-    {
-        if (AllEnemiesDead() && OnAllEnemiesDead != null)
-        {
-            OnAllEnemiesDead.Invoke();
-        }
     }
 
 }

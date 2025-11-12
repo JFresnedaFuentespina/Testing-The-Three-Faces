@@ -3,22 +3,50 @@ using UnityEngine;
 public class DoorsEnabler : MonoBehaviour
 {
     private EnemiesGenerator generator;
-    private NextRoomCalculator nextRoomCalculator;
+    private NextRoomCalculator calc;
 
     void Start()
     {
+        calc = GetComponentInChildren<NextRoomCalculator>();
         generator = GetComponent<EnemiesGenerator>();
-        nextRoomCalculator = FindAnyObjectByType<NextRoomCalculator>();
+    }
 
-        if (generator != null)
+    void Update()
+    {
+        if (generator != null && generator.AllEnemiesDead())
         {
-            generator.OnAllEnemiesDead += HandleAllEnemiesDead;
+            HandleAllEnemiesDead();
         }
     }
 
     private void HandleAllEnemiesDead()
     {
         Debug.Log($"Todos los enemigos muertos en {gameObject.name}, reactivando puertas...");
-        nextRoomCalculator.ReenableAllDoors(gameObject);
+        ReenableAllDoors();
+    }
+
+    private void ReenableAllDoors()
+    {
+        string[] doorPaths =
+        {
+            "ParedIzquierda/Door_Prefab_Closed_Left",
+            "ParedDerecha/Door_Prefab_Closed_Right",
+            "ParedFrontal/Door_Prefab_Closed_Front"
+        };
+
+        foreach (string path in doorPaths)
+        {
+            Transform door = transform.Find(path);
+            if (door != null)
+            {
+                var collider = door.GetComponent<Collider>();
+                if (collider != null && !collider.enabled)
+                {
+                    collider.enabled = true;
+                    calc.enabledTemporarily = false;
+                    Debug.Log($"Reactivado collider de {door.name} en {name}");
+                }
+            }
+        }
     }
 }

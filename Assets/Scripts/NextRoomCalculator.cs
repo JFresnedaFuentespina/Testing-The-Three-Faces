@@ -15,59 +15,51 @@ public class NextRoomCalculator : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("EnabledTemporarily: " + enabledTemporarily);
-        if (enabledTemporarily)
-            return;
-
         if (!other.CompareTag("Player"))
             return;
 
-        // Determinar el collider real de la puerta (este script puede estar en un child)
-        Collider doorCollider = GetComponent<Collider>();
-        if (doorCollider == null)
-            doorCollider = GetComponentInChildren<Collider>();
-
-        Collider playerCollider = other;
-        if (doorCollider == null || playerCollider == null)
+        if (enabledTemporarily)
         {
-            Debug.LogWarning("No se encontraron colliders para manejar IgnoreCollision.");
+            Debug.Log($"{gameObject.name}: bloqueo temporal activo");
             return;
         }
+        // Reiniciar enabledTemporarily solo en la puerta que se usó
+        enabledTemporarily = true;
 
-        // Ignorar colisión entre puerta y jugador inmediatamente
-        Physics.IgnoreCollision(doorCollider, playerCollider, true);
+        // Ignorar colisión temporalmente
+        Collider doorCollider = GetComponent<Collider>() ?? GetComponentInChildren<Collider>();
+        if (doorCollider != null)
+            Physics.IgnoreCollision(doorCollider, other, true);
 
-        // Calcular la posición que tiene que ocupar el personaje en la siguiente habitación
-        Vector3 currentRoomPos = transform.parent?.parent?.position ?? Vector3.zero;
-        string doorName = gameObject.name;
-        Vector3 targetPos = CalculateTargetRoomPosition(doorName, currentRoomPos);
-        var nextRoom = FindNextRoom(targetPos);
-        GameObject targetRoomObj = FindRoomObject(nextRoom.Value);
-        Transform oppositeDoor = FindOppositeDoor(targetRoomObj, doorName);
-        Vector3 spawnPos = CalculateSpawnPosition(oppositeDoor);
+        // Determinar habitación siguiente
+        Vector3 targetPos = CalculateTargetRoomPosition(gameObject.name, transform.parent.parent.position);
+        GameObject nextRoomObj = FindRoomObject(FindNextRoom(targetPos).Value);
 
-        DisableDoorsInRoom(targetRoomObj);
+        DisableDoorsInRoom(nextRoomObj);
+
         // Mover jugador y cámara
         Transform root = other.transform.root;
-        root.position = spawnPos;
-        MoveCamera(nextRoom.Value);
+        root.position = CalculateSpawnPosition(FindOppositeDoor(nextRoomObj, gameObject.name));
+        MoveCamera(targetPos);
 
-        // Reactivar la colisión entre puerta y jugador tras cierto tiempo
-        StartCoroutine(ReenableCollisionBetween(doorCollider, playerCollider, 0.5f));
+        // Reactivar colisión con un delay
+        StartCoroutine(ReenableCollisionBetween(doorCollider, other, 0.5f));
     }
+
 
     private IEnumerator ReenableCollisionBetween(Collider a, Collider b, float delay)
     {
         yield return new WaitForSeconds(delay);
 
-        if (a == null || b == null)
-        {
-            Debug.LogWarning("Un collider es null al reactivar colisión.");
-            yield break;
-        }
+        if (a == null || b == null) yield break;
 
         Physics.IgnoreCollision(a, b, false);
         Debug.Log($"Reactivada colisión entre {a.name} y {b.name}");
+
+        // Reseteamos el bloqueo temporal para que la puerta pueda volver a ser activada en el futuro
+        var calc = a.GetComponent<NextRoomCalculator>();
+        if (calc != null)
+            calc.enabledTemporarily = false;
     }
 
 
@@ -135,33 +127,34 @@ public class NextRoomCalculator : MonoBehaviour
     {
         if (room == null) return;
 
+        var generator = room.GetComponent<EnemiesGenerator>();
+        if (generator != null && generator.AllEnemiesDead())
+        {
+            // La habitación está completada, no desactivar puertas
+            return;
+        }
+
         string[] doorPaths =
         {
         "ParedIzquierda/Door_Prefab_Closed_Left",
         "ParedDerecha/Door_Prefab_Closed_Right",
         "ParedFrontal/Door_Prefab_Closed_Front"
-        };
+    };
 
         foreach (string path in doorPaths)
         {
             Transform door = room.transform.Find(path);
             if (door != null)
             {
-                var calc = door.GetComponent<NextRoomCalculator>();
                 var collider = door.GetComponent<Collider>();
-
-                // En lugar de desactivar el script, desactivamos el collider
                 if (collider != null)
                     collider.enabled = false;
-
-                // También puedes usar una bandera interna
-                if (calc != null)
-                    calc.enabledTemporarily = true;
 
                 Debug.Log($"Desactivado collider de {door.name} en {room.name}");
             }
         }
     }
+
 
 
     void MoveCamera(Vector3 roomPos)

@@ -11,11 +11,21 @@ public class EnemiesGenerator : MonoBehaviour
 
     private bool enemiesSpawned = false;
     private List<ZombieLife> spawnedEnemies = new List<ZombieLife>();
+    public bool enemiesDefeated = false;
+
+    private bool enemiesActuallySpawned = false; // nueva variable
 
     public void GenerateEnemiesInRoom(Vector3 roomPos)
     {
-        if (Vector3.Distance(transform.position, roomPos) < 1f && !enemiesSpawned)
+        if (enemiesDefeated || enemiesActuallySpawned)
         {
+            Debug.Log($"No se generan enemigos en {gameObject.name}, ya fueron generados o derrotados.");
+            return;
+        }
+
+        if (Vector3.Distance(transform.position, roomPos) < 1f)
+        {
+            enemiesActuallySpawned = true; // marcar que se generaron enemigos
             enemiesSpawned = true;
 
             int enemyCount = UnityEngine.Random.Range(1, maxEnemies + 1);
@@ -24,15 +34,9 @@ public class EnemiesGenerator : MonoBehaviour
                 float offsetX = UnityEngine.Random.Range(-spawnAreaX, spawnAreaX);
                 float offsetZ = UnityEngine.Random.Range(-spawnAreaZ, spawnAreaZ);
 
-                Vector3 spawnPos = new Vector3(
-                    transform.position.x + offsetX,
-                    transform.position.y,
-                    transform.position.z + offsetZ
-                );
-
+                Vector3 spawnPos = new Vector3(transform.position.x + offsetX, transform.position.y, transform.position.z + offsetZ);
                 GameObject enemy = Instantiate(enemyType1Prefab, spawnPos, Quaternion.identity);
 
-                // Referencia al script de vida
                 ZombieLife life = enemy.GetComponent<ZombieLife>();
                 if (life != null)
                     spawnedEnemies.Add(life);
@@ -41,6 +45,12 @@ public class EnemiesGenerator : MonoBehaviour
             Debug.Log($"Generados {spawnedEnemies.Count} enemigos en {gameObject.name}");
         }
     }
+
+    public bool EnemiesWereSpawned()
+    {
+        return enemiesActuallySpawned;
+    }
+
 
     public int GetAliveEnemiesCount()
     {
@@ -65,5 +75,4 @@ public class EnemiesGenerator : MonoBehaviour
         Debug.Log($"AllEnemiesDead check in {gameObject.name}: {allDead}");
         return allDead;
     }
-
 }

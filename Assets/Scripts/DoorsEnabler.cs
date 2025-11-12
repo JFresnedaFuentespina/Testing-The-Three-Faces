@@ -15,14 +15,9 @@ public class DoorsEnabler : MonoBehaviour
     {
         if (generator != null && generator.AllEnemiesDead())
         {
-            HandleAllEnemiesDead();
+            Debug.Log($"Todos los enemigos muertos en {gameObject.name}, reactivando puertas...");
+            ReenableAllDoors();
         }
-    }
-
-    private void HandleAllEnemiesDead()
-    {
-        Debug.Log($"Todos los enemigos muertos en {gameObject.name}, reactivando puertas...");
-        ReenableAllDoors();
     }
 
     private void ReenableAllDoors()

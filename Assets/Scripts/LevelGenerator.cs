@@ -13,8 +13,6 @@ public class LevelGenerator : MonoBehaviour
     public GameObject bossRoomPrefab;
     public GameObject characterPrefab;
 
-    public GameObject enemyPrefab;
-
     [Header("Level Settings")]
     public int levelWidth;
     public float levelBaseY = 0f;

@@ -13,16 +13,34 @@ public class PlayerHealth : MonoBehaviour
 
     void Start()
     {
+        if (hud == null)
+        {
+            // Buscar el panel Healthpoints dentro del Canvas
+            Canvas canvas = FindObjectOfType<Canvas>();
+            if (canvas != null)
+            {
+                hud = canvas.transform.Find("HealthPoints")?.gameObject;
+            }
+        }
+
+        if (hud == null)
+        {
+            Debug.LogWarning("HUD no encontrado.");
+            return;
+        }
+
         healthPoints = maxHealth;
 
+        corazones.Clear();
         foreach (Transform child in hud.transform)
         {
             corazones.Add(child.gameObject);
         }
 
-        // Debug.Log("Cantidad de estados de vida: " + corazones.Count);
         UpdateHUD();
     }
+
+
 
     private void OnCollisionEnter(Collision other)
     {
@@ -36,7 +54,7 @@ public class PlayerHealth : MonoBehaviour
             Destroy(other.gameObject);
         }
 
-        // 🔒 Limita el valor antes de actualizar HUD
+        // Limita el valor antes de actualizar HUD
         healthPoints = Mathf.Clamp(healthPoints, minHealth, maxHealth);
 
         UpdateHUD();
@@ -70,6 +88,6 @@ public class PlayerHealth : MonoBehaviour
             }
         }
 
-        // Debug.Log($"HUD activo: {nombreHUD} (vida: {healthPoints})");
+        Debug.Log($"HUD activo: {nombreHUD} (vida: {healthPoints})");
     }
 }

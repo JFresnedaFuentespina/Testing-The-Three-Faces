@@ -52,5 +52,5 @@
         "Temp/": true
     },
     "dotnet.preferCSharpExtension": true,
-    "dotnet.defaultSolution": "Testing-The-Three-Faces.sln"
+    "dotnet.defaultSolution": "Test-The-Three-Faces.sln"
 }

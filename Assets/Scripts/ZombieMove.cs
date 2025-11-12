@@ -50,10 +50,7 @@ public class ZombieMove : MonoBehaviour
 
     private void BuscarJugador()
     {
-        // 1. Buscar por nombre del clon
         mainCharacter = GameObject.Find("Character(Clone)");
-
-        // 2. Si no lo encuentra, buscar por tag (más fiable)
         if (mainCharacter == null)
             mainCharacter = GameObject.FindGameObjectWithTag("Player");
     }

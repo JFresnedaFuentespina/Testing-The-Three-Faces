@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthPoints: 0
-  hud: {fileID: 6531257099954128290, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+  hud: {fileID: 0}
 --- !u!1001 &7930126594040334127
 PrefabInstance:
   m_ObjectHideFlags: 0

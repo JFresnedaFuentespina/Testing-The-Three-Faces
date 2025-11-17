@@ -19,12 +19,12 @@ Proyecto de desarrollo de un videojuego en Unity con la temática: Las dos caras
 
 ## Estructura del proyecto
 /Assets
--> /Scripts: Lógica del juego.
--> /Prefabs: Jugado, enemigos, habitaciones, puertas, items...
--> /Art: Imagenes.
--> /Fonts: Fuentes.
--> /Scenes: Escenas (Intro, MainMenu, Level1, Level2, Level3, Credits...).
--> /3rd Party: Assets de terceros.
+- /Scripts: Lógica del juego.
+- /Prefabs: Jugado, enemigos, habitaciones, puertas, items...
+- /Art: Imagenes.
+- /Fonts: Fuentes.
+- /Scenes: Escenas (Intro, MainMenu, Level1, Level2, Level3, Credits...).
+- /3rd Party: Assets de terceros.
 
 ## Credits:
 (Assets empleados)

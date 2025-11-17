@@ -159,6 +159,7 @@ public class NextRoomCalculator : MonoBehaviour
         if (Camera.main == null)
             return;
 
+        IsBossRoom(roomPos);
         Vector3 camPos = Camera.main.transform.position;
         Vector3 newCamPos = new Vector3(roomPos.x - 1.5f, camPos.y, roomPos.z - 9.5f);
         Camera.main.transform.position = newCamPos;
@@ -181,7 +182,27 @@ public class NextRoomCalculator : MonoBehaviour
 
     public void IsBossRoom(Vector3 roomPos)
     {
-        
+        if (level == null)
+            level = FindAnyObjectByType<LevelGenerator>();
+        var bossEntry = level.roomsDictionary
+                    .FirstOrDefault(r => r.Key.StartsWith("Boss"));
+        if (!bossEntry.Equals(default(KeyValuePair<string, Vector3>)))
+        {
+            // Comparar posiciones
+            if (Vector3.Distance(bossEntry.Value, roomPos) < 0.1f)
+            {
+                Debug.Log($"La habitación en {roomPos} es la Boss Room ({bossEntry.Key})");
+                
+            }
+            else
+            {
+                Debug.Log($"La habitación en {roomPos} no es la Boss Room");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("No se ha generado ninguna Boss Room aún");
+        }
     }
 
 }

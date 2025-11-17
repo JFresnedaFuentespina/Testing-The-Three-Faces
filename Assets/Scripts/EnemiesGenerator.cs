@@ -13,7 +13,7 @@ public class EnemiesGenerator : MonoBehaviour
     private List<ZombieLife> spawnedEnemies = new List<ZombieLife>();
     public bool enemiesDefeated = false;
 
-    public bool enemiesActuallySpawned = false; // nueva variable
+    public bool enemiesActuallySpawned = false;
 
     public void GenerateEnemiesInRoom(Vector3 roomPos)
     {
@@ -39,6 +39,8 @@ public class EnemiesGenerator : MonoBehaviour
             if (life != null)
                 spawnedEnemies.Add(life);
         }
+
+        Debug.Log($"Enemigos totales generados en {gameObject.name}: {spawnedEnemies.Count}");
     }
 
     public int GetAliveEnemiesCount()

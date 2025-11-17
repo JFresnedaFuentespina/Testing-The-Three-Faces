@@ -4,12 +4,35 @@ Proyecto de desarrollo de un videojuego en Unity con la temática: Las dos caras
 ## Enlace a un resumen de la idea del proyecto:
 [Resumen Proyecto](https://drive.google.com/file/d/1I7N4RCpclo_JCFqlVTrsUAL3g1n7sUXu/view?usp=sharing)
 
+## Sinopsis
+En un mundo donde el destino se decide con un simple lanzamiento, existen tres
+antiguas deidades que rigen el equilibrio del azar: Cara, Cruz y Canto.
+Juntas mantienen la balanza entre el orden y el caos, la materia y el espíritu, lo
+tangible y lo etéreo.
+Pero hace tiempo, Canto desapareció. Sin su presencia, Cara y Cruz entraron en
+guerra eterna, arrastrando al mundo a un ciclo de cambios impredecibles.
+Los humanos quedaron atrapados entre realidades: mitad vivos, mitad fantasmas,
+sin pertenecer a ningún lado.
+Tú eres uno de ellos, un alma dividida que porta la moneda original, reliquia creada
+por las tres deidades. Con cada lanzamiento, invocas su poder, cambiando entre
+cuerpo y espíritu.
+Tu misión es restaurar el equilibrio, derrotando primero a Cara, guardiana del mundo
+material, luego a Cruz, soberana del mundo espectral, y finalmente enfrentarte a
+Canto, el azar absoluto, donde toda elección pierde sentido.
+
 ## Características principales
-- Cambios entre dos planos: material y espectral  
-- Enemigos y jefes basados en las tres deidades del azar  
-- Habitaciones generadas proceduralmente  
-- Combate simple y táctico  
-- Exploración basada en puertas y conexiones entre salas
+- Género: Roguelike.
+- Estilo: 3D con estética oscura y simbólica.
+- Inspiración: The Binding of Isaac.
+- Temática: Las dos caras de una moneda.
+
+## Jugabilidad
+- El personaje cambia entre dos formas, humana y fantasma.
+- Forma humana: Ataque cuerpo a cuerpo.
+- Forma fantasma: Ataque a distancia.
+- Enemigos y jefes basados en las tres deidades.  
+- Habitaciones generadas proceduralmente.
+- Exploración basada en puertas y conexiones entre salas.
 
 ## Gameplay básico
 1. Explorar habitaciones conectadas por puertas.

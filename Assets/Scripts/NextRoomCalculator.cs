@@ -144,8 +144,7 @@ public class NextRoomCalculator : MonoBehaviour
                 Collider collider = door.GetComponent<Collider>();
                 if (collider != null && collider.enabled)
                 {
-                    collider.enabled = false; // bloquear puerta
-                    Debug.Log($"Desactivado collider de {door.name} en {room.name}");
+                    collider.enabled = false;
                 }
             }
         }
@@ -173,12 +172,16 @@ public class NextRoomCalculator : MonoBehaviour
 
             if (generator != null && doorsEnabler != null)
             {
-
                 DisableDoorsInRoom(roomObj);
                 generator.GenerateEnemiesInRoom(roomPos);
                 doorsEnabler.StartCheckEnemies();
             }
         }
+    }
+
+    public void IsBossRoom(Vector3 roomPos)
+    {
+        
     }
 
 }

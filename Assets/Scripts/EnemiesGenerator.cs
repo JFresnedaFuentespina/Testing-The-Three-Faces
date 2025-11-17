@@ -13,44 +13,33 @@ public class EnemiesGenerator : MonoBehaviour
     private List<ZombieLife> spawnedEnemies = new List<ZombieLife>();
     public bool enemiesDefeated = false;
 
-    private bool enemiesActuallySpawned = false; // nueva variable
+    public bool enemiesActuallySpawned = false; // nueva variable
 
     public void GenerateEnemiesInRoom(Vector3 roomPos)
     {
         if (enemiesDefeated || enemiesActuallySpawned)
         {
-            Debug.Log($"No se generan enemigos en {gameObject.name}, ya fueron generados o derrotados.");
+            Debug.Log($"No se generan enemigos en {gameObject.name} (ya derrotados o generados)");
             return;
         }
 
-        if (Vector3.Distance(transform.position, roomPos) < 1f)
+        enemiesActuallySpawned = true;
+        enemiesSpawned = true;
+
+        int enemyCount = UnityEngine.Random.Range(1, maxEnemies + 1);
+
+        for (int i = 0; i < enemyCount; i++)
         {
-            enemiesActuallySpawned = true; // marcar que se generaron enemigos
-            enemiesSpawned = true;
+            float offsetX = UnityEngine.Random.Range(-spawnAreaX, spawnAreaX);
+            float offsetZ = UnityEngine.Random.Range(-spawnAreaZ, spawnAreaZ);
+            Vector3 spawnPos = transform.position + new Vector3(offsetX, 0, offsetZ);
 
-            int enemyCount = UnityEngine.Random.Range(1, maxEnemies + 1);
-            for (int i = 0; i < enemyCount; i++)
-            {
-                float offsetX = UnityEngine.Random.Range(-spawnAreaX, spawnAreaX);
-                float offsetZ = UnityEngine.Random.Range(-spawnAreaZ, spawnAreaZ);
-
-                Vector3 spawnPos = new Vector3(transform.position.x + offsetX, transform.position.y, transform.position.z + offsetZ);
-                GameObject enemy = Instantiate(enemyType1Prefab, spawnPos, Quaternion.identity);
-
-                ZombieLife life = enemy.GetComponent<ZombieLife>();
-                if (life != null)
-                    spawnedEnemies.Add(life);
-            }
-
-            Debug.Log($"Generados {spawnedEnemies.Count} enemigos en {gameObject.name}");
+            GameObject enemy = Instantiate(enemyType1Prefab, spawnPos, Quaternion.identity);
+            ZombieLife life = enemy.GetComponent<ZombieLife>();
+            if (life != null)
+                spawnedEnemies.Add(life);
         }
     }
-
-    public bool EnemiesWereSpawned()
-    {
-        return enemiesActuallySpawned;
-    }
-
 
     public int GetAliveEnemiesCount()
     {
@@ -65,14 +54,13 @@ public class EnemiesGenerator : MonoBehaviour
             if (enemy != null && enemy.GetIsAlive())
                 aliveCount++;
         }
-
         return aliveCount;
     }
 
     public bool AllEnemiesDead()
     {
         bool allDead = GetAliveEnemiesCount() == 0;
-        Debug.Log($"AllEnemiesDead check in {gameObject.name}: {allDead}");
         return allDead;
     }
+
 }

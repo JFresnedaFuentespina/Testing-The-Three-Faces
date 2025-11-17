@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class DoorsEnabler : MonoBehaviour
@@ -12,20 +13,20 @@ public class DoorsEnabler : MonoBehaviour
         generator = GetComponent<EnemiesGenerator>();
     }
 
-    void Update()
+    public void StartCheckEnemies()
     {
-        if (generator != null
-            && generator.EnemiesWereSpawned()
-            && generator.GetAliveEnemiesCount() == 0
-            && !doorsReenabled) // solo una vez por limpieza
-        {
-            Debug.Log($"Todos los enemigos muertos en {gameObject.name}, reactivando puertas...");
-            ReenableAllDoors();
-            doorsReenabled = true; // asegura que no se vuelva a llamar hasta que haya nuevos enemigos
-            generator.enemiesDefeated = true; // opcional, según quieras impedir regeneración
-        }
+        Debug.Log("StartCheckEnemies llamada");
+        StartCoroutine(CheckEnemiesCoroutine());
     }
 
+    IEnumerator CheckEnemiesCoroutine()
+    {
+        yield return new WaitUntil(() => generator.enemiesActuallySpawned);
+        yield return new WaitUntil(() => generator.GetAliveEnemiesCount() == 0);
+        ReenableAllDoors();
+        doorsReenabled = true;
+        generator.enemiesDefeated = true;
+    }
 
     private void ReenableAllDoors()
     {
@@ -36,44 +37,36 @@ public class DoorsEnabler : MonoBehaviour
         "ParedFrontal/Door_Prefab_Closed_Front"
     };
 
+        if (!generator.enemiesActuallySpawned)
+        {
+            Debug.Log($"{name}: habitación sin enemigos, no reactivar puertas.");
+            return;
+        }
+
         foreach (string path in doorPaths)
         {
             Transform door = transform.Find(path);
             if (door != null)
             {
-                // Reactivar el collider si estaba desactivado
                 Collider collider = door.GetComponent<Collider>();
                 if (collider != null && !collider.enabled)
                 {
                     collider.enabled = true;
-                    Debug.Log($"Reactivado collider de {door.name} en {name}");
                 }
 
-                // Reactivar el NextRoomCalculator de la puerta
-                NextRoomCalculator doorCalc = door.GetComponent<NextRoomCalculator>();
+                NextRoomCalculator doorCalc = door.GetComponent<NextRoomCalculator>() ?? door.GetComponentInChildren<NextRoomCalculator>();
                 if (doorCalc != null)
                 {
                     doorCalc.enabledTemporarily = false;
-                    Debug.Log($"NextRoomCalculator de {door.name} reactivado");
-                }
-
-                // Por si el script está en un hijo
-                else
-                {
-                    doorCalc = door.GetComponentInChildren<NextRoomCalculator>();
-                    if (doorCalc != null)
-                    {
-                        doorCalc.enabledTemporarily = false;
-                        Debug.Log($"NextRoomCalculator de {door.name} reactivado (child)");
-                    }
                 }
             }
             else
             {
-                Debug.LogWarning($"No se encontró la puerta: {path} en {name}");
+                Debug.LogWarning($"No se encontró la puerta: {path}");
             }
         }
     }
+
 
 
 }

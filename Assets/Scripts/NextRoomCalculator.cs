@@ -128,11 +128,6 @@ public class NextRoomCalculator : MonoBehaviour
         if (room == null) return;
 
         var generator = room.GetComponent<EnemiesGenerator>();
-        if (generator != null && generator.AllEnemiesDead())
-        {
-            // La habitación está completada, no desactivar puertas
-            return;
-        }
 
         string[] doorPaths =
         {
@@ -146,13 +141,16 @@ public class NextRoomCalculator : MonoBehaviour
             Transform door = room.transform.Find(path);
             if (door != null)
             {
-                var collider = door.GetComponent<Collider>();
-                if (collider != null)
-                    collider.enabled = false;
-
-                Debug.Log($"Desactivado collider de {door.name} en {room.name}");
+                Collider collider = door.GetComponent<Collider>();
+                if (collider != null && collider.enabled)
+                {
+                    collider.enabled = false; // bloquear puerta
+                    Debug.Log($"Desactivado collider de {door.name} en {room.name}");
+                }
             }
         }
+
+        Debug.Log($"{room.name}: puertas bloqueadas al entrar en la habitación");
     }
 
 
@@ -171,8 +169,16 @@ public class NextRoomCalculator : MonoBehaviour
         if (roomObj != null)
         {
             generator = roomObj.GetComponentInChildren<EnemiesGenerator>();
-            if (generator != null)
+            DoorsEnabler doorsEnabler = roomObj.GetComponentInParent<DoorsEnabler>();
+
+            if (generator != null && doorsEnabler != null)
+            {
+
+                DisableDoorsInRoom(roomObj);
                 generator.GenerateEnemiesInRoom(roomPos);
+                doorsEnabler.StartCheckEnemies();
+            }
         }
     }
+
 }

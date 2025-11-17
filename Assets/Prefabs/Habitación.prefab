@@ -642,10 +642,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfe9a59504764ea47ac3b8d2c1b5f4c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyType1Prefab: {fileID: 9087458546057062690, guid: 98c902062beffc44fabe5be7bb73401f, type: 3}
+  enemyType1Prefab: {fileID: 6930373436760084395, guid: 86954bd586b5cbc4380a87a05acbf57f, type: 3}
   maxEnemies: 3
   spawnAreaX: 2
   spawnAreaZ: 2
+  enemiesDefeated: 0
 --- !u!114 &4644749237365189746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -676,11 +677,11 @@ MonoBehaviour:
   - {fileID: 2290846898853941114, guid: b0abe2cf3d0874541a042aeb54738371, type: 3}
   - {fileID: 2684695994064820914, guid: 86509780b07285a44a69b1eb089a3ed1, type: 3}
   - {fileID: 7809331290410404023, guid: 0dd050efb10a21c4f8d1c3ab7e33f70b, type: 3}
-  maxRocks: 10
   floor: {fileID: 3151105536103396261}
   wallLeft: {fileID: 3151105535959561369}
   wallRight: {fileID: 3151105535959561369}
   wallFront: {fileID: 3151105535959561369}
+  spawnMargin: 2
 --- !u!1001 &1756464671265118713
 PrefabInstance:
   m_ObjectHideFlags: 0

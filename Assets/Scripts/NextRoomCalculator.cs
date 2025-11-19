@@ -2,12 +2,15 @@ using UnityEngine;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class NextRoomCalculator : MonoBehaviour
 {
     private LevelGenerator level;
     private EnemiesGenerator generator;
     public bool enabledTemporarily = false;
+    private bool isBossRoom = false;
+    private bool bossDefeated = false;
     void Start()
     {
         level = FindAnyObjectByType<LevelGenerator>();
@@ -23,6 +26,7 @@ public class NextRoomCalculator : MonoBehaviour
             Debug.Log($"{gameObject.name}: bloqueo temporal activo");
             return;
         }
+
         // Reiniciar enabledTemporarily solo en la puerta que se usó
         enabledTemporarily = true;
 
@@ -159,15 +163,16 @@ public class NextRoomCalculator : MonoBehaviour
         if (Camera.main == null)
             return;
 
-        IsBossRoom(roomPos);
         Vector3 camPos = Camera.main.transform.position;
         Vector3 newCamPos = new Vector3(roomPos.x - 1.5f, camPos.y, roomPos.z - 9.5f);
         Camera.main.transform.position = newCamPos;
         Camera.main.transform.rotation = Quaternion.Euler(40f, 0f, 0f);
-        // Buscar el generador de enemigos en la habitación destino
+
         GameObject roomObj = FindRoomObject(roomPos);
         if (roomObj != null)
         {
+            // Mover icono en minimapa
+            FindAnyObjectByType<MinimapBehaviour>().MovePlayerToRoom(roomObj.name);
             generator = roomObj.GetComponentInChildren<EnemiesGenerator>();
             DoorsEnabler doorsEnabler = roomObj.GetComponentInParent<DoorsEnabler>();
 
@@ -177,32 +182,6 @@ public class NextRoomCalculator : MonoBehaviour
                 generator.GenerateEnemiesInRoom(roomPos);
                 doorsEnabler.StartCheckEnemies();
             }
-        }
-        FindAnyObjectByType<MinimapBehaviour>().MovePlayerToRoom(roomObj.name);
-    }
-
-    public void IsBossRoom(Vector3 roomPos)
-    {
-        if (level == null)
-            level = FindAnyObjectByType<LevelGenerator>();
-        var bossEntry = level.roomsDictionary
-                    .FirstOrDefault(r => r.Key.StartsWith("Boss"));
-        if (!bossEntry.Equals(default(KeyValuePair<string, Vector3>)))
-        {
-            // Comparar posiciones
-            if (Vector3.Distance(bossEntry.Value, roomPos) < 0.1f)
-            {
-                Debug.Log($"La habitación en {roomPos} es la Boss Room ({bossEntry.Key})");
-
-            }
-            else
-            {
-                Debug.Log($"La habitación en {roomPos} no es la Boss Room");
-            }
-        }
-        else
-        {
-            Debug.LogWarning("No se ha generado ninguna Boss Room aún");
         }
     }
 

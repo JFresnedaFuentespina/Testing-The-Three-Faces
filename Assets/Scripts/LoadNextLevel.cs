@@ -1,9 +1,12 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LoadNextLevel : MonoBehaviour
 {
+
+    public GameObject loadingPanel; // El panel que quieres mostrar
 
     void OnTriggerEnter(Collider other)
     {
@@ -15,7 +18,7 @@ public class LoadNextLevel : MonoBehaviour
     {
         string currentScene = SceneManager.GetActiveScene().name;
         string nextScene = "";
-        Debug.Log($"Escena actual: {currentScene}");
+
         switch (currentScene)
         {
             case "Level1Scene":
@@ -28,6 +31,28 @@ public class LoadNextLevel : MonoBehaviour
                 Debug.LogWarning("No hay siguiente nivel definido para " + currentScene);
                 return;
         }
-        SceneManager.LoadScene(nextScene);
+
+        StartCoroutine(LoadSceneAsync(nextScene));
+    }
+
+    private IEnumerator LoadSceneAsync(string sceneName)
+    {
+        if (loadingPanel != null)
+            loadingPanel.SetActive(true);
+
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
+        asyncLoad.allowSceneActivation = false;
+
+        // Esperar hasta que la escena esté lista para activarse
+        while (!asyncLoad.isDone)
+        {
+            // Activar la escena cuando haya cargado al 90%
+            if (asyncLoad.progress >= 0.9f)
+            {
+                asyncLoad.allowSceneActivation = true;
+            }
+
+            yield return null; // Esperar un frame para que el panel se actualice
+        }
     }
 }

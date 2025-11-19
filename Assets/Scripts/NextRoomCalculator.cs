@@ -178,6 +178,7 @@ public class NextRoomCalculator : MonoBehaviour
                 doorsEnabler.StartCheckEnemies();
             }
         }
+        FindAnyObjectByType<MinimapBehaviour>().MovePlayerToRoom(roomObj.name);
     }
 
     public void IsBossRoom(Vector3 roomPos)
@@ -192,7 +193,7 @@ public class NextRoomCalculator : MonoBehaviour
             if (Vector3.Distance(bossEntry.Value, roomPos) < 0.1f)
             {
                 Debug.Log($"La habitación en {roomPos} es la Boss Room ({bossEntry.Key})");
-                
+
             }
             else
             {

@@ -24,8 +24,11 @@ public class LevelGenerator : MonoBehaviour
     private int bossRoomIndex = -1;
     private bool bossRoomSpawned = false;
     private Vector3? forcedBossRoomPos = null;
+    public GameObject character;
 
     public Dictionary<string, Vector3> roomsDictionary = new Dictionary<string, Vector3>();
+
+    private MinimapBehaviour minimapBehaviour;
 
     public void GenerateLevel(int width, int minRooms)
     {
@@ -45,6 +48,7 @@ public class LevelGenerator : MonoBehaviour
 
     public int SpawnRooms()
     {
+        minimapBehaviour = GetComponent<MinimapBehaviour>();
         int generatedRooms = 0;
         List<GameObject> roomList = new List<GameObject>();
 
@@ -55,14 +59,16 @@ public class LevelGenerator : MonoBehaviour
             {
                 Vector3 position = new Vector3(i * offsetW, levelBaseY, 0);
 
-                if (i == 0)
-                    Instantiate(characterPrefab, position, Quaternion.identity);
-
                 GameObject room = Instantiate(roomPrefab, position, Quaternion.identity, transform);
                 room.name = $"Room_{i}";
                 roomList.Add(room);
 
-                roomsDictionary.Add($"Normal_{i}", position);
+                if (i == 0)
+                {
+                    character = Instantiate(characterPrefab, position, Quaternion.identity);
+                }
+
+                roomsDictionary.Add($"Room_{i}", position);
                 generatedRooms++;
 
                 TrySpawnBossRoom(i, position);
@@ -84,7 +90,8 @@ public class LevelGenerator : MonoBehaviour
         {
             SetupRoomDoors(roomList[i], i, treasurePos);
         }
-
+        minimapBehaviour.initMinimap(this.roomsDictionary, character);
+        minimapBehaviour.MovePlayerToRoom("Room_0");
         return generatedRooms;
     }
 

@@ -438,7 +438,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7507056594978238939, guid: 048330b6bb4d2b243a7a55308e02d8dd, type: 3}
   m_PrefabInstance: {fileID: 6308067664982948159}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 6308067664982948160}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c42c7f7d11538aa4e82c97afa1a675c7, type: 3}
@@ -541,6 +541,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+--- !u!1 &2010680792 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7972434616341513535, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+  m_PrefabInstance: {fileID: 2010680791}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6308067664982948159
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -596,8 +601,31 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2944726118942081857, guid: 048330b6bb4d2b243a7a55308e02d8dd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6308067664982948161}
   m_SourcePrefab: {fileID: 100100000, guid: 048330b6bb4d2b243a7a55308e02d8dd, type: 3}
+--- !u!1 &6308067664982948160 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2944726118942081857, guid: 048330b6bb4d2b243a7a55308e02d8dd, type: 3}
+  m_PrefabInstance: {fileID: 6308067664982948159}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6308067664982948161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6308067664982948160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98cd20c3a266adc4d868257926889f83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MinimapBehaviour
+  minimapPanel: {fileID: 2010680792}
+  roomIconPrefab: {fileID: 7997599683320553934, guid: 04c3d498cda197a43b475c91595f6ca2, type: 3}
+  playerIconPrefab: {fileID: 2110191091140840752, guid: ffc64621d66ec364594fc1ca0dbaafc7, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

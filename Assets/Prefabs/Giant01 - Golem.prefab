@@ -2199,7 +2199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e8abd3d82d7ca24081aef6cf57bd1df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieMove
-  velocity: 2
+  velocity: 5
 --- !u!65 &8886649879476324094
 BoxCollider:
   m_ObjectHideFlags: 0

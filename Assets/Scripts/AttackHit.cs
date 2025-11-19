@@ -14,7 +14,7 @@ public class AttackHit : MonoBehaviour
     {
         if (other.CompareTag("Enemy_Zombie"))
         {
-            ZombieLife zombieLife = other.GetComponent<ZombieLife>();
+            EnemyLife zombieLife = other.GetComponent<EnemyLife>();
             if (zombieLife != null)
             {
                 zombieLife.Damage(attackDamage);

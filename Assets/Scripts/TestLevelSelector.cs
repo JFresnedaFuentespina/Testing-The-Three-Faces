@@ -8,11 +8,6 @@ public class TestLevelSelector : MonoBehaviour
     public LevelGenerator levelGenerator;
     public int currentLevel = 1;
 
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {

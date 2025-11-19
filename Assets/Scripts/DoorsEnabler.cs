@@ -28,7 +28,7 @@ public class DoorsEnabler : MonoBehaviour
         generator.enemiesDefeated = true;
     }
 
-    private void ReenableAllDoors()
+    public void ReenableAllDoors()
     {
         string[] doorPaths =
         {

@@ -302,6 +302,10 @@ PrefabInstance:
       propertyPath: minimapPanel
       value: 
       objectReference: {fileID: 2067796229}
+    - target: {fileID: 7507056594978238939, guid: 048330b6bb4d2b243a7a55308e02d8dd, type: 3}
+      propertyPath: loadingPanel
+      value: 
+      objectReference: {fileID: 2067796230}
     m_RemovedComponents:
     - {fileID: 3783187611946142028, guid: 048330b6bb4d2b243a7a55308e02d8dd, type: 3}
     m_RemovedGameObjects: []
@@ -744,6 +748,11 @@ PrefabInstance:
 --- !u!1 &2067796229 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7972434616341513535, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+  m_PrefabInstance: {fileID: 2067796228}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2067796230 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4002810081722443935, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
   m_PrefabInstance: {fileID: 2067796228}
   m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807

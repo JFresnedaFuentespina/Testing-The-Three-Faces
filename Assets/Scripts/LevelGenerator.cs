@@ -12,6 +12,7 @@ public class LevelGenerator : MonoBehaviour
     public GameObject treasureRoomPrefab;
     public GameObject bossRoomPrefab;
     public GameObject characterPrefab;
+    public GameObject loadingPanel;
 
     [Header("Level Settings")]
     public int levelWidth;
@@ -32,6 +33,14 @@ public class LevelGenerator : MonoBehaviour
 
     public void GenerateLevel(int width, int minRooms)
     {
+        StartCoroutine(GenerateLevelCoroutine(width, minRooms));
+    }
+
+    private IEnumerator GenerateLevelCoroutine(int width, int minRooms)
+    {
+        if (loadingPanel != null)
+            loadingPanel.SetActive(true); // Activar panel de carga
+
         levelWidth = width;
         levelMap.Clear();
         roomsDictionary.Clear();
@@ -43,8 +52,24 @@ public class LevelGenerator : MonoBehaviour
 
         for (int i = totalRooms; i < levelWidth; i++)
             levelMap.Add(false);
-    }
 
+        // Simulación de spawn de habitaciones
+        for (int i = 0; i < levelMap.Count; i++)
+        {
+            if (levelMap[i])
+            {
+                Vector3 pos = new Vector3(i * offsetW, levelBaseY, 0f);
+                GameObject room = Instantiate(roomPrefab, pos, Quaternion.identity);
+                roomsDictionary.Add($"Room_{i}", pos);
+
+                // Espera un frame para que Unity renderice y se vea el panel activo
+                yield return null;
+            }
+        }
+
+        if (loadingPanel != null)
+            loadingPanel.SetActive(false); // Desactivar panel de carga
+    }
 
     public int SpawnRooms()
     {

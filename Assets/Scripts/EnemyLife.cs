@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ZombieLife : MonoBehaviour
+public class EnemyLife : MonoBehaviour
 {
     // Start is called before the first frame update
     public float totalHp = 10f;

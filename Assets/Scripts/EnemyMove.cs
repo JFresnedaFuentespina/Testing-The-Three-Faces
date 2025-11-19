@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ZombieMove : MonoBehaviour
+public class EnemyMove : MonoBehaviour
 {
     public float velocity = 0.5f;
 

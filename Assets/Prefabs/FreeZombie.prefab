@@ -96,10 +96,10 @@ PrefabInstance:
       addedObject: {fileID: -8475993373115367226}
     - targetCorrespondingSourceObject: {fileID: 100056, guid: 8c53cffd52097cf4582f0a090c9a833e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7027094823697379047}
+      addedObject: {fileID: -1744487903351431802}
     - targetCorrespondingSourceObject: {fileID: 100056, guid: 8c53cffd52097cf4582f0a090c9a833e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8674687119775157064}
+      addedObject: {fileID: 5043709199203169301}
   m_SourcePrefab: {fileID: 100100000, guid: 8c53cffd52097cf4582f0a090c9a833e, type: 3}
 --- !u!1 &6930373436760084395 stripped
 GameObject:
@@ -154,7 +154,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 32
   m_CollisionDetection: 0
---- !u!114 &7027094823697379047
+--- !u!114 &-1744487903351431802
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieLife
   totalHp: 10
---- !u!114 &8674687119775157064
+--- !u!114 &5043709199203169301
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

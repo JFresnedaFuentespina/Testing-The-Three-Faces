@@ -13,7 +13,7 @@ public class EnemiesGenerator : MonoBehaviour
     public float spawnAreaZ = 2f;
 
     private bool enemiesSpawned = false;
-    private List<ZombieLife> spawnedEnemies = new List<ZombieLife>();
+    private List<EnemyLife> spawnedEnemies = new List<EnemyLife>();
     public bool enemiesDefeated = false;
 
     public bool enemiesActuallySpawned = false;
@@ -38,7 +38,7 @@ public class EnemiesGenerator : MonoBehaviour
             Vector3 spawnPos = transform.position + new Vector3(offsetX, 0, offsetZ);
 
             GameObject enemy = Instantiate(enemyType1Prefab, spawnPos, Quaternion.identity);
-            ZombieLife life = enemy.GetComponent<ZombieLife>();
+            EnemyLife life = enemy.GetComponent<EnemyLife>();
             if (life != null)
                 spawnedEnemies.Add(life);
         }

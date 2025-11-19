@@ -5,6 +5,9 @@ using System;
 public class EnemiesGenerator : MonoBehaviour
 {
     public GameObject enemyType1Prefab;
+    public GameObject bossCaraPrefab;
+    public GameObject bossCruzPrefab;
+    public GameObject bossCantoPrefab;
     public int maxEnemies = 3;
     public float spawnAreaX = 2f;
     public float spawnAreaZ = 2f;

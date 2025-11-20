@@ -2135,7 +2135,7 @@ Animator:
   m_GameObject: {fileID: 9137032837993464747}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: cfbfb95b5f2b90949be0b5faab2775fb, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b81beb43b06063f459027d83a78d7abb, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -2199,7 +2199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e8abd3d82d7ca24081aef6cf57bd1df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieMove
-  velocity: 5
+  velocity: 2
 --- !u!65 &8886649879476324094
 BoxCollider:
   m_ObjectHideFlags: 0

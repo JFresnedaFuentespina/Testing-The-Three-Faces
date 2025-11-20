@@ -1,24 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
+// AttackHit.cs
 using UnityEngine;
 
 public class AttackHit : MonoBehaviour
 {
-    // Start is called before the first frame update
-
     public float attackDamage = 5;
-
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy_Zombie"))
+        EnemyLife enemyLife = other.GetComponent<EnemyLife>();
+        if (other.CompareTag("BossCara"))
         {
-            EnemyLife zombieLife = other.GetComponent<EnemyLife>();
-            if (zombieLife != null)
+            CaraAI caraAi = other.GetComponent<CaraAI>();
+            if (caraAi != null)
             {
-                zombieLife.Damage(attackDamage);
-                zombieLife.UpdateIsAlive();
+                enemyLife.Damage(attackDamage);
+                enemyLife.UpdateIsAlive();
+                caraAi.TakeDamage(attackDamage);
+            }
+            Destroy(gameObject);
+        }
+        else if (other.CompareTag("Enemy_Zombie"))
+        {
+            if (enemyLife != null)
+            {
+                enemyLife.Damage(attackDamage);
+                enemyLife.UpdateIsAlive();
             }
             Destroy(gameObject);
         }

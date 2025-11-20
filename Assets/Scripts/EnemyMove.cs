@@ -3,18 +3,29 @@ using UnityEngine;
 public class EnemyMove : MonoBehaviour
 {
     public float velocity = 0.5f;
-
+    private float originalVelocity;
     private GameObject mainCharacter;
     private float fixedY;
+    private CaraAI caraAI;
 
     void Start()
     {
         fixedY = transform.position.y;
         BuscarJugador();
+
+        caraAI = GetComponent<CaraAI>();
+
+        // Guardamos la velocidad original
+        originalVelocity = (gameObject.CompareTag("BossCara")) ? 2f : velocity;
+        velocity = originalVelocity;
     }
 
     void Update()
     {
+        if(caraAI != null)
+        {
+            velocity = caraAI.isAttacking ? 0f: originalVelocity;
+        }
         // Si aún no se encontró, volver a buscar
         if (mainCharacter == null)
         {

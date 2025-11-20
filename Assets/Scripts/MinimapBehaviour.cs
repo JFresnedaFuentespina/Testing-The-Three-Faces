@@ -13,7 +13,7 @@ public class MinimapBehaviour : MonoBehaviour
     private GameObject playerIcon;
     private GameObject characterRef;
 
-    private float mapScale = 1.2f;
+    private float mapScale = 1.5f;
 
     public void initMinimap(Dictionary<string, Vector3> levelRoomsDictionary, GameObject character)
     {
@@ -82,9 +82,19 @@ public class MinimapBehaviour : MonoBehaviour
         Vector3 firstRoom = roomsDictionary["Room_0"];
         Vector3 offset = worldPos - firstRoom;
 
-        return new Vector2(
-            offset.x * mapScale,
-            offset.z * mapScale
-        );
+        // Escalar con mapScale
+        Vector2 pos = new Vector2(offset.x * mapScale, offset.z * mapScale);
+
+        // Limitar para que no se salga del panel
+        RectTransform panelRect = minimapPanel.GetComponent<RectTransform>();
+        float halfWidth = panelRect.rect.width / 2f;
+        float halfHeight = panelRect.rect.height / 2f;
+
+        pos.x = Mathf.Clamp(pos.x, -halfWidth, halfWidth);
+        pos.y = Mathf.Clamp(pos.y, -halfHeight, halfHeight);
+
+        return pos;
     }
+
+
 }

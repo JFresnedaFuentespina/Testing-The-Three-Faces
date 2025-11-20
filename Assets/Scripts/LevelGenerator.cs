@@ -161,13 +161,29 @@ public class LevelGenerator : MonoBehaviour
         int chosen = edgeIndices[Random.Range(0, edgeIndices.Count)];
         Vector3 pos = new Vector3(chosen * offsetW, levelBaseY, 0);
         Vector3 treasurePos = chosen == 0
-            ? pos + new Vector3(-offsetW, 0, 0)
-            : pos + new Vector3(offsetW, 0, 0);
+            ? pos + new Vector3(-offsetW, 0, 0)   // a la izquierda
+            : pos + new Vector3(offsetW, 0, 0);   // a la derecha
 
         GameObject treasureRoom = Instantiate(treasureRoomPrefab, treasurePos, Quaternion.identity, transform);
+        treasureRoom.name = "TreasureRoom";
         roomsDictionary.Add("Treasure", treasurePos);
+
+        Transform leftDoor = treasureRoom.transform.Find("ParedIzquierda/Door_Prefab_Closed_Left");
+        Transform rightDoor = treasureRoom.transform.Find("ParedDerecha/Door_Prefab_Closed_Right");
+
+        if (chosen == 0) // tesoro a la izquierda del todo
+        {
+            if (leftDoor != null) leftDoor.gameObject.SetActive(false);  // izquierda sin salida
+            if (rightDoor != null) rightDoor.gameObject.SetActive(true); // salida hacia la derecha
+        }
+        else // tesoro a la derecha del todo
+        {
+            if (leftDoor != null) leftDoor.gameObject.SetActive(true);  // salida hacia la izquierda
+            if (rightDoor != null) rightDoor.gameObject.SetActive(false); // derecha sin salida
+        }
         return treasurePos;
     }
+
 
     public void NextLevel(int actualLevel)
     {

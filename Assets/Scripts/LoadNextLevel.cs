@@ -1,19 +1,69 @@
-using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using System.Collections;
 
 public class LoadNextLevel : MonoBehaviour
 {
+    public GameObject loadingPanel;
+    public Image fadeImage;
 
-    public GameObject loadingPanel; // El panel que quieres mostrar
+    public float fadeDuration = 1f;
+
+    void Start()
+    {
+        // Buscar el canvas de carga
+        GameObject loadingCanvas = GameObject.Find("LoadingCanvas");
+        if (loadingCanvas != null)
+        {
+            // Buscar los hijos por nombre dentro del canvas
+            Transform loadingTransform = loadingCanvas.transform.Find("LoadingPanel");
+            if (loadingTransform != null)
+                loadingPanel = loadingTransform.gameObject;
+
+            Transform fadeTransform = loadingCanvas.transform.Find("Fade");
+            if (fadeTransform != null)
+                fadeImage = fadeTransform.GetComponent<Image>();
+        }
+
+        // Verificar asignaciones
+        if (fadeImage == null)
+            Debug.LogWarning("Fade Image no asignado correctamente.");
+        if (loadingPanel == null)
+            Debug.LogWarning("Loading Panel no asignado correctamente.");
+    }
 
     void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Player"))
             return;
+
+        StartCoroutine(PreTransitionFade());
+    }
+
+    private IEnumerator PreTransitionFade()
+    {
+        if (fadeImage == null || loadingPanel == null)
+        {
+            Debug.LogWarning("Fade o LoadingPanel no asignado correctamente.");
+            yield break;
+        }
+
+        // Activar panel de carga y fade antes de cualquier fade para que se vea correctamente
+        loadingPanel.SetActive(true);
+        fadeImage.gameObject.SetActive(true);
+        fadeImage.transform.SetAsLastSibling(); // asegurar que esté al frente
+
+        // Alpha inicial 0
+        fadeImage.color = new Color(0f, 0f, 0f, 0f);
+
+        // Fade a negro
+        yield return StartCoroutine(Fade(0f, 1f));
+
+        // Cargar siguiente escena
         NextLevel();
     }
+
     public void NextLevel()
     {
         string currentScene = SceneManager.GetActiveScene().name;
@@ -28,31 +78,44 @@ public class LoadNextLevel : MonoBehaviour
                 nextScene = "Level3Scene";
                 break;
             default:
-                Debug.LogWarning("No hay siguiente nivel definido para " + currentScene);
                 return;
         }
 
-        StartCoroutine(LoadSceneAsync(nextScene));
+        StartCoroutine(LoadSceneWithFade(nextScene));
     }
 
-    private IEnumerator LoadSceneAsync(string sceneName)
+    private IEnumerator LoadSceneWithFade(string sceneName)
     {
-        if (loadingPanel != null)
-            loadingPanel.SetActive(true);
+        AsyncOperation op = SceneManager.LoadSceneAsync(sceneName);
+        op.allowSceneActivation = false;
 
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
-        asyncLoad.allowSceneActivation = false;
+        while (op.progress < 0.9f)
+            yield return null;
 
-        // Esperar hasta que la escena esté lista para activarse
-        while (!asyncLoad.isDone)
+        op.allowSceneActivation = true;
+
+        yield return null;
+
+        // Fade-in en la nueva escena
+        yield return StartCoroutine(Fade(1f, 0f));
+
+        loadingPanel.SetActive(false);
+        fadeImage.gameObject.SetActive(false);
+    }
+
+    private IEnumerator Fade(float from, float to)
+    {
+        float t = 0f;
+        Color c = fadeImage.color;
+
+        while (t < fadeDuration)
         {
-            // Activar la escena cuando haya cargado al 90%
-            if (asyncLoad.progress >= 0.9f)
-            {
-                asyncLoad.allowSceneActivation = true;
-            }
-
-            yield return null; // Esperar un frame para que el panel se actualice
+            t += Time.deltaTime;
+            float a = Mathf.Lerp(from, to, t / fadeDuration);
+            fadeImage.color = new Color(c.r, c.g, c.b, a);
+            yield return null;
         }
+
+        fadeImage.color = new Color(c.r, c.g, c.b, to);
     }
 }

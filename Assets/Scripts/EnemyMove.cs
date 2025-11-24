@@ -22,11 +22,11 @@ public class EnemyMove : MonoBehaviour
 
     void Update()
     {
-        if(caraAI != null)
+        if (caraAI != null)
         {
-            velocity = caraAI.isAttacking ? 0f: originalVelocity;
+            velocity = (caraAI.isAttacking || caraAI.isTakingDamage) ? 0f : originalVelocity;
         }
-        // Si aún no se encontró, volver a buscar
+        
         if (mainCharacter == null)
         {
             BuscarJugador();
@@ -36,12 +36,10 @@ public class EnemyMove : MonoBehaviour
 
         Vector3 targetPos = mainCharacter.transform.position;
 
-        // Calcular dirección hacia el jugador (ignorando altura)
         Vector3 direction = targetPos - transform.position;
         direction.y = 0;
         direction.Normalize();
 
-        // Mover al zombi
         transform.position += direction * velocity * Time.deltaTime;
 
         // Mantener altura constante

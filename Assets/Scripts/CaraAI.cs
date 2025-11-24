@@ -7,13 +7,14 @@ public class CaraAI : MonoBehaviour
     public float attackInterval = 3f;
     [HideInInspector] public bool isAttacking = false;
 
-    private bool isTakingDamage = false;
+    [HideInInspector] public bool isTakingDamage = false;
+    private int damageHash;
 
     void Start()
     {
         if (animator == null)
             animator = GetComponent<Animator>();
-
+        damageHash = Animator.StringToHash("Giant@Damage01");
         StartCoroutine(AttackRoutine());
     }
 
@@ -28,7 +29,12 @@ public class CaraAI : MonoBehaviour
                 animator.CrossFade("Giant@UnarmedAttack01", 0.1f);
                 isAttacking = true;
 
-                // Esperar a que termine la animación de ataque
+                // Esperar hasta que realmente entre al estado de ataque
+                yield return new WaitUntil(() =>
+                    animator.GetCurrentAnimatorStateInfo(0).IsName("Giant@UnarmedAttack01")
+                );
+
+                // Esperar mientras esté en esa animación y no reciba daño
                 while (animator.GetCurrentAnimatorStateInfo(0).IsName("Giant@UnarmedAttack01") && !isTakingDamage)
                     yield return null;
 
@@ -39,9 +45,6 @@ public class CaraAI : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        // Aquí puedes aplicar vida, efectos, etc.
-        // ...
-
         // Si ya estaba ejecutando la animación de daño, no hacer nada
         if (!isTakingDamage)
         {
@@ -53,13 +56,19 @@ public class CaraAI : MonoBehaviour
     {
         isTakingDamage = true;
 
-        // Forzar animación de daño, interrumpiendo cualquier otra
-        animator.CrossFade("Giant@Damage01", 0.1f);
+        animator.CrossFade("Giant@Damage01", 0.05f);
 
-        // Esperar a que termine la animación de daño
-        while (animator.GetCurrentAnimatorStateInfo(0).IsName("Giant@Damage01"))
+        yield return null;
+
+        // esperar a entrar en el clip
+        while (animator.GetCurrentAnimatorStateInfo(0).shortNameHash != damageHash)
+            yield return null;
+
+        // esperar a salir del clip
+        while (animator.GetCurrentAnimatorStateInfo(0).shortNameHash == damageHash)
             yield return null;
 
         isTakingDamage = false;
     }
+
 }

@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 7930126595310468041}
   - component: {fileID: 7930126595310468043}
   - component: {fileID: 7930126595310468040}
+  - component: {fileID: 5973908844157556360}
   m_Layer: 0
   m_Name: Character
   m_TagString: Player
@@ -138,6 +139,9 @@ MonoBehaviour:
   thunderPrefab: {fileID: 7765196306360580173, guid: bcfd24f957dfb624bbb5989f06cb8a10, type: 3}
   fireballSpeed: 10
   spawnHeight: 1
+  isFireball: 1
+  isThunder: 0
+  thunderDistance: 5
 --- !u!114 &7930126595310468040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,6 +156,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthPoints: 0
   hud: {fileID: 0}
+--- !u!114 &5973908844157556360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7930126595310468033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fb090f8460a01d4489254b9699c716a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PickupItem
 --- !u!1001 &7930126594040334127
 PrefabInstance:
   m_ObjectHideFlags: 0

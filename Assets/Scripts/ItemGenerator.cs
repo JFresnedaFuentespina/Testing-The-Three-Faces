@@ -3,13 +3,18 @@ using UnityEngine;
 
 public class ItemGenerator : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     public List<GameObject> items;
+
     void Start()
     {
         int random = Random.Range(0, items.Count);
         GameObject chosen = items[random];
-        Vector3 spawnPoint = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
-        Instantiate(chosen, spawnPoint, Quaternion.identity);
+
+        Vector3 spawnPoint = transform.position + Vector3.up * 1f;
+
+        GameObject spawned = Instantiate(chosen, spawnPoint, Quaternion.identity);
+
+        // Convertir el objeto generado en hijo del objeto actual
+        spawned.transform.SetParent(transform);
     }
 }

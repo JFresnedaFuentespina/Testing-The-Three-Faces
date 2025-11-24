@@ -9,8 +9,8 @@ public class PlayerAttack : MonoBehaviour
     public GameObject thunderPrefab;
     public float fireballSpeed = 5f;
     public float spawnHeight = 1.0f;
-    public bool isFireball = true;
-    public bool isThunder = false;
+    public bool isFireball = false;
+    public bool isThunder = true;
     public float thunderDistance = 5f;
 
     // Start is called before the first frame update
@@ -36,45 +36,39 @@ public class PlayerAttack : MonoBehaviour
     }
     void Shoot()
     {
-
-        Vector3 direction = transform.forward;
-
-        // Posición de spawn: delante del jugador y un poco por encima
-        Vector3 spawnPos = transform.position + Vector3.up * spawnHeight;
-
         if (isFireball)
         {
-            GameObject newFireball = Instantiate(fireball, spawnPos, Quaternion.LookRotation(direction));
-
-            // Asignar la dirección al script del proyectil
-            FireballBehaviour fbMove = newFireball.GetComponent<FireballBehaviour>();
-            if (fbMove != null)
-            {
-                fbMove.direction = direction;
-                fbMove.speed = fireballSpeed;
-            }
+            ShootFire();
         }
         else if (isThunder)
         {
             ShootThunder();
         }
+    }
 
-        // Debug: línea de dirección
-        Debug.DrawRay(spawnPos, direction * 10f, Color.red, 2f);
+    void ShootFire()
+    {
+        isThunder = false;
+        Vector3 direction = transform.forward;
+        Vector3 spawnPos = transform.position + Vector3.up * spawnHeight;
+
+        GameObject newFireball = Instantiate(fireball, spawnPos, Quaternion.LookRotation(direction));
+
+        // Asignar la dirección al script del proyectil
+        FireballBehaviour fbMove = newFireball.GetComponent<FireballBehaviour>();
+        if (fbMove != null)
+        {
+            fbMove.direction = direction;
+            fbMove.speed = fireballSpeed;
+        }
     }
 
 
     void ShootThunder()
     {
-        // Punto de spawn: delante del personaje a cierta distancia y con altura
-        Vector3 spawnPos = transform.position
-                           + transform.forward * thunderDistance
-                           + Vector3.up * spawnHeight;
-
-        // Dirección: siempre hacia delante del personaje
+        isFireball = false;
+        Vector3 spawnPos = transform.position + transform.forward * thunderDistance + Vector3.up * spawnHeight;
         Vector3 direction = transform.forward;
-
-        // Instanciar trueno
         GameObject newThunder = Instantiate(
             thunderPrefab,
             spawnPos,

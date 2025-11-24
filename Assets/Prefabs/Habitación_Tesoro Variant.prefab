@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pillar 05 Thin T
       objectReference: {fileID: 0}
+    - target: {fileID: 3362550644238143688, guid: a614cea1740fa47298da9ea87f4a2809, type: 3}
+      propertyPath: m_TagString
+      value: Pedestal
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

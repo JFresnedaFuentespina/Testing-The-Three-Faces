@@ -164,7 +164,7 @@ public class NextRoomCalculator : MonoBehaviour
             return;
 
         Vector3 camPos = Camera.main.transform.position;
-        Vector3 newCamPos = new Vector3(roomPos.x - 1.5f, camPos.y, roomPos.z - 9.5f);
+        Vector3 newCamPos = new Vector3(roomPos.x - 1.5f, camPos.y, roomPos.z - 9.7f);
         Camera.main.transform.position = newCamPos;
         Camera.main.transform.rotation = Quaternion.Euler(40f, 0f, 0f);
 

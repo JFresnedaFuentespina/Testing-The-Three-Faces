@@ -353,7 +353,7 @@ GameObject:
   - component: {fileID: 3151105536103396259}
   - component: {fileID: 3151105536103396258}
   - component: {fileID: 3151105536103396254}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Suelo
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -643,10 +643,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType1Prefab: {fileID: 6930373436760084395, guid: 86954bd586b5cbc4380a87a05acbf57f, type: 3}
+  bossCaraPrefab: {fileID: 0}
+  bossCruzPrefab: {fileID: 0}
+  bossCantoPrefab: {fileID: 0}
   maxEnemies: 3
   spawnAreaX: 2
   spawnAreaZ: 2
   enemiesDefeated: 0
+  enemiesActuallySpawned: 0
 --- !u!114 &4644749237365189746
 MonoBehaviour:
   m_ObjectHideFlags: 0

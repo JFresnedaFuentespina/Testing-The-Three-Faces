@@ -63,17 +63,24 @@ public class PlayerAttack : MonoBehaviour
     }
 
 
+    public float thunderDistance = 3f;      // distancia delante del personaje
+    private float thunderSpawnY = 1f;      // altura exacta donde se creará el rayo
+    public float thunderLifeTime = 0.4f;   // tiempo antes de destruirse
+
     void ShootThunder()
     {
         isFireball = false;
-        Vector3 spawnPos = transform.position + transform.forward + Vector3.up * spawnHeight;
+
         Vector3 direction = transform.forward;
+        Vector3 spawnPos = transform.position + direction * thunderDistance;
+        spawnPos.y = thunderSpawnY; // forzar la altura exacta
+
         GameObject newThunder = Instantiate(
             thunderPrefab,
             spawnPos,
-            Quaternion.LookRotation(direction)
+            Quaternion.identity
         );
 
-        Destroy(newThunder, 0.5f);
+        Destroy(newThunder, thunderLifeTime);
     }
 }

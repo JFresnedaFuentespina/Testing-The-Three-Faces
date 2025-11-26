@@ -11,7 +11,6 @@ public class PlayerAttack : MonoBehaviour
     public float spawnHeight = 1.0f;
     public bool isFireball = false;
     public bool isThunder = true;
-    public float thunderDistance = 5f;
 
     // Start is called before the first frame update
     void Start()
@@ -67,7 +66,7 @@ public class PlayerAttack : MonoBehaviour
     void ShootThunder()
     {
         isFireball = false;
-        Vector3 spawnPos = transform.position + transform.forward * thunderDistance + Vector3.up * spawnHeight;
+        Vector3 spawnPos = transform.position + transform.forward + Vector3.up * spawnHeight;
         Vector3 direction = transform.forward;
         GameObject newThunder = Instantiate(
             thunderPrefab,
@@ -75,6 +74,6 @@ public class PlayerAttack : MonoBehaviour
             Quaternion.LookRotation(direction)
         );
 
-        Destroy(newThunder, 1f);
+        Destroy(newThunder, 0.5f);
     }
 }

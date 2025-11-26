@@ -7,6 +7,11 @@ public class AttackHit : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        float destroyDelay = 0f;
+        if (gameObject.CompareTag("Thunderbolt"))
+        {
+            destroyDelay = 0.5f;
+        }
         EnemyLife enemyLife = other.GetComponent<EnemyLife>();
         if (other.CompareTag("BossCara"))
         {
@@ -17,7 +22,7 @@ public class AttackHit : MonoBehaviour
                 enemyLife.UpdateIsAlive();
                 caraAi.TakeDamage(attackDamage);
             }
-            Destroy(gameObject);
+            Destroy(gameObject, destroyDelay);
         }
         else if (other.CompareTag("Enemy_Zombie"))
         {
@@ -26,11 +31,11 @@ public class AttackHit : MonoBehaviour
                 enemyLife.Damage(attackDamage);
                 enemyLife.UpdateIsAlive();
             }
-            Destroy(gameObject);
+            Destroy(gameObject, destroyDelay);
         }
         else if (other.CompareTag("Pared"))
         {
-            Destroy(gameObject);
+            Destroy(gameObject, destroyDelay);
         }
     }
 }

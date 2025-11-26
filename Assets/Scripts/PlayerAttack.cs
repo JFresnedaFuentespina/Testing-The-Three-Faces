@@ -11,6 +11,9 @@ public class PlayerAttack : MonoBehaviour
     public float spawnHeight = 1.0f;
     public bool isFireball = false;
     public bool isThunder = true;
+    public float thunderDistance = 2f;
+    private float thunderSpawnY = 1f;
+    public float thunderLifeTime = 0.4f;
 
     // Start is called before the first frame update
     void Start()
@@ -61,11 +64,6 @@ public class PlayerAttack : MonoBehaviour
             fbMove.speed = fireballSpeed;
         }
     }
-
-
-    public float thunderDistance = 3f;      // distancia delante del personaje
-    private float thunderSpawnY = 1f;      // altura exacta donde se creará el rayo
-    public float thunderLifeTime = 0.4f;   // tiempo antes de destruirse
 
     void ShootThunder()
     {

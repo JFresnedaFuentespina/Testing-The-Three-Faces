@@ -19,6 +19,7 @@ TagManager:
   - IncreaseSpeedItem
   - IncreaseAttackDamageItem
   - IncreaseAttackSpeedItem
+  - Thunderbolt
   layers:
   - Default
   - TransparentFX

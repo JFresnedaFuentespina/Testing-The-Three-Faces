@@ -1,55 +1,56 @@
-using UnityEngine;
-using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
+using System.Linq;
+using UnityEngine;
 
 public class NextRoomCalculator : MonoBehaviour
 {
     private LevelGenerator level;
-    private EnemiesGenerator generator;
     public bool enabledTemporarily = false;
-    private bool isBossRoom = false;
-    private bool bossDefeated = false;
+
     void Start()
     {
         level = FindAnyObjectByType<LevelGenerator>();
     }
 
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Player"))
             return;
 
         if (enabledTemporarily)
-        {
-            Debug.Log($"{gameObject.name}: bloqueo temporal activo");
             return;
-        }
 
-        // Reiniciar enabledTemporarily solo en la puerta que se usó
         enabledTemporarily = true;
 
-        // Ignorar colisión temporalmente
         Collider doorCollider = GetComponent<Collider>() ?? GetComponentInChildren<Collider>();
         if (doorCollider != null)
             Physics.IgnoreCollision(doorCollider, other, true);
 
-        // Determinar habitación siguiente
         Vector3 targetPos = CalculateTargetRoomPosition(gameObject.name, transform.parent.parent.position);
-        GameObject nextRoomObj = FindRoomObject(FindNextRoom(targetPos).Value);
 
+        // Encontrar la siguiente habitación válida
+        GameObject nextRoomObj = FindRoomObject(FindNextRoom(targetPos).Value);
+        if (nextRoomObj == null)
+        {
+            Debug.LogWarning("No se encontró la habitación válida. Se mantiene la posición actual del jugador.");
+            StartCoroutine(ReenableCollisionBetween(doorCollider, other, 0.5f));
+            return;
+        }
+
+        // Desactivar puertas de la habitación de destino temporalmente
         DisableDoorsInRoom(nextRoomObj);
 
-        // Mover jugador y cámara
-        Transform root = other.transform.root;
-        root.position = CalculateSpawnPosition(FindOppositeDoor(nextRoomObj, gameObject.name));
+        // Calcular spawn seguro del jugador
+        Transform oppositeDoor = FindOppositeDoor(nextRoomObj, gameObject.name);
+        Vector3 spawnPos = (oppositeDoor != null) ? CalculateSpawnPosition(oppositeDoor) : other.transform.position;
+
+        other.transform.root.position = spawnPos;
+
         MoveCamera(targetPos);
 
-        // Reactivar colisión con un delay
         StartCoroutine(ReenableCollisionBetween(doorCollider, other, 0.5f));
     }
-
 
     private IEnumerator ReenableCollisionBetween(Collider a, Collider b, float delay)
     {
@@ -58,14 +59,11 @@ public class NextRoomCalculator : MonoBehaviour
         if (a == null || b == null) yield break;
 
         Physics.IgnoreCollision(a, b, false);
-        Debug.Log($"Reactivada colisión entre {a.name} y {b.name}");
 
-        // Reseteamos el bloqueo temporal para que la puerta pueda volver a ser activada en el futuro
         var calc = a.GetComponent<NextRoomCalculator>();
         if (calc != null)
             calc.enabledTemporarily = false;
     }
-
 
     Vector3 CalculateTargetRoomPosition(string doorName, Vector3 currentRoomPos)
     {
@@ -80,25 +78,33 @@ public class NextRoomCalculator : MonoBehaviour
             return currentRoomPos + new Vector3(0, 0, level.offsetW);
 
         Debug.LogWarning($"Dirección no reconocida para la puerta {doorName}");
-        return Vector3.zero;
+        return currentRoomPos;
     }
 
     KeyValuePair<string, Vector3> FindNextRoom(Vector3 targetPos)
     {
+        if (level.roomsDictionary.Count == 0)
+            return default;
+
         return level.roomsDictionary
+            .Where(r => r.Key.Contains("Room") || r.Key.Contains("Boss") || r.Key.Contains("Treasure"))
             .OrderBy(r => Vector3.Distance(r.Value, targetPos))
-            .FirstOrDefault(r => Vector3.Distance(r.Value, targetPos) < 2f);
+            .FirstOrDefault();
     }
 
     GameObject FindRoomObject(Vector3 position)
     {
         return FindObjectsOfType<Transform>()
             .Select(t => t.gameObject)
-            .FirstOrDefault(go => Vector3.Distance(go.transform.position, position) < 0.5f);
+            .FirstOrDefault(go =>
+                go.GetComponent<EnemiesGenerator>() != null &&
+                Vector3.Distance(go.transform.position, position) < 0.5f);
     }
 
     Transform FindOppositeDoor(GameObject targetRoomObj, string currentDoorName)
     {
+        if (targetRoomObj == null) return null;
+
         string oppositeDoorName = "";
         if (currentDoorName.EndsWith("Left", System.StringComparison.OrdinalIgnoreCase))
             oppositeDoorName = "Door_Prefab_Closed_Right";
@@ -107,13 +113,17 @@ public class NextRoomCalculator : MonoBehaviour
         else if (currentDoorName.EndsWith("Front", System.StringComparison.OrdinalIgnoreCase))
             oppositeDoorName = "Door_Prefab_Closed_Front";
 
-        var allChildren = targetRoomObj.GetComponentsInChildren<Transform>(true);
-        return allChildren.FirstOrDefault(t =>
-            t.name.Equals(oppositeDoorName, System.StringComparison.OrdinalIgnoreCase));
+        if (string.IsNullOrEmpty(oppositeDoorName)) return null;
+
+        return targetRoomObj.GetComponentsInChildren<Transform>(true)
+            .FirstOrDefault(t => t.name.Equals(oppositeDoorName, System.StringComparison.OrdinalIgnoreCase));
     }
 
     Vector3 CalculateSpawnPosition(Transform oppositeDoor)
     {
+        if (oppositeDoor == null)
+            return Vector3.zero;
+
         Vector3 dir = Vector3.zero;
         if (oppositeDoor.name.EndsWith("Left", System.StringComparison.OrdinalIgnoreCase))
             dir = Vector3.right;
@@ -131,14 +141,12 @@ public class NextRoomCalculator : MonoBehaviour
     {
         if (room == null) return;
 
-        var generator = room.GetComponent<EnemiesGenerator>();
-
         string[] doorPaths =
         {
-        "ParedIzquierda/Door_Prefab_Closed_Left",
-        "ParedDerecha/Door_Prefab_Closed_Right",
-        "ParedFrontal/Door_Prefab_Closed_Front"
-    };
+            "ParedIzquierda/Door_Prefab_Closed_Left",
+            "ParedDerecha/Door_Prefab_Closed_Right",
+            "ParedFrontal/Door_Prefab_Closed_Front"
+        };
 
         foreach (string path in doorPaths)
         {
@@ -147,34 +155,27 @@ public class NextRoomCalculator : MonoBehaviour
             {
                 Collider collider = door.GetComponent<Collider>();
                 if (collider != null && collider.enabled)
-                {
                     collider.enabled = false;
-                }
             }
         }
-
-        Debug.Log($"{room.name}: puertas bloqueadas al entrar en la habitación");
     }
-
-
 
     void MoveCamera(Vector3 roomPos)
     {
         if (Camera.main == null)
             return;
 
-        Vector3 camPos = Camera.main.transform.position;
-        Vector3 newCamPos = new Vector3(roomPos.x - 1.5f, camPos.y, roomPos.z - 9.7f);
-        Camera.main.transform.position = newCamPos;
+        Camera.main.transform.position = new Vector3(roomPos.x - 1.5f, Camera.main.transform.position.y, roomPos.z - 9.5f);
         Camera.main.transform.rotation = Quaternion.Euler(40f, 0f, 0f);
 
         GameObject roomObj = FindRoomObject(roomPos);
         if (roomObj != null)
         {
-            // Mover icono en minimapa
-            FindAnyObjectByType<MinimapBehaviour>().MovePlayerToRoom(roomObj.name);
-            generator = roomObj.GetComponentInChildren<EnemiesGenerator>();
-            DoorsEnabler doorsEnabler = roomObj.GetComponentInParent<DoorsEnabler>();
+            var minimap = FindAnyObjectByType<MinimapBehaviour>();
+            minimap?.MovePlayerToRoom(roomObj.name);
+
+            var generator = roomObj.GetComponentInChildren<EnemiesGenerator>();
+            var doorsEnabler = roomObj.GetComponentInParent<DoorsEnabler>();
 
             if (generator != null && doorsEnabler != null)
             {
@@ -184,5 +185,4 @@ public class NextRoomCalculator : MonoBehaviour
             }
         }
     }
-
 }

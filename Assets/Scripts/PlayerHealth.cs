@@ -13,32 +13,42 @@ public class PlayerHealth : MonoBehaviour
 
     void Start()
     {
+        // Si no se asignó en el Inspector, buscar dinámicamente
         if (hud == null)
         {
-            // Buscar el panel Healthpoints dentro del Canvas
-            Canvas canvas = FindObjectOfType<Canvas>();
-            if (canvas != null)
+            // Buscar todos los Canvas activos
+            Canvas[] canvases = FindObjectsOfType<Canvas>();
+            foreach (Canvas c in canvases)
             {
-                hud = canvas.transform.Find("HealthPoints")?.gameObject;
+                if (c.gameObject.name == "HUD")
+                {
+                    // Buscar el panel HealthPoints dentro del HUD
+                    hud = c.transform.Find("HealthPoints")?.gameObject;
+                    break;
+                }
             }
         }
 
         if (hud == null)
         {
-            Debug.LogWarning("HUD no encontrado.");
+            Debug.LogWarning("HUD o HealthPoints no encontrado.");
             return;
         }
 
+        // Inicializar vida
         healthPoints = maxHealth;
 
+        // Guardar referencias a los iconos de corazones
         corazones.Clear();
         foreach (Transform child in hud.transform)
         {
             corazones.Add(child.gameObject);
         }
 
+        // Actualizar HUD inicial
         UpdateHUD();
     }
+
 
 
 

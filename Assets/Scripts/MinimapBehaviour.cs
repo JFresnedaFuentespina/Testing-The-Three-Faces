@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class MinimapBehaviour : MonoBehaviour
@@ -38,28 +39,18 @@ public class MinimapBehaviour : MonoBehaviour
 
     public void MovePlayerToRoom(string roomName)
     {
-        if (roomName.Contains("Tesoro"))
-            roomName = "Treasure";
-
-        if (roomName.Contains("Boss"))
-        {
-            if (roomsDictionary.ContainsKey("Boss"))
-                roomName = "Boss";
-            else if (roomsDictionary.ContainsKey("Boss_Forced"))
-                roomName = "Boss_Forced";
-        }
-
-        if (!roomsDictionary.ContainsKey(roomName))
+        string key = roomsDictionary.Keys.FirstOrDefault(k => roomName.Contains(k) || k.Contains(roomName));
+        if (key == null)
         {
             Debug.LogWarning("Room not found in minimap: " + roomName);
             return;
         }
 
-        Vector2 minimapPos = WorldToMinimap(roomsDictionary[roomName]);
-
+        Vector2 minimapPos = WorldToMinimap(roomsDictionary[key]);
         if (playerIcon != null)
             playerIcon.GetComponent<RectTransform>().anchoredPosition = minimapPos;
     }
+
 
 
     private void GenerateMinimapIcons()

@@ -166,7 +166,7 @@ public class LevelGenerator : MonoBehaviour
 
         GameObject treasureRoom = Instantiate(treasureRoomPrefab, treasurePos, Quaternion.identity, transform);
         treasureRoom.name = "TreasureRoom";
-        roomsDictionary.Add("Treasure", treasurePos);
+        roomsDictionary.Add(treasureRoom.name, treasurePos);
 
         Transform leftDoor = treasureRoom.transform.Find("ParedIzquierda/Door_Prefab_Closed_Left");
         Transform rightDoor = treasureRoom.transform.Find("ParedDerecha/Door_Prefab_Closed_Right");

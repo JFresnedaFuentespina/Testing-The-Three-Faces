@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using Newtonsoft.Json;
 using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
@@ -9,6 +11,13 @@ public class PlayerBehaviour : MonoBehaviour
 
     void Start()
     {
+        string path = Application.persistentDataPath + "/player.json";
+        if (File.Exists(path))
+        {
+            string json = File.ReadAllText(path);
+            PlayerData playerData = JsonConvert.DeserializeObject<PlayerData>(json);
+            velocity = playerData.velocity;
+        }
         rb = GetComponent<Rigidbody>();
         if (rb == null)
         {

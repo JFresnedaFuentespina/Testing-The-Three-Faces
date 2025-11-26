@@ -1,94 +1,110 @@
 using System.Collections.Generic;
+using System.IO;
+using Newtonsoft.Json;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    private float maxHealth = 3f;
-    private float minHealth = 0f;
-    public float healthPoints;
+    public float maxHealth = 3f;
+    public float minHealth = 0f;
+    public float healthPoints = 3;
     public GameObject hud;
-
     private List<GameObject> corazones = new List<GameObject>();
+    public bool canDie = false;
 
     void Start()
     {
-        // Si no se asignó en el Inspector, buscar dinámicamente
+        string path = Application.persistentDataPath + "/player.json";
+        bool loadedFromFile = false;
+
+        if (File.Exists(path))
+        {
+            try
+            {
+                string json = File.ReadAllText(path);
+                PlayerData data = JsonConvert.DeserializeObject<PlayerData>(json);
+
+                if (data != null && data.maxHealth > 0)
+                {
+                    maxHealth = data.maxHealth;
+                    healthPoints = Mathf.Clamp(data.health, 0f, data.maxHealth);
+                    loadedFromFile = true;
+                }
+            }
+            catch
+            {
+                Debug.LogWarning("Error cargando JSON de vida");
+            }
+        }
+
+        if (!loadedFromFile)
+        {
+            // solo si no hay JSON, usar valor por defecto
+            healthPoints = maxHealth;
+        }
+
+        // Buscar HUD si no está asignado
         if (hud == null)
         {
-            // Buscar todos los Canvas activos
-            Canvas[] canvases = FindObjectsOfType<Canvas>();
-            foreach (Canvas c in canvases)
+            Canvas[] all = FindObjectsOfType<Canvas>();
+            foreach (var c in all)
             {
                 if (c.gameObject.name == "HUD")
                 {
-                    // Buscar el panel HealthPoints dentro del HUD
                     hud = c.transform.Find("HealthPoints")?.gameObject;
                     break;
                 }
             }
         }
 
-        if (hud == null)
-        {
-            Debug.LogWarning("HUD o HealthPoints no encontrado.");
-            return;
-        }
+        if (hud == null) return;
 
-        // Inicializar vida
-        healthPoints = maxHealth;
-
-        // Guardar referencias a los iconos de corazones
         corazones.Clear();
-        foreach (Transform child in hud.transform)
-        {
-            corazones.Add(child.gameObject);
-        }
+        foreach (Transform t in hud.transform)
+            corazones.Add(t.gameObject);
 
-        // Actualizar HUD inicial
-        UpdateHUD();
+        UpdateHUD(false);
+
+        Invoke(nameof(EnableDeath), 0.1f);
     }
-
-
-
-
+    void EnableDeath() => canDie = true;
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Enemy_Zombie"))
+        if (other.gameObject.CompareTag("Enemy_Zombie") || other.gameObject.CompareTag("BossCara"))
         {
             healthPoints -= 0.5f;
         }
-        else if (other.gameObject.CompareTag("Heart"))
-        {
-            healthPoints += 0.5f;
-            Destroy(other.gameObject);
-        }
-
         // Limita el valor antes de actualizar HUD
         healthPoints = Mathf.Clamp(healthPoints, minHealth, maxHealth);
-
         UpdateHUD();
     }
-
-    private void UpdateHUD()
+    public void CheckDeath()
     {
-        // Desactiva todos los estados
-        foreach (GameObject vida in corazones)
+        if (!canDie) return;
+
+        if (healthPoints <= 0)
         {
-            vida.SetActive(false);
+            string path = Application.persistentDataPath + "/player.json";
+            if (File.Exists(path))
+                File.Delete(path);
+
+            SceneManager.LoadSceneAsync("MainMenu");
         }
+    }
 
-        // Redondea para evitar errores de precisión de float
+    private void UpdateHUD(bool checkDeath = true)
+    {
+        foreach (GameObject vida in corazones)
+            vida.SetActive(false);
+
         float vidaRedondeada = Mathf.Round(healthPoints * 2f) / 2f;
-
-        // Determina qué HUD debe mostrarse
         string nombreHUD = $"Vida_{vidaRedondeada.ToString().Replace(',', '_').Replace('.', '_')}_de_3";
 
-        // Si la vida es 0 o menor, asegura que muestre el vacío
         if (vidaRedondeada <= 0)
             nombreHUD = "Vida_0_de_3";
 
-        // Activa solo el HUD correcto
         foreach (GameObject vida in corazones)
         {
             if (vida.name == nombreHUD)
@@ -98,6 +114,8 @@ public class PlayerHealth : MonoBehaviour
             }
         }
 
-        Debug.Log($"HUD activo: {nombreHUD} (vida: {healthPoints})");
+        if (checkDeath)
+            CheckDeath();
     }
+
 }

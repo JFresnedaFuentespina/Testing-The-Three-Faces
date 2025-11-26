@@ -2,11 +2,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
+using Newtonsoft.Json;
+using System.IO;
+using TMPro;
 
 public class LoadNextLevel : MonoBehaviour
 {
     public GameObject loadingPanel;
     public Image fadeImage;
+
+    public GameObject timer;
 
     public float fadeDuration = 1f;
 
@@ -39,6 +44,7 @@ public class LoadNextLevel : MonoBehaviour
             return;
 
         StartCoroutine(PreTransitionFade());
+        SavePlayerStats(other.gameObject);
     }
 
     private IEnumerator PreTransitionFade()
@@ -118,4 +124,27 @@ public class LoadNextLevel : MonoBehaviour
 
         fadeImage.color = new Color(c.r, c.g, c.b, to);
     }
+
+    public void SavePlayerStats(GameObject playerGO)
+    {
+        var data = new PlayerData();
+        GameObject player = playerGO.transform.root.gameObject;
+        var atk = player.GetComponent<PlayerAttack>();
+        var bh = player.GetComponent<PlayerBehaviour>();
+        var hp = player.GetComponent<PlayerHealth>();
+
+        data.maxHealth = hp.maxHealth;
+        data.health = hp.healthPoints;
+        data.velocity = bh.velocity;
+        data.attackSpeed = atk.attackSpeed;
+        data.attackRange = atk.attackRange;
+        data.attackType = atk.isFireball ? "Fireball" : "Thunder";
+
+        string json = JsonConvert.SerializeObject(data);
+        string path = Application.persistentDataPath + "/player.json";
+        File.WriteAllText(path, json);
+        Debug.Log(File.Exists(path) + " Exists?");
+        
+    }
+
 }

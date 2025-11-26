@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using Newtonsoft.Json;
 using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
@@ -7,17 +9,27 @@ public class PlayerAttack : MonoBehaviour
     private ChangeCharacter changeCharacter;
     public GameObject fireball;
     public GameObject thunderPrefab;
-    public float fireballSpeed = 5f;
+    public float attackSpeed = 5f;
     public float spawnHeight = 1.0f;
-    public bool isFireball = false;
-    public bool isThunder = true;
-    public float thunderDistance = 2f;
+    public float attackRange = 2f;
     private float thunderSpawnY = 1f;
     public float thunderLifeTime = 0.4f;
+    public bool isFireball = false;
+    public bool isThunder = true;
 
     // Start is called before the first frame update
     void Start()
     {
+        string path = Application.persistentDataPath + "/player.json";
+        if (File.Exists(path))
+        {
+            string json = File.ReadAllText(path);
+            PlayerData playerData = JsonConvert.DeserializeObject<PlayerData>(json);
+            attackSpeed = playerData.attackSpeed;
+            attackRange = playerData.attackRange;
+            isFireball = playerData.attackType == "Fireball";
+            isThunder = playerData.attackType == "Thunder";
+        }
         changeCharacter = GetComponent<ChangeCharacter>();
     }
 
@@ -61,7 +73,7 @@ public class PlayerAttack : MonoBehaviour
         if (fbMove != null)
         {
             fbMove.direction = direction;
-            fbMove.speed = fireballSpeed;
+            fbMove.speed = attackSpeed;
         }
     }
 
@@ -70,7 +82,7 @@ public class PlayerAttack : MonoBehaviour
         isFireball = false;
 
         Vector3 direction = transform.forward;
-        Vector3 spawnPos = transform.position + direction * thunderDistance;
+        Vector3 spawnPos = transform.position + direction * attackRange;
         spawnPos.y = thunderSpawnY; // forzar la altura exacta
 
         GameObject newThunder = Instantiate(

@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireball: {fileID: 7251879486380165639, guid: c2f6a8962aac3814aa56cb9647c93470, type: 3}
-  thunderPrefab: {fileID: 7765196306360580173, guid: bcfd24f957dfb624bbb5989f06cb8a10, type: 3}
+  thunderPrefab: {fileID: 2705533495200665743, guid: e84c40719cee66744925cce01bef28fc, type: 3}
   fireballSpeed: 10
   spawnHeight: 1
   isFireball: 0

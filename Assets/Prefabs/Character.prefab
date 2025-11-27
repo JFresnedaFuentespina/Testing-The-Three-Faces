@@ -137,12 +137,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireball: {fileID: 7251879486380165639, guid: c2f6a8962aac3814aa56cb9647c93470, type: 3}
   thunderPrefab: {fileID: 3300406336262876018, guid: ab5d7c1ba66f4d4a8a069320f5768558, type: 3}
-  fireballSpeed: 10
+  attackSpeed: 5
   spawnHeight: 1
-  isFireball: 1
-  isThunder: 0
-  thunderDistance: 5
+  attackRange: 2
   thunderLifeTime: 0.5
+  isFireball: 0
+  isThunder: 1
 --- !u!114 &7930126595310468040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,8 +155,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27a1c1202027c9440a70b5d6efd85bbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 3
+  minHealth: 0
   healthPoints: 0
   hud: {fileID: 0}
+  canDie: 0
 --- !u!114 &5973908844157556360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -352,8 +355,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27a1c1202027c9440a70b5d6efd85bbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 3
+  minHealth: 0
   healthPoints: 0
   hud: {fileID: 0}
+  canDie: 0
 --- !u!1001 &7930126594882055342
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -480,5 +486,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27a1c1202027c9440a70b5d6efd85bbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 3
+  minHealth: 0
   healthPoints: 0
   hud: {fileID: 0}
+  canDie: 0

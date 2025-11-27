@@ -6,15 +6,12 @@ public class EnemyMove : MonoBehaviour
     private float originalVelocity;
     private GameObject mainCharacter;
     private float fixedY;
-    private CaraAI caraAI;
-
+    private Rigidbody rb;
     void Start()
     {
         fixedY = transform.position.y;
         BuscarJugador();
-
-        caraAI = GetComponent<CaraAI>();
-
+        rb = GetComponent<Rigidbody>();
         // Guardamos la velocidad original
         originalVelocity = (gameObject.CompareTag("BossCara")) ? 2f : velocity;
         velocity = originalVelocity;
@@ -22,28 +19,22 @@ public class EnemyMove : MonoBehaviour
 
     void Update()
     {
-        if (caraAI != null)
-        {
-            velocity = (caraAI.isAttacking || caraAI.isTakingDamage) ? 0f : originalVelocity;
-        }
-        
         if (mainCharacter == null)
         {
             BuscarJugador();
-            if (mainCharacter == null)
-                return; // aún no existe
+            if (mainCharacter == null) return; // aún no existe
         }
 
+        // Dirección horizontal hacia el jugador
         Vector3 targetPos = mainCharacter.transform.position;
-
         Vector3 direction = targetPos - transform.position;
-        direction.y = 0;
+        direction.y = 0; // ignorar altura
         direction.Normalize();
 
-        transform.position += direction * velocity * Time.deltaTime;
-
-        // Mantener altura constante
-        transform.position = new Vector3(transform.position.x, fixedY, transform.position.z);
+        // Mover usando Rigidbody
+        Vector3 horizontalVelocity = direction * velocity;
+        Vector3 currentVelocity = rb.linearVelocity;
+        rb.linearVelocity = new Vector3(horizontalVelocity.x, currentVelocity.y, horizontalVelocity.z);
 
         // Girar suavemente hacia el jugador
         Vector3 lookPos = targetPos - transform.position;
@@ -53,9 +44,20 @@ public class EnemyMove : MonoBehaviour
             Quaternion rotation = Quaternion.LookRotation(lookPos);
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 10f * Time.deltaTime);
         }
-
-        // Debug.Log("Siguiendo al jugador en: " + targetPos);
     }
+
+    public void Jump(float jumpForce = 5f)
+    {
+        if (rb == null) { Debug.Log("NULL"); return; }
+        this.velocity *= 2;
+        // Evitar que se acumule fuerza si ya está en el aire
+        if (Mathf.Abs(rb.linearVelocity.y) < 0.01f)
+        {
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        }
+        this.velocity /= 2;
+    }
+
 
     private void BuscarJugador()
     {

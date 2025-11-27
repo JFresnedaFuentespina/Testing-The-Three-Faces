@@ -2101,7 +2101,7 @@ GameObject:
   - component: {fileID: 3096043836870015538}
   - component: {fileID: 6048098707049303764}
   - component: {fileID: 8886649879476324094}
-  - component: {fileID: 7259186409802316542}
+  - component: {fileID: 4400409987070151478}
   m_Layer: 0
   m_Name: Giant01 - Golem
   m_TagString: BossCara
@@ -2139,7 +2139,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 431fdae9b0eebf04fbebf16270dd377c, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
@@ -2173,7 +2173,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &3096043836870015538
 MonoBehaviour:
@@ -2222,7 +2222,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 2.9573948, z: 1}
   m_Center: {x: 0, y: 1.3994871, z: 0}
---- !u!114 &7259186409802316542
+--- !u!114 &4400409987070151478
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2231,9 +2231,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 9137032837993464747}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b16eb6c894e144f46a5984619b04911f, type: 3}
+  m_Script: {fileID: 11500000, guid: fbf6a8092054f8844a12bbd715e8adf3, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CaraAI
-  animator: {fileID: 2550935751187727211}
-  attackInterval: 3
-  isAttacking: 0
+  m_EditorClassIdentifier: Assembly-CSharp::CaraAI2

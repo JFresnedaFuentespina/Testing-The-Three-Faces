@@ -1,60 +1,91 @@
+using System.Collections;
 using UnityEngine;
 
 public class CaraAI2 : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     private float distanceToPlayerFloat;
-    private Vector3 distanceToPlayerVector;
-    private float action;
     private Animator animator;
     private EnemyMove enemyMove;
-    private bool hasJumped = false;
+
+    private bool hasJumped = false;       // indica si está actualmente en el aire
+    private bool wasInAir = false;        // para detectar aterrizaje real
+    private bool jumpOnCooldown = false;  // evita saltos dobles inmediatos
+
     void Start()
     {
-        action = 2;
         animator = GetComponent<Animator>();
         enemyMove = GetComponent<EnemyMove>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        Ray ray = new Ray(transform.position, transform.forward);
-        if (Physics.Raycast(ray, out RaycastHit hit, 20f))
-        {
-            if (hit.collider.CompareTag("Player"))
-            {
-                Vector3 playerPosition = hit.point;
-                distanceToPlayerVector = playerPosition - transform.position;
+        // Raycast hacia el suelo para detectar si está en el aire
+        bool isGrounded = Physics.Raycast(transform.position, Vector3.down, 0.55f);
+        animator.SetBool("isGrounded", isGrounded);
 
-                distanceToPlayerFloat = distanceToPlayerVector.magnitude;
-                if (distanceToPlayerFloat > 8)
-                {
-                    Debug.Log("IDLE");
-                    action = 2; // idle
-                    enemyMove.velocity = 0;
-                }
-                else if (distanceToPlayerFloat <= 8 && distanceToPlayerFloat > 5)
-                {
-                    Debug.Log("WALK");
-                    action = 0; // walk
-                }
-                else if (distanceToPlayerFloat <= 5 && distanceToPlayerFloat > 1 && !hasJumped)
-                {
-                    Debug.Log("JUMP");
-                    action = 1; // jump
-                    enemyMove.Jump();
-                    hasJumped = true;
-                }
-                else if (distanceToPlayerFloat <= 1 && distanceToPlayerFloat > 0)
-                {
-                    Debug.Log("ATTACK");
-                    action = 4; // attack
-                    enemyMove.velocity = 0;
-                }
-                Debug.Log($"Action set to {action} at distance {distanceToPlayerFloat}");
-                animator.SetFloat("Action", action, 0f, Time.deltaTime);
+        // Detectar aterrizaje real
+        if (!isGrounded)
+        {
+            wasInAir = true;
+        }
+        else if (isGrounded && wasInAir)
+        {
+            // Ha aterrizado este frame
+            wasInAir = false;
+            hasJumped = false;           // permite saltar de nuevo
+            enemyMove.RestoreSpeed();
+
+            // Animación de aterrizar
+            animator.ResetTrigger("Jump");
+            animator.SetTrigger("Land");
+
+            // Forzar animación de caminar tras aterrizar
+            animator.SetFloat("Action", 0, 0.1f, Time.deltaTime);
+        }
+
+        // Raycast hacia adelante al jugador
+        Ray rayForward = new Ray(transform.position, transform.forward);
+        bool rayHitPlayer = Physics.Raycast(rayForward, out RaycastHit hit, 20f);
+
+        if (!rayHitPlayer || !hit.collider.CompareTag("Player"))
+            return;
+
+        distanceToPlayerFloat = (hit.point - transform.position).magnitude;
+
+        // Solo decidir nuevas acciones si no está en el aire
+        if (!wasInAir)
+        {
+            if (distanceToPlayerFloat > 8)
+            {
+                animator.SetFloat("Action", 2, 0.2f, Time.deltaTime); // idle
+            }
+            else if (distanceToPlayerFloat > 5)
+            {
+                animator.SetFloat("Action", 0, 0.2f, Time.deltaTime); // caminar
+            }
+            else if (distanceToPlayerFloat > 1 && distanceToPlayerFloat <= 5
+                     && !hasJumped && !jumpOnCooldown && isGrounded)
+            {
+                // Saltar solo si está en el suelo y no está en cooldown
+                animator.SetTrigger("Jump");
+                enemyMove.Jump(7f);
+                hasJumped = true;
+                wasInAir = true;
+
+                // Iniciar cooldown para evitar saltos repetidos inmediatos
+                StartCoroutine(JumpCooldown());
+            }
+            else if (distanceToPlayerFloat <= 1)
+            {
+                animator.SetFloat("Action", 4, 0.2f, Time.deltaTime); // ataque
             }
         }
+    }
+
+    private IEnumerator JumpCooldown()
+    {
+        jumpOnCooldown = true;           // bloquea saltos
+        yield return new WaitForSeconds(12f); // duración del cooldown
+        jumpOnCooldown = false;          // permite saltar nuevamente
     }
 }

@@ -49,13 +49,18 @@ public class EnemyMove : MonoBehaviour
     public void Jump(float jumpForce = 5f)
     {
         if (rb == null) { Debug.Log("NULL"); return; }
-        this.velocity *= 2;
-        // Evitar que se acumule fuerza si ya está en el aire
-        if (Mathf.Abs(rb.linearVelocity.y) < 0.01f)
+
+        if (Mathf.Abs(rb.linearVelocity.y) < 0.1f)
         {
+            jumpForce = Mathf.Clamp(jumpForce, 4f, 7f);
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            velocity = originalVelocity;
         }
-        this.velocity /= 2;
+    }
+
+    public void RestoreSpeed()
+    {
+        velocity = originalVelocity;
     }
 
 

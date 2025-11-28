@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4187502766891753307}
   - component: {fileID: 867201844744228044}
   - component: {fileID: 7905687712137894268}
+  - component: {fileID: -1688230730986211886}
   m_Layer: 6
   m_Name: SM_Rocks_01
   m_TagString: Untagged
@@ -111,3 +112,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5537529, y: 0.38896433, z: 0.4888753}
   m_Center: {x: 0.023026943, y: 0.16347389, z: 0.021668836}
+--- !u!208 &-1688230730986211886
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8933749797280981253}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.277, y: 0.194, z: 0.24400002}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.023000002, y: 0.163, z: 0.022000002}
+  m_TimeToStationary: 0.5

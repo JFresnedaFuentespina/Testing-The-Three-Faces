@@ -15,12 +15,12 @@ public class AttackHit : MonoBehaviour
         EnemyLife enemyLife = other.GetComponent<EnemyLife>();
         if (other.CompareTag("BossCara"))
         {
-            CaraAI caraAi = other.GetComponent<CaraAI>();
+            CaraAI2 caraAi = other.GetComponent<CaraAI2>();
             if (caraAi != null)
             {
                 enemyLife.Damage(attackDamage);
                 enemyLife.UpdateIsAlive();
-                caraAi.TakeDamage(attackDamage);
+                // caraAi.TakeDamage(attackDamage);
             }
             Destroy(gameObject, destroyDelay);
         }

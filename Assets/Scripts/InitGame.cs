@@ -1,3 +1,4 @@
+using System.IO;
 using UnityEngine;
 
 public class InitGame : MonoBehaviour
@@ -5,11 +6,16 @@ public class InitGame : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     LevelGenerator levelGenerator;
     private float timer = 0f;
-    private float timeLimit = 5f; 
+    private float timeLimit = 5f;
 
     void Start()
     {
         levelGenerator = GetComponent<LevelGenerator>();
+        string path = Application.persistentDataPath + "/player.json";
+        if (File.Exists(path))
+        {
+            File.Delete(path);
+        }
     }
 
     // Update is called once per frame

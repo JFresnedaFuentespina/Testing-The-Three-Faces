@@ -11,11 +11,6 @@ public class InitGame : MonoBehaviour
     void Start()
     {
         levelGenerator = GetComponent<LevelGenerator>();
-        string path = Application.persistentDataPath + "/player.json";
-        if (File.Exists(path))
-        {
-            File.Delete(path);
-        }
     }
 
     // Update is called once per frame

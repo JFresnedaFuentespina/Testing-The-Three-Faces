@@ -1,3 +1,4 @@
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,6 +8,11 @@ public class LoadLevel1 : MonoBehaviour
     public void CargarNivel1()
     {
         Debug.Log("Cargando Nivel 1...");
+        string path = Application.persistentDataPath + "/player.json";
+        if (File.Exists(path))
+        {
+            File.Delete(path);
+        }
         SceneManager.LoadScene("Level1Scene");
     }
 }

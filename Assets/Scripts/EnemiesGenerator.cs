@@ -10,8 +10,8 @@ public class EnemiesGenerator : MonoBehaviour
     public GameObject bossCruzPrefab;
     public GameObject bossCantoPrefab;
     public int maxEnemies = 3;
-    public float spawnAreaX = 2f;
-    public float spawnAreaZ = 2f;
+    public float spawnAreaX = 1f;
+    public float spawnAreaZ = 1f;
 
     private bool enemiesSpawned = false;
     private List<EnemyLife> spawnedEnemies = new List<EnemyLife>();

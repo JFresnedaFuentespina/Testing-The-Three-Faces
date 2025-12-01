@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -6248828638133822326}
   - component: {fileID: 4730572727115487664}
   - component: {fileID: 4857521681652258884}
+  - component: {fileID: 8623009482464235286}
   m_Layer: 0
   m_Name: Little_Ghost_ZOMbi (6)
   m_TagString: Enemy_Ghost
@@ -134,6 +135,19 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &8623009482464235286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6466474970774430903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 743d3d5489c38274dbde3bcf4d859833, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAttack
+  attackPrefab: {fileID: 7075552762919178916, guid: 7e306a3d3c66b294b8b6d27a82827a5c, type: 3}
 --- !u!1 &6466474971243602145
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,9 +1,19 @@
 // AttackHit.cs
 using UnityEngine;
 
-public class AttackHit : MonoBehaviour
+public class FireAttackHit : MonoBehaviour
 {
     public float attackDamage = 5;
+
+    void Start()
+    {
+        PlayerAttack playerAttack = FindAnyObjectByType<PlayerAttack>();
+        if (playerAttack != null)
+        {
+            Debug.Log("AttackHit found PlayerAttack");
+            attackDamage = playerAttack.attackDamage;
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -20,7 +30,6 @@ public class AttackHit : MonoBehaviour
             {
                 enemyLife.Damage(attackDamage);
                 enemyLife.UpdateIsAlive();
-                // caraAi.TakeDamage(attackDamage);
             }
             Destroy(gameObject, destroyDelay);
         }
@@ -37,5 +46,6 @@ public class AttackHit : MonoBehaviour
         {
             Destroy(gameObject, destroyDelay);
         }
+        Debug.Log("Hit: " + other.name);
     }
 }

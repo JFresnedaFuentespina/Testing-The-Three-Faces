@@ -9,11 +9,13 @@ public class PlayerAttack : MonoBehaviour
     private ChangeCharacter changeCharacter;
     public GameObject fireball;
     public GameObject thunderPrefab;
+    public float attackDamage = 5f;
     public float attackSpeed = 5f;
     public float spawnHeight = 1.0f;
     public float attackRange = 2f;
-    private float thunderSpawnY = 1f;
+    private float thunderSpawnY = 5f;
     public float thunderLifeTime = 0.4f;
+    public float thunderDamage = 10f;
     public bool isFireball = false;
     public bool isThunder = true;
 
@@ -90,6 +92,19 @@ public class PlayerAttack : MonoBehaviour
             spawnPos,
             Quaternion.identity
         );
+
+        if(Physics.Raycast(spawnPos, Vector3.down, out RaycastHit hitInfo, 20f))
+        {
+            if(hitInfo.collider.CompareTag("BossCara") || hitInfo.collider.CompareTag("Enemy_Zombie"))
+            {
+                EnemyLife enemyLife = hitInfo.collider.GetComponent<EnemyLife>();
+                if (enemyLife != null)
+                {
+                    enemyLife.Damage(thunderDamage);
+                    enemyLife.UpdateIsAlive();
+                }
+            }
+        }
 
         Destroy(newThunder, thunderLifeTime);
     }

@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 7930126595310468043}
   - component: {fileID: 7930126595310468040}
   - component: {fileID: 5973908844157556360}
+  - component: {fileID: 5796004613305379900}
   m_Layer: 0
   m_Name: Character
   m_TagString: Player
@@ -96,6 +97,7 @@ MonoBehaviour:
   ghost: {fileID: 7946864974576326136}
   esqueleto: {fileID: 8755321112139365859}
   showingGhost: 0
+  action: 
 --- !u!114 &7930126595310468042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,8 +143,8 @@ MonoBehaviour:
   attackSpeed: 5
   spawnHeight: 1
   attackRange: 5
+  attackInterval: 1
   thunderLifeTime: 0.5
-  thunderDamage: 10
   isFireball: 1
   isThunder: 0
 --- !u!114 &7930126595310468040
@@ -174,6 +176,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fb090f8460a01d4489254b9699c716a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PickupItem
+--- !u!114 &5796004613305379900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7930126595310468033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13402d8058ee7c945b0ef4ac491e13ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInventory
+  items: []
 --- !u!1001 &7930126594040334127
 PrefabInstance:
   m_ObjectHideFlags: 0

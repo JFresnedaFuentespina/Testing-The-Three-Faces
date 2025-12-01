@@ -6,12 +6,14 @@ public class PickupItem : MonoBehaviour
     private PlayerAttack playerAttack;
     private PlayerBehaviour playerBehaviour;
     private ChangeCharacter changeCharacter;
+    private PlayerInventory playerInventory;
 
     void Start()
     {
         playerAttack = GetComponent<PlayerAttack>();
         playerBehaviour = GetComponent<PlayerBehaviour>();
         changeCharacter = GetComponent<ChangeCharacter>();
+        playerInventory = GetComponent<PlayerInventory>();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -21,6 +23,7 @@ public class PickupItem : MonoBehaviour
             if (collision.transform.childCount > 0)
             {
                 Transform child = collision.transform.GetChild(0);
+                playerInventory.AddItem(child.gameObject);
                 Debug.Log("Tag del hijo: " + child.tag);
                 if (child.CompareTag("ThunderItem"))
                 {

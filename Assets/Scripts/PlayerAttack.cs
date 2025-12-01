@@ -54,11 +54,8 @@ public class PlayerAttack : MonoBehaviour
     }
     void TryAttack()
     {
-        // Comprobar si ya pasó el intervalo del último ataque
         if (Time.time < lastAttackTime + attackInterval)
             return;
-
-        // Registrar nuevo ataque válido
         lastAttackTime = Time.time;
         Shoot();
     }

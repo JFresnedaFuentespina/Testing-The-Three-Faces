@@ -21,6 +21,7 @@ TagManager:
   - IncreaseAttackSpeedItem
   - Thunderbolt
   - Hourglass
+  - Enemy_Ghost
   layers:
   - Default
   - TransparentFX

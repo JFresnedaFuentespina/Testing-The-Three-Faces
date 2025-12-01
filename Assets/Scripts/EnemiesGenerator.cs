@@ -1,10 +1,11 @@
 using UnityEngine;
 using System.Collections.Generic;
-using System;
+// using System;
 
 public class EnemiesGenerator : MonoBehaviour
 {
-    public GameObject enemyType1Prefab;
+    public GameObject enemyType1Prefab; // Zombie prefab
+    public List<GameObject> enemyType2Prefabs; // Ghost prefabs
     public GameObject bossCaraPrefab;
     public GameObject bossCruzPrefab;
     public GameObject bossCantoPrefab;
@@ -36,8 +37,9 @@ public class EnemiesGenerator : MonoBehaviour
             float offsetX = UnityEngine.Random.Range(-spawnAreaX, spawnAreaX);
             float offsetZ = UnityEngine.Random.Range(-spawnAreaZ, spawnAreaZ);
             Vector3 spawnPos = transform.position + new Vector3(offsetX, 0, offsetZ);
-
-            GameObject enemy = Instantiate(enemyType1Prefab, spawnPos, Quaternion.identity);
+            float random = Random.Range(0f, 2f);
+            GameObject enemyPrefab = random < 1f ? enemyType1Prefab : enemyType2Prefabs[Random.Range(0, enemyType2Prefabs.Count)];
+            GameObject enemy = Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
             EnemyLife life = enemy.GetComponent<EnemyLife>();
             if (life != null)
                 spawnedEnemies.Add(life);

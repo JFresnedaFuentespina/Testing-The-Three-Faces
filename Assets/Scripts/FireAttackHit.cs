@@ -33,7 +33,7 @@ public class FireAttackHit : MonoBehaviour
             }
             Destroy(gameObject, destroyDelay);
         }
-        else if (other.CompareTag("Enemy_Zombie"))
+        else if (other.CompareTag("Enemy_Zombie") || other.CompareTag("Enemy_Ghost"))
         {
             if (enemyLife != null)
             {

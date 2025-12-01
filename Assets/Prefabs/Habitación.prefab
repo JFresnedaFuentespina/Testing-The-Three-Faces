@@ -361,7 +361,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3151105536103396257
 Transform:
   m_ObjectHideFlags: 0
@@ -392,7 +392,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3151105536103396261}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -647,6 +647,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType1Prefab: {fileID: 6930373436760084395, guid: 86954bd586b5cbc4380a87a05acbf57f, type: 3}
+  enemyType2Prefabs:
+  - {fileID: 6423403879286395854, guid: 68a45b7c7de96f84bb3192731ba3a68c, type: 3}
+  - {fileID: 9203938796069245880, guid: b100033bd257c8e479a5c0a5b148fa2c, type: 3}
+  - {fileID: 8954800359469898617, guid: d0689260bad5ace43851bc4ad441f23d, type: 3}
+  - {fileID: 8747757470087523455, guid: 98a93bca5029d9f4b87c420c0e2ee583, type: 3}
+  - {fileID: 1045583631839351886, guid: e5ee9efbfc920f245962816752e72e91, type: 3}
+  - {fileID: 6466474970774430903, guid: 766762930a40b174c8956cdf3007423e, type: 3}
+  - {fileID: 3985757784934188552, guid: 04b2d16e1c1a3ff44b840552be5592c0, type: 3}
+  - {fileID: 3553767060735298535, guid: ef18b671ee08e3f48bb32dae8e32e51f, type: 3}
+  - {fileID: 4528888763381533394, guid: 0e984e923d84c6644a3633bbbc1127b9, type: 3}
   bossCaraPrefab: {fileID: 0}
   bossCruzPrefab: {fileID: 0}
   bossCantoPrefab: {fileID: 0}

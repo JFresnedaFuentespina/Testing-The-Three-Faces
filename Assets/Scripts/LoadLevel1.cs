@@ -13,6 +13,11 @@ public class LoadLevel1 : MonoBehaviour
         {
             File.Delete(path);
         }
+        string timerPath = Application.persistentDataPath + "/timer.json";
+        if (File.Exists(timerPath))
+        {
+            File.Delete(timerPath);
+        }
         SceneManager.LoadScene("Level1Scene");
     }
 }

@@ -1,8 +1,11 @@
 # Testing de The Three Faces
 Proyecto de desarrollo de un videojuego en Unity con la temática: Las dos caras de una moneda.
 
-## Enlace a un resumen de la idea del proyecto:
+## Enlace a un resumen de la idea del proyecto
 [Resumen Proyecto](https://drive.google.com/file/d/1I7N4RCpclo_JCFqlVTrsUAL3g1n7sUXu/view?usp=sharing)
+
+## Enlace a itch.io
+[The Three Faces - itch.io](https://jesusfresneda.itch.io/the-three-faces)
 
 ## Sinopsis
 En un mundo donde el destino se decide con un simple lanzamiento, existen tres

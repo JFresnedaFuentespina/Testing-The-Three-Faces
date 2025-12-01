@@ -13,6 +13,8 @@ public class PlayerAttack : MonoBehaviour
     public float attackSpeed = 5f;
     public float spawnHeight = 1.0f;
     public float attackRange = 2f;
+    public float attackInterval = 1f;
+    private float lastAttackTime = -999f;
     private float thunderSpawnY = 5f;
     public float thunderLifeTime = 0.4f;
     public float thunderDamage = 10f;
@@ -42,13 +44,23 @@ public class PlayerAttack : MonoBehaviour
         {
             if (changeCharacter.showingGhost && (Input.GetMouseButtonDown(0) || Input.GetButtonDown("Fire")))
             {
-                Shoot();
+                TryAttack();
             }
             else if (!changeCharacter.showingGhost && (Input.GetMouseButtonDown(0) || Input.GetButtonDown("Fire")))
             {
                 // Debug.Log("HYAAAA!");
             }
         }
+    }
+    void TryAttack()
+    {
+        // Comprobar si ya pasó el intervalo del último ataque
+        if (Time.time < lastAttackTime + attackInterval)
+            return;
+
+        // Registrar nuevo ataque válido
+        lastAttackTime = Time.time;
+        Shoot();
     }
     void Shoot()
     {
@@ -93,9 +105,9 @@ public class PlayerAttack : MonoBehaviour
             Quaternion.identity
         );
 
-        if(Physics.Raycast(spawnPos, Vector3.down, out RaycastHit hitInfo, 20f))
+        if (Physics.Raycast(spawnPos, Vector3.down, out RaycastHit hitInfo, 20f))
         {
-            if(hitInfo.collider.CompareTag("BossCara") || hitInfo.collider.CompareTag("Enemy_Zombie"))
+            if (hitInfo.collider.CompareTag("BossCara") || hitInfo.collider.CompareTag("Enemy_Zombie"))
             {
                 EnemyLife enemyLife = hitInfo.collider.GetComponent<EnemyLife>();
                 if (enemyLife != null)

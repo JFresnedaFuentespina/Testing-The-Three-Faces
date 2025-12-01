@@ -445,7 +445,6 @@ GameObject:
   - component: {fileID: 8954800359469898615}
   - component: {fileID: 8954800359469898616}
   - component: {fileID: 6739890853603041220}
-  - component: {fileID: -5626581723041357942}
   - component: {fileID: -2990281825964521223}
   - component: {fileID: 2800648137728115797}
   m_Layer: 0
@@ -533,19 +532,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyLife
   totalHp: 10
---- !u!114 &-5626581723041357942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8954800359469898617}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e8abd3d82d7ca24081aef6cf57bd1df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyMove
-  velocity: 2
 --- !u!114 &-2990281825964521223
 MonoBehaviour:
   m_ObjectHideFlags: 0

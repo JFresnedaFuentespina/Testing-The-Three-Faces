@@ -41,13 +41,9 @@ public class PlayerAttack : MonoBehaviour
     {
         if (changeCharacter != null)
         {
-            if (changeCharacter.showingGhost && (Input.GetMouseButtonDown(0) || Input.GetButtonDown("Fire")))
+            if (Input.GetMouseButtonDown(0) || Input.GetButtonDown("Fire"))
             {
                 TryAttack();
-            }
-            else if (!changeCharacter.showingGhost && (Input.GetMouseButtonDown(0) || Input.GetButtonDown("Fire")))
-            {
-                // Debug.Log("HYAAAA!");
             }
         }
     }
@@ -56,7 +52,10 @@ public class PlayerAttack : MonoBehaviour
         if (Time.time < lastAttackTime + attackInterval)
             return;
         lastAttackTime = Time.time;
-        Shoot();
+        if(changeCharacter.showingGhost)
+            Shoot();
+        else
+            AttackMeelee();
     }
     void Shoot()
     {
@@ -67,6 +66,16 @@ public class PlayerAttack : MonoBehaviour
         else if (isThunder)
         {
             ShootThunder();
+        }
+    }
+
+    public void AttackMeelee()
+    {
+        Animator animator = GetComponentInChildren<Animator>();
+        if(animator != null)
+        {
+            animator.applyRootMotion = false;
+            animator.SetTrigger("Attack");
         }
     }
 

@@ -7,9 +7,11 @@ public class ChangeCharacter : MonoBehaviour
     public GameObject ghost;
     public GameObject esqueleto;
     public bool showingGhost = false;
+    public string action;
     // Start is called before the first frame update
     void Start()
     {
+        action = "none";
         esqueleto.SetActive(true);
         ghost.SetActive(false);
     }
@@ -31,7 +33,10 @@ public class ChangeCharacter : MonoBehaviour
 
         PlayerHealth vidaGhost = ghost.GetComponent<PlayerHealth>();
         PlayerHealth vidaEsqueleto = esqueleto.GetComponent<PlayerHealth>();
-
+        if(action == "Hourglass")
+        {
+            Debug.Log("FREEZE TIME!");
+        }
         if (showingGhost)
         {
             ghost.transform.position = esqueleto.transform.position;

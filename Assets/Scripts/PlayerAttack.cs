@@ -17,7 +17,6 @@ public class PlayerAttack : MonoBehaviour
     private float lastAttackTime = -999f;
     private float thunderSpawnY = 5f;
     public float thunderLifeTime = 0.4f;
-    public float thunderDamage = 10f;
     public bool isFireball = false;
     public bool isThunder = true;
 
@@ -109,7 +108,7 @@ public class PlayerAttack : MonoBehaviour
                 EnemyLife enemyLife = hitInfo.collider.GetComponent<EnemyLife>();
                 if (enemyLife != null)
                 {
-                    enemyLife.Damage(thunderDamage);
+                    enemyLife.Damage(attackDamage);
                     enemyLife.UpdateIsAlive();
                 }
             }

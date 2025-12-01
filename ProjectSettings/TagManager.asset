@@ -20,6 +20,7 @@ TagManager:
   - IncreaseAttackDamageItem
   - IncreaseAttackSpeedItem
   - Thunderbolt
+  - Hourglass
   layers:
   - Default
   - TransparentFX

@@ -9,7 +9,7 @@ public class PlayerHealth : MonoBehaviour
 {
     public float maxHealth = 3f;
     public float minHealth = 0f;
-    public float healthPoints = 3;
+    public float healthPoints = 3f;
     public GameObject hud;
     private List<GameObject> corazones = new List<GameObject>();
     public bool canDie = false;
@@ -70,16 +70,20 @@ public class PlayerHealth : MonoBehaviour
         Invoke(nameof(EnableDeath), 0.1f);
     }
     void EnableDeath() => canDie = true;
+
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Enemy_Zombie") || other.gameObject.CompareTag("BossCara"))
+        string tag = other.gameObject.tag;
+        if (tag.StartsWith("Enemy") || other.gameObject.CompareTag("BossCara"))
         {
             healthPoints -= 0.5f;
         }
-        // Limita el valor antes de actualizar HUD
         healthPoints = Mathf.Clamp(healthPoints, minHealth, maxHealth);
+        // Actualizar HUD
         UpdateHUD();
     }
+
+
     public void CheckDeath()
     {
         if (!canDie) return;
@@ -94,7 +98,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    private void UpdateHUD(bool checkDeath = true)
+    public void UpdateHUD(bool checkDeath = true)
     {
         foreach (GameObject vida in corazones)
             vida.SetActive(false);

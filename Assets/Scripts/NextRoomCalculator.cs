@@ -164,13 +164,9 @@ public class NextRoomCalculator : MonoBehaviour
     private void UpdateTorchesState(GameObject room)
     {
         if (room == null) return;
-
-        // Buscamos cada antorcha en su pared
         Transform torchLeft = room.transform.Find("ParedIzquierda/TorchLeft");
         Transform torchRight = room.transform.Find("ParedDerecha/TorchRight");
         Transform torchFront = room.transform.Find("ParedFrontal/TorchFront");
-
-        // Aplicamos el cambio en cada una si existe
         SetTorchState(torchLeft);
         SetTorchState(torchRight);
         SetTorchState(torchFront);

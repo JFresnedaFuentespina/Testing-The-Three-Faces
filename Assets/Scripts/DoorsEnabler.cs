@@ -70,7 +70,6 @@ public class DoorsEnabler : MonoBehaviour
     }
     private void SetAllTorchesGreen()
     {
-        // Buscamos y guardamos antorchas solo una vez
         if (torches == null || torches.Count == 0)
         {
             torches = new List<GameObject>();
@@ -81,8 +80,6 @@ public class DoorsEnabler : MonoBehaviour
             if (transform.Find("ParedFrontal/TorchFront") != null)
                 torches.Add(transform.Find("ParedFrontal/TorchFront").gameObject);
         }
-
-        // Ahora sí, las ponemos verdes
         foreach (GameObject torch in torches)
         {
             if (torch == null) continue;

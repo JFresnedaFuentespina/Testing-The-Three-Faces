@@ -7,6 +7,7 @@ public class NextRoomCalculator : MonoBehaviour
 {
     private LevelGenerator level;
     public bool enabledTemporarily = false;
+    public List<GameObject> torches;
 
     void Start()
     {
@@ -140,7 +141,7 @@ public class NextRoomCalculator : MonoBehaviour
     private void DisableDoorsInRoom(GameObject room)
     {
         if (room == null) return;
-
+        UpdateTorchesState(room);
         string[] doorPaths =
         {
             "ParedIzquierda/Door_Prefab_Closed_Left",
@@ -159,6 +160,33 @@ public class NextRoomCalculator : MonoBehaviour
             }
         }
     }
+
+    private void UpdateTorchesState(GameObject room)
+    {
+        if (room == null) return;
+
+        // Buscamos cada antorcha en su pared
+        Transform torchLeft = room.transform.Find("ParedIzquierda/TorchLeft");
+        Transform torchRight = room.transform.Find("ParedDerecha/TorchRight");
+        Transform torchFront = room.transform.Find("ParedFrontal/TorchFront");
+
+        // Aplicamos el cambio en cada una si existe
+        SetTorchState(torchLeft);
+        SetTorchState(torchRight);
+        SetTorchState(torchFront);
+    }
+
+    private void SetTorchState(Transform torch)
+    {
+        if (torch == null) return;
+
+        Transform red = torch.Find("FireRed");
+        Transform green = torch.Find("FireGreen");
+
+        if (red != null) red.gameObject.SetActive(true);
+        if (green != null) green.gameObject.SetActive(false);
+    }
+
 
     void MoveCamera(Vector3 roomPos)
     {

@@ -7,6 +7,8 @@ Proyecto de desarrollo de un videojuego en Unity con la temática: Las dos caras
 ## Enlace a itch.io
 [The Three Faces - itch.io](https://jesusfresneda.itch.io/the-three-faces)
 
+.
+
 ## Sinopsis
 En un mundo donde el destino se decide con un simple lanzamiento, existen tres
 antiguas deidades que rigen el equilibrio del azar: Cara, Cruz y Canto.

@@ -19,6 +19,7 @@ public class EnemiesGenerator : MonoBehaviour
 
     public bool enemiesActuallySpawned = false;
 
+    //! FALLA LA GENERACIÓN DEL BOSS
     public void GenerateEnemiesInRoom(Vector3 roomPos)
     {
         if (enemiesDefeated || enemiesActuallySpawned)

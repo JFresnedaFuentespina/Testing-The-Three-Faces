@@ -9,8 +9,33 @@ public class PlayerBehaviour : MonoBehaviour
     public float velocity = 10.0f;
     private Rigidbody rb;
 
+    private Animator animator;
+    private ChangeCharacter changeCharacter;
+
     void Start()
     {
+        changeCharacter = GetComponent<ChangeCharacter>();
+
+        // Buscar el TRANSFORM del hijo que se llama "Esqueleto"
+        Transform esqueletoHijo = transform.Find("Esqueleto");
+        if (esqueletoHijo == null)
+        {
+            Debug.LogError("No se encontró el hijo llamado 'Esqueleto'");
+            return;
+        }
+
+        // Obtener el Animator SOLO de ese hijo
+        animator = esqueletoHijo.GetComponent<Animator>();
+        if (animator == null)
+        {
+            Debug.LogError("El hijo 'Esqueleto' existe, pero no tiene Animator");
+            return;
+        }
+
+        // Prueba para confirmar que es el correcto
+        Debug.Log("Animator correcto asignado: " + animator.gameObject.name);
+
+        // Load JSON stats
         string path = Application.persistentDataPath + "/player.json";
         if (File.Exists(path))
         {
@@ -18,26 +43,35 @@ public class PlayerBehaviour : MonoBehaviour
             PlayerData playerData = JsonConvert.DeserializeObject<PlayerData>(json);
             velocity = playerData.velocity;
         }
+
         rb = GetComponent<Rigidbody>();
-        if (rb == null)
-        {
-            Debug.LogError("Este objeto necesita un Rigidbody para que el salto funcione.");
-        }
     }
+
 
     private void FixedUpdate()
     {
+        if (animator == null) return;
+        animator.applyRootMotion = false;
+
         float inputH = Input.GetAxis("Horizontal");
         float inputV = Input.GetAxis("Vertical");
 
         Vector3 movement = (Vector3.forward * inputV + Vector3.right * inputH);
-        if (movement.magnitude > 1)
+        bool seEstaMoviendo = movement.magnitude > 0.01f;
+
+        if (!changeCharacter.showingGhost)
         {
-            movement.Normalize();
+            animator.SetFloat("Action", seEstaMoviendo ? 2f : 0f);
+        }
+        else
+        {
+            animator.SetFloat("Action", 0f);
         }
 
+        if (movement.magnitude > 1f)
+            movement.Normalize();
+
         movement *= velocity * Time.deltaTime;
-        // Debug.Log("MOVIMIENTO: " + movement);
         rb.MovePosition(rb.position + movement);
     }
 

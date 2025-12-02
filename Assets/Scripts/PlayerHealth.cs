@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
@@ -13,12 +14,27 @@ public class PlayerHealth : MonoBehaviour
     public GameObject hud;
     private List<GameObject> corazones = new List<GameObject>();
     public bool canDie = false;
+    private Rigidbody rb;
+    private Animator animator;
+    private RotateCharacterToMouse rotateCharacterToMouse;
+    private RotateCharacterWithJoystick rotateCharacterWithJoystick;
+    private PlayerBehaviour playerBehaviour;
 
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
+        rotateCharacterToMouse = GetComponent<RotateCharacterToMouse>();
+        rotateCharacterWithJoystick = GetComponent<RotateCharacterWithJoystick>();
+        playerBehaviour = GetComponent<PlayerBehaviour>();
+        Transform esqueletoHijo = transform.Find("Esqueleto");
+        animator = esqueletoHijo != null ? esqueletoHijo.GetComponent<Animator>() : null;
+        if (animator == null)
+        {
+            Debug.LogError("No se encontró el Animator dentro del hijo 'Esqueleto'");
+            return;
+        }
         string path = Application.persistentDataPath + "/player.json";
         bool loadedFromFile = false;
-
         if (File.Exists(path))
         {
             try
@@ -82,17 +98,48 @@ public class PlayerHealth : MonoBehaviour
     }
     public void CheckDeath()
     {
-        if (!canDie) return;
+        if (!canDie || healthPoints > 0) return;
 
-        if (healthPoints <= 0)
+        animator.SetTrigger("Death");
+
+        // Bloquear movimiento y rotación
+        BlockPlayerControl();
+
+        // Borrar JSON si existe
+        string path = Application.persistentDataPath + "/player.json";
+        if (File.Exists(path))
+            File.Delete(path);
+
+        // Volver al menú tras delay
+        StartCoroutine(DeathAndReturnToMenu());
+    }
+
+    void BlockPlayerControl()
+    {
+        if (playerBehaviour != null)
+            playerBehaviour.enabled = false;
+
+        if (rotateCharacterToMouse != null)
+            rotateCharacterToMouse.enabled = false;
+
+        if (rotateCharacterWithJoystick != null)
+            rotateCharacterWithJoystick.enabled = false;
+        if (rb != null)
         {
-            string path = Application.persistentDataPath + "/player.json";
-            if (File.Exists(path))
-                File.Delete(path);
-
-            SceneManager.LoadSceneAsync("MainMenu");
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            rb.constraints = RigidbodyConstraints.FreezeAll;
         }
     }
+
+    private IEnumerator DeathAndReturnToMenu()
+    {
+        float deathDuration = animator.GetCurrentAnimatorStateInfo(0).length;
+        yield return new WaitForSeconds(deathDuration + 5f);
+        SceneManager.LoadScene("MainMenu");
+    }
+
+
 
     private void UpdateHUD(bool checkDeath = true)
     {

@@ -19,6 +19,7 @@ public class PlayerAttack : MonoBehaviour
     public float thunderLifeTime = 0.4f;
     public bool isFireball = false;
     public bool isThunder = true;
+    private Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +35,34 @@ public class PlayerAttack : MonoBehaviour
             isThunder = playerData.attackType == "Thunder";
         }
         changeCharacter = GetComponent<ChangeCharacter>();
+        // Asignar el Animator del hijo llamado "Esqueleto"
+        animator = FindEsqueletoAnimator(transform);
+        MeleeAttackHit weapon = this.gameObject.GetComponentInChildren<MeleeAttackHit>();
+        weapon.attackDamage = attackDamage;
+        if (animator == null)
+        {
+            Debug.LogError("No se encontró el Animator dentro del hijo 'Esqueleto'");
+        }
+        else
+        {
+            Debug.Log("Animator correcto asignado para ataque: " + animator.gameObject.name);
+        }
+    }
+    // Buscar recursivamente el hijo llamado "Esqueleto" y devolver su Animator
+    Animator FindEsqueletoAnimator(Transform raiz)
+    {
+        foreach (Transform t in raiz)
+        {
+            if (t.name == "Esqueleto")
+            {
+                return t.GetComponent<Animator>();
+            }
+
+            Animator encontrado = FindEsqueletoAnimator(t);
+            if (encontrado != null)
+                return encontrado;
+        }
+        return null;
     }
 
     // Update is called once per frame
@@ -52,7 +81,7 @@ public class PlayerAttack : MonoBehaviour
         if (Time.time < lastAttackTime + attackInterval)
             return;
         lastAttackTime = Time.time;
-        if(changeCharacter.showingGhost)
+        if (changeCharacter.showingGhost)
             Shoot();
         else
             AttackMeelee();
@@ -71,12 +100,10 @@ public class PlayerAttack : MonoBehaviour
 
     public void AttackMeelee()
     {
-        Animator animator = GetComponentInChildren<Animator>();
-        if(animator != null)
-        {
-            animator.applyRootMotion = false;
-            animator.SetTrigger("Attack");
-        }
+        if (animator == null) return;
+
+        animator.applyRootMotion = false;
+        animator.SetTrigger("Attack");
     }
 
     void ShootFire()

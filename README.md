@@ -7,7 +7,11 @@ Proyecto de desarrollo de un videojuego en Unity con la temática: Las dos caras
 ## Enlace a itch.io
 [The Three Faces - itch.io](https://jesusfresneda.itch.io/the-three-faces)
 
-.
+## Enlace al primer teaser
+[Teaser](https://www.youtube.com/watch?v=zxpgE-wDOBA)
+
+## Infografía
+[Infografía](https://drive.google.com/file/d/1kysTJns7DHLBmXF1yNZf6qz4VTrxj4Ia/view?usp=sharing)
 
 ## Sinopsis
 En un mundo donde el destino se decide con un simple lanzamiento, existen tres

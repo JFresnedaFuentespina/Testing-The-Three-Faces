@@ -26,17 +26,39 @@ public class EnemiesGenerator : MonoBehaviour
             Debug.Log($"No se generan enemigos en {gameObject.name} (ya derrotados o generados)");
             return;
         }
-
         enemiesActuallySpawned = true;
         enemiesSpawned = true;
-
         int enemyCount = UnityEngine.Random.Range(1, maxEnemies + 1);
-
+        Transform floor = transform.Find("Suelo");
+        if (floor == null)
+        {
+            Debug.LogWarning("No se encontró el plano 'Suelo' en la habitación. Usando posición relativa.");
+        }
+        Bounds bounds;
+        if (floor != null)
+        {
+            Renderer floorRenderer = floor.GetComponent<Renderer>();
+            if (floorRenderer != null)
+                bounds = floorRenderer.bounds;
+            else
+            {
+                Debug.LogWarning("'Suelo' no tiene Renderer. Usando posición relativa.");
+                bounds = new Bounds(transform.position, new Vector3(spawnAreaX * 2, 0, spawnAreaZ * 2));
+            }
+        }
+        else
+        {
+            bounds = new Bounds(transform.position, new Vector3(spawnAreaX * 2, 0, spawnAreaZ * 2));
+        }
         for (int i = 0; i < enemyCount; i++)
         {
-            float offsetX = UnityEngine.Random.Range(-spawnAreaX, spawnAreaX);
-            float offsetZ = UnityEngine.Random.Range(-spawnAreaZ, spawnAreaZ);
-            Vector3 spawnPos = transform.position + new Vector3(offsetX, 0, offsetZ);
+            // Generar posición aleatoria dentro de los bounds del suelo
+            Vector3 spawnPos = new Vector3(
+                Random.Range(bounds.min.x, bounds.max.x),
+                bounds.center.y + 0.5f, // ajustar altura para que quede sobre el suelo/NavMesh
+                Random.Range(bounds.min.z, bounds.max.z)
+            );
+            // Elegir tipo de enemigo
             float random = Random.Range(0f, 2f);
             GameObject enemyPrefab = random < 1f ? enemyType1Prefab : enemyType2Prefabs[Random.Range(0, enemyType2Prefabs.Count)];
             GameObject enemy = Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
@@ -44,9 +66,9 @@ public class EnemiesGenerator : MonoBehaviour
             if (life != null)
                 spawnedEnemies.Add(life);
         }
-
         Debug.Log($"Enemigos totales generados en {gameObject.name}: {spawnedEnemies.Count}");
     }
+
 
     public int GetAliveEnemiesCount()
     {

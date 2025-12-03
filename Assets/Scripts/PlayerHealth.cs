@@ -88,9 +88,8 @@ public class PlayerHealth : MonoBehaviour
     void EnableDeath() => canDie = true;
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Enemy_Zombie") || other.gameObject.CompareTag("BossCara")|| other.gameObject.CompareTag("EnemyProjectile"))
+        if (other.gameObject.CompareTag("Enemy_Zombie") || other.gameObject.CompareTag("Enemy_Ghost") || other.gameObject.CompareTag("BossCara")|| other.gameObject.CompareTag("EnemyProjectile"))
         {
-            Debug.Log("Player hit by " + other.gameObject.name);
             healthPoints -= 0.5f;
         }
         // Limita el valor antes de actualizar HUD

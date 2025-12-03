@@ -54,7 +54,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 3
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -70,7 +70,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0be3eb5b88937944a8941b892ac90dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMoveNavmesh
-  velocity: 3
+  velocity: 0
 --- !u!114 &575586651067119050
 MonoBehaviour:
   m_ObjectHideFlags: 0

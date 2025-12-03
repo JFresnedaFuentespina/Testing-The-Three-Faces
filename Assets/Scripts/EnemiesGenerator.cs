@@ -67,6 +67,19 @@ public class EnemiesGenerator : MonoBehaviour
             if (life != null)
                 spawnedEnemies.Add(life);
         }
+
+        if (bossCaraPrefab != null)
+        {
+            Vector3 bossSpawnPos = new Vector3(
+                bounds.center.x,
+                bounds.center.y + 0.5f,
+                bounds.center.z
+            );
+            GameObject boss = Instantiate(bossCaraPrefab, bossSpawnPos, Quaternion.identity);
+            EnemyLife bossLife = boss.GetComponent<EnemyLife>();
+            if (bossLife != null)
+                spawnedEnemies.Add(bossLife);
+        }
         Debug.Log($"Enemigos totales generados en {gameObject.name}: {spawnedEnemies.Count}");
     }
 

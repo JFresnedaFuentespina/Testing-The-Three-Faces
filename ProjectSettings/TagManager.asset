@@ -23,6 +23,7 @@ TagManager:
   - Hourglass
   - Enemy_Ghost
   - Weapon
+  - EnemyProjectile
   layers:
   - Default
   - TransparentFX

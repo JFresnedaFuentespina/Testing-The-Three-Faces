@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEngine.SceneManagement;
 // using System;
 
 public class EnemiesGenerator : MonoBehaviour
@@ -19,70 +21,98 @@ public class EnemiesGenerator : MonoBehaviour
 
     public bool enemiesActuallySpawned = false;
 
-    //! FALLA LA GENERACIÓN DEL BOSS
     public void GenerateEnemiesInRoom(Vector3 roomPos)
     {
-        if (enemiesDefeated || enemiesActuallySpawned)
+        if (enemiesDefeated)
         {
-            Debug.Log($"No se generan enemigos en {gameObject.name} (ya derrotados o generados)");
+            Debug.Log($"No se generan enemigos en {gameObject.name} (ya derrotados)");
             return;
         }
-        enemiesActuallySpawned = true;
-        enemiesSpawned = true;
-        int enemyCount = UnityEngine.Random.Range(1, maxEnemies + 1);
-        Transform floor = transform.Find("Suelo");
-        if (floor == null)
+
+        Transform suelo = transform.Find("Suelo");
+        if (suelo == null)
         {
-            Debug.LogWarning("No se encontró el plano 'Suelo' en la habitación. Usando posición relativa.");
+            Debug.LogWarning("No se encontró el objeto 'Suelo'. Se usará posición relativa.");
         }
-        Bounds bounds;
-        if (floor != null)
+
+        Renderer r = suelo != null ? suelo.GetComponent<Renderer>() : null;
+        Bounds bounds = r != null ? r.bounds : new Bounds(transform.position, new Vector3(spawnAreaX * 2, 0, spawnAreaZ * 2));
+
+        // Spawn de enemigos normales si hay prefabs asignados
+        if (!enemiesActuallySpawned)
         {
-            Renderer floorRenderer = floor.GetComponent<Renderer>();
-            if (floorRenderer != null)
-                bounds = floorRenderer.bounds;
-            else
+            if (enemyType1Prefab != null || (enemyType2Prefabs != null && enemyType2Prefabs.Count > 0))
             {
-                Debug.LogWarning("'Suelo' no tiene Renderer. Usando posición relativa.");
-                bounds = new Bounds(transform.position, new Vector3(spawnAreaX * 2, 0, spawnAreaZ * 2));
+                int enemyCount = UnityEngine.Random.Range(1, maxEnemies + 1);
+                for (int i = 0; i < enemyCount; i++)
+                {
+                    Vector3 spawnPos = new Vector3(
+                        Random.Range(bounds.min.x, bounds.max.x),
+                        roomPos.y + 0.2f,
+                        Random.Range(bounds.min.z, bounds.max.z)
+                    );
+
+                    GameObject prefab = null;
+                    float random = Random.Range(0f, 2f);
+                    if (random < 1f && enemyType1Prefab != null) prefab = enemyType1Prefab;
+                    else if (enemyType2Prefabs != null && enemyType2Prefabs.Count > 0)
+                        prefab = enemyType2Prefabs[Random.Range(0, enemyType2Prefabs.Count)];
+
+                    if (prefab != null)
+                    {
+                        GameObject enemy = Instantiate(prefab, spawnPos, Quaternion.identity);
+                        EnemyLife life = enemy.GetComponent<EnemyLife>();
+                        if (life != null) spawnedEnemies.Add(life);
+                    }
+                }
             }
         }
-        else
+        // Spawn de boss si es sala de boss
+        if (gameObject.name.IndexOf("Boss", System.StringComparison.OrdinalIgnoreCase) >= 0)
         {
-            bounds = new Bounds(transform.position, new Vector3(spawnAreaX * 2, 0, spawnAreaZ * 2));
-        }
-        for (int i = 0; i < enemyCount; i++)
-        {
-            // Generar posición aleatoria dentro de los bounds del suelo
-            Vector3 spawnPos = new Vector3(
-                Random.Range(bounds.min.x, bounds.max.x),
-                bounds.center.y + 0.5f, // ajustar altura para que quede sobre el suelo/NavMesh
-                Random.Range(bounds.min.z, bounds.max.z)
-            );
-            // Elegir tipo de enemigo
-            float random = Random.Range(0f, 2f);
-            GameObject enemyPrefab = random < 1f ? enemyType1Prefab : enemyType2Prefabs[Random.Range(0, enemyType2Prefabs.Count)];
-            GameObject enemy = Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
-            EnemyLife life = enemy.GetComponent<EnemyLife>();
-            if (life != null)
-                spawnedEnemies.Add(life);
+            if(SceneManager.GetActiveScene().name == "Level1Scene")
+            {
+                Debug.Log($"Generando BossCara en {gameObject.name}");
+                GenerateBoss(bossCaraPrefab, bounds, roomPos);
+            }
+            else if(SceneManager.GetActiveScene().name == "Level2Scene")
+            {
+                Debug.Log($"Generando BossCruz en {gameObject.name}");
+                GenerateBoss(bossCruzPrefab, bounds, roomPos);
+            }
+            else if(SceneManager.GetActiveScene().name == "Level3Scene")
+            {
+                Debug.Log($"Generando BossCanto en {gameObject.name}");
+                GenerateBoss(bossCantoPrefab, bounds, roomPos);
+            }
         }
 
-        if (bossCaraPrefab != null)
-        {
-            Vector3 bossSpawnPos = new Vector3(
-                bounds.center.x,
-                bounds.center.y + 0.5f,
-                bounds.center.z
-            );
-            GameObject boss = Instantiate(bossCaraPrefab, bossSpawnPos, Quaternion.identity);
-            EnemyLife bossLife = boss.GetComponent<EnemyLife>();
-            if (bossLife != null)
-                spawnedEnemies.Add(bossLife);
-        }
-        Debug.Log($"Enemigos totales generados en {gameObject.name}: {spawnedEnemies.Count}");
+        // Marcar que ya se generó todo
+        enemiesActuallySpawned = true;
+        enemiesSpawned = true;
+
+        Debug.Log($"Enemigos + boss actuales en {gameObject.name}: {spawnedEnemies.Count}");
     }
 
+    private void GenerateBoss(GameObject bossPrefab, Bounds bounds, Vector3 roomPos)
+    {
+        GameObject boss = bossPrefab;
+        // Revisar si ya existe un BossCara en la escena
+        bool bossExists = FindObjectsOfType<EnemyLife>()
+            .Any(e => e != null && e.gameObject.CompareTag("BossCara"));
+
+        if (bossExists)
+        {
+            Debug.Log("Ya existe un BossCara en escena, no se genera otro");
+        }
+        else if (boss != null)
+        {
+            Vector3 bossSpawn = new Vector3(bounds.center.x, roomPos.y, bounds.center.z);
+            GameObject newBoss = Instantiate(boss, bossSpawn, Quaternion.identity);
+            EnemyLife bossLife = newBoss.GetComponent<EnemyLife>();
+            if (bossLife != null) spawnedEnemies.Add(bossLife);
+        }
+    }
 
     public int GetAliveEnemiesCount()
     {

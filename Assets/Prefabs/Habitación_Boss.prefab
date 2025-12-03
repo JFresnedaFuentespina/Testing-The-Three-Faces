@@ -144,8 +144,8 @@ Transform:
   m_GameObject: {fileID: 444571996413848022}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.32, y: 0, z: -2.6125236}
-  m_LocalScale: {x: 2, y: 1.1995, z: 2}
+  m_LocalPosition: {x: -1.3727, y: -0, z: -2.7801}
+  m_LocalScale: {x: 1.7590839, y: 1.1995, z: 1.7925745}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4242625320559431200}
@@ -165,7 +165,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 444571996413848022}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -17841,6 +17841,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NextRoomCalculator
   enabledTemporarily: 0
+  torches: []
 --- !u!65 &4191822504261727215
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17958,9 +17959,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfe9a59504764ea47ac3b8d2c1b5f4c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemiesGenerator
-  enemyType1Prefab: {fileID: 9137032837993464747, guid: d66c23583a584ef4195dbea312c0b2a7, type: 3}
-  bossCaraPrefab: {fileID: 0}
-  bossCruzPrefab: {fileID: 0}
+  enemyType1Prefab: {fileID: 0}
+  enemyType2Prefabs: []
+  bossCaraPrefab: {fileID: 9137032837993464747, guid: d66c23583a584ef4195dbea312c0b2a7, type: 3}
+  bossCruzPrefab: {fileID: 6334826068141619221, guid: 5bba62d8b65dae44898012275d24ba9e, type: 3}
   bossCantoPrefab: {fileID: 0}
   maxEnemies: 1
   spawnAreaX: 2
@@ -17979,6 +17981,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09c3ce05c6d88974fbb0fd5ef166cac7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorsEnabler
+  torches: []
 --- !u!1 &8214706397542339874
 GameObject:
   m_ObjectHideFlags: 0

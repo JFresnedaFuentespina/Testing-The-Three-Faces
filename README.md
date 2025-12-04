@@ -13,6 +13,9 @@ Proyecto de desarrollo de un videojuego en Unity con la temática: Las dos caras
 ## Infografía
 [Infografía](https://drive.google.com/file/d/1kysTJns7DHLBmXF1yNZf6qz4VTrxj4Ia/view?usp=sharing)
 
+## GDD (Provisional)
+[Game Design Document](https://drive.google.com/file/d/1Osrl8vHzWl-kSXiTbslUW9zzjOG5z4Yg/view?usp=sharing)
+
 ## Sinopsis
 En un mundo donde el destino se decide con un simple lanzamiento, existen tres
 antiguas deidades que rigen el equilibrio del azar: Cara, Cruz y Canto.

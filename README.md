@@ -17,8 +17,8 @@ Proyecto de desarrollo de un videojuego en Unity con la temática: Las dos caras
 [Game Design Document](https://drive.google.com/file/d/1Osrl8vHzWl-kSXiTbslUW9zzjOG5z4Yg/view?usp=sharing)
 
 ## Páginas web de referéncia para la creación de la página web del juego
-[The Binding of Isaac](https://www.nicalis.com/games/thebindingofisaacab+)
-[Dead cells](https://dead-cells.com/)
+[The Binding of Isaac](https://www.nicalis.com/games/thebindingofisaacab+).
+[Dead cells](https://dead-cells.com/).
 
 ## Sinopsis
 En un mundo donde el destino se decide con un simple lanzamiento, existen tres

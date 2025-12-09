@@ -20,6 +20,10 @@ Proyecto de desarrollo de un videojuego en Unity con la temática: Las dos caras
 [The Binding of Isaac](https://www.nicalis.com/games/thebindingofisaacab+).
 [Dead cells](https://dead-cells.com/).
 
+## Logos
+[Kideny Games](Assets/Art/Vista%20Logos/logo-png.png)
+[The Three Faces](Assets/Art/gimp/test%20logo%20the%20three%20faces.png)
+
 ## Sinopsis
 En un mundo donde el destino se decide con un simple lanzamiento, existen tres
 antiguas deidades que rigen el equilibrio del azar: Cara, Cruz y Canto.

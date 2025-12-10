@@ -2,26 +2,26 @@ using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
-    public Inventory inventory; // ScriptableObject
+    public Inventory inventory; // Asignado desde el Inspector
 
     void Awake()
     {
-        // Si no se ha asignado desde el Inspector, crear uno nuevo en tiempo de ejecución
         if (inventory == null)
         {
-            inventory = ScriptableObject.CreateInstance<Inventory>();
-            inventory.name = "RuntimeInventory"; // opcional, para identificarlo en debug
-            Debug.Log("Inventory ScriptableObject creado en runtime");
+            Debug.LogError("Inventory ScriptableObject no asignado en PlayerInventory!");
         }
     }
 
     public void AddItem(string id, Sprite icon)
     {
         if (inventory != null)
+        {
             inventory.AddItem(id, icon);
+            Debug.Log("Item añadido al inventario: " + id);
+        }
     }
 
-    public void Reset()
+    public void ResetInventory()
     {
         if (inventory != null)
             inventory.ResetInventory();

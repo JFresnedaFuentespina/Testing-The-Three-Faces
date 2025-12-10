@@ -139,7 +139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireball: {fileID: 7251879486380165639, guid: c2f6a8962aac3814aa56cb9647c93470, type: 3}
   thunderPrefab: {fileID: 3300406336262876018, guid: ab5d7c1ba66f4d4a8a069320f5768558, type: 3}
-  attackDamage: 2.5
+  attackDamage: 10
   attackSpeed: 5
   spawnHeight: 1
   attackRange: 5
@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13402d8058ee7c945b0ef4ac491e13ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInventory
-  inventory: {fileID: 0}
+  inventory: {fileID: 11400000, guid: f93eacae8af88b54f87e8df66807e46e, type: 2}
 --- !u!1001 &7930126594423163022
 PrefabInstance:
   m_ObjectHideFlags: 0

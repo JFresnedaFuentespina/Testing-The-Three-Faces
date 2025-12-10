@@ -24,6 +24,16 @@ TagManager:
   - Enemy_Ghost
   - Weapon
   - EnemyProjectile
+  - BluePill
+  - Bomb
+  - Clock
+  - GreenPotion
+  - Key
+  - RedVial
+  - Shield
+  - Skull
+  - Star
+  - Trophy
   layers:
   - Default
   - TransparentFX

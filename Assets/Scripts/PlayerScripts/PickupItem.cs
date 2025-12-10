@@ -125,14 +125,15 @@ public class PickupItem : MonoBehaviour
         }
 
         GameObject iconGO = new GameObject(itemID + "_Icon");
-        iconGO.transform.SetParent(menuItems.transform, false);
+        iconGO.transform.SetParent(menuItems.transform, false); // GridLayoutGroup maneja la posición automáticamente
 
         Image img = iconGO.AddComponent<Image>();
         img.sprite = icon;
 
         RectTransform rt = iconGO.GetComponent<RectTransform>();
-        rt.sizeDelta = new Vector2(80, 80);
+        rt.sizeDelta = new Vector2(90, 100); // tamaño de la celda
 
         Debug.Log("Añadiendo item al HUD: " + itemID);
     }
+
 }

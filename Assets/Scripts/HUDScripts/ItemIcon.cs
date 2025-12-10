@@ -2,6 +2,16 @@ using UnityEngine;
 
 public class ItemIcon : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public string itemID;
     public Sprite icon;
+
+    void Awake()
+    {
+        if (string.IsNullOrEmpty(itemID))
+        {
+            itemID = gameObject.tag;
+        }
+    }
+
 }
+

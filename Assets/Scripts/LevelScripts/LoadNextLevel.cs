@@ -5,6 +5,7 @@ using System.Collections;
 using Newtonsoft.Json;
 using System.IO;
 using TMPro;
+using System.Collections.Generic;
 
 public class LoadNextLevel : MonoBehaviour
 {
@@ -144,7 +145,7 @@ public class LoadNextLevel : MonoBehaviour
         string path = Application.persistentDataPath + "/player.json";
         File.WriteAllText(path, json);
         Debug.Log(File.Exists(path) + " Exists?");
-        
+
     }
 
 }

@@ -25,6 +25,5 @@ public class MeleeAttackHit : MonoBehaviour
                 enemyLife.UpdateIsAlive();
             }
         }
-        Debug.Log("Hit: " + other.name);
     }
 }

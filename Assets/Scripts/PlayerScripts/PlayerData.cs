@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
@@ -10,4 +11,5 @@ public class PlayerData
     public float attackSpeed;
     public float attackRange;
     public string attackType;
+    public List<string> inventoryItems;
 }

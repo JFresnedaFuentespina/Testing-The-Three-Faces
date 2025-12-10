@@ -1,4 +1,4 @@
-using Unity.VisualScripting;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,15 +11,44 @@ public class PickupItem : MonoBehaviour
     private GameObject pause;
     private GameObject menuItems;
 
-    void Start()
+    IEnumerator Start()
     {
-        GameObject hud = GameObject.Find("HUD");
+        // Esperar hasta que el HUD exista
+        GameObject hud = null;
+        while (hud == null)
+        {
+            hud = GameObject.Find("HUD");
+            yield return null;
+        }
+
         pause = hud.transform.Find("Pause").gameObject;
         menuItems = pause.transform.Find("Items").gameObject;
+
+        playerInventory = GetComponent<PlayerInventory>();
         playerAttack = GetComponent<PlayerAttack>();
         playerBehaviour = GetComponent<PlayerBehaviour>();
         changeCharacter = GetComponent<ChangeCharacter>();
-        playerInventory = GetComponent<PlayerInventory>();
+
+        if (playerInventory == null)
+        {
+            Debug.LogError("PlayerInventory no encontrado en el jugador!");
+            yield break;
+        }
+
+        if (playerInventory.inventory == null)
+        {
+            Debug.LogError("Inventory ScriptableObject no asignado en PlayerInventory!");
+            yield break;
+        }
+
+        // Añadir items guardados al HUD
+        foreach (var item in playerInventory.inventory.items)
+        {
+            if (item != null && item.icon != null)
+                AddItemToHUD(item.icon, item.itemID);
+            else
+                Debug.LogWarning("Item nulo o sin icono en el Inventory: " + item?.itemID);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -29,8 +58,8 @@ public class PickupItem : MonoBehaviour
             if (collision.transform.childCount > 0)
             {
                 Transform child = collision.transform.GetChild(0);
-                playerInventory.AddItem(child.gameObject);
-                AddItemToHUD(child);
+                playerInventory.AddItem(child.gameObject.GetComponent<ItemIcon>().itemID, child.gameObject.GetComponent<ItemIcon>().icon);
+                AddItemToHUD(child.gameObject.GetComponent<ItemIcon>().icon, child.gameObject.GetComponent<ItemIcon>().itemID);
                 Debug.Log("Tag del hijo: " + child.tag);
                 if (child.CompareTag("ThunderItem"))
                 {
@@ -63,27 +92,28 @@ public class PickupItem : MonoBehaviour
         }
     }
 
-    public void AddItemToHUD(Transform item)
+    public void AddItemToHUD(Sprite icon, string itemID)
     {
-        // Obtener el icono del script ItemIcon
-        ItemIcon iconComponent = item.GetComponent<ItemIcon>();
-        if (iconComponent == null || iconComponent.icon == null)
+        if (icon == null)
         {
-            Debug.LogWarning("El item no contiene ItemIcon o icono no asignado: " + item.name);
+            Debug.LogWarning("Icono nulo para el item: " + itemID);
             return;
         }
-
-        // Crear un objeto UI dentro del panel
-        GameObject iconGO = new GameObject(item.name + "_Icon");
+        Debug.Log("Añadiendo item al HUD: " + itemID);
+        GameObject iconGO = new GameObject(itemID + "_Icon");
         iconGO.transform.SetParent(menuItems.transform, false);
 
-        // Añadir componente Image
-        UnityEngine.UI.Image img = iconGO.AddComponent<UnityEngine.UI.Image>();
-        img.sprite = iconComponent.icon;
+        Image img = iconGO.AddComponent<Image>();
+        img.sprite = icon;
 
-        // Ajustar tamaño
         RectTransform rt = iconGO.GetComponent<RectTransform>();
         rt.sizeDelta = new Vector2(80, 80);
     }
 
+    // Llamar esto cuando se recoja un item
+    public void PickupItemAction(ItemIcon item)
+    {
+        playerInventory.AddItem(item.itemID, item.icon);
+        AddItemToHUD(item.icon, item.itemID);
+    }
 }

@@ -1,23 +1,29 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public List<GameObject> items;
-    void Start()
+    public Inventory inventory; // ScriptableObject
+
+    void Awake()
     {
-        items = new List<GameObject>();   
+        // Si no se ha asignado desde el Inspector, crear uno nuevo en tiempo de ejecución
+        if (inventory == null)
+        {
+            inventory = ScriptableObject.CreateInstance<Inventory>();
+            inventory.name = "RuntimeInventory"; // opcional, para identificarlo en debug
+            Debug.Log("Inventory ScriptableObject creado en runtime");
+        }
     }
-    public void AddItem(GameObject item)
+
+    public void AddItem(string id, Sprite icon)
     {
-        items.Add(item);
-        Debug.Log("Item added to inventory: " + item.name);
+        if (inventory != null)
+            inventory.AddItem(id, icon);
     }
 
     public void Reset()
     {
-        items.Clear();
-        Debug.Log("Inventory reset.");
+        if (inventory != null)
+            inventory.ResetInventory();
     }
 }

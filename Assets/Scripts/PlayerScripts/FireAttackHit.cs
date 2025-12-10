@@ -10,7 +10,6 @@ public class FireAttackHit : MonoBehaviour
         PlayerAttack playerAttack = FindAnyObjectByType<PlayerAttack>();
         if (playerAttack != null)
         {
-            Debug.Log("AttackHit found PlayerAttack");
             attackDamage = playerAttack.attackDamage;
         }
     }
@@ -46,6 +45,5 @@ public class FireAttackHit : MonoBehaviour
         {
             Destroy(gameObject, destroyDelay);
         }
-        Debug.Log("Hit: " + other.name);
     }
 }

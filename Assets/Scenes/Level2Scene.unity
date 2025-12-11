@@ -1190,6 +1190,7 @@ MonoBehaviour:
   optionsButton: {fileID: 1811839898}
   exitOptionsButton: {fileID: 1603866044}
   applyChangesButton: {fileID: 532046411}
+  quitButton: {fileID: 1915178521}
   showingOptions: 0
 --- !u!114 &1603866044 stripped
 MonoBehaviour:
@@ -1216,6 +1217,17 @@ MonoBehaviour:
 --- !u!114 &1905337991 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8352749500773666589, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+  m_PrefabInstance: {fileID: 779359650}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!114 &1915178521 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4783482992638389572, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
   m_PrefabInstance: {fileID: 779359650}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}

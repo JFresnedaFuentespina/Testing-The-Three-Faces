@@ -291,11 +291,15 @@ MonoBehaviour:
   pauseMenu: {fileID: 1050086307}
   optionsMenu: {fileID: 340062611}
   controllersConfig: {fileID: 1140506209}
+  exitConfirmationMenu: {fileID: 2010680797}
   changeControllersButton: {fileID: 2010680801}
   resumeButton: {fileID: 365340344}
   optionsButton: {fileID: 2010680793}
   exitOptionsButton: {fileID: 2010680794}
   applyChangesButton: {fileID: 1267693814}
+  quitButton: {fileID: 911072702}
+  confirmQuitButton: {fileID: 2010680796}
+  continueButton: {fileID: 2010680795}
   showingOptions: 0
 --- !u!1 &325778198
 GameObject:
@@ -373,6 +377,17 @@ GameObject:
 --- !u!114 &365340344 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6051642047277082017, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+  m_PrefabInstance: {fileID: 2010680791}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!114 &911072702 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4783482992638389572, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
   m_PrefabInstance: {fileID: 2010680791}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -922,6 +937,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!114 &2010680795 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 233580523763100842, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+  m_PrefabInstance: {fileID: 2010680791}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!114 &2010680796 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6297715086787746925, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+  m_PrefabInstance: {fileID: 2010680791}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!1 &2010680797 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2355468460083792588, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+  m_PrefabInstance: {fileID: 2010680791}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2010680801 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8352749500773666589, guid: 519c87607748a6648b3d503d073a62b1, type: 3}

@@ -10,6 +10,7 @@ public class ShowPauseMenu : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject optionsMenu;
     public GameObject controllersConfig;
+    public GameObject exitConfirmationMenu;
     private TextMeshProUGUI tecladoRatonText;
     private TextMeshProUGUI mandoText;
     public Button changeControllersButton;
@@ -17,6 +18,9 @@ public class ShowPauseMenu : MonoBehaviour
     public Button optionsButton;
     public Button exitOptionsButton;
     public Button applyChangesButton;
+    public Button quitButton;
+    public Button confirmQuitButton;
+    public Button continueButton;
     public bool showingOptions = false;
     private bool usingMouseKeyboard = true;
 
@@ -32,8 +36,8 @@ public class ShowPauseMenu : MonoBehaviour
 
         if (optionsButton == null)
             optionsButton = pauseMenu.transform.Find("OptionsButton").GetComponent<Button>();
-        
-        if(optionsButton != null)
+
+        if (optionsButton != null)
             optionsButton.onClick.AddListener(() => ShowOptions());
     }
 
@@ -62,6 +66,19 @@ public class ShowPauseMenu : MonoBehaviour
             ApplyChanges();
         });
 
+        quitButton.onClick.AddListener(() =>
+        {
+            OpenConfirmExitMenu();
+        });
+        confirmQuitButton.onClick.AddListener(() =>
+        {
+            BackToMainMenu();
+        });
+        continueButton.onClick.AddListener(() =>
+        {
+            CloseConfirmExitMenu();
+        });
+
         tecladoRatonText = controllersConfig.transform.Find("TecladoRatonTexto").GetComponent<TextMeshProUGUI>();
         mandoText = controllersConfig.transform.Find("MandoTexto").GetComponent<TextMeshProUGUI>();
 
@@ -77,7 +94,7 @@ public class ShowPauseMenu : MonoBehaviour
             player.GetComponent<RotateCharacterWithJoystick>().enabled = !usingMouseKeyboard;
         }
 
-        if(optionsButton == null)
+        if (optionsButton == null)
         {
             Debug.LogError("No se encontró el botón de opciones en el menú de pausa.");
         }
@@ -138,5 +155,30 @@ public class ShowPauseMenu : MonoBehaviour
         string json = JsonConvert.SerializeObject(new ControllersData { usingMouseKeyboard = usingMouseKeyboard });
         string path = Application.persistentDataPath + "/controllersData.json";
         File.WriteAllText(path, json);
+    }
+
+    public void BackToMainMenu()
+    {
+        Time.timeScale = 1f;
+        string path = Application.persistentDataPath + "/controllersData.json";
+        string playerDataPath = Application.persistentDataPath + "/player.json";
+        //borrar los archivos de guardado al volver al menú principal
+        if (File.Exists(path))
+            File.Delete(path);
+        if (File.Exists(playerDataPath))
+            File.Delete(playerDataPath);
+        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("MainMenu");
+    }
+
+    public void OpenConfirmExitMenu()
+    {
+        exitConfirmationMenu.SetActive(true);
+        pauseMenu.SetActive(false);
+    }
+
+    public void CloseConfirmExitMenu()
+    {
+        exitConfirmationMenu.SetActive(false);
+        pauseMenu.SetActive(true);
     }
 }

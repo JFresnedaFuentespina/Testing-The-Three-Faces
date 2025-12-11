@@ -16,6 +16,8 @@ public class PickupItem : MonoBehaviour
     private TextMeshProUGUI damageText;
     private TextMeshProUGUI speedText;
     private TextMeshProUGUI attackSpeedText;
+    private TextMeshProUGUI showItemMessageText;
+    private Coroutine messageRoutine;
 
     void OnEnable()
     {
@@ -53,6 +55,7 @@ public class PickupItem : MonoBehaviour
         damageText = stats.transform.Find("Damage").GetComponent<TextMeshProUGUI>();
         speedText = stats.transform.Find("Speed").GetComponent<TextMeshProUGUI>();
         attackSpeedText = stats.transform.Find("AttackInterval").GetComponent<TextMeshProUGUI>();
+        showItemMessageText = hud.transform.Find("ItemMessage").GetComponent<TextMeshProUGUI>();
 
         // Obtener componentes del jugador
         playerInventory = GetComponent<PlayerInventory>();
@@ -104,34 +107,74 @@ public class PickupItem : MonoBehaviour
 
     private void ApplyItemEffects(Transform item)
     {
+        string msg = "";
         if (item.CompareTag("ThunderItem"))
         {
             playerAttack.isFireball = false;
             playerAttack.isThunder = true;
             playerAttack.attackDamage += 2f;
+            msg = "¡Disparo eléctrico!";
         }
         else if (item.CompareTag("IncreaseSpeedItem"))
         {
             playerBehaviour.velocity += 0.5f;
+            msg = "¡Velocidad aumentada!";
         }
         else if (item.CompareTag("IncreaseAttackDamageItem"))
         {
             playerAttack.attackDamage += 2.5f;
+            msg = "¡Daño de ataque aumentado!";
         }
         else if (item.CompareTag("IncreaseAttackSpeedItem"))
         {
             playerAttack.attackInterval -= 1f;
+            msg = "¡Velocidad de ataque aumentada!";
         }
         else if (item.CompareTag("Hourglass"))
         {
             changeCharacter.action = "Hourglass";
+            msg = "Ralentiza a los enemigos al girar la moneda";
         }
         else if (item.CompareTag("Star"))
         {
             playerAttack.attackDamage += 2f;
             playerBehaviour.velocity += 0.3f;
             playerAttack.attackInterval -= 0.5f;
+            msg = "¡Mejoras en todas las estadísticas!";
         }
+        else if (item.CompareTag("BluePill"))
+        {
+            msg = "¡Pastilla azul recogida!";
+        }
+        else if (item.CompareTag("Bomb"))
+        {
+            msg = "¡Bomba recogida!";
+        }
+        else if (item.CompareTag("Key"))
+        {
+            msg = "¡Llave recogida!";
+        }
+        else if (item.CompareTag("GreenPotion"))
+        {
+            msg = "¡Poción verde recogida!";
+        }
+        else if (item.CompareTag("RedVial"))
+        {
+            msg = "¡Vial rojo recogido!";
+        }
+        else if (item.CompareTag("Heart"))
+        {
+            msg = "¡Vida extra!";
+        }
+        else if (item.CompareTag("Shield"))
+        {
+            msg = "¡Escudo recogido!";
+        }
+        else if (item.CompareTag("Skull"))
+        {
+            msg = "¡Calavera recogida!";
+        }
+        ShowMessage(msg);
         UpdateHudStats();
     }
 
@@ -161,5 +204,45 @@ public class PickupItem : MonoBehaviour
         speedText.text = "Speed: " + playerBehaviour.velocity.ToString("F1");
         attackSpeedText.text = "Attack Interval: " + playerAttack.attackInterval.ToString("F1");
     }
+
+    private void ShowMessage(string message)
+    {
+        showItemMessageText.text = message;
+
+        if (messageRoutine != null)
+            StopCoroutine(messageRoutine);
+
+        messageRoutine = StartCoroutine(FadeMessage());
+    }
+    private IEnumerator FadeMessage()
+    {
+        // Primero poner el texto totalmente visible
+        Color c = showItemMessageText.color;
+        c.a = 1f;
+        showItemMessageText.color = c;
+
+        // Mantener el mensaje un momento
+        yield return new WaitForSeconds(2f);
+
+        // Tiempo total del fade
+        float duration = 1.5f;
+        float t = 0f;
+
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            float alpha = Mathf.Lerp(1f, 0f, t / duration);
+
+            c.a = alpha;
+            showItemMessageText.color = c;
+
+            yield return null;
+        }
+
+        // Asegurar que desaparece del todo
+        c.a = 0f;
+        showItemMessageText.color = c;
+    }
+
 
 }

@@ -145,7 +145,7 @@ public class PlayerHealth : MonoBehaviour
 
 
 
-    private void UpdateHUD(bool checkDeath = true)
+    public void UpdateHUD(bool checkDeath = true)
     {
         foreach (GameObject vida in corazones)
             vida.SetActive(false);

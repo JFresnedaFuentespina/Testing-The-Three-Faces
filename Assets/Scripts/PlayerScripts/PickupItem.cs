@@ -10,6 +10,7 @@ public class PickupItem : MonoBehaviour
     private PlayerAttack playerAttack;
     private PlayerBehaviour playerBehaviour;
     private ChangeCharacter changeCharacter;
+    private PlayerHealth playerHealth;
     private GameObject pause;
     private GameObject menuItems;
     private GameObject stats;
@@ -62,6 +63,7 @@ public class PickupItem : MonoBehaviour
         playerAttack = GetComponent<PlayerAttack>();
         playerBehaviour = GetComponent<PlayerBehaviour>();
         changeCharacter = GetComponent<ChangeCharacter>();
+        playerHealth = GetComponent<PlayerHealth>();
 
         UpdateHudStats();
 
@@ -142,37 +144,41 @@ public class PickupItem : MonoBehaviour
             playerAttack.attackInterval -= 0.5f;
             msg = "¡Mejoras en todas las estadísticas!";
         }
-        else if (item.CompareTag("BluePill"))
+        else if (item.CompareTag("BluePill")) // Corazón extra azul (temporal)
         {
             msg = "¡Pastilla azul recogida!";
         }
-        else if (item.CompareTag("Bomb"))
+        else if (item.CompareTag("Bomb")) // Explosión alrededor del jugador que daña a los enemigos al girar la moneda
         {
             msg = "¡Bomba recogida!";
         }
-        else if (item.CompareTag("Key"))
+        else if (item.CompareTag("Key")) // Llave para abrir la puerta final
         {
             msg = "¡Llave recogida!";
         }
-        else if (item.CompareTag("GreenPotion"))
+        else if (item.CompareTag("GreenPotion")) // Curación de medio corazón
         {
             msg = "¡Poción verde recogida!";
         }
-        else if (item.CompareTag("RedVial"))
+        else if (item.CompareTag("RedVial")) // Curación de un corazón
         {
             msg = "¡Vial rojo recogido!";
         }
-        else if (item.CompareTag("Heart"))
+        else if (item.CompareTag("Heart")) // Vida extra
         {
             msg = "¡Vida extra!";
         }
-        else if (item.CompareTag("Shield"))
+        else if (item.CompareTag("Shield")) // Escudo que bloquea algunos ataques
         {
             msg = "¡Escudo recogido!";
         }
-        else if (item.CompareTag("Skull"))
+        else if (item.CompareTag("Skull")) // Calavera que aumenta el daño pero reduce la vida
         {
             msg = "¡Calavera recogida!";
+            playerAttack.attackDamage += 5f;
+            playerHealth.maxHealth -= 1;
+            playerHealth.UpdateHUD();
+            
         }
         ShowMessage(msg);
         UpdateHudStats();

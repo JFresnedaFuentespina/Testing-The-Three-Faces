@@ -21,8 +21,8 @@ Proyecto de desarrollo de un videojuego en Unity con la temática: Las dos caras
 [Dead cells](https://dead-cells.com/).
 
 ## Logos
-[Kideny Games](Assets/Art/Vista%20Logos/logo-png.png)
-[The Three Faces](Assets/Art/gimp/test%20logo%20the%20three%20faces.png)
+![Kideny Games](Assets/Art/Vista%20Logos/logo-png.png)
+![The Three Faces](Assets/Art/gimp/test%20logo%20the%20three%20faces.png)
 
 ## Sinopsis
 En un mundo donde el destino se decide con un simple lanzamiento, existen tres

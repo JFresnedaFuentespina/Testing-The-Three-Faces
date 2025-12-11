@@ -11,6 +11,14 @@ public class PlayerHealth : MonoBehaviour
     public float maxHealth = 3f;
     public float minHealth = 0f;
     public float healthPoints = 3;
+    [Header("Health UI")]
+    public GameObject heartContainer;          // El Panel con GridLayoutGroup
+    public Sprite fullHeartSprite;
+    public Sprite halfHeartSprite;
+    public Sprite emptyHeartSprite;
+
+    private List<Image> hearts = new List<Image>();
+
     public GameObject hud;
     private List<GameObject> corazones = new List<GameObject>();
     public bool canDie = false;
@@ -26,13 +34,11 @@ public class PlayerHealth : MonoBehaviour
         rotateCharacterToMouse = GetComponent<RotateCharacterToMouse>();
         rotateCharacterWithJoystick = GetComponent<RotateCharacterWithJoystick>();
         playerBehaviour = GetComponent<PlayerBehaviour>();
+
         Transform esqueletoHijo = transform.Find("Esqueleto");
         animator = esqueletoHijo != null ? esqueletoHijo.GetComponent<Animator>() : null;
-        if (animator == null)
-        {
-            Debug.LogError("No se encontró el Animator dentro del hijo 'Esqueleto'");
-            return;
-        }
+
+        // Cargar JSON
         string path = Application.persistentDataPath + "/player.json";
         bool loadedFromFile = false;
         if (File.Exists(path))
@@ -56,35 +62,34 @@ public class PlayerHealth : MonoBehaviour
         }
 
         if (!loadedFromFile)
-        {
-            // solo si no hay JSON, usar valor por defecto
             healthPoints = maxHealth;
-        }
 
-        // Buscar HUD si no está asignado
-        if (hud == null)
+        // Buscar HUD dinámicamente
+        if (heartContainer == null)
         {
             Canvas[] all = FindObjectsOfType<Canvas>();
             foreach (var c in all)
             {
                 if (c.gameObject.name == "HUD")
                 {
-                    hud = c.transform.Find("HealthPoints")?.gameObject;
+                    heartContainer = c.transform.Find("HealthPoints2")?.gameObject;
                     break;
                 }
             }
         }
 
-        if (hud == null) return;
+        if (heartContainer == null)
+        {
+            Debug.LogError("No se encontró Healthpoints2 en el HUD");
+            return;
+        }
 
-        corazones.Clear();
-        foreach (Transform t in hud.transform)
-            corazones.Add(t.gameObject);
-
-        UpdateHUD(false);
+        InitializeHearts();
+        RefreshHearts();
 
         Invoke(nameof(EnableDeath), 0.1f);
     }
+
     void EnableDeath() => canDie = true;
     private void OnCollisionEnter(Collision other)
     {
@@ -143,30 +148,57 @@ public class PlayerHealth : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
+    private void InitializeHearts()
+    {
+        // Limpiar si había algo antes
+        foreach (Transform child in heartContainer.transform)
+            Destroy(child.gameObject);
+
+        hearts.Clear();
+
+        // Por cada punto de vida (1f = un corazón completo)
+        for (int i = 0; i < (int)maxHealth; i++)
+        {
+            GameObject newHeart = new GameObject("Heart_" + i, typeof(Image));
+
+            newHeart.transform.SetParent(heartContainer.transform, false);
+
+            Image img = newHeart.GetComponent<Image>();
+            img.sprite = emptyHeartSprite;
+
+            hearts.Add(img);
+        }
+    }
 
 
     public void UpdateHUD(bool checkDeath = true)
     {
-        foreach (GameObject vida in corazones)
-            vida.SetActive(false);
-
-        float vidaRedondeada = Mathf.Round(healthPoints * 2f) / 2f;
-        string nombreHUD = $"Vida_{vidaRedondeada.ToString().Replace(',', '_').Replace('.', '_')}_de_3";
-
-        if (vidaRedondeada <= 0)
-            nombreHUD = "Vida_0_de_3";
-
-        foreach (GameObject vida in corazones)
-        {
-            if (vida.name == nombreHUD)
-            {
-                vida.SetActive(true);
-                break;
-            }
-        }
+        RefreshHearts();
 
         if (checkDeath)
             CheckDeath();
+    }
+    private void RefreshHearts()
+    {
+        float hp = healthPoints;
+
+        for (int i = 0; i < hearts.Count; i++)
+        {
+            if (hp >= 1f)
+            {
+                hearts[i].sprite = fullHeartSprite;
+                hp -= 1f;
+            }
+            else if (hp >= 0.5f)
+            {
+                hearts[i].sprite = halfHeartSprite;
+                hp -= 0.5f;
+            }
+            else
+            {
+                hearts[i].sprite = emptyHeartSprite;
+            }
+        }
     }
 
     public void Damage()

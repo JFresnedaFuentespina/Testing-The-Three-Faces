@@ -162,6 +162,10 @@ MonoBehaviour:
   maxHealth: 3
   minHealth: 0
   healthPoints: 0
+  heartContainer: {fileID: 0}
+  fullHeartSprite: {fileID: 21300000, guid: 34776d0090532804398b8b33cb20041f, type: 3}
+  halfHeartSprite: {fileID: 21300000, guid: 85a62e430edfb494bafea3a0205fab28, type: 3}
+  emptyHeartSprite: {fileID: 21300000, guid: df3ae66e968477a49a7df28a79bbe83e, type: 3}
   hud: {fileID: 0}
   canDie: 0
 --- !u!114 &5973908844157556360
@@ -314,6 +318,10 @@ MonoBehaviour:
   maxHealth: 3
   minHealth: 0
   healthPoints: 0
+  heartContainer: {fileID: 0}
+  fullHeartSprite: {fileID: 0}
+  halfHeartSprite: {fileID: 0}
+  emptyHeartSprite: {fileID: 0}
   hud: {fileID: 0}
   canDie: 0
 --- !u!1001 &7930126594882055342
@@ -445,5 +453,9 @@ MonoBehaviour:
   maxHealth: 3
   minHealth: 0
   healthPoints: 0
+  heartContainer: {fileID: 0}
+  fullHeartSprite: {fileID: 0}
+  halfHeartSprite: {fileID: 0}
+  emptyHeartSprite: {fileID: 0}
   hud: {fileID: 0}
   canDie: 0

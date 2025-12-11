@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -11,6 +12,10 @@ public class PickupItem : MonoBehaviour
     private ChangeCharacter changeCharacter;
     private GameObject pause;
     private GameObject menuItems;
+    private GameObject stats;
+    private TextMeshProUGUI damageText;
+    private TextMeshProUGUI speedText;
+    private TextMeshProUGUI attackSpeedText;
 
     void OnEnable()
     {
@@ -41,14 +46,21 @@ public class PickupItem : MonoBehaviour
             hud = GameObject.Find("HUD");
             yield return null;
         }
-
+        // Setup menú de pausa
         pause = hud.transform.Find("Pause").gameObject;
         menuItems = pause.transform.Find("Items").gameObject;
+        stats = pause.transform.Find("Stats").gameObject;
+        damageText = stats.transform.Find("Damage").GetComponent<TextMeshProUGUI>();
+        speedText = stats.transform.Find("Speed").GetComponent<TextMeshProUGUI>();
+        attackSpeedText = stats.transform.Find("AttackInterval").GetComponent<TextMeshProUGUI>();
 
+        // Obtener componentes del jugador
         playerInventory = GetComponent<PlayerInventory>();
         playerAttack = GetComponent<PlayerAttack>();
         playerBehaviour = GetComponent<PlayerBehaviour>();
         changeCharacter = GetComponent<ChangeCharacter>();
+
+        UpdateHudStats();
 
         if (playerInventory == null || playerInventory.inventory == null)
         {
@@ -100,7 +112,7 @@ public class PickupItem : MonoBehaviour
         }
         else if (item.CompareTag("IncreaseSpeedItem"))
         {
-            playerBehaviour.velocity += 0.2f;
+            playerBehaviour.velocity += 0.5f;
         }
         else if (item.CompareTag("IncreaseAttackDamageItem"))
         {
@@ -108,12 +120,19 @@ public class PickupItem : MonoBehaviour
         }
         else if (item.CompareTag("IncreaseAttackSpeedItem"))
         {
-            playerAttack.attackInterval -= 0.2f;
+            playerAttack.attackInterval -= 1f;
         }
         else if (item.CompareTag("Hourglass"))
         {
             changeCharacter.action = "Hourglass";
         }
+        else if (item.CompareTag("Star"))
+        {
+            playerAttack.attackDamage += 2f;
+            playerBehaviour.velocity += 0.3f;
+            playerAttack.attackInterval -= 0.5f;
+        }
+        UpdateHudStats();
     }
 
     private void AddItemToHUD(Sprite icon, string itemID)
@@ -134,6 +153,13 @@ public class PickupItem : MonoBehaviour
         rt.sizeDelta = new Vector2(90, 100); // tamaño de la celda
 
         Debug.Log("Añadiendo item al HUD: " + itemID);
+    }
+
+    private void UpdateHudStats()
+    {
+        damageText.text = "Damage: " + playerAttack.attackDamage.ToString("F1");
+        speedText.text = "Speed: " + playerBehaviour.velocity.ToString("F1");
+        attackSpeedText.text = "Attack Interval: " + playerAttack.attackInterval.ToString("F1");
     }
 
 }

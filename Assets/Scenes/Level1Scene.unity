@@ -293,7 +293,7 @@ MonoBehaviour:
   controllersConfig: {fileID: 1140506209}
   changeControllersButton: {fileID: 2010680801}
   resumeButton: {fileID: 365340344}
-  optionsButton: {fileID: 2010680795}
+  optionsButton: {fileID: 2010680793}
   exitOptionsButton: {fileID: 2010680794}
   applyChangesButton: {fileID: 1267693814}
   showingOptions: 0
@@ -838,6 +838,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -313
       objectReference: {fileID: 0}
+    - target: {fileID: 7422651476104465262, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7759029102902183344, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
@@ -896,9 +900,9 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7972434616341513535, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
   m_PrefabInstance: {fileID: 2010680791}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2010680794 stripped
+--- !u!114 &2010680793 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6885785453316624337, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+  m_CorrespondingSourceObject: {fileID: 6537028176881725380, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
   m_PrefabInstance: {fileID: 2010680791}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -907,9 +911,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
---- !u!114 &2010680795 stripped
+--- !u!114 &2010680794 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6915297768894058783, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+  m_CorrespondingSourceObject: {fileID: 6885785453316624337, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
   m_PrefabInstance: {fileID: 2010680791}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}

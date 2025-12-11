@@ -217,6 +217,7 @@ public class PickupItem : MonoBehaviour
 
     private void ShowMessage(string message)
     {
+        showItemMessageText.gameObject.SetActive(true);
         showItemMessageText.text = message;
 
         if (messageRoutine != null)
@@ -252,6 +253,7 @@ public class PickupItem : MonoBehaviour
         // Asegurar que desaparece del todo
         c.a = 0f;
         showItemMessageText.color = c;
+        showItemMessageText.gameObject.SetActive(false);
     }
 
 

@@ -167,6 +167,10 @@ public class PickupItem : MonoBehaviour
         else if (item.CompareTag("Heart")) // Vida extra
         {
             msg = "¡Vida extra!";
+            playerHealth.maxHealth += 1;
+            playerHealth.healthPoints = playerHealth.maxHealth;
+            playerHealth.RebuildHearts();
+
         }
         else if (item.CompareTag("Shield")) // Escudo que bloquea algunos ataques
         {
@@ -178,7 +182,7 @@ public class PickupItem : MonoBehaviour
             playerAttack.attackDamage += 5f;
             playerHealth.maxHealth -= 1;
             playerHealth.UpdateHUD();
-            
+
         }
         ShowMessage(msg);
         UpdateHudStats();

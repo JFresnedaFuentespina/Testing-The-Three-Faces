@@ -72,7 +72,7 @@ public class PlayerHealth : MonoBehaviour
             {
                 if (c.gameObject.name == "HUD")
                 {
-                    heartContainer = c.transform.Find("HealthPoints2")?.gameObject;
+                    heartContainer = c.transform.Find("HealthPoints")?.gameObject;
                     break;
                 }
             }
@@ -199,6 +199,11 @@ public class PlayerHealth : MonoBehaviour
                 hearts[i].sprite = emptyHeartSprite;
             }
         }
+    }
+    public void RebuildHearts()
+    {
+        InitializeHearts();
+        RefreshHearts();
     }
 
     public void Damage()

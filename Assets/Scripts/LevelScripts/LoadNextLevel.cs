@@ -44,8 +44,8 @@ public class LoadNextLevel : MonoBehaviour
         if (!other.CompareTag("Player"))
             return;
 
-        StartCoroutine(PreTransitionFade());
         SavePlayerStats(other.gameObject);
+        StartCoroutine(PreTransitionFade());
     }
 
     private IEnumerator PreTransitionFade()

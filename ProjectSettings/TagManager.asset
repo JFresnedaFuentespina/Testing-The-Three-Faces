@@ -34,6 +34,7 @@ TagManager:
   - Skull
   - Star
   - Trophy
+  - BossCruz
   layers:
   - Default
   - TransparentFX

@@ -119,6 +119,33 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &354392125 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 233580523763100842, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+  m_PrefabInstance: {fileID: 2067796228}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!114 &354392126 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6297715086787746925, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+  m_PrefabInstance: {fileID: 2067796228}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!1 &354392127 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2355468460083792588, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+  m_PrefabInstance: {fileID: 2067796228}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &854703706
 GameObject:
   m_ObjectHideFlags: 0
@@ -720,12 +747,15 @@ MonoBehaviour:
   pauseMenu: {fileID: 2067796230}
   optionsMenu: {fileID: 2067796236}
   controllersConfig: {fileID: 2067796234}
+  exitConfirmationMenu: {fileID: 354392127}
   changeControllersButton: {fileID: 2067796233}
   resumeButton: {fileID: 2067796231}
   optionsButton: {fileID: 2135885666}
   exitOptionsButton: {fileID: 2067796235}
   applyChangesButton: {fileID: 2067796232}
   quitButton: {fileID: 1171400055}
+  confirmQuitButton: {fileID: 354392126}
+  continueButton: {fileID: 354392125}
   showingOptions: 0
 --- !u!1001 &1975422058
 PrefabInstance:

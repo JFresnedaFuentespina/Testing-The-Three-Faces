@@ -314,6 +314,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &375471462 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 233580523763100842, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+  m_PrefabInstance: {fileID: 779359650}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!114 &375471463 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6297715086787746925, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+  m_PrefabInstance: {fileID: 779359650}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!114 &532046411 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7361696394582937865, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
@@ -912,6 +934,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 079f4a7926e002d4f843abff29e08bc2, type: 3}
+--- !u!1 &1001766516 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2355468460083792588, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+  m_PrefabInstance: {fileID: 779359650}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1196621980
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1185,12 +1212,15 @@ MonoBehaviour:
   pauseMenu: {fileID: 779359652}
   optionsMenu: {fileID: 779359654}
   controllersConfig: {fileID: 779359655}
+  exitConfirmationMenu: {fileID: 1001766516}
   changeControllersButton: {fileID: 1905337991}
   resumeButton: {fileID: 779359653}
   optionsButton: {fileID: 1811839898}
   exitOptionsButton: {fileID: 1603866044}
   applyChangesButton: {fileID: 532046411}
   quitButton: {fileID: 1915178521}
+  confirmQuitButton: {fileID: 375471463}
+  continueButton: {fileID: 375471462}
   showingOptions: 0
 --- !u!114 &1603866044 stripped
 MonoBehaviour:

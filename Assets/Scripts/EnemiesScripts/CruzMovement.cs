@@ -1,22 +1,30 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class CruzMovement : MonoBehaviour
 {
     public float moveSpeed = 3f;
+    public float punch3MoveSpeed = 6f;
     public float spawnDelay = 2.5f;
     public float attackDistance = 3f;
     public float attackCooldown = 2f;
 
-    private float spawnTimer;
-    private float attackTimer;
+    private bool hasSpawned = false;
+    private float spawnTimer = 0f;
+    private float attackTimer = 0f;
 
     private GameObject player;
     private NavMeshAgent agent;
     private CruzAI cruzAI;
+    private Animator animator;
 
-    private bool isWalking;
-    private bool isAttacking;
+    private bool isWalking = false;
+    private bool isAttacking = false;
+    private bool isFinishingAttack = false;
+
+    private enum AttackType { None, Punch2, Punch3, Throw }
+    private AttackType currentAttack = AttackType.None;
 
     void Start()
     {
@@ -25,6 +33,7 @@ public class CruzMovement : MonoBehaviour
 
         BuscarJugador();
         cruzAI = GetComponent<CruzAI>();
+        animator = cruzAI.animator;
     }
 
     void Update()
@@ -38,22 +47,25 @@ public class CruzMovement : MonoBehaviour
 
         float distance = Vector3.Distance(transform.position, player.transform.position);
 
-        // Empezar a caminar tras spawn
-        if (spawnTimer >= spawnDelay && !isWalking && !isAttacking)
+        // Spawn inicial
+        if (!hasSpawned && spawnTimer >= spawnDelay)
         {
+            hasSpawned = true;
             StartWalking();
         }
 
-        // Atacar
-        if (distance <= attackDistance && isWalking && !isAttacking && attackTimer >= attackCooldown)
+        // Intentar atacar
+        TryAttack(distance);
+
+        // Movimiento según estado
+        UpdateMovement(distance);
+    }
+
+    private void TryAttack(float distance)
+    {
+        if (!isAttacking && attackTimer >= attackCooldown && distance <= attackDistance)
         {
             StartAttack();
-        }
-
-        // Movimiento
-        if (isWalking)
-        {
-            agent.SetDestination(player.transform.position);
         }
     }
 
@@ -63,8 +75,8 @@ public class CruzMovement : MonoBehaviour
         isWalking = false;
         attackTimer = 0f;
 
-        agent.speed = 0f;
         agent.ResetPath();
+        agent.isStopped = false;
 
         cruzAI.SetWalking(false);
         cruzAI.ResetAttackTriggers();
@@ -73,35 +85,84 @@ public class CruzMovement : MonoBehaviour
 
         switch (randomAttack)
         {
-            case 0:
+            case 0: // Punch2
+                currentAttack = AttackType.Punch2;
+                agent.speed = 0f;
                 cruzAI.SetPunch2();
+                StartCoroutine(WaitForAttack(animator.GetCurrentAnimatorStateInfo(0).length));
                 break;
-            case 1:
+
+            case 1: // Punch3
+                currentAttack = AttackType.Punch3;
+                agent.speed = punch3MoveSpeed;
                 cruzAI.SetPunch3();
+                StartCoroutine(WaitForAttack(animator.GetCurrentAnimatorStateInfo(0).length));
                 break;
-            case 2:
+
+            case 2: // Throw
+                currentAttack = AttackType.Throw;
+                agent.speed = 0f;
                 cruzAI.SetThrow();
+                StartCoroutine(WaitForAttack(animator.GetCurrentAnimatorStateInfo(0).length));
                 break;
         }
     }
 
-    // ESTE MÉTODO SE LLAMA DESDE LA ANIMACIÓN
-    public void OnAttackFinished()
+    private IEnumerator WaitForAttack(float duration)
     {
-        isAttacking = false;
+        isFinishingAttack = true;
+        yield return new WaitForSeconds(duration);
+        FinishAttack();
+        isFinishingAttack = false;
+    }
 
-        float distance = Vector3.Distance(transform.position, player.transform.position);
-
-        if (distance > attackDistance)
+    private void UpdateMovement(float distance)
+    {
+        if (isAttacking)
         {
-            StartWalking();
+            // Movimiento durante ataque
+            switch (currentAttack)
+            {
+                case AttackType.Punch2:
+                case AttackType.Throw:
+                    agent.isStopped = true;
+                    break;
+                case AttackType.Punch3:
+                    agent.isStopped = false;
+                    agent.SetDestination(player.transform.position);
+                    break;
+            }
         }
+        else if (isWalking)
+        {
+            agent.isStopped = false;
+            agent.speed = moveSpeed;
+            agent.SetDestination(player.transform.position);
+        }
+        else
+        {
+            agent.isStopped = true;
+        }
+    }
+
+    private void FinishAttack()
+    {
+        if (!isFinishingAttack) return;
+
+        isAttacking = false;
+        currentAttack = AttackType.None;
+        agent.speed = moveSpeed;
+        agent.isStopped = false;
+
+        StartWalking();
     }
 
     private void StartWalking()
     {
+        if (isAttacking) return;
+
         isWalking = true;
-        agent.speed = moveSpeed;
+        agent.isStopped = false;
         cruzAI.SetWalking(true);
     }
 

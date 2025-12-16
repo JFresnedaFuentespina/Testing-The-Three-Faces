@@ -113,10 +113,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf4c1886de0342e4a9337a3b76cb025f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CruzMovement
-  moveSpeed: 1.5
+  moveSpeed: 2
+  punch3MoveSpeed: 6
   spawnDelay: 2.5
-  spawnTimer: 0
   attackDistance: 3
+  attackCooldown: 2
 --- !u!1001 &998865375114100220
 PrefabInstance:
   m_ObjectHideFlags: 0

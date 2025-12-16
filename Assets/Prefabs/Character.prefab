@@ -98,6 +98,7 @@ MonoBehaviour:
   esqueleto: {fileID: 8755321112139365859}
   showingGhost: 0
   action: 
+  monedaOriginal: {fileID: 919132149155446097, guid: 7634ec7cd45af8443b853e5fade0926c, type: 3}
 --- !u!114 &7930126595310468042
 MonoBehaviour:
   m_ObjectHideFlags: 0

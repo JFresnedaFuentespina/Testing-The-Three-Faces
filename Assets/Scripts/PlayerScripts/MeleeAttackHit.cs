@@ -17,6 +17,15 @@ public class MeleeAttackHit : MonoBehaviour
                 enemyLife.UpdateIsAlive();
             }
         }
+        else if (other.CompareTag("BossCruz"))
+        {
+            CruzAI cruzAI = other.GetComponent<CruzAI>();
+            if(cruzAI != null)
+            {
+                enemyLife.Damage(attackDamage);
+                enemyLife.UpdateIsAlive();
+            }
+        }
         else if (other.CompareTag("Enemy_Zombie") || other.CompareTag("Enemy_Ghost"))
         {
             if (enemyLife != null)

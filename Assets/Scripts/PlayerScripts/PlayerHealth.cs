@@ -96,6 +96,7 @@ public class PlayerHealth : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy_Zombie")
             || other.gameObject.CompareTag("Enemy_Ghost")
             || other.gameObject.CompareTag("BossCara")
+            || other.gameObject.CompareTag("BossCruz")
             || other.gameObject.CompareTag("EnemyProjectile")
             )
         {

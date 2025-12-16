@@ -32,6 +32,16 @@ public class FireAttackHit : MonoBehaviour
             }
             Destroy(gameObject, destroyDelay);
         }
+        else if (other.CompareTag("BossCruz"))
+        {
+            CruzAI cruzAI = other.GetComponent<CruzAI>();
+            if (cruzAI != null)
+            {
+                enemyLife.Damage(attackDamage);
+                enemyLife.UpdateIsAlive();
+            }
+            Destroy(gameObject, destroyDelay);
+        }
         else if (other.CompareTag("Enemy_Zombie") || other.CompareTag("Enemy_Ghost"))
         {
             if (enemyLife != null)

@@ -2,20 +2,22 @@ using TMPro;
 using UnityEngine;
 using System.IO;
 using Newtonsoft.Json;
+using System.Collections;
 
 public class GameTimer : MonoBehaviour
 {
     public TextMeshProUGUI timerText;
+
     private float elapsedTime = 0f;
     private bool isRunning = false;
+    private Coroutine timerCoroutine;
 
     private string timerPath;
 
     void Awake()
     {
-        // Definir la ruta del archivo  
         timerPath = Application.persistentDataPath + "/timer.json";
-        // Intentar cargar tiempo guardado
+
         if (File.Exists(timerPath))
         {
             try
@@ -38,40 +40,53 @@ public class GameTimer : MonoBehaviour
 
     void Start()
     {
-        isRunning = true;
-        UpdateTimerText();
+        ResumeTimer();
     }
 
-    void Update()
+    private IEnumerator TimerCoroutine()
     {
-        if (!isRunning) return;
-
-        elapsedTime += Time.deltaTime;
-        UpdateTimerText();
+        while (isRunning)
+        {
+            elapsedTime += Time.deltaTime;
+            UpdateTimerText();
+            yield return null; // espera un frame
+        }
     }
 
     private void UpdateTimerText()
     {
         int min = Mathf.FloorToInt(elapsedTime / 60f);
         int sec = Mathf.FloorToInt(elapsedTime % 60f);
-        timerText.text = string.Format("Timer: {0:00}:{1:00}", min, sec);
-        SaveTimer();
+        timerText.text = $"Timer: {min:00}:{sec:00}";
     }
 
     public void PauseTimer()
     {
         isRunning = false;
+
+        if (timerCoroutine != null)
+        {
+            StopCoroutine(timerCoroutine);
+            timerCoroutine = null;
+        }
+
+        SaveTimer();
     }
 
     public void ResumeTimer()
     {
+        if (isRunning) return;
+
         isRunning = true;
+        timerCoroutine = StartCoroutine(TimerCoroutine());
     }
 
     public void ResetTimer()
     {
+        PauseTimer();
         elapsedTime = 0f;
         UpdateTimerText();
+        SaveTimer();
     }
 
     public float GetElapsedTime()

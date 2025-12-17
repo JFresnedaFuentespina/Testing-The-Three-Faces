@@ -15,6 +15,7 @@ public class Level2Generator : MonoBehaviour
             Debug.LogError("No se encontró un componente LevelGenerator en este GameObject.");
             return;
         }
+        levelGenerator.fogEnabled = true;
 
         levelGenerator.GenerateLevel(levelWidth, 5); // Genera el mapa lógico
         int totalRooms = levelGenerator.SpawnRooms(); // Genera las habitaciones físicas

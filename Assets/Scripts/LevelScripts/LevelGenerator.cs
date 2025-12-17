@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -29,6 +30,7 @@ public class LevelGenerator : MonoBehaviour
     public Dictionary<string, Vector3> roomsDictionary = new Dictionary<string, Vector3>();
 
     private MinimapBehaviour minimapBehaviour;
+    public bool fogEnabled = false;
 
     public void GenerateLevel(int width, int minRooms)
     {
@@ -62,6 +64,15 @@ public class LevelGenerator : MonoBehaviour
                 GameObject room = Instantiate(roomPrefab, position, Quaternion.identity, transform);
                 room.name = $"Room_{i}";
                 roomList.Add(room);
+
+                if (fogEnabled)
+                {
+                    Transform fog = room.GameObject().transform.Find("Smoke");
+                    if(fog != null)
+                    {
+                        fog.gameObject.SetActive(true);
+                    }
+                }
 
                 if (i == 0)
                 {

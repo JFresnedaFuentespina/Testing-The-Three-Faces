@@ -140,7 +140,7 @@ public class PlayerAttack : MonoBehaviour
 
         if (Physics.Raycast(spawnPos, Vector3.down, out RaycastHit hitInfo, 20f))
         {
-            if (hitInfo.collider.CompareTag("BossCara") || hitInfo.collider.CompareTag("Enemy_Zombie"))
+            if (hitInfo.collider.tag.Contains("Boss") || hitInfo.collider.CompareTag("Enemy_Zombie") || hitInfo.collider.CompareTag("Enemy_Ghost"))
             {
                 EnemyLife enemyLife = hitInfo.collider.GetComponent<EnemyLife>();
                 if (enemyLife != null)

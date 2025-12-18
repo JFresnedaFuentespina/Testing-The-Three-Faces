@@ -1,47 +1,63 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class RotateCharacterWithJoystick : MonoBehaviour
 {
-    public float velocidadRotacion = 200f;
-    public GameObject esqueleto;
-    public GameObject ghost;
+    public float velocidadRotacion = 1440f;
 
     private Rigidbody rb;
-    // Start is called before the first frame update
-    void Start()
+    private PlayerInputActions input;
+    private Vector2 lookDirection;
+
+    void Awake()
     {
         rb = GetComponent<Rigidbody>();
         if (rb == null)
-        {
-            Debug.LogError("No tiene Rigidbody!");
-        }
+            Debug.LogError("RotateCharacter: No tiene Rigidbody");
+
+        input = new PlayerInputActions();
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnEnable()
     {
+        input.Enable();
 
+        // Suscribirse a la acción correcta
+        input.Player.LookDirection.performed += OnLook;
+        input.Player.LookDirection.canceled += OnLookCanceled;
     }
-    private void FixedUpdate()
+
+    void OnDisable()
     {
-        // Obtiene los valores de los ejes del joystick derecho.
-        float h = Input.GetAxis("RightStickHorizontal");
-        float v = Input.GetAxis("RightStickVertical");
+        input.Player.LookDirection.performed -= OnLook;
+        input.Player.LookDirection.canceled -= OnLookCanceled;
+        input.Disable();
+    }
 
-        // Si hay movimiento en el joystick (se aplica la zona muerta).
-        if (Mathf.Abs(h) > 0.1f || Mathf.Abs(v) > 0.1f)
-        {
-            // Calcula el ángulo de la rotación en el eje Y.
-            float angulo = Mathf.Atan2(h, v) * Mathf.Rad2Deg;
+    private void OnLook(InputAction.CallbackContext ctx)
+    {
+        lookDirection = ctx.ReadValue<Vector2>();
+    }
 
-            // Crea la rotación objetivo en el eje Y.
-            Quaternion rotacionObjetivo = Quaternion.Euler(0, angulo, 0);
+    private void OnLookCanceled(InputAction.CallbackContext ctx)
+    {
+        lookDirection = Vector2.zero;
+    }
 
-            // Rota el Rigidbody del objeto padre suavemente hacia la dirección del joystick.
-            // Los hijos (esqueleto y ghost) se moverán con él.
-            rb.MoveRotation(Quaternion.RotateTowards(rb.rotation, rotacionObjetivo, velocidadRotacion * Time.deltaTime));
-        }
+    void FixedUpdate()
+    {
+        if (lookDirection.sqrMagnitude < 0.01f)
+            return;
+
+        float angulo = Mathf.Atan2(lookDirection.x, lookDirection.y) * Mathf.Rad2Deg;
+        Quaternion rotacionObjetivo = Quaternion.Euler(0f, angulo, 0f);
+
+        rb.MoveRotation(
+            Quaternion.RotateTowards(
+                rb.rotation,
+                rotacionObjetivo,
+                velocidadRotacion * Time.fixedDeltaTime
+            )
+        );
     }
 }

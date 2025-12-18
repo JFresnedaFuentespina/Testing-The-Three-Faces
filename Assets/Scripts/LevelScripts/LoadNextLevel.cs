@@ -137,7 +137,8 @@ public class LoadNextLevel : MonoBehaviour
         data.maxHealth = hp.maxHealth;
         data.health = hp.healthPoints;
         data.velocity = bh.velocity;
-        data.attackSpeed = atk.attackSpeed;
+        data.damage = atk.attackDamage;
+        data.attackInterval = atk.attackInterval;
         data.attackRange = atk.attackRange;
         data.attackType = atk.isFireball ? "Fireball" : "Thunder";
 

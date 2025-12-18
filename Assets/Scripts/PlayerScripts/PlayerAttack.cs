@@ -29,8 +29,9 @@ public class PlayerAttack : MonoBehaviour
         {
             string json = File.ReadAllText(path);
             PlayerData playerData = JsonConvert.DeserializeObject<PlayerData>(json);
-            attackSpeed = playerData.attackSpeed;
+            attackInterval = playerData.attackInterval;
             attackRange = playerData.attackRange;
+            attackDamage = playerData.damage;
             isFireball = playerData.attackType == "Fireball";
             isThunder = playerData.attackType == "Thunder";
         }

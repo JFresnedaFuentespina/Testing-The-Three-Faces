@@ -17842,6 +17842,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NextRoomCalculator
   enabledTemporarily: 0
   torches: []
+  audioManagerGO: {fileID: 0}
   audioManager: {fileID: 0}
 --- !u!65 &4191822504261727215
 BoxCollider:
@@ -17965,7 +17966,7 @@ MonoBehaviour:
   enemyType2Prefabs: []
   bossCaraPrefab: {fileID: 9137032837993464747, guid: d66c23583a584ef4195dbea312c0b2a7, type: 3}
   bossCruzPrefab: {fileID: 6334826068141619221, guid: 5bba62d8b65dae44898012275d24ba9e, type: 3}
-  bossCantoPrefab: {fileID: 0}
+  bossCantoPrefab: {fileID: 2369049315509284897, guid: af8d0a12de7b28b41b708ac01461d7f8, type: 3}
   maxEnemies: 1
   spawnAreaX: 2
   spawnAreaZ: 2

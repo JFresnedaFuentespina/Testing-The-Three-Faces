@@ -17,7 +17,7 @@ public class Level2Generator : MonoBehaviour
         }
         levelGenerator.fogEnabled = true;
 
-        levelGenerator.GenerateLevel(levelWidth, 5); // Genera el mapa lógico
+        levelGenerator.GenerateLevel(levelWidth, 5, 2); // Genera el mapa lógico
         int totalRooms = levelGenerator.SpawnRooms(); // Genera las habitaciones físicas
 
         Debug.Log($"Nivel 2 generado con {totalRooms} habitaciones normales + Boss + Tesoro");

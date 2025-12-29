@@ -8,10 +8,20 @@ public class NextRoomCalculator : MonoBehaviour
     private LevelGenerator level;
     public bool enabledTemporarily = false;
     public List<GameObject> torches;
+    public GameObject audioManagerGO;
+    public AudioManager audioManager;
 
     void Start()
     {
+
         level = FindAnyObjectByType<LevelGenerator>();
+        audioManagerGO = GameObject.Find("Audio Source");
+        audioManager = audioManagerGO.GetComponent<AudioManager>();
+        audioManager.level = level.levelWidth;
+        if(audioManager == null)
+        {
+            Debug.Log("AUDIO MANAGER NOT FOUND!!");
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -37,6 +47,11 @@ public class NextRoomCalculator : MonoBehaviour
             Debug.LogWarning("No se encontró la habitación válida. Se mantiene la posición actual del jugador.");
             StartCoroutine(ReenableCollisionBetween(doorCollider, other, 0.5f));
             return;
+        }
+
+        if(nextRoomObj.GetComponent<BossRoom>() != null && audioManager != null)
+        {
+            audioManager.PlayBossMusic();
         }
 
         // Desactivar puertas de la habitación de destino temporalmente

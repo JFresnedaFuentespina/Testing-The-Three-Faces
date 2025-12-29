@@ -16,6 +16,7 @@ public class LevelGenerator : MonoBehaviour
 
     [Header("Level Settings")]
     public int levelWidth;
+    public int levelId;
     public float levelBaseY = 0f;
     public float offsetW = 50f;
     public int maxEnemiesPerRoom = 3;
@@ -32,9 +33,10 @@ public class LevelGenerator : MonoBehaviour
     private MinimapBehaviour minimapBehaviour;
     public bool fogEnabled = false;
 
-    public void GenerateLevel(int width, int minRooms)
+    public void GenerateLevel(int width, int minRooms, int levelId)
     {
         levelWidth = width;
+        this.levelId = levelId;
         levelMap.Clear();
         roomsDictionary.Clear();
 

@@ -14,7 +14,7 @@ public class Level1Generator : MonoBehaviour
             return;
         }
 
-        levelGenerator.GenerateLevel(levelWidth, 2); // Genera el mapa
+        levelGenerator.GenerateLevel(levelWidth, 2, 1); // Genera el mapa
         int totalRooms = levelGenerator.SpawnRooms(); // Genera las habitaciones físicas
 
         Debug.Log($"Nivel 1 generado con {totalRooms} habitaciones normales + Boss + Tesoro");

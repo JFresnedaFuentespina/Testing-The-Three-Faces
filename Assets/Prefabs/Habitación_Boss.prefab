@@ -17842,6 +17842,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NextRoomCalculator
   enabledTemporarily: 0
   torches: []
+  audioManager: {fileID: 0}
 --- !u!65 &4191822504261727215
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17917,6 +17918,7 @@ GameObject:
   - component: {fileID: 4242625320559431200}
   - component: {fileID: 6079757885230423706}
   - component: {fileID: 1717740275946183721}
+  - component: {fileID: 7799506239472143930}
   m_Layer: 0
   m_Name: "Habitaci\xF3n_Boss"
   m_TagString: Untagged
@@ -17982,6 +17984,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorsEnabler
   torches: []
+--- !u!114 &7799506239472143930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8213333198550572446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f335580b639c51e4e95f9484c0fc57fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossRoom
 --- !u!1 &8214706397542339874
 GameObject:
   m_ObjectHideFlags: 0

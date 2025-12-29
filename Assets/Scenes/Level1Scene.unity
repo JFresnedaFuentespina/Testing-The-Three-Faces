@@ -947,7 +947,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 7f16f0bfddfd829458fce6192771efa7, type: 3}
   - {fileID: 8300000, guid: 049c5adb3426cc249a0391de4ba25173, type: 3}
   - {fileID: 8300000, guid: 9424e6e3d4b773845926d5ecce86a302, type: 3}
+  bossCaraAudioClip: {fileID: 8300000, guid: c26acee488da740dea9ebcde2edd1e2c, type: 3}
+  bossCruzAudioClip: {fileID: 8300000, guid: c0d5550be49b14e2389d8f11f2cac724, type: 3}
+  bossCantoAudioClip: {fileID: 8300000, guid: c59feefab357b49a895f5a236c905658, type: 3}
   audioSource: {fileID: 1661193503}
+  level: 0
 --- !u!1001 &2002212741
 PrefabInstance:
   m_ObjectHideFlags: 0

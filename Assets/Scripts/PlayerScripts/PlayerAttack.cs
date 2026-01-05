@@ -19,11 +19,16 @@ public class PlayerAttack : MonoBehaviour
     public float thunderLifeTime = 0.4f;
     public bool isFireball = false;
     public bool isThunder = true;
+    private bool isAttacking = false;
+    public AudioClip swordSwingAudioClip;
+    public AudioClip fireballAudioClip;
+    private AudioSource audioSource;
     private Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         string path = Application.persistentDataPath + "/player.json";
         if (File.Exists(path))
         {
@@ -99,16 +104,34 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
+
+    private Coroutine attackCoroutine;
+
     public void AttackMeelee()
     {
         if (animator == null) return;
+        if (isAttacking) return;
+
+        isAttacking = true;
 
         animator.applyRootMotion = false;
+        animator.ResetTrigger("Attack");
         animator.SetTrigger("Attack");
+
+        attackCoroutine = StartCoroutine(AttackRoutine());
+    }
+    private IEnumerator AttackRoutine()
+    {
+        yield return new WaitForSeconds(0.5f);
+        audioSource.PlayOneShot(swordSwingAudioClip);
+
+        yield return new WaitForSeconds(2.2f);
+        isAttacking = false;
     }
 
     void ShootFire()
     {
+        audioSource.PlayOneShot(fireballAudioClip);
         isThunder = false;
         Vector3 direction = transform.forward;
         Vector3 spawnPos = transform.position + Vector3.up * spawnHeight;

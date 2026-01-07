@@ -42,6 +42,15 @@ public class FireAttackHit : MonoBehaviour
             }
             Destroy(gameObject, destroyDelay);
         }
+        else if (other.CompareTag("BossCanto"))
+        {
+            CantoAI cantoAI = other.GetComponent<CantoAI>();
+            if (cantoAI != null)
+            {
+                enemyLife.Damage(attackDamage);
+                enemyLife.UpdateIsAlive();
+            }
+        }
         else if (other.CompareTag("Enemy_Zombie") || other.CompareTag("Enemy_Ghost"))
         {
             if (enemyLife != null)

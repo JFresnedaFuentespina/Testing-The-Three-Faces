@@ -35,6 +35,7 @@ TagManager:
   - Star
   - Trophy
   - BossCruz
+  - BossCanto
   layers:
   - Default
   - TransparentFX

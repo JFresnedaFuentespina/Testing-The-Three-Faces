@@ -20,7 +20,16 @@ public class MeleeAttackHit : MonoBehaviour
         else if (other.CompareTag("BossCruz"))
         {
             CruzAI cruzAI = other.GetComponent<CruzAI>();
-            if(cruzAI != null)
+            if (cruzAI != null)
+            {
+                enemyLife.Damage(attackDamage);
+                enemyLife.UpdateIsAlive();
+            }
+        }
+        else if (other.CompareTag("BossCanto"))
+        {
+            CantoAI cantoAI = other.GetComponent<CantoAI>();
+            if (cantoAI != null)
             {
                 enemyLife.Damage(attackDamage);
                 enemyLife.UpdateIsAlive();

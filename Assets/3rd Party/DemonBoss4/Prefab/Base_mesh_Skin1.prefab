@@ -781,8 +781,8 @@ GameObject:
   - component: {fileID: 3180073626204433794}
   - component: {fileID: 1666200045124129912}
   - component: {fileID: 6903710297839786695}
-  - component: {fileID: 2160824029858161427}
   - component: {fileID: 2761546271504325663}
+  - component: {fileID: 2160824029858161427}
   - component: {fileID: 1309259542819171598}
   m_Layer: 0
   m_Name: Base_mesh_Skin1
@@ -845,7 +845,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyLife
   totalHp: 100
-  currentHp: 0
+  currentHp: 100
   healthBar: {fileID: 7482293536419660152}
 --- !u!114 &6903710297839786695
 MonoBehaviour:
@@ -859,7 +859,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4db0fefa41ceef49a5e82285ae1b7dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CantoAI
-  animator: {fileID: 0}
+  animator: {fileID: 3180073626204433794}
+--- !u!114 &2761546271504325663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2369049315509284897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b92a144f7652ec148a32f6007a2b4c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CantoMovement
+  moveSpeed: 3
+  spawnDelay: 2.5
+  attackDistance: 3
+  attackCooldown: 2
 --- !u!65 &2160824029858161427
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -881,23 +897,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1.6077937, z: 0.35985708}
   m_Center: {x: 0, y: 0.8737207, z: -0.00097287446}
---- !u!114 &2761546271504325663
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2369049315509284897}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b92a144f7652ec148a32f6007a2b4c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CantoMovement
-  moveSpeed: 3
-  punch3MoveSpeed: 6
-  spawnDelay: 2.5
-  attackDistance: 3
-  attackCooldown: 2
 --- !u!195 &1309259542819171598
 NavMeshAgent:
   m_ObjectHideFlags: 0

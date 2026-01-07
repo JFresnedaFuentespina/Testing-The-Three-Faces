@@ -11,11 +11,10 @@ GameObject:
   - component: {fileID: 6334826068141619242}
   - component: {fileID: 7008817298785167161}
   - component: {fileID: 1348619228268095000}
-  - component: {fileID: 575586651067119050}
   - component: {fileID: 2787438273741956055}
   - component: {fileID: 233475109936759351}
-  - component: {fileID: 8785932582204096324}
   - component: {fileID: 3383421779063375692}
+  - component: {fileID: 8785932582204096324}
   m_Layer: 0
   m_Name: Demon_default
   m_TagString: BossCruz
@@ -75,21 +74,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMoveNavmesh
   velocity: 2
---- !u!114 &575586651067119050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6334826068141619221}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff5b1ba5ba0be774c8ec34a7084bce73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyLife
-  totalHp: 50
-  currentHp: 0
-  healthBar: {fileID: 4907457705083208227}
 --- !u!114 &2787438273741956055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,6 +104,21 @@ MonoBehaviour:
   spawnDelay: 2.5
   attackDistance: 3
   attackCooldown: 2
+--- !u!114 &3383421779063375692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6334826068141619221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff5b1ba5ba0be774c8ec34a7084bce73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyLife
+  totalHp: 60
+  currentHp: 0
+  healthBar: {fileID: 4907457705083208227}
 --- !u!65 &8785932582204096324
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -141,21 +140,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 3.0336978, z: 0.7531148}
   m_Center: {x: 0, y: 1.478721, z: 0.123442575}
---- !u!114 &3383421779063375692
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6334826068141619221}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff5b1ba5ba0be774c8ec34a7084bce73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyLife
-  totalHp: 60
-  currentHp: 0
-  healthBar: {fileID: 4907457705083208227}
 --- !u!1001 &998865375114100220
 PrefabInstance:
   m_ObjectHideFlags: 0

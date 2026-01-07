@@ -17,21 +17,24 @@ public class CantoMovement : MonoBehaviour
     private NavMeshAgent agent;
     private CantoAI cantoAI;
     private Animator animator;
+    private EnemyLife enemyLife;
 
     private bool isWalking = false;
     private bool isAttacking = false;
     private bool isFinishingAttack = false;
+    private bool magicAttackCasted = false;
 
     private enum AttackType { None, Attack1, Attack2, Attack3, Attack4 }
     private AttackType currentAttack = AttackType.None;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        agent.speed = 0f;
+        agent.speed = moveSpeed;
 
         BuscarJugador();
         cantoAI = GetComponent<CantoAI>();
         animator = cantoAI.animator;
+        enemyLife = GetComponent<EnemyLife>();
     }
 
     void Update()
@@ -61,11 +64,36 @@ public class CantoMovement : MonoBehaviour
 
     private void TryAttack(float distance)
     {
+        // Ataques normales
         if (!isAttacking && attackTimer >= attackCooldown && distance <= attackDistance)
         {
             StartAttack();
         }
+
+        // Ataque mágico al 50% de vida
+        if (enemyLife != null
+            && enemyLife.currentHp <= enemyLife.totalHp * 0.5f
+            && !magicAttackCasted)
+        {
+            Debug.Log("BOSSCANTOMOVEMENT: Starting magic attack. Current HP: " + enemyLife.currentHp);
+
+            magicAttackCasted = true;
+            isAttacking = true;
+            isWalking = false;
+            attackTimer = 0f;
+
+            agent.ResetPath();
+            agent.isStopped = false;
+
+            cantoAI.SetWalking(false);
+            cantoAI.SetCastMagicAttack();
+
+            StartCoroutine(
+                WaitForAttack(animator.GetCurrentAnimatorStateInfo(0).length)
+            );
+        }
     }
+
 
     private void StartAttack()
     {
@@ -78,32 +106,45 @@ public class CantoMovement : MonoBehaviour
 
         cantoAI.SetWalking(false);
 
-        int randomAttack = Random.Range(0, 4);
+        int randomAttack = Random.Range(1, 5);
 
         switch (randomAttack)
         {
-            case 0:
-                cantoAI.SetAttack(0);
-                break;
             case 1:
                 cantoAI.SetAttack(1);
+                agent.speed = 0f;
+                currentAttack = AttackType.Attack1;
+                StartCoroutine(WaitForAttack(animator.GetCurrentAnimatorStateInfo(0).length));
                 break;
             case 2:
                 cantoAI.SetAttack(2);
+                agent.speed = 0f;
+                currentAttack = AttackType.Attack2;
+                StartCoroutine(WaitForAttack(animator.GetCurrentAnimatorStateInfo(0).length));
                 break;
             case 3:
                 cantoAI.SetAttack(3);
+                agent.speed = 0f;
+                currentAttack = AttackType.Attack3;
+                StartCoroutine(WaitForAttack(animator.GetCurrentAnimatorStateInfo(0).length));
+                break;
+            case 4:
+                cantoAI.SetAttack(4);
+                agent.speed = 0f;
+                currentAttack = AttackType.Attack4;
+                StartCoroutine(WaitForAttack(animator.GetCurrentAnimatorStateInfo(0).length));
                 break;
         }
     }
 
-    // private IEnumerator WaitForAttack(float duration)
-    // {
-    //     isFinishingAttack = true;
-    //     yield return new WaitForSeconds(duration);
-    //     FinishAttack();
-    //     isFinishingAttack = false;
-    // }
+    private IEnumerator WaitForAttack(float duration)
+    {
+        isFinishingAttack = true;
+        yield return new WaitForSeconds(duration);
+        FinishAttack();
+        isFinishingAttack = false;
+    }
+
 
     private void UpdateMovement(float distance)
     {

@@ -14,14 +14,18 @@ public class CantoAI : MonoBehaviour
 
     public void SetWalking(bool isWalking)
     {
-        if (animator != null)
-        {
-            animator.SetBool("isWalking", isWalking);
-        }
+        Debug.Log("BOSSCANTOAI: SetWalking → " + isWalking);
+
+        animator.SetBool("IsWalking", isWalking);
+
+        // fuerza update visual
+        animator.Update(0f);
     }
+
 
     public void SetHit()
     {
+        Debug.Log("BOSSCANTOAI: SetHit called");
         if (animator != null)
         {
             animator.SetTrigger("Hit");
@@ -30,6 +34,7 @@ public class CantoAI : MonoBehaviour
 
     public void SetDeath()
     {
+        Debug.Log("BOSSCANTOAI: SetDeath called");
         if (animator != null)
         {
             animator.SetTrigger("Death");
@@ -38,9 +43,19 @@ public class CantoAI : MonoBehaviour
 
     public void SetAttack(int attackType)
     {
+        Debug.Log("BOSSCANTOAI: SetAttack called with attackType: " + attackType);
         if (animator != null)
         {
-            animator.SetFloat("AttackType", attackType);
+            animator.SetTrigger("Attack" + attackType);
+        }
+    }
+
+    public void SetCastMagicAttack()
+    {
+        Debug.Log("BOSSCANTOAI: SetCastMagicAttack called");
+        if (animator != null)
+        {
+            animator.SetTrigger("CastMagicAttack");
         }
     }
 

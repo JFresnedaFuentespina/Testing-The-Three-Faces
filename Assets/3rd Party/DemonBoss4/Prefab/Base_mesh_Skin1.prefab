@@ -781,6 +781,9 @@ GameObject:
   - component: {fileID: 3180073626204433794}
   - component: {fileID: 1666200045124129912}
   - component: {fileID: 6903710297839786695}
+  - component: {fileID: 2160824029858161427}
+  - component: {fileID: 2761546271504325663}
+  - component: {fileID: 1309259542819171598}
   m_Layer: 0
   m_Name: Base_mesh_Skin1
   m_TagString: BossCanto
@@ -856,6 +859,67 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4db0fefa41ceef49a5e82285ae1b7dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CantoAI
+  animator: {fileID: 0}
+--- !u!65 &2160824029858161427
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2369049315509284897}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1.6077937, z: 0.35985708}
+  m_Center: {x: 0, y: 0.8737207, z: -0.00097287446}
+--- !u!114 &2761546271504325663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2369049315509284897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b92a144f7652ec148a32f6007a2b4c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CantoMovement
+  moveSpeed: 3
+  punch3MoveSpeed: 6
+  spawnDelay: 2.5
+  attackDistance: 3
+  attackCooldown: 2
+--- !u!195 &1309259542819171598
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2369049315509284897}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &2399109204944608482
 GameObject:
   m_ObjectHideFlags: 0

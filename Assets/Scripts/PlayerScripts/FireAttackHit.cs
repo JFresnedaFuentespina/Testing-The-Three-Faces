@@ -50,6 +50,7 @@ public class FireAttackHit : MonoBehaviour
                 enemyLife.Damage(attackDamage);
                 enemyLife.UpdateIsAlive();
             }
+            Destroy(gameObject, destroyDelay);
         }
         else if (other.CompareTag("Enemy_Zombie") || other.CompareTag("Enemy_Ghost"))
         {

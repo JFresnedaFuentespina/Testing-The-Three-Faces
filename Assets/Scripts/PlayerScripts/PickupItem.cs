@@ -20,15 +20,25 @@ public class PickupItem : MonoBehaviour
     private TextMeshProUGUI showItemMessageText;
     private Coroutine messageRoutine;
 
+    public delegate void OnPlayerAttack(string item);
+    public static event OnPlayerAttack OnPlayerAttackEvent;
+
+    public delegate void OnPlayerSpeed(float amount);
+    public static event OnPlayerSpeed OnPlayerSpeedEvent;
+
+
     void OnEnable()
     {
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        PlayerAttack.OnAttackStatsChangedEvent += UpdateAttackStats;
+        // PlayerBehaviour.OnSpeedChanged += UpdateSpeed;
     }
 
     void OnDisable()
     {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
+        PlayerAttack.OnAttackStatsChangedEvent -= UpdateAttackStats;
+        // PlayerBehaviour.OnSpeedChanged -= UpdateSpeed;
     }
+
 
     IEnumerator Start()
     {
@@ -112,9 +122,8 @@ public class PickupItem : MonoBehaviour
         string msg = "";
         if (item.CompareTag("ThunderItem"))
         {
-            playerAttack.isFireball = false;
-            playerAttack.isThunder = true;
-            playerAttack.attackDamage += 2f;
+            if (OnPlayerAttackEvent != null)
+                OnPlayerAttackEvent("Thunder");
             msg = "¡Disparo eléctrico!";
         }
         else if (item.CompareTag("IncreaseSpeedItem"))
@@ -124,12 +133,14 @@ public class PickupItem : MonoBehaviour
         }
         else if (item.CompareTag("IncreaseAttackDamageItem"))
         {
-            playerAttack.attackDamage += 2.5f;
+            if (OnPlayerAttackEvent != null)
+                OnPlayerAttackEvent("IncreaseAttackDamageItem");
             msg = "¡Daño de ataque aumentado!";
         }
         else if (item.CompareTag("IncreaseAttackSpeedItem"))
         {
-            playerAttack.attackInterval -= 1f;
+            if (OnPlayerAttackEvent != null)
+                OnPlayerAttackEvent("IncreaseAttackSpeedItem");
             msg = "¡Velocidad de ataque aumentada!";
         }
         else if (item.CompareTag("Hourglass"))
@@ -139,9 +150,9 @@ public class PickupItem : MonoBehaviour
         }
         else if (item.CompareTag("Star"))
         {
-            playerAttack.attackDamage += 2f;
             playerBehaviour.velocity += 0.3f;
-            playerAttack.attackInterval -= 0.5f;
+            if (OnPlayerAttackEvent != null)
+                OnPlayerAttackEvent("Star");
             msg = "¡Mejoras en todas las estadísticas!";
         }
         else if (item.CompareTag("BluePill")) // Corazón extra azul (temporal)
@@ -179,13 +190,13 @@ public class PickupItem : MonoBehaviour
         else if (item.CompareTag("Skull")) // Calavera que aumenta el daño pero reduce la vida
         {
             msg = "¡Calavera recogida!";
-            playerAttack.attackDamage += 5f;
+            if (OnPlayerAttackEvent != null)
+                OnPlayerAttackEvent("Skull");
             playerHealth.maxHealth -= 1;
             playerHealth.UpdateHUD();
 
         }
         ShowMessage(msg);
-        UpdateHudStats();
     }
 
     private void AddItemToHUD(Sprite icon, string itemID)
@@ -214,6 +225,18 @@ public class PickupItem : MonoBehaviour
         speedText.text = "Speed: " + playerBehaviour.velocity.ToString("F1");
         attackSpeedText.text = "Attack Interval: " + playerAttack.attackInterval.ToString("F1");
     }
+
+    private void UpdateAttackStats(float damage, float interval)
+    {
+        damageText.text = "Damage: " + damage.ToString("F1");
+        attackSpeedText.text = "Attack Interval: " + interval.ToString("F1");
+    }
+
+    private void UpdateSpeed(float speed)
+    {
+        speedText.text = "Speed: " + speed.ToString("F1");
+    }
+
 
     private void ShowMessage(string message)
     {

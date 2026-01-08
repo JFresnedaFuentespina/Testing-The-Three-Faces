@@ -25,9 +25,13 @@ public class PlayerAttack : MonoBehaviour
     private AudioSource audioSource;
     private Animator animator;
 
+    public delegate void OnAttackStatsChanged(float damage, float interval);
+    public static event OnAttackStatsChanged OnAttackStatsChangedEvent;
+
     // Start is called before the first frame update
     void Start()
     {
+        SubscribeToPickupEvents();
         audioSource = GetComponent<AudioSource>();
         string path = Application.persistentDataPath + "/player.json";
         if (File.Exists(path))
@@ -54,7 +58,13 @@ public class PlayerAttack : MonoBehaviour
             Debug.Log("Animator correcto asignado para ataque: " + animator.gameObject.name);
         }
     }
-    // Buscar recursivamente el hijo llamado "Esqueleto" y devolver su Animator
+
+    public void SubscribeToPickupEvents()
+    {
+        PickupItem.OnPlayerAttackEvent += DecideChanges;
+    }
+
+    // Buscar el hijo llamado "Esqueleto" y devolver su Animator
     Animator FindEsqueletoAnimator(Transform raiz)
     {
         foreach (Transform t in raiz)
@@ -175,5 +185,64 @@ public class PlayerAttack : MonoBehaviour
         }
 
         Destroy(newThunder, thunderLifeTime);
+    }
+
+    public void DecideChanges(string item)
+    {
+        switch (item)
+        {
+            case "Thunder":
+                PickupThunder();
+                break;
+            case "IncreaseAttackDamageItem":
+                PickupIncreaseDamage();
+                break;
+            case "IncreaseAttackSpeedItem":
+                OnPickupIncreaseAttackSpeed();
+                break;
+            case "Star":
+                OnPickupStar();
+                break;
+            case "Skull":
+                OnPickupSkull();
+                break;
+        }
+    }
+
+    public void PickupThunder()
+    {
+        isFireball = false;
+        isThunder = true;
+        attackDamage += 2f;
+        NotifyAttackStatsChanged();
+    }
+
+    public void PickupIncreaseDamage()
+    {
+        attackDamage += 2.5f;
+        NotifyAttackStatsChanged();
+    }
+
+    public void OnPickupIncreaseAttackSpeed()
+    {
+        attackInterval -= 1f;
+    }
+
+    public void OnPickupStar()
+    {
+        attackDamage += 2f;
+        attackInterval -= 0.5f;
+        NotifyAttackStatsChanged();
+    }
+
+    public void OnPickupSkull()
+    {
+        attackDamage += 5f;
+        NotifyAttackStatsChanged();
+    }
+
+    public void NotifyAttackStatsChanged()
+    {
+        OnAttackStatsChangedEvent?.Invoke(attackDamage, attackInterval);
     }
 }

@@ -26,6 +26,7 @@ Proyecto de desarrollo de un videojuego en Unity con la temática: Las dos caras
 
 ## Diagrama de clases
 ![Diagrama](Assets/Diagrams/DiagramaClases.drawio.png)
+[Diagrama en draw.io](Assets/Diagrams/DiagramaClases.drawio)
 
 ## Sinopsis
 En un mundo donde el destino se decide con un simple lanzamiento, existen tres

@@ -24,6 +24,8 @@ Proyecto de desarrollo de un videojuego en Unity con la temática: Las dos caras
 ![Kideny Games](Assets/Art/Vista%20Logos/logo-png.png)
 ![The Three Faces](Assets/Art/gimp/test%20logo%20the%20three%20faces.png)
 
+## Diagrama de clases
+![Diagrama](Assets/Diagrams/DiagramaClases.drawio.png)
 
 ## Sinopsis
 En un mundo donde el destino se decide con un simple lanzamiento, existen tres

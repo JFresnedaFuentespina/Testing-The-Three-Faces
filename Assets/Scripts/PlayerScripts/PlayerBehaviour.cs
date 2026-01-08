@@ -12,8 +12,12 @@ public class PlayerBehaviour : MonoBehaviour
     private Animator animator;
     private ChangeCharacter changeCharacter;
 
+    public delegate void OnSpeedStatsChanged(float speed);
+    public static event OnSpeedStatsChanged OnSpeedStatsChangedEvent;
+
     void Start()
     {
+        SubscribeToPickupEvents();
         changeCharacter = GetComponent<ChangeCharacter>();
 
         // Buscar el TRANSFORM del hijo que se llama "Esqueleto"
@@ -45,9 +49,21 @@ public class PlayerBehaviour : MonoBehaviour
         }
 
         rb = GetComponent<Rigidbody>();
+        NotifySpeedStatsChanged();
+    }
+    public void SubscribeToPickupEvents()
+    {
+        PickupItem.OnPlayerSpeedEvent += UpdateSpeed;
     }
 
-
+    public void UpdateSpeed(float amount)
+    {
+        velocity += amount;
+    }
+    public void NotifySpeedStatsChanged()
+    {
+        OnSpeedStatsChangedEvent?.Invoke(this.velocity);
+    }
     private void FixedUpdate()
     {
         if (animator == null) return;

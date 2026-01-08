@@ -7,8 +7,6 @@ using UnityEngine.UI;
 public class PickupItem : MonoBehaviour
 {
     private PlayerInventory playerInventory;
-    private PlayerAttack playerAttack;
-    private PlayerBehaviour playerBehaviour;
     private ChangeCharacter changeCharacter;
     private PlayerHealth playerHealth;
     private GameObject pause;
@@ -19,6 +17,7 @@ public class PickupItem : MonoBehaviour
     private TextMeshProUGUI attackSpeedText;
     private TextMeshProUGUI showItemMessageText;
     private Coroutine messageRoutine;
+    private bool hudReady = false;
 
     public delegate void OnPlayerAttack(string item);
     public static event OnPlayerAttack OnPlayerAttackEvent;
@@ -30,13 +29,13 @@ public class PickupItem : MonoBehaviour
     void OnEnable()
     {
         PlayerAttack.OnAttackStatsChangedEvent += UpdateAttackStats;
-        // PlayerBehaviour.OnSpeedChanged += UpdateSpeed;
+        PlayerBehaviour.OnSpeedStatsChangedEvent += UpdateSpeed;
     }
 
     void OnDisable()
     {
         PlayerAttack.OnAttackStatsChangedEvent -= UpdateAttackStats;
-        // PlayerBehaviour.OnSpeedChanged -= UpdateSpeed;
+        PlayerBehaviour.OnSpeedStatsChangedEvent -= UpdateSpeed;
     }
 
 
@@ -45,10 +44,10 @@ public class PickupItem : MonoBehaviour
         yield return SetupHUD();
     }
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        StartCoroutine(SetupHUD());
-    }
+    // private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    // {
+    //     StartCoroutine(SetupHUD());
+    // }
 
     IEnumerator SetupHUD()
     {
@@ -70,12 +69,10 @@ public class PickupItem : MonoBehaviour
 
         // Obtener componentes del jugador
         playerInventory = GetComponent<PlayerInventory>();
-        playerAttack = GetComponent<PlayerAttack>();
-        playerBehaviour = GetComponent<PlayerBehaviour>();
         changeCharacter = GetComponent<ChangeCharacter>();
         playerHealth = GetComponent<PlayerHealth>();
 
-        UpdateHudStats();
+        // UpdateHudStats();
 
         if (playerInventory == null || playerInventory.inventory == null)
         {
@@ -93,6 +90,8 @@ public class PickupItem : MonoBehaviour
             if (item != null && item.icon != null)
                 AddItemToHUD(item.icon, item.itemID);
         }
+        hudReady = true;
+        Debug.Log("PickupItems: HUD de items listo? (SetupHud)." + hudReady);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -128,7 +127,8 @@ public class PickupItem : MonoBehaviour
         }
         else if (item.CompareTag("IncreaseSpeedItem"))
         {
-            playerBehaviour.velocity += 0.5f;
+            if (OnPlayerSpeedEvent != null)
+                OnPlayerSpeedEvent(0.5f);
             msg = "¡Velocidad aumentada!";
         }
         else if (item.CompareTag("IncreaseAttackDamageItem"))
@@ -150,7 +150,8 @@ public class PickupItem : MonoBehaviour
         }
         else if (item.CompareTag("Star"))
         {
-            playerBehaviour.velocity += 0.3f;
+            if (OnPlayerSpeedEvent != null)
+                OnPlayerSpeedEvent(1.0f);
             if (OnPlayerAttackEvent != null)
                 OnPlayerAttackEvent("Star");
             msg = "¡Mejoras en todas las estadísticas!";
@@ -219,23 +220,23 @@ public class PickupItem : MonoBehaviour
         Debug.Log("Añadiendo item al HUD: " + itemID);
     }
 
-    private void UpdateHudStats()
-    {
-        damageText.text = "Damage: " + playerAttack.attackDamage.ToString("F1");
-        speedText.text = "Speed: " + playerBehaviour.velocity.ToString("F1");
-        attackSpeedText.text = "Attack Interval: " + playerAttack.attackInterval.ToString("F1");
-    }
-
     private void UpdateAttackStats(float damage, float interval)
     {
+        Debug.Log("PickupItems: HUD de items listo." + hudReady);
+        if (!hudReady) return;
+
         damageText.text = "Damage: " + damage.ToString("F1");
         attackSpeedText.text = "Attack Interval: " + interval.ToString("F1");
     }
 
     private void UpdateSpeed(float speed)
     {
+        Debug.Log("PickupItems: HUD de items listo." + hudReady);
+        if (!hudReady) return;
+
         speedText.text = "Speed: " + speed.ToString("F1");
     }
+
 
 
     private void ShowMessage(string message)

@@ -57,6 +57,7 @@ public class PlayerAttack : MonoBehaviour
         {
             Debug.Log("Animator correcto asignado para ataque: " + animator.gameObject.name);
         }
+        NotifyAttackStatsChanged();
     }
 
     public void SubscribeToPickupEvents()

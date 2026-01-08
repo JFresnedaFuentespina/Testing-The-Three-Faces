@@ -18,9 +18,6 @@ public class FireballBehaviour : MonoBehaviour
     {
         // Mover la bola en la dirección indicada
         transform.position += direction * speed * Time.deltaTime;
-
-        // Opcional: destruir la bola después de 5 segundos
-        Destroy(gameObject, 5f);
     }
 
     void OnCollisionEnter(Collision collision)

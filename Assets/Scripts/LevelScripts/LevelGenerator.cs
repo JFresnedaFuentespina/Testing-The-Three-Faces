@@ -198,18 +198,18 @@ public class LevelGenerator : MonoBehaviour
     }
 
 
-    public void NextLevel(int actualLevel)
-    {
-        string nextScene = "";
-        switch (actualLevel)
-        {
-            case 0: nextScene = "MainMenu"; break;
-            case 1: nextScene = "Level1Scene"; break;
-            case 2: nextScene = "Level2Scene"; break;
-            case 3: nextScene = "Level3Scene"; break;
-            case 4: nextScene = "CretditsScene"; break;// créditos
-            default: Debug.LogWarning("Nivel {actualLevel} no tiene escena siguiente."); break;
-        }
-        SceneManager.LoadScene(nextScene);
-    }
+    // public void NextLevel(int actualLevel)
+    // {
+    //     string nextScene = "";
+    //     switch (actualLevel)
+    //     {
+    //         case 0: nextScene = "MainMenu"; break;
+    //         case 1: nextScene = "Level1Scene"; break;
+    //         case 2: nextScene = "Level2Scene"; break;
+    //         case 3: nextScene = "Level3Scene"; break;
+    //         case 4: nextScene = "CretditsScene"; break;// créditos
+    //         default: Debug.LogWarning("Nivel {actualLevel} no tiene escena siguiente."); break;
+    //     }
+    //     SceneManager.LoadScene(nextScene);
+    // }
 }

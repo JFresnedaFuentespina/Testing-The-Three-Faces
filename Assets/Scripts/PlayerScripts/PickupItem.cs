@@ -92,6 +92,7 @@ public class PickupItem : MonoBehaviour
         }
         hudReady = true;
         Debug.Log("PickupItems: HUD de items listo? (SetupHud)." + hudReady);
+        PlayerAttack.RequestAttackStats();
     }
 
     private void OnCollisionEnter(Collision collision)

@@ -27,6 +27,13 @@ public class PlayerAttack : MonoBehaviour
 
     public delegate void OnAttackStatsChanged(float damage, float interval);
     public static event OnAttackStatsChanged OnAttackStatsChangedEvent;
+    public delegate void OnAttackStatsRequested();
+    public static event OnAttackStatsRequested OnAttackStatsRequestedEvent;
+
+    void OnEnable()
+    {
+        OnAttackStatsRequestedEvent += SendCurrentStats;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -57,7 +64,11 @@ public class PlayerAttack : MonoBehaviour
         {
             Debug.Log("Animator correcto asignado para ataque: " + animator.gameObject.name);
         }
-        NotifyAttackStatsChanged();
+    }
+
+    public static void RequestAttackStats()
+    {
+        OnAttackStatsRequestedEvent?.Invoke();
     }
 
     public void SubscribeToPickupEvents()
@@ -241,6 +252,12 @@ public class PlayerAttack : MonoBehaviour
         attackDamage += 5f;
         NotifyAttackStatsChanged();
     }
+
+    void SendCurrentStats()
+    {
+        NotifyAttackStatsChanged();
+    }
+
 
     public void NotifyAttackStatsChanged()
     {

@@ -7,7 +7,7 @@ public class ChangeCharacter : MonoBehaviour
     public GameObject ghost;
     public GameObject esqueleto;
     public bool showingGhost = false;
-    public string action;
+    public List<string> actions = new List<string>();
 
     private GameObject monedaOriginal;
     private RotateCoin rotateCoin;
@@ -15,13 +15,18 @@ public class ChangeCharacter : MonoBehaviour
     public float switchCooldown = 2f;
     private float lastSwitchTime = -Mathf.Infinity;
 
+    void OnDestroy()
+    {
+        PickupItem.OnNewChangeCharacterActionEvent -= AddAction;
+    }
+
     void Start()
     {
-        action = "none";
         esqueleto.SetActive(true);
         ghost.SetActive(false);
         monedaOriginal = GameObject.Find("MonedaOriginal").gameObject;
         rotateCoin = monedaOriginal.GetComponent<RotateCoin>();
+        SubscribeToPickupItemsEvents();
     }
 
     void Update()
@@ -34,6 +39,11 @@ public class ChangeCharacter : MonoBehaviour
         }
     }
 
+    public void SubscribeToPickupItemsEvents()
+    {
+        PickupItem.OnNewChangeCharacterActionEvent += AddAction;
+    }
+
     void SwitchCharacter()
     {
         showingGhost = !showingGhost;
@@ -41,9 +51,13 @@ public class ChangeCharacter : MonoBehaviour
         PlayerHealth vidaGhost = ghost.GetComponent<PlayerHealth>();
         PlayerHealth vidaEsqueleto = esqueleto.GetComponent<PlayerHealth>();
 
-        if (action == "Hourglass")
+        if (actions.Contains("Hourglass"))
         {
             Debug.Log("FREEZE TIME!");
+        }
+        if (actions.Contains("Bomb"))
+        {
+            Debug.Log("BOOOOM!!!");
         }
 
         if (showingGhost)
@@ -62,5 +76,10 @@ public class ChangeCharacter : MonoBehaviour
         }
 
         rotateCoin.rotate = true;
+    }
+
+    public void AddAction(string action)
+    {
+        actions.Add(action);
     }
 }

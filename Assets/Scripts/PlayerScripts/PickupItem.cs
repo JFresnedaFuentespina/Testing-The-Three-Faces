@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class PickupItem : MonoBehaviour
 {
     private PlayerInventory playerInventory;
-    private ChangeCharacter changeCharacter;
     private GameObject pause;
     private GameObject menuItems;
     private GameObject stats;
@@ -18,6 +17,7 @@ public class PickupItem : MonoBehaviour
     private Coroutine messageRoutine;
     private bool hudReady = false;
 
+    // Eventos
     public delegate void OnPlayerAttack(string item);
     public static event OnPlayerAttack OnPlayerAttackEvent;
 
@@ -32,6 +32,9 @@ public class PickupItem : MonoBehaviour
 
     public delegate void OnFullyHealed();
     public static event OnFullyHealed OnFullyHealedEvent;
+
+    public delegate void OnNewChangeCharacterAction(string action);
+    public static event OnNewChangeCharacterAction OnNewChangeCharacterActionEvent;
 
     void OnEnable()
     {
@@ -71,7 +74,6 @@ public class PickupItem : MonoBehaviour
 
         // Obtener componentes del jugador
         playerInventory = GetComponent<PlayerInventory>();
-        changeCharacter = GetComponent<ChangeCharacter>();
 
         // UpdateHudStats();
 
@@ -148,7 +150,8 @@ public class PickupItem : MonoBehaviour
         }
         else if (item.CompareTag("Hourglass"))
         {
-            changeCharacter.action = "Hourglass";
+            if(OnNewChangeCharacterActionEvent != null)
+                OnNewChangeCharacterActionEvent("Hourglass");
             msg = "Ralentiza a los enemigos al girar la moneda";
         }
         else if (item.CompareTag("Star"))
@@ -165,6 +168,8 @@ public class PickupItem : MonoBehaviour
         }
         else if (item.CompareTag("Bomb")) // Explosión alrededor del jugador que daña a los enemigos al girar la moneda
         {
+            if(OnNewChangeCharacterActionEvent != null)
+                OnNewChangeCharacterActionEvent("Bomb");
             msg = "¡Bomba recogida!";
         }
         else if (item.CompareTag("Key")) // Llave para abrir la puerta final

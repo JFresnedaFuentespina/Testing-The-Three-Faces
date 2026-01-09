@@ -8,7 +8,6 @@ public class PickupItem : MonoBehaviour
 {
     private PlayerInventory playerInventory;
     private ChangeCharacter changeCharacter;
-    private PlayerHealth playerHealth;
     private GameObject pause;
     private GameObject menuItems;
     private GameObject stats;
@@ -25,6 +24,14 @@ public class PickupItem : MonoBehaviour
     public delegate void OnPlayerSpeed(float amount);
     public static event OnPlayerSpeed OnPlayerSpeedEvent;
 
+    public delegate void OnHealthIncreased(float amunt);
+    public static event OnHealthIncreased OnHealthIncreasedEvent;
+
+    public delegate void OnHealthDecreased(float amount);
+    public static event OnHealthDecreased OnHealthDecreasedEvent;
+
+    public delegate void OnFullyHealed();
+    public static event OnFullyHealed OnFullyHealedEvent;
 
     void OnEnable()
     {
@@ -65,7 +72,6 @@ public class PickupItem : MonoBehaviour
         // Obtener componentes del jugador
         playerInventory = GetComponent<PlayerInventory>();
         changeCharacter = GetComponent<ChangeCharacter>();
-        playerHealth = GetComponent<PlayerHealth>();
 
         // UpdateHudStats();
 
@@ -176,9 +182,10 @@ public class PickupItem : MonoBehaviour
         else if (item.CompareTag("Heart")) // Vida extra
         {
             msg = "¡Vida extra!";
-            playerHealth.maxHealth += 1;
-            playerHealth.healthPoints = playerHealth.maxHealth;
-            playerHealth.RebuildHearts();
+            if (OnHealthIncreasedEvent != null)
+                OnHealthIncreasedEvent(1);
+            if(OnFullyHealedEvent != null)
+                OnFullyHealedEvent();
 
         }
         else if (item.CompareTag("Shield")) // Escudo que bloquea algunos ataques
@@ -190,9 +197,8 @@ public class PickupItem : MonoBehaviour
             msg = "¡Calavera recogida!";
             if (OnPlayerAttackEvent != null)
                 OnPlayerAttackEvent("Skull");
-            playerHealth.maxHealth -= 1;
-            playerHealth.UpdateHUD();
-
+            if(OnHealthDecreasedEvent != null)
+                OnHealthDecreasedEvent(1);
         }
         ShowMessage(msg);
     }

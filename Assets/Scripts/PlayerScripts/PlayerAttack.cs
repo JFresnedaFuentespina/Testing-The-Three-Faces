@@ -35,6 +35,11 @@ public class PlayerAttack : MonoBehaviour
         OnAttackStatsRequestedEvent += SendCurrentStats;
     }
 
+    void OnDestroy()
+    {
+        OnAttackStatsRequestedEvent -= SendCurrentStats;
+    }
+
     // Start is called before the first frame update
     void Start()
     {

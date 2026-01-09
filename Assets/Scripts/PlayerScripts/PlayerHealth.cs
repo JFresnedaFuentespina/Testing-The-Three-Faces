@@ -28,6 +28,13 @@ public class PlayerHealth : MonoBehaviour
     private RotateCharacterWithJoystick rotateCharacterWithJoystick;
     private PlayerBehaviour playerBehaviour;
 
+    void OnDestroy()
+    {
+        PickupItem.OnFullyHealedEvent -= FullHeal;
+        PickupItem.OnHealthIncreasedEvent -= IncreaseMaxHealth;
+        PickupItem.OnHealthDecreasedEvent -= DecreaseMaxHealth;
+    }
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -86,8 +93,15 @@ public class PlayerHealth : MonoBehaviour
 
         InitializeHearts();
         RefreshHearts();
-
         Invoke(nameof(EnableDeath), 0.1f);
+        SubscribeToPickupEvents();
+    }
+
+    public void SubscribeToPickupEvents()
+    {
+        PickupItem.OnFullyHealedEvent += FullHeal;
+        PickupItem.OnHealthIncreasedEvent += IncreaseMaxHealth;
+        PickupItem.OnHealthDecreasedEvent += DecreaseMaxHealth;
     }
 
     void EnableDeath() => canDie = true;
@@ -213,6 +227,24 @@ public class PlayerHealth : MonoBehaviour
         healthPoints = Mathf.Clamp(healthPoints, minHealth, maxHealth);
         UpdateHUD();
         Debug.Log("Player damaged. Current health: " + healthPoints);
+    }
+
+    public void IncreaseMaxHealth(float amount)
+    {
+        maxHealth += amount;
+        RebuildHearts();
+    }
+
+    public void FullHeal()
+    {
+        healthPoints = maxHealth;
+        RebuildHearts();
+    }
+
+    public void DecreaseMaxHealth(float amount)
+    {
+        maxHealth -= amount;
+        RebuildHearts();
     }
 
 }

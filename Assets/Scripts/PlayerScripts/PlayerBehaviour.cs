@@ -21,6 +21,10 @@ public class PlayerBehaviour : MonoBehaviour
     {
         OnSpeedStatsRequestedEvent += SendCurrentStats;
     }
+    void Oestroy()
+    {
+        OnSpeedStatsRequestedEvent -= SendCurrentStats;
+    }
 
     void Start()
     {

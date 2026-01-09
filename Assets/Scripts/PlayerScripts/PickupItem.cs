@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -6,7 +7,6 @@ using UnityEngine.UI;
 
 public class PickupItem : MonoBehaviour
 {
-    private PlayerInventory playerInventory;
     private GameObject pause;
     private GameObject menuItems;
     private GameObject stats;
@@ -36,16 +36,21 @@ public class PickupItem : MonoBehaviour
     public delegate void OnNewChangeCharacterAction(string action);
     public static event OnNewChangeCharacterAction OnNewChangeCharacterActionEvent;
 
+    public delegate void OnAddItemToInventory(string id, Sprite icon);
+    public static event OnAddItemToInventory OnAddItemToInventoryEvent;
+
     void OnEnable()
     {
         PlayerAttack.OnAttackStatsChangedEvent += UpdateAttackStats;
         PlayerBehaviour.OnSpeedStatsChangedEvent += UpdateSpeed;
+        PlayerInventory.OnInventoryItemsProvidedEvent += BuildInventoryHUD;
     }
 
     void OnDisable()
     {
         PlayerAttack.OnAttackStatsChangedEvent -= UpdateAttackStats;
         PlayerBehaviour.OnSpeedStatsChangedEvent -= UpdateSpeed;
+        PlayerInventory.OnInventoryItemsProvidedEvent -= BuildInventoryHUD;
     }
 
 
@@ -72,32 +77,26 @@ public class PickupItem : MonoBehaviour
         attackSpeedText = stats.transform.Find("AttackInterval").GetComponent<TextMeshProUGUI>();
         showItemMessageText = hud.transform.Find("ItemMessage").GetComponent<TextMeshProUGUI>();
 
-        // Obtener componentes del jugador
-        playerInventory = GetComponent<PlayerInventory>();
+        hudReady = true;
 
-        // UpdateHudStats();
+        Debug.Log("PickupItems: HUD de items listo? (SetupHud)." + hudReady);
+        PlayerAttack.RequestAttackStats();
+        PlayerBehaviour.RequestBehaviourStats();
+        PlayerInventory.RequestInventoryItems();
+    }
 
-        if (playerInventory == null || playerInventory.inventory == null)
-        {
-            Debug.LogError("PlayerInventory o Inventory ScriptableObject no encontrado!");
-            yield break;
-        }
-
-        // Limpiar HUD previo
+    public void BuildInventoryHUD(List<InventoryItem> items)
+    {
         foreach (Transform child in menuItems.transform)
             Destroy(child.gameObject);
 
-        // Añadir items guardados al HUD
-        foreach (var item in playerInventory.inventory.items)
+        foreach (var item in items)
         {
             if (item != null && item.icon != null)
                 AddItemToHUD(item.icon, item.itemID);
         }
-        hudReady = true;
-        Debug.Log("PickupItems: HUD de items listo? (SetupHud)." + hudReady);
-        PlayerAttack.RequestAttackStats();
-        PlayerBehaviour.RequestBehaviourStats();
     }
+
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -112,7 +111,10 @@ public class PickupItem : MonoBehaviour
         }
 
         // Añadir al inventario y HUD
-        playerInventory.AddItem(iconComp.itemID, iconComp.icon);
+        if (OnAddItemToInventoryEvent != null)
+        {
+            OnAddItemToInventoryEvent(iconComp.itemID, iconComp.icon);
+        }
         AddItemToHUD(iconComp.icon, iconComp.itemID);
 
         // Aplicar efectos del item
@@ -150,7 +152,7 @@ public class PickupItem : MonoBehaviour
         }
         else if (item.CompareTag("Hourglass"))
         {
-            if(OnNewChangeCharacterActionEvent != null)
+            if (OnNewChangeCharacterActionEvent != null)
                 OnNewChangeCharacterActionEvent("Hourglass");
             msg = "Ralentiza a los enemigos al girar la moneda";
         }
@@ -168,7 +170,7 @@ public class PickupItem : MonoBehaviour
         }
         else if (item.CompareTag("Bomb")) // Explosión alrededor del jugador que daña a los enemigos al girar la moneda
         {
-            if(OnNewChangeCharacterActionEvent != null)
+            if (OnNewChangeCharacterActionEvent != null)
                 OnNewChangeCharacterActionEvent("Bomb");
             msg = "¡Bomba recogida!";
         }
@@ -189,7 +191,7 @@ public class PickupItem : MonoBehaviour
             msg = "¡Vida extra!";
             if (OnHealthIncreasedEvent != null)
                 OnHealthIncreasedEvent(1);
-            if(OnFullyHealedEvent != null)
+            if (OnFullyHealedEvent != null)
                 OnFullyHealedEvent();
 
         }
@@ -202,7 +204,7 @@ public class PickupItem : MonoBehaviour
             msg = "¡Calavera recogida!";
             if (OnPlayerAttackEvent != null)
                 OnPlayerAttackEvent("Skull");
-            if(OnHealthDecreasedEvent != null)
+            if (OnHealthDecreasedEvent != null)
                 OnHealthDecreasedEvent(1);
         }
         ShowMessage(msg);

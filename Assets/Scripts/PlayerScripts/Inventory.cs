@@ -4,13 +4,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Inventory", menuName = "Scriptable Objects/Inventory")]
 public class Inventory : ScriptableObject
 {
-    [System.Serializable]
-    public class InventoryItem
-    {
-        public string itemID;
-        public Sprite icon;
-    }
-
     public List<InventoryItem> items = new List<InventoryItem>();
 
     public void AddItem(string id, Sprite sprite)

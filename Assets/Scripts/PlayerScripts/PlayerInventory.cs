@@ -33,7 +33,7 @@ public class PlayerInventory : MonoBehaviour
 
     public static void RequestInventoryItems()
     {
-        var instance = FindObjectOfType<PlayerInventory>();
+        var instance = FindFirstObjectByType<PlayerInventory>();
         if(instance == null || instance.inventory == null) return;
 
         OnInventoryItemsProvidedEvent?.Invoke(instance.inventory.items);

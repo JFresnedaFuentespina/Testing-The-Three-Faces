@@ -14,6 +14,13 @@ public class PlayerBehaviour : MonoBehaviour
 
     public delegate void OnSpeedStatsChanged(float speed);
     public static event OnSpeedStatsChanged OnSpeedStatsChangedEvent;
+    public delegate void OnSpeedStatsRequested();
+    public static event OnSpeedStatsRequested OnSpeedStatsRequestedEvent;
+
+    void OnEnable()
+    {
+        OnSpeedStatsRequestedEvent += SendCurrentStats;
+    }
 
     void Start()
     {
@@ -51,6 +58,10 @@ public class PlayerBehaviour : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         NotifySpeedStatsChanged();
     }
+    public static void RequestBehaviourStats()
+    {
+        OnSpeedStatsRequestedEvent?.Invoke();
+    }
     public void SubscribeToPickupEvents()
     {
         PickupItem.OnPlayerSpeedEvent += UpdateSpeed;
@@ -59,6 +70,10 @@ public class PlayerBehaviour : MonoBehaviour
     public void UpdateSpeed(float amount)
     {
         velocity += amount;
+    }
+    void SendCurrentStats()
+    {
+        NotifySpeedStatsChanged();
     }
     public void NotifySpeedStatsChanged()
     {

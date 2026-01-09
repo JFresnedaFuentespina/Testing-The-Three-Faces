@@ -44,11 +44,6 @@ public class PickupItem : MonoBehaviour
         yield return SetupHUD();
     }
 
-    // private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    // {
-    //     StartCoroutine(SetupHUD());
-    // }
-
     IEnumerator SetupHUD()
     {
         // Esperar a que el HUD exista
@@ -93,6 +88,7 @@ public class PickupItem : MonoBehaviour
         hudReady = true;
         Debug.Log("PickupItems: HUD de items listo? (SetupHud)." + hudReady);
         PlayerAttack.RequestAttackStats();
+        PlayerBehaviour.RequestBehaviourStats();
     }
 
     private void OnCollisionEnter(Collision collision)

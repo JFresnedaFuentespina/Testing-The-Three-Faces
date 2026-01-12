@@ -204,7 +204,7 @@ public class NextRoomCalculator : MonoBehaviour
         if (Camera.main == null)
             return;
 
-        Camera.main.transform.position = new Vector3(roomPos.x - 1.5f, Camera.main.transform.position.y, roomPos.z - 9.5f);
+        Camera.main.transform.position = new Vector3(roomPos.x - 1.5f, Camera.main.transform.position.y, roomPos.z - 11f);
         Camera.main.transform.rotation = Quaternion.Euler(40f, 0f, 0f);
 
         GameObject roomObj = FindRoomObject(roomPos);

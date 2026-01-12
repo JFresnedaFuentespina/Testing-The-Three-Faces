@@ -336,7 +336,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 261188802}
   m_LocalRotation: {x: 0.3420201, y: 0, z: 0, w: 0.9396927}
-  m_LocalPosition: {x: 0, y: 0, z: -9.7}
+  m_LocalPosition: {x: 0, y: 0, z: -11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -950,6 +950,7 @@ MonoBehaviour:
   bossCaraAudioClip: {fileID: 8300000, guid: c26acee488da740dea9ebcde2edd1e2c, type: 3}
   bossCruzAudioClip: {fileID: 8300000, guid: c0d5550be49b14e2389d8f11f2cac724, type: 3}
   bossCantoAudioClip: {fileID: 8300000, guid: c59feefab357b49a895f5a236c905658, type: 3}
+  selectedAudioClip: {fileID: 0}
   audioSource: {fileID: 1661193503}
   level: 0
 --- !u!1001 &2002212741

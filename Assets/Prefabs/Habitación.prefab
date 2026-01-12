@@ -28,8 +28,8 @@ Transform:
   m_GameObject: {fileID: 3151105535327309648}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -1.5054247, y: 4.997005, z: -7.0625234}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -1.5054247, y: 4.997005, z: -7.59}
+  m_LocalScale: {x: 1.5, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3151105536900344456}
@@ -140,8 +140,8 @@ Transform:
   m_GameObject: {fileID: 3151105535387825888}
   serializedVersion: 2
   m_LocalRotation: {x: -0.5, y: -0.5, z: 0.5, w: -0.5}
-  m_LocalPosition: {x: -6.445425, y: 5, z: -3.0325236}
-  m_LocalScale: {x: 1.0394, y: 1.0394, z: 1.0394}
+  m_LocalPosition: {x: -7.9, y: 5, z: -3.0325236}
+  m_LocalScale: {x: 1.5, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4093033569375135431}
@@ -256,8 +256,8 @@ Transform:
   m_GameObject: {fileID: 3151105535959561373}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 3.4145753, y: 5, z: -3.0325236}
-  m_LocalScale: {x: 1.028, y: 1.028, z: 1.028}
+  m_LocalPosition: {x: 5.64, y: 5, z: -3.0325236}
+  m_LocalScale: {x: 1.5, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4093033569055541961}
@@ -373,8 +373,8 @@ Transform:
   m_GameObject: {fileID: 3151105536103396261}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.4002, y: 0, z: -2.78}
-  m_LocalScale: {x: 0.8760839, y: 1.1995, z: 0.79820734}
+  m_LocalPosition: {x: -1.4002, y: 0, z: -4.31}
+  m_LocalScale: {x: 1.003116, y: 1.1995, z: 0.97046053}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3151105536900344456}
@@ -507,7 +507,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: 0.7071068, w: 0}
   m_LocalPosition: {x: -1.5054247, y: 5.11, z: 1.9974766}
-  m_LocalScale: {x: 1.0317862, y: 1.0317862, z: 1.0317862}
+  m_LocalScale: {x: 1.5, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4093033567495126290}
@@ -735,7 +735,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.17, z: 0}
-  m_LocalScale: {x: 1.0036869, y: 1.0036868, z: 1.0036868}
+  m_LocalScale: {x: 1, y: 1, z: 1.1801}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1253782687567309760}
@@ -912,7 +912,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.281, y: 0.25, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1.1801}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5019561176768378446}
@@ -963,7 +963,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.42, y: 0.18, z: 0}
-  m_LocalScale: {x: 0.99267846, y: 0.99267846, z: 0.99267846}
+  m_LocalScale: {x: 1, y: 1, z: 1.1801}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2104813774163803294}
@@ -2277,6 +2277,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NextRoomCalculator
   enabledTemporarily: 0
   torches: []
+  audioManagerGO: {fileID: 0}
+  audioManager: {fileID: 0}
 --- !u!54 &7527398144404604543
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -84,6 +84,9 @@ public class LoadNextLevel : MonoBehaviour
             case "Level2Scene":
                 nextScene = "Level3Scene";
                 break;
+            case "Level3Scene"://! Temporal, llevar a MainMenu
+                nextScene = "MainMenu";
+                break;
             default:
                 return;
         }

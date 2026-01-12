@@ -25,6 +25,8 @@ public class PlayerAttack : MonoBehaviour
     private AudioSource audioSource;
     private Animator animator;
 
+    public GameObject swordGO;
+
     public delegate void OnAttackStatsChanged(float damage, float interval);
     public static event OnAttackStatsChanged OnAttackStatsChangedEvent;
     public delegate void OnAttackStatsRequested();
@@ -68,6 +70,11 @@ public class PlayerAttack : MonoBehaviour
         else
         {
             Debug.Log("Animator correcto asignado para ataque: " + animator.gameObject.name);
+        }
+        swordGO = GameObject.Find("Sword");
+        if (swordGO == null)
+        {
+            Debug.LogError("No se encontró el GameObject 'Sword'");
         }
     }
 
@@ -136,6 +143,7 @@ public class PlayerAttack : MonoBehaviour
 
     public void AttackMeelee()
     {
+        swordGO.GetComponent<BoxCollider>().enabled = true;
         if (animator == null) return;
         if (isAttacking) return;
 
@@ -154,6 +162,7 @@ public class PlayerAttack : MonoBehaviour
 
         yield return new WaitForSeconds(2.2f);
         isAttacking = false;
+        swordGO.GetComponent<BoxCollider>().enabled = false;
     }
 
     void ShootFire()

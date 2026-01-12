@@ -6,11 +6,14 @@ using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
-    public float velocity = 10.0f;
+    public float velocity = 5.0f;
+    public float currentSpeed;
     private Rigidbody rb;
 
     private Animator animator;
     private ChangeCharacter changeCharacter;
+
+    private Vector3 lastPosition;
 
     public delegate void OnSpeedStatsChanged(float speed);
     public static event OnSpeedStatsChanged OnSpeedStatsChangedEvent;
@@ -85,29 +88,33 @@ public class PlayerBehaviour : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (animator == null) return;
+        if (animator == null || rb == null) return;
+
         animator.applyRootMotion = false;
 
         float inputH = Input.GetAxis("Horizontal");
         float inputV = Input.GetAxis("Vertical");
 
-        Vector3 movement = (Vector3.forward * inputV + Vector3.right * inputH);
-        bool seEstaMoviendo = movement.magnitude > 0.01f;
+        Vector3 inputDir = new Vector3(inputH, 0f, inputV);
+
+        if (inputDir.magnitude > 1f)
+            inputDir.Normalize();
+
+        Vector3 movement = inputDir * velocity * Time.fixedDeltaTime;
+        rb.MovePosition(rb.position + movement);
+
+        currentSpeed = (rb.position - lastPosition).magnitude / Time.fixedDeltaTime;
+        lastPosition = rb.position;
 
         if (!changeCharacter.showingGhost)
         {
-            animator.SetFloat("Action", seEstaMoviendo ? 2f : 0f);
+            animator.SetFloat("Speed", currentSpeed);
         }
         else
         {
-            animator.SetFloat("Action", 0f);
+            animator.SetFloat("Speed", 0f);
         }
-
-        if (movement.magnitude > 1f)
-            movement.Normalize();
-
-        movement *= velocity * Time.deltaTime;
-        rb.MovePosition(rb.position + movement);
     }
+
 
 }

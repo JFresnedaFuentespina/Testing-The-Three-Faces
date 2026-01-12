@@ -1475,6 +1475,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 8685629972404367359}
     m_Modifications:
     - target: {fileID: 1098684570547723824, guid: b9bc277a739c12644a282eff19931272, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1098684570547723824, guid: b9bc277a739c12644a282eff19931272, type: 3}
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
@@ -1533,6 +1537,10 @@ PrefabInstance:
     - target: {fileID: 6147388607170082369, guid: b9bc277a739c12644a282eff19931272, type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6147388607170082369, guid: b9bc277a739c12644a282eff19931272, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6147388607170082369, guid: b9bc277a739c12644a282eff19931272, type: 3}
       propertyPath: m_TagString

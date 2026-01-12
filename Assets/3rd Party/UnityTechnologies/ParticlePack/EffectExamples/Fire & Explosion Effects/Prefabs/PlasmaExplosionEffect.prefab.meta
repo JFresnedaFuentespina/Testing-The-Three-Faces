@@ -6,3 +6,11 @@ NativeFormatImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 73777
+  packageName: Legacy Particle Pack
+  packageVersion: 4.0
+  assetPath: Assets/3rd Party/UnityTechnologies/ParticlePack/EffectExamples/Fire
+    & Explosion Effects/Prefabs/PlasmaExplosionEffect.prefab
+  uploadId: 684565

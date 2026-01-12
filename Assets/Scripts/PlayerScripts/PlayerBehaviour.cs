@@ -94,7 +94,7 @@ public class PlayerBehaviour : MonoBehaviour
         Vector3 movement = (Vector3.forward * inputV + Vector3.right * inputH);
         bool seEstaMoviendo = movement.magnitude > 0.01f;
 
-        if (!changeCharacter.showingGhost)
+        if (!changeCharacter.showingGhost)//! ANIMACIÓN CON LA VELOCIDAD DEL RIGIDBODY
         {
             animator.SetFloat("Action", seEstaMoviendo ? 2f : 0f);
         }

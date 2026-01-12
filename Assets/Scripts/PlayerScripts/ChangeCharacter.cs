@@ -9,6 +9,8 @@ public class ChangeCharacter : MonoBehaviour
     public bool showingGhost = false;
     public List<string> actions = new List<string>();
     public GameObject explosionVFX;
+    public float bombDamage = 20f;
+    public float bombRadius = 5f;
 
     private GameObject monedaOriginal;
     private RotateCoin rotateCoin;

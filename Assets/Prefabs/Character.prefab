@@ -101,6 +101,7 @@ MonoBehaviour:
   esqueleto: {fileID: 8755321112139365859}
   showingGhost: 0
   actions: []
+  explosionVFX: {fileID: 9080140021571130472, guid: 82066d902ed0dd6488ddfd32eb994801, type: 3}
   switchCooldown: 2
 --- !u!114 &7930126595310468042
 MonoBehaviour:
@@ -140,15 +141,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireball: {fileID: 7251879486380165639, guid: c2f6a8962aac3814aa56cb9647c93470, type: 3}
-  thunderPrefab: {fileID: 7432329435647163445, guid: 1cb0f70c791a46c19e61d1222051cdd0, type: 3}
+  thunderPrefab: {fileID: 3300406336262876018, guid: 67544146273a40e48cb7167c545418e6, type: 3}
   attackDamage: 10
   attackSpeed: 5
   spawnHeight: 1
   attackRange: 5
   attackInterval: 1
   thunderLifeTime: 0.5
-  isFireball: 0
-  isThunder: 1
+  isFireball: 1
+  isThunder: 0
   swordSwingAudioClip: {fileID: 8300000, guid: 75007150f322cce46a01a6c889e3402d, type: 3}
   fireballAudioClip: {fileID: 8300000, guid: d8c9f6964b00f354ea48560606339ed6, type: 3}
   swordGO: {fileID: 0}

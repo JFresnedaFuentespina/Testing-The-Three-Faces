@@ -8,6 +8,7 @@ public class ChangeCharacter : MonoBehaviour
     public GameObject esqueleto;
     public bool showingGhost = false;
     public List<string> actions = new List<string>();
+    public GameObject explosionVFX;
 
     private GameObject monedaOriginal;
     private RotateCoin rotateCoin;
@@ -58,6 +59,8 @@ public class ChangeCharacter : MonoBehaviour
         if (actions.Contains("Bomb"))
         {
             Debug.Log("BOOOOM!!!");
+            GameObject bomb = Instantiate(explosionVFX, showingGhost ? esqueleto.transform.position : ghost.transform.position, Quaternion.identity, gameObject.transform);
+            Destroy(bomb, 2f);
         }
 
         if (showingGhost)

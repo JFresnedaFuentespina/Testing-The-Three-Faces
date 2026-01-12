@@ -8,19 +8,15 @@ public class AudioManager : MonoBehaviour
     public AudioClip bossCaraAudioClip;
     public AudioClip bossCruzAudioClip;
     public AudioClip bossCantoAudioClip;
+    public AudioClip selectedAudioClip;
     public AudioSource audioSource;
     public float level;
 
     void Start()
     {
         int randomClip = Random.Range(0, audioClips.Count);
-        audioSource.PlayOneShot(audioClips[randomClip]);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        selectedAudioClip = audioClips[randomClip];
+        PlayMusic();
     }
 
     public void PlayBossMusic()
@@ -28,15 +24,21 @@ public class AudioManager : MonoBehaviour
         audioSource.Stop();
         if (level == 1)
         {
-            audioSource.PlayOneShot(bossCaraAudioClip);
+            selectedAudioClip = bossCaraAudioClip;
         }
         else if (level == 2)
         {
-            audioSource.PlayOneShot(bossCruzAudioClip);
+            selectedAudioClip = bossCruzAudioClip;
         }
         else
         {
-            audioSource.PlayOneShot(bossCantoAudioClip);
+            selectedAudioClip = bossCantoAudioClip;
         }
+        PlayMusic();
+    }
+
+    public void PlayMusic()
+    {
+        audioSource.PlayOneShot(selectedAudioClip);
     }
 }

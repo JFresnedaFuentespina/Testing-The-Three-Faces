@@ -13,6 +13,7 @@ public class PlayerData
     public float attackRange;
     public string attackType;
     public List<string> inventoryItems;
+    public List<string> actions;
 
     public string PlayerDataStr()
     {

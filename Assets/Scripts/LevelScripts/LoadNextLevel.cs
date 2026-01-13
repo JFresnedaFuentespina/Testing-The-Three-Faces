@@ -136,6 +136,7 @@ public class LoadNextLevel : MonoBehaviour
         var atk = player.GetComponent<PlayerAttack>();
         var bh = player.GetComponent<PlayerBehaviour>();
         var hp = player.GetComponent<PlayerHealth>();
+        var changeCharacter = player.GetComponent<ChangeCharacter>();
 
         data.maxHealth = hp.maxHealth;
         data.health = hp.healthPoints;
@@ -144,6 +145,7 @@ public class LoadNextLevel : MonoBehaviour
         data.attackInterval = atk.attackInterval;
         data.attackRange = atk.attackRange;
         data.attackType = atk.isFireball ? "Fireball" : "Thunder";
+        data.actions = changeCharacter.GetUnlockedActions();
 
         string json = JsonConvert.SerializeObject(data);
         string path = Application.persistentDataPath + "/player.json";

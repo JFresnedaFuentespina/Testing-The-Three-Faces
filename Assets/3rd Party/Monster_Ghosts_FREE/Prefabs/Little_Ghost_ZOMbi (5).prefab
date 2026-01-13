@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1045583629865183247}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Joint4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1045583629945447257}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: JNTs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1045583630336057492}
   - component: {fileID: 1045583630336057493}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Little_Ghost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,7 +169,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1045583630442871110}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Joint1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,7 +201,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1045583630813205310}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Joint5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -233,7 +233,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1045583631301481715}
   - component: {fileID: 1045583631301481712}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Little_ghost_ANIMATOR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -288,7 +288,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1045583631359157897}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Joint3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -320,7 +320,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1045583631700472848}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Joint2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -358,7 +358,7 @@ GameObject:
   - component: {fileID: -7684594581794945973}
   - component: {fileID: -4244346402877624776}
   - component: {fileID: 249463532700649186}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Little_Ghost_ZOMbi (5)
   m_TagString: Enemy_Ghost
   m_Icon: {fileID: 0}
@@ -547,6 +547,22 @@ PrefabInstance:
     - target: {fileID: 5316046413323435999, guid: 351baf954590df348a71254a311227b1, type: 3}
       propertyPath: m_Name
       value: Healthbar
+      objectReference: {fileID: 0}
+    - target: {fileID: 5316046413323435999, guid: 351baf954590df348a71254a311227b1, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5316046413514025809, guid: 351baf954590df348a71254a311227b1, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5316046414844214688, guid: 351baf954590df348a71254a311227b1, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5316046414947681711, guid: 351baf954590df348a71254a311227b1, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

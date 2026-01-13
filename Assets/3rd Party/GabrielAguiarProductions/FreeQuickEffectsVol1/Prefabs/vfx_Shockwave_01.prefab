@@ -4905,6 +4905,7 @@ GameObject:
   - component: {fileID: 4299738629470430756}
   - component: {fileID: 4891440538664600065}
   - component: {fileID: 7326644512317886410}
+  - component: {fileID: 5302072462336265047}
   m_Layer: 0
   m_Name: vfx_Shockwave_01
   m_TagString: Untagged
@@ -9789,3 +9790,21 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &5302072462336265047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9080140021571130472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58e415af26438dd4189b93d749a074ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BombAttackHit
+  bombDamage: 20
+  bombRadius: 5
+  waveDuration: 1
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0

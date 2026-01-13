@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9203938795947278690}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Joint3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9203938795982387520}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Joint1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,7 +79,7 @@ GameObject:
   - component: {fileID: 4254948804930416915}
   - component: {fileID: -3905668181373414691}
   - component: {fileID: 7388981836953063924}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Little_Ghost_ZOMbi (2)
   m_TagString: Enemy_Ghost
   m_Icon: {fileID: 0}
@@ -226,7 +226,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9203938796228337873}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Joint4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 9203938796505349291}
   - component: {fileID: 9203938796505349293}
   - component: {fileID: 9203938796505349292}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Blade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -347,7 +347,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9203938796806716367}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: JNTs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -379,7 +379,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9203938796872375561}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Joint2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -411,7 +411,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9203938796986329946}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Haxo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -446,7 +446,7 @@ GameObject:
   - component: {fileID: 9203938797216291870}
   - component: {fileID: 9203938797216291840}
   - component: {fileID: 9203938797216291871}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Axe_Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -533,7 +533,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9203938797607137248}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Joint5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -567,7 +567,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9203938797635494800}
   - component: {fileID: 9203938797635494801}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Little_Ghost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -663,7 +663,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9203938797659169947}
   - component: {fileID: 9203938797659169948}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Little_ghost_ANIMATOR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -720,7 +720,7 @@ GameObject:
   - component: {fileID: 9203938797952966220}
   - component: {fileID: 9203938797952966222}
   - component: {fileID: 9203938797952966221}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Angel_Ring
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -849,6 +849,22 @@ PrefabInstance:
     - target: {fileID: 5316046413323435999, guid: 351baf954590df348a71254a311227b1, type: 3}
       propertyPath: m_Name
       value: Healthbar
+      objectReference: {fileID: 0}
+    - target: {fileID: 5316046413323435999, guid: 351baf954590df348a71254a311227b1, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5316046413514025809, guid: 351baf954590df348a71254a311227b1, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5316046414844214688, guid: 351baf954590df348a71254a311227b1, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5316046414947681711, guid: 351baf954590df348a71254a311227b1, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

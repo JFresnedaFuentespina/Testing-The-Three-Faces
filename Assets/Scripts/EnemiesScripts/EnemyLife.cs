@@ -12,6 +12,7 @@ public class EnemyLife : MonoBehaviour
     public GameObject healthBar;
     private Image fillImage;
 
+
     void Start()
     {
         currentHp = totalHp;
@@ -22,6 +23,7 @@ public class EnemyLife : MonoBehaviour
                 fillImage = fillTransform.GetComponent<Image>();
         }
     }
+
     public void Damage(float hit)
     {
         if (!isAlive) return;

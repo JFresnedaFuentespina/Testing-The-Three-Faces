@@ -8,7 +8,7 @@ public class EnemyLife : MonoBehaviour
     // Start is called before the first frame update
     public float totalHp = 10f;
     public float currentHp;
-    private bool isAlive = true;
+    public bool isAlive = true;
     public GameObject healthBar;
     private Image fillImage;
 

@@ -4,7 +4,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyMoveNavmesh : MonoBehaviour
 {
-    public float velocity = 3f; // velocidad del NavMeshAgent
+    public float velocity = 1f;
     private GameObject mainCharacter;
     private NavMeshAgent agent;
 
@@ -16,27 +16,28 @@ public class EnemyMoveNavmesh : MonoBehaviour
         agent.acceleration = 8f;
         agent.stoppingDistance = 0.5f;
 
-        BuscarJugador();
-    }
+        agent.updateRotation = true;
+        agent.updateUpAxis = true;
 
-    void Update()
-    {
+        BuscarJugador();
         if (mainCharacter != null)
         {
             agent.SetDestination(mainCharacter.transform.position);
         }
-        else
+    }
+
+    void Update()
+    {
+        if (mainCharacter == null) return;
+        // Solo actualizamos destino si el jugador se ha movido lo suficiente
+        if (Vector3.Distance(agent.destination, mainCharacter.transform.position) > 0.5f)
         {
-            BuscarJugador();
+            agent.SetDestination(mainCharacter.transform.position);
         }
     }
 
     private void BuscarJugador()
     {
-        mainCharacter = GameObject.Find("Character(Clone)");
-        if (mainCharacter == null)
-        {
-            mainCharacter = GameObject.FindGameObjectWithTag("Player");
-        }
+        mainCharacter = GameObject.Find("Character(Clone)") ?? GameObject.FindGameObjectWithTag("Player");
     }
 }

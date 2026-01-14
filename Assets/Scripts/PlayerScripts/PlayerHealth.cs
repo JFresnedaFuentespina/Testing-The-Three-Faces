@@ -12,10 +12,11 @@ public class PlayerHealth : MonoBehaviour
     public float minHealth = 0f;
     public float healthPoints = 3;
     [Header("Health UI")]
-    public GameObject heartContainer;          // El Panel con GridLayoutGroup
+    public GameObject heartContainer;
     public Sprite fullHeartSprite;
     public Sprite halfHeartSprite;
     public Sprite emptyHeartSprite;
+    public Image bloodFrame;
 
     private List<Image> hearts = new List<Image>();
 
@@ -91,6 +92,12 @@ public class PlayerHealth : MonoBehaviour
             return;
         }
 
+        bloodFrame = GameObject.Find("BloodFrame")?.GetComponent<Image>();
+        if (bloodFrame == null)
+        {
+            Debug.LogWarning("No se encontró BloodFrame en el HUD");
+        }
+
         InitializeHearts();
         RefreshHearts();
         Invoke(nameof(EnableDeath), 0.1f);
@@ -114,11 +121,8 @@ public class PlayerHealth : MonoBehaviour
             || other.gameObject.CompareTag("EnemyProjectile")
             )
         {
-            healthPoints -= 0.5f;
+            Damage();
         }
-        // Limita el valor antes de actualizar HUD
-        healthPoints = Mathf.Clamp(healthPoints, minHealth, maxHealth);
-        UpdateHUD();
     }
     public void CheckDeath()
     {
@@ -226,8 +230,60 @@ public class PlayerHealth : MonoBehaviour
         healthPoints -= 0.5f;
         healthPoints = Mathf.Clamp(healthPoints, minHealth, maxHealth);
         UpdateHUD();
+        BlinkBloodFrame();
         Debug.Log("Player damaged. Current health: " + healthPoints);
     }
+
+    public void BlinkBloodFrame()
+    {
+        if (bloodFrame == null)
+        {
+            Debug.Log("PlayerHealth: bloodFrame es null!");
+            return;
+        }
+
+        Debug.Log("PlayerHealth: Starting Blink Coroutine");
+        StartCoroutine(BlinkBloodCoroutine());
+    }
+
+    IEnumerator BlinkBloodCoroutine()
+    {
+        if (bloodFrame == null) yield break;
+
+        float blinkDuration = 0.6f; // duración total
+        int blinkCount = 2;          // número de “subidas y bajadas”
+        float halfDuration = blinkDuration / (2f * blinkCount);
+
+        Color originalColor = bloodFrame.color;
+        Color transparent = new Color(originalColor.r, originalColor.g, originalColor.b, 0f);
+        Color opaque = new Color(originalColor.r, originalColor.g, originalColor.b, 1f);
+
+        for (int i = 0; i < blinkCount; i++)
+        {
+            // Fade in
+            float t = 0f;
+            while (t < halfDuration)
+            {
+                bloodFrame.color = Color.Lerp(transparent, opaque, t / halfDuration);
+                t += Time.unscaledDeltaTime;
+                yield return null;
+            }
+            bloodFrame.color = opaque;
+
+            // Fade out
+            t = 0f;
+            while (t < halfDuration)
+            {
+                bloodFrame.color = Color.Lerp(opaque, transparent, t / halfDuration);
+                t += Time.unscaledDeltaTime;
+                yield return null;
+            }
+            bloodFrame.color = transparent;
+        }
+
+        bloodFrame.color = transparent; // asegurar que queda invisible
+    }
+
 
     public void IncreaseMaxHealth(float amount)
     {

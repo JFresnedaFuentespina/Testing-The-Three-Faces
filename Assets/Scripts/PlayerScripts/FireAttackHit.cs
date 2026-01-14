@@ -1,9 +1,13 @@
 // AttackHit.cs
+using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class FireAttackHit : MonoBehaviour
 {
     public float attackDamage = 5;
+
+    public float fireballPushForce = 1f;
 
     void Start()
     {
@@ -65,5 +69,21 @@ public class FireAttackHit : MonoBehaviour
         {
             Destroy(gameObject, destroyDelay);
         }
+        // Empujar enemigos al ser golpeados por una bola de fuego
+        if (gameObject.CompareTag("Fireball"))
+        {
+            StartCoroutine(ApplyPush(other.GetComponent<NavMeshAgent>(), transform.forward, fireballPushForce, 0.5f));
+        }
     }
+    IEnumerator ApplyPush(NavMeshAgent agent, Vector3 direction, float force, float duration)
+    {
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            agent.Move(direction * force * Time.deltaTime); // mueve sin desactivar el agente
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+    }
+
 }

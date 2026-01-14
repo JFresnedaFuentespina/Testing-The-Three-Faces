@@ -142,7 +142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireball: {fileID: 7251879486380165639, guid: c2f6a8962aac3814aa56cb9647c93470, type: 3}
   thunderPrefab: {fileID: 3300406336262876018, guid: 67544146273a40e48cb7167c545418e6, type: 3}
-  attackDamage: 10
+  attackDamage: 2
   attackSpeed: 5
   spawnHeight: 1
   attackRange: 5
@@ -172,6 +172,7 @@ MonoBehaviour:
   fullHeartSprite: {fileID: 21300000, guid: 34776d0090532804398b8b33cb20041f, type: 3}
   halfHeartSprite: {fileID: 21300000, guid: 85a62e430edfb494bafea3a0205fab28, type: 3}
   emptyHeartSprite: {fileID: 21300000, guid: df3ae66e968477a49a7df28a79bbe83e, type: 3}
+  bloodFrame: {fileID: 0}
   hud: {fileID: 0}
   canDie: 0
 --- !u!114 &5973908844157556360
@@ -455,6 +456,7 @@ MonoBehaviour:
   fullHeartSprite: {fileID: 0}
   halfHeartSprite: {fileID: 0}
   emptyHeartSprite: {fileID: 0}
+  bloodFrame: {fileID: 0}
   hud: {fileID: 0}
   canDie: 0
 --- !u!1001 &7930126594882055342
@@ -590,5 +592,6 @@ MonoBehaviour:
   fullHeartSprite: {fileID: 0}
   halfHeartSprite: {fileID: 0}
   emptyHeartSprite: {fileID: 0}
+  bloodFrame: {fileID: 0}
   hud: {fileID: 0}
   canDie: 0

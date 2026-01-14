@@ -10,6 +10,8 @@ public class NextRoomCalculator : MonoBehaviour
     public List<GameObject> torches;
     public GameObject audioManagerGO;
     public AudioManager audioManager;
+    public GameObject camera1;
+    public GameObject cameraCenital;
 
     void Start()
     {
@@ -18,7 +20,7 @@ public class NextRoomCalculator : MonoBehaviour
         audioManagerGO = GameObject.Find("Audio Source");
         audioManager = audioManagerGO.GetComponent<AudioManager>();
         audioManager.level = level.levelWidth;
-        if(audioManager == null)
+        if (audioManager == null)
         {
             Debug.Log("AUDIO MANAGER NOT FOUND!!");
         }
@@ -49,7 +51,7 @@ public class NextRoomCalculator : MonoBehaviour
             return;
         }
 
-        if(nextRoomObj.GetComponent<BossRoom>() != null && audioManager != null)
+        if (nextRoomObj.GetComponent<BossRoom>() != null && audioManager != null)
         {
             audioManager.PlayBossMusic();
         }
@@ -204,8 +206,21 @@ public class NextRoomCalculator : MonoBehaviour
         if (Camera.main == null)
             return;
 
-        Camera.main.transform.position = new Vector3(roomPos.x - 1.5f, Camera.main.transform.position.y, roomPos.z - 11f);
-        Camera.main.transform.rotation = Quaternion.Euler(40f, 0f, 0f);
+        FindCameras();
+
+        if (camera1 != null)
+        {
+            camera1.transform.position = new Vector3(roomPos.x - 1.5f, camera1.transform.position.y, roomPos.z - 12.14f);
+            camera1.transform.rotation = Quaternion.Euler(40f, 0f, 0f);
+            Debug.Log("NextRoomCalculator - Moving Main Camera to new room position. New position: " + camera1.transform.position);
+        }
+
+        // if (cameraCenital != null)
+        // {
+        //     cameraCenital.transform.position = new Vector3(roomPos.x - 1.5f, cameraCenital.transform.position.y, roomPos.z - 3.95f);
+        //     cameraCenital.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
+        //     Debug.Log("NextRoomCalculator - Moving Cenital Camera to new room position. New position: " + cameraCenital.transform.position);
+        // }
 
         GameObject roomObj = FindRoomObject(roomPos);
         if (roomObj != null)
@@ -224,4 +239,18 @@ public class NextRoomCalculator : MonoBehaviour
             }
         }
     }
+
+    void FindCameras()
+    {
+        Camera[] cams = GameObject.FindObjectsByType<Camera>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+
+        foreach (var cam in cams)
+        {
+            if (cam.name == "Main Camera")
+                camera1 = cam.gameObject;
+            // else if (cam.name == "CamaraCenital")
+            //     cameraCenital = cam.gameObject;
+        }
+    }
+
 }

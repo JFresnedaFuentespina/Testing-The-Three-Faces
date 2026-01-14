@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,6 +8,14 @@ public class EnemyMoveNavmesh : MonoBehaviour
     public float velocity = 1f;
     private GameObject mainCharacter;
     private NavMeshAgent agent;
+
+    // Empuje
+    private bool isPushed = false;
+    private Vector3 pushDirection;
+    private float pushForce;
+    private float pushDuration;
+    private float pushElapsed;
+    private float stunnedSpeed = 0f;
 
     void Start()
     {
@@ -28,6 +37,19 @@ public class EnemyMoveNavmesh : MonoBehaviour
 
     void Update()
     {
+        if (isPushed)
+        {
+            // Aplicar empuje con física
+            transform.position += pushDirection * pushForce * Time.deltaTime;
+            pushElapsed += Time.deltaTime;
+            if (pushElapsed >= pushDuration)
+            {
+                isPushed = false;
+                agent.isStopped = false; // Reanudar navegación
+            }
+            return; // No hacemos navegación mientras es empujado
+        }
+
         if (mainCharacter == null) return;
         // Solo actualizamos destino si el jugador se ha movido lo suficiente
         if (Vector3.Distance(agent.destination, mainCharacter.transform.position) > 0.5f)
@@ -36,8 +58,33 @@ public class EnemyMoveNavmesh : MonoBehaviour
         }
     }
 
+    public void GetPushed(Vector3 direction, float force, float duration)
+    {
+        pushDirection = direction.normalized;
+        pushForce = force;
+        pushDuration = duration;
+        pushElapsed = 0f;
+
+        isPushed = true;
+        agent.isStopped = true;
+    }
+
+    public void SetStunned(float duration)
+    {
+        StartCoroutine(StunCoroutine(duration));
+    }
+
+    IEnumerator StunCoroutine(float duration)
+    {
+        float originalSpeed = agent.speed;
+        agent.speed = stunnedSpeed;
+        yield return new WaitForSeconds(duration);
+        agent.speed = originalSpeed;
+    }
+
     private void BuscarJugador()
     {
         mainCharacter = GameObject.Find("Character(Clone)") ?? GameObject.FindGameObjectWithTag("Player");
     }
 }
+

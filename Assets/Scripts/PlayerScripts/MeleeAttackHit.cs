@@ -1,10 +1,13 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class MeleeAttackHit : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public float attackDamage;
+    // public float pushForce = 10f;
     private void OnTriggerEnter(Collider other)
     {
         EnemyLife enemyLife = other.GetComponent<EnemyLife>();
@@ -43,5 +46,15 @@ public class MeleeAttackHit : MonoBehaviour
                 enemyLife.UpdateIsAlive();
             }
         }
+        if (other.CompareTag("BossCara") || other.CompareTag("BossCruz") || other.CompareTag("BossCanto") || other.CompareTag("Enemy_Zombie") || other.CompareTag("Enemy_Ghost"))
+        {
+            // Empujar enemigos al ser golpeados por ataque cuerpo a cuerpo
+            if (other.GetComponent<NavMeshAgent>() != null)
+            {
+                other.GetComponent<EnemyMoveNavmesh>().SetStunned(2f);
+            }
+        }
     }
+
+
 }

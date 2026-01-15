@@ -11,7 +11,7 @@ public class EnemyLife : MonoBehaviour
     private bool isAlive = true;
     public GameObject healthBar;
     private Image fillImage;
-    private float deathDelay = 2f;
+    private float deathDelay = 2.5f;
     public AudioClip hitAudioClip;
     public AudioClip defaultAudioClip;
     public AudioClip deathAudioClip;

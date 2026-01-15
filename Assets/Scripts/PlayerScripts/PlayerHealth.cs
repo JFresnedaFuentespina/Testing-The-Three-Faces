@@ -17,7 +17,8 @@ public class PlayerHealth : MonoBehaviour
     public Sprite halfHeartSprite;
     public Sprite emptyHeartSprite;
     public Image bloodFrame;
-
+    public AudioClip hitAudioClip;
+    public AudioSource audioSource;
     private List<Image> hearts = new List<Image>();
 
     public GameObject hud;
@@ -97,6 +98,8 @@ public class PlayerHealth : MonoBehaviour
         {
             Debug.LogWarning("No se encontró BloodFrame en el HUD");
         }
+
+        audioSource = GetComponent<AudioSource>();
 
         InitializeHearts();
         RefreshHearts();
@@ -227,6 +230,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void Damage()
     {
+        audioSource.PlayOneShot(hitAudioClip);
         healthPoints -= 0.5f;
         healthPoints = Mathf.Clamp(healthPoints, minHealth, maxHealth);
         UpdateHUD();

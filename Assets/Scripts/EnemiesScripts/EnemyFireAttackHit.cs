@@ -18,8 +18,6 @@ public class EnemyFireAttackHit : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
 
-        Debug.Log("Player received fire projectile hit");
-
         PlayerHealth ph = other.GetComponent<PlayerHealth>();
         if (ph != null)
         {

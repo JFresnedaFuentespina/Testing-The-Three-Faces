@@ -212,7 +212,6 @@ public class NextRoomCalculator : MonoBehaviour
         {
             camera1.transform.position = new Vector3(roomPos.x - 1.5f, camera1.transform.position.y, roomPos.z - 11.5f);
             camera1.transform.rotation = Quaternion.Euler(40f, 0f, 0f);
-            Debug.Log("NextRoomCalculator - Moving Main Camera to new room position. New position: " + camera1.transform.position);
         }
 
         // if (cameraCenital != null)

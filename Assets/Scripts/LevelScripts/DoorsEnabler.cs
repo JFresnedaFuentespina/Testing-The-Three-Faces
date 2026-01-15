@@ -17,7 +17,6 @@ public class DoorsEnabler : MonoBehaviour
 
     public void StartCheckEnemies()
     {
-        Debug.Log("StartCheckEnemies llamada");
         StartCoroutine(CheckEnemiesCoroutine());
     }
 
@@ -41,7 +40,6 @@ public class DoorsEnabler : MonoBehaviour
     };
         if (!generator.enemiesActuallySpawned)
         {
-            Debug.Log($"{name}: habitación sin enemigos, no reactivar puertas.");
             return;
         }
 

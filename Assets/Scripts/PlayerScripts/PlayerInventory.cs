@@ -44,7 +44,6 @@ public class PlayerInventory : MonoBehaviour
         if (inventory != null)
         {
             inventory.AddItem(id, icon);
-            Debug.Log("Item añadido al inventario: " + id);
         }
     }
 

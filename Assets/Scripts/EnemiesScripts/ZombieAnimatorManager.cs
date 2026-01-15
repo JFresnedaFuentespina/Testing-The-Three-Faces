@@ -17,7 +17,6 @@ public class ZombieAnimatorManager : MonoBehaviour
     }
     public void SetAttack()
     {
-        Debug.Log("ZOMBIEAI: SetAttack called");
         if (animator != null)
         {
             animator.SetTrigger("Attack");
@@ -26,7 +25,6 @@ public class ZombieAnimatorManager : MonoBehaviour
 
     public void SetDeath()
     {
-        Debug.Log("ZOMBIEAI: SetDeath called");
         if (animator != null)
         {
             animator.SetTrigger("Death");

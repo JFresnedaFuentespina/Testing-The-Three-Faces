@@ -50,9 +50,6 @@ public class PlayerBehaviour : MonoBehaviour
             return;
         }
 
-        // Prueba para confirmar que es el correcto
-        Debug.Log("Animator correcto asignado: " + animator.gameObject.name);
-
         // Load JSON stats
         string path = Application.persistentDataPath + "/player.json";
         if (File.Exists(path))

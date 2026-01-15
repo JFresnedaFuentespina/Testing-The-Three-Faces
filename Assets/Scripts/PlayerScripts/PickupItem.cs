@@ -79,7 +79,6 @@ public class PickupItem : MonoBehaviour
 
         hudReady = true;
 
-        Debug.Log("PickupItems: HUD de items listo? (SetupHud)." + hudReady);
         PlayerAttack.RequestAttackStats();
         PlayerBehaviour.RequestBehaviourStats();
         PlayerInventory.RequestInventoryItems();
@@ -226,13 +225,10 @@ public class PickupItem : MonoBehaviour
 
         RectTransform rt = iconGO.GetComponent<RectTransform>();
         rt.sizeDelta = new Vector2(90, 100); // tamaño de la celda
-
-        Debug.Log("Añadiendo item al HUD: " + itemID);
     }
 
     private void UpdateAttackStats(float damage, float interval)
     {
-        Debug.Log("PickupItems: HUD de items listo." + hudReady);
         if (!hudReady) return;
 
         damageText.text = "Damage: " + damage.ToString("F1");
@@ -241,7 +237,6 @@ public class PickupItem : MonoBehaviour
 
     private void UpdateSpeed(float speed)
     {
-        Debug.Log("PickupItems: HUD de items listo." + hudReady);
         if (!hudReady) return;
 
         speedText.text = "Speed: " + speed.ToString("F1");

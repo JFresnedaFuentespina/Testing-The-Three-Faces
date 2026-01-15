@@ -48,8 +48,6 @@ public class EnemyMove : MonoBehaviour
                 Quaternion rotation = Quaternion.LookRotation(lookPos);
                 transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 10f * Time.deltaTime);
             }
-
-            Debug.Log("Velocidad: " + rb.linearVelocity);
         }
     }
 

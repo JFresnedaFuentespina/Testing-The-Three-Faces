@@ -25,7 +25,6 @@ public class EnemiesGenerator : MonoBehaviour
     {
         if (enemiesDefeated)
         {
-            Debug.Log($"No se generan enemigos en {gameObject.name} (ya derrotados)");
             return;
         }
 
@@ -72,17 +71,14 @@ public class EnemiesGenerator : MonoBehaviour
         {
             if(SceneManager.GetActiveScene().name == "Level1Scene")
             {
-                Debug.Log($"Generando BossCara en {gameObject.name}");
                 GenerateBoss(bossCaraPrefab, bounds, roomPos);
             }
             else if(SceneManager.GetActiveScene().name == "Level2Scene")
             {
-                Debug.Log($"Generando BossCruz en {gameObject.name}");
                 GenerateBoss(bossCruzPrefab, bounds, roomPos);
             }
             else if(SceneManager.GetActiveScene().name == "Level3Scene")
             {
-                Debug.Log($"Generando BossCanto en {gameObject.name}");
                 GenerateBoss(bossCantoPrefab, bounds, roomPos);
             }
         }
@@ -90,8 +86,6 @@ public class EnemiesGenerator : MonoBehaviour
         // Marcar que ya se generó todo
         enemiesActuallySpawned = true;
         enemiesSpawned = true;
-
-        Debug.Log($"Enemigos + boss actuales en {gameObject.name}: {spawnedEnemies.Count}");
     }
 
     private void GenerateBoss(GameObject bossPrefab, Bounds bounds, Vector3 roomPos)

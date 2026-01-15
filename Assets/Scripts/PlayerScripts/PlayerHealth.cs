@@ -231,18 +231,14 @@ public class PlayerHealth : MonoBehaviour
         healthPoints = Mathf.Clamp(healthPoints, minHealth, maxHealth);
         UpdateHUD();
         BlinkBloodFrame();
-        Debug.Log("Player damaged. Current health: " + healthPoints);
     }
 
     public void BlinkBloodFrame()
     {
         if (bloodFrame == null)
         {
-            Debug.Log("PlayerHealth: bloodFrame es null!");
             return;
         }
-
-        Debug.Log("PlayerHealth: Starting Blink Coroutine");
         StartCoroutine(BlinkBloodCoroutine());
     }
 

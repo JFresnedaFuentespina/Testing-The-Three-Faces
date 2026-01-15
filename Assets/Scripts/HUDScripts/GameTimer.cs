@@ -27,7 +27,6 @@ public class GameTimer : MonoBehaviour
                 if (data != null)
                 {
                     elapsedTime = data.time;
-                    Debug.Log("Tiempo cargado desde archivo: " + elapsedTime);
                 }
             }
             catch

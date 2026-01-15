@@ -65,8 +65,6 @@ public class GenerateRocksInRoom : MonoBehaviour
             Instantiate(prefab, pos, Quaternion.identity, transform);
             spawned++;
         }
-
-        Debug.Log($"Generadas {spawned} rocas (evitando {activeDoors.Count} puertas activas).");
     }
 
     List<Transform> GetActiveDoors()

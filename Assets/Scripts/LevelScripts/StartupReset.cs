@@ -9,7 +9,6 @@ public static class StartupReset
         if (inv != null)
         {
             inv.items.Clear();
-            Debug.Log("Inventory reseteado al iniciar escena");
         }
         else
         {

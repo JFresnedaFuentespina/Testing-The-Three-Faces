@@ -7,7 +7,6 @@ public class LoadLevel1 : MonoBehaviour
     // Esta función se llamará al hacer clic en el botón
     public void CargarNivel1()
     {
-        Debug.Log("Cargando Nivel 1...");
         string path = Application.persistentDataPath + "/player.json";
         if (File.Exists(path))
         {

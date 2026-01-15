@@ -75,7 +75,6 @@ public class CantoMovement : MonoBehaviour
             && enemyLife.currentHp <= enemyLife.totalHp * 0.5f
             && !magicAttackCasted)
         {
-            Debug.Log("BOSSCANTOMOVEMENT: Starting magic attack. Current HP: " + enemyLife.currentHp);
 
             magicAttackCasted = true;
             isAttacking = true;

@@ -150,7 +150,6 @@ public class LoadNextLevel : MonoBehaviour
         string json = JsonConvert.SerializeObject(data);
         string path = Application.persistentDataPath + "/player.json";
         File.WriteAllText(path, json);
-        Debug.Log(File.Exists(path) + " Exists?");
 
     }
 

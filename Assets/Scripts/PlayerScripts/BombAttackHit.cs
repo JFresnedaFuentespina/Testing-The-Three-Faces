@@ -37,11 +37,6 @@ public class BombAttackHit : MonoBehaviour
                 if (enemyLife == null) continue;
 
                 if (damagedEnemies.Contains(enemyLife)) continue;
-                Debug.Log(
-                        $"BOMB HIT -> {enemyLife.gameObject.name} | " +
-                        $"Radius: {currentRadius:F2} / {bombRadius} | " +
-                        $"Time: {elapsed:F2}"
-                    );
                 damagedEnemies.Add(enemyLife);
                 enemyLife.Damage(bombDamage);
             }

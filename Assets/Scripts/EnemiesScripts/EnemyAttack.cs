@@ -4,6 +4,7 @@ public class EnemyAttack : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public GameObject projectilePrefab;
+    public EnemyLife enemyLife;
     public float attackInterval = 2.0f;
     private float attackTimer = 0.0f;
     public float projectileSpeed = 2.0f;
@@ -11,6 +12,7 @@ public class EnemyAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        enemyLife = GetComponent<EnemyLife>();
         if (attackTimer < attackInterval)
         {
             attackTimer += Time.deltaTime;
@@ -25,12 +27,12 @@ public class EnemyAttack : MonoBehaviour
     private void Attack()
     {
         if (projectilePrefab == null) return;
+        if (enemyLife.GetIsAlive() == false) return;
 
         Vector3 spawnPos = transform.position + transform.forward + Vector3.up * 0.3f;
 
         GameObject projectile = Instantiate(projectilePrefab, spawnPos, Quaternion.identity);
 
-        // IGNORAR colisión con el enemigo que lo dispara
         Collider myCol = GetComponent<Collider>() ?? GetComponentInChildren<Collider>();
         Collider projCol = projectile.GetComponent<Collider>();
 

@@ -5,12 +5,14 @@ public class VanishGhost : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private EnemyLife enemyLife;
-    private Renderer[] renderers;
     public float fadeDuration = 2.0f;
     void Start()
     {
         enemyLife = GetComponent<EnemyLife>();
-        renderers = GetComponentsInChildren<Renderer>();
+        if (enemyLife == null)
+        {
+            Debug.LogError("EnemyLife component not found on the GameObject.");
+        }
     }
 
     // Update is called once per frame
@@ -18,46 +20,20 @@ public class VanishGhost : MonoBehaviour
     {
         if (enemyLife.GetIsAlive() == false)
         {
-            StartCoroutine(FadeOut());
+            StartCoroutine(ShrinkAndDestroy());
             this.enabled = false;
         }
     }
-    private IEnumerator FadeOut()
+    private IEnumerator ShrinkAndDestroy(float duration = 1f)
     {
+        Vector3 originalScale = transform.localScale;
         float elapsed = 0f;
-        Color[][] originalColors = new Color[renderers.Length][];
-        for (int i = 0; i < renderers.Length; i++)
-        {
-            originalColors[i] = new Color[renderers[i].materials.Length];
-            for (int j = 0; j < renderers[i].materials.Length; j++)
-            {
-                originalColors[i][j] = renderers[i].materials[j].color;
-                Material mat = renderers[i].materials[j];
-                mat.SetFloat("_Mode", 2); // 2 = transparent (Standard Shader)
-                mat.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
-                mat.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
-                mat.SetInt("_ZWrite", 0);
-                mat.DisableKeyword("_ALPHATEST_ON");
-                mat.EnableKeyword("_ALPHABLEND_ON");
-                mat.DisableKeyword("_ALPHAPREMULTIPLY_ON");
-                mat.renderQueue = 3000;
-            }
-        }
-        while (elapsed < fadeDuration)
+
+        while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
-            float alpha = Mathf.Lerp(1f, 0f, elapsed / fadeDuration);
-
-            for (int i = 0; i < renderers.Length; i++)
-            {
-                for (int j = 0; j < renderers[i].materials.Length; j++)
-                {
-                    Color c = originalColors[i][j];
-                    c.a = alpha;
-                    renderers[i].materials[j].color = c;
-                }
-            }
-
+            float t = elapsed / duration;
+            transform.localScale = Vector3.Lerp(originalScale, Vector3.zero, t);
             yield return null;
         }
     }

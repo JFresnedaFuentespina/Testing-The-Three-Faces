@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 2702358428951745022}
   - component: {fileID: 6432843834499017884}
   - component: {fileID: 5702492541579106762}
-  - component: {fileID: -2938508291654899938}
   - component: {fileID: 8873961242511707733}
   m_Layer: 9
   m_Name: Little_Ghost_ZOMbi (7)
@@ -257,28 +256,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!95 &-2938508291654899938
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3985757784934188552}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ec74708cbf9a55f4480e35a959740fae, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &8873961242511707733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,6 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39f0247ab249ab449b2d167a7e0b0006, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VanishGhost
+  fadeDuration: 2
 --- !u!1 &3985757785239792848
 GameObject:
   m_ObjectHideFlags: 0

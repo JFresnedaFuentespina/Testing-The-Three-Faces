@@ -76,7 +76,7 @@ public class LevelGenerator : MonoBehaviour
                     }
                 }
 
-                if (i == 0)
+                if (i == 0 && character != null)
                 {
                     character = Instantiate(characterPrefab, position, Quaternion.identity);
                 }

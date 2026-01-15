@@ -20,7 +20,6 @@ public class FireAttackHit : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Vector3 pushDirection = (other.transform.position - transform.position).normalized;
         float destroyDelay = 0f;
         if (gameObject.CompareTag("Thunderbolt"))
         {
@@ -34,7 +33,6 @@ public class FireAttackHit : MonoBehaviour
             {
                 enemyLife.Damage(attackDamage);
                 enemyLife.UpdateIsAlive();
-                caraAi.ReactToHit();
             }
             Destroy(gameObject, destroyDelay);
         }
@@ -74,13 +72,11 @@ public class FireAttackHit : MonoBehaviour
         // Empujar enemigos al ser golpeados por una bola de fuego
         if (gameObject.CompareTag("Fireball"))
         {
-            if (other.CompareTag("Enemy_Zombie") || other.CompareTag("Enemy_Ghost"))
+            EnemyMoveNavmesh enemyMove = other.GetComponent<EnemyMoveNavmesh>();
+            if (enemyMove != null)
             {
-                EnemyMoveNavmesh enemyMove = other.GetComponent<EnemyMoveNavmesh>();
-                if (enemyMove != null)
-                {
-                    enemyMove.GetPushed(pushDirection, fireballPushForce, 0.2f);
-                }
+                Vector3 pushDirection = other.transform.position - transform.position;
+                enemyMove.GetPushed(pushDirection, fireballPushForce, 0.2f);
             }
         }
     }

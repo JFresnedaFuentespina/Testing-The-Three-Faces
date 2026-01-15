@@ -13,7 +13,7 @@ public class MeleeAttackHit : MonoBehaviour
         EnemyLife enemyLife = other.GetComponent<EnemyLife>();
         if (other.CompareTag("BossCara"))
         {
-            CaraAI2 caraAi = other.GetComponent<CaraAI2>();
+            CaraAI caraAi = other.GetComponent<CaraAI>();
             if (caraAi != null)
             {
                 enemyLife.Damage(attackDamage);

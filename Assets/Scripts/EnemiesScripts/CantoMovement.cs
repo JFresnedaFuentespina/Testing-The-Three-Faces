@@ -177,6 +177,21 @@ public class CantoMovement : MonoBehaviour
             agent.isStopped = true;
         }
     }
+    public void ReactToHit()
+    {
+        if(isAttacking) return;
+        StartCoroutine(ReactToHitCoroutine(0.9f));
+    }
+
+    public IEnumerator ReactToHitCoroutine(float hitDuration)
+    {
+        isWalking = false;
+        agent.isStopped = true;
+        cantoAI.SetWalking(false);
+        cantoAI.SetHit();
+        yield return new WaitForSeconds(hitDuration);
+        StartWalking();
+    }
 
     private void FinishAttack()
     {

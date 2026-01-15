@@ -54,9 +54,11 @@ public class FireAttackHit : MonoBehaviour
         else if (other.CompareTag("BossCanto"))
         {
             CantoAI cantoAI = other.GetComponent<CantoAI>();
-            if (cantoAI != null)
+            CantoMovement cantoMovement = other.GetComponent<CantoMovement>();
+            if (cantoAI != null && cantoMovement != null)
             {
                 enemyLife.Damage(attackDamage);
+                cantoMovement.ReactToHit();
                 enemyLife.UpdateIsAlive();
             }
             Destroy(gameObject, destroyDelay);

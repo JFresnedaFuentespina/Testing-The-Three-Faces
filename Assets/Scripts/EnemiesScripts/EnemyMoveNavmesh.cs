@@ -16,9 +16,11 @@ public class EnemyMoveNavmesh : MonoBehaviour
     private float pushDuration;
     private float pushElapsed;
     private float stunnedSpeed = 0f;
+    private EnemyLife enemyLife;
 
     void Start()
     {
+        enemyLife = GetComponent<EnemyLife>();
         agent = GetComponent<NavMeshAgent>();
         agent.speed = velocity;
         agent.angularSpeed = 120f;
@@ -37,6 +39,11 @@ public class EnemyMoveNavmesh : MonoBehaviour
 
     void Update()
     {
+        if (!enemyLife.GetIsAlive())
+        {
+            agent.isStopped = true;
+            return;
+        }
         if (isPushed)
         {
             // Aplicar empuje con física

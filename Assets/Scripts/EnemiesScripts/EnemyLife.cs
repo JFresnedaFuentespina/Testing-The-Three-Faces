@@ -11,10 +11,15 @@ public class EnemyLife : MonoBehaviour
     private bool isAlive = true;
     public GameObject healthBar;
     private Image fillImage;
-    private float deathDelay = 0f;
+    private float deathDelay = 2f;
+    public AudioClip hitAudioClip;
+    public AudioClip defaultAudioClip;
+    public AudioClip deathAudioClip;
+    public AudioSource audioSource;
 
     void Start()
     {
+        audioSource.PlayOneShot(defaultAudioClip);
         currentHp = totalHp;
         if (healthBar != null)
         {
@@ -27,7 +32,11 @@ public class EnemyLife : MonoBehaviour
     public void Damage(float hit)
     {
         if (!isAlive) return;
-
+        if (audioSource != null && hitAudioClip != null)
+        {
+            audioSource.PlayOneShot(hitAudioClip);
+        }
+        audioSource.PlayOneShot(defaultAudioClip);
         currentHp -= hit;
         currentHp = Mathf.Clamp(currentHp, 0f, totalHp);
 
@@ -62,6 +71,10 @@ public class EnemyLife : MonoBehaviour
         if(gameObject.tag.Contains("Boss"))
         {
             deathDelay = 5f;
+        }
+        if (audioSource != null && deathAudioClip != null)
+        {
+            audioSource.PlayOneShot(deathAudioClip);
         }
         Destroy(gameObject, deathDelay);
     }

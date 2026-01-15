@@ -60,6 +60,10 @@ public class FireAttackHit : MonoBehaviour
                 enemyLife.Damage(attackDamage);
                 cantoMovement.ReactToHit();
                 enemyLife.UpdateIsAlive();
+                if(!enemyLife.GetIsAlive())
+                {
+                    cantoMovement.ReactToDeath();
+                }
             }
             Destroy(gameObject, destroyDelay);
         }

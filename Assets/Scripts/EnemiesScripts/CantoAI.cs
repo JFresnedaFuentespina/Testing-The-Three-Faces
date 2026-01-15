@@ -14,10 +14,7 @@ public class CantoAI : MonoBehaviour
 
     public void SetWalking(bool isWalking)
     {
-
         animator.SetBool("IsWalking", isWalking);
-
-        // fuerza update visual
         animator.Update(0f);
     }
 

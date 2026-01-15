@@ -40,6 +40,7 @@ public class CantoMovement : MonoBehaviour
     void Update()
     {
         if (player == null) return;
+        if (enemyLife.GetIsAlive() == false) return;
 
         transform.LookAt(player.transform);
 
@@ -179,7 +180,7 @@ public class CantoMovement : MonoBehaviour
     }
     public void ReactToHit()
     {
-        if(isAttacking) return;
+        if (isAttacking) return;
         StartCoroutine(ReactToHitCoroutine(0.9f));
     }
 
@@ -191,6 +192,16 @@ public class CantoMovement : MonoBehaviour
         cantoAI.SetHit();
         yield return new WaitForSeconds(hitDuration);
         StartWalking();
+    }
+
+    public void ReactToDeath()
+    {
+        isWalking = false;
+        isAttacking = false;
+        cantoAI.SetWalking(false);
+        cantoAI.SetDeath();
+        agent.isStopped = true;
+        agent.ResetPath();
     }
 
     private void FinishAttack()

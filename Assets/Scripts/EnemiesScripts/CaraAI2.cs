@@ -9,12 +9,14 @@ public class CaraAI2 : MonoBehaviour
 
     private bool hasJumped = false;       // indica si está actualmente en el aire
     private bool wasInAir = false;        // para detectar aterrizaje real
+    private bool isBeingHit = false;
     private bool jumpOnCooldown = false;  // evita saltos dobles inmediatos
 
     void Start()
     {
         animator = GetComponent<Animator>();
         enemyMove = GetComponent<EnemyMove>();
+        animator.applyRootMotion = false;
     }
 
     void Update()
@@ -64,9 +66,10 @@ public class CaraAI2 : MonoBehaviour
                 animator.SetFloat("Action", 0, 0.2f, Time.deltaTime); // caminar
             }
             else if (distanceToPlayerFloat > 1 && distanceToPlayerFloat <= 5
-                     && !hasJumped && !jumpOnCooldown && isGrounded)
+                     && !hasJumped && !jumpOnCooldown && isGrounded && !isBeingHit)
             {
                 // Saltar solo si está en el suelo y no está en cooldown
+                animator.ResetTrigger("Hit");
                 animator.SetTrigger("Jump");
                 enemyMove.Jump(7f);
                 hasJumped = true;
@@ -80,6 +83,35 @@ public class CaraAI2 : MonoBehaviour
                 animator.SetFloat("Action", 4, 0.2f, Time.deltaTime); // ataque
             }
         }
+    }
+
+    public void ReactToHit()
+    {
+        if (wasInAir || isBeingHit)
+            return;
+        StartCoroutine(ReactToHitCoroutine());
+    }
+
+    private IEnumerator ReactToHitCoroutine()
+    {
+        isBeingHit = true;
+
+        animator.ResetTrigger("Hit");
+        animator.SetTrigger("Hit");
+
+        enemyMove.velocity = 0f;
+
+        yield return new WaitForSeconds(1f);
+
+        enemyMove.RestoreSpeed();
+        isBeingHit = false;
+    }
+
+
+    public void ReactToDeath()
+    {
+        enemyMove.isAlive = false;
+        animator.SetTrigger("Death");
     }
 
     private IEnumerator JumpCooldown()

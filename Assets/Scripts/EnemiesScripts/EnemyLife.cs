@@ -11,7 +11,7 @@ public class EnemyLife : MonoBehaviour
     private bool isAlive = true;
     public GameObject healthBar;
     private Image fillImage;
-
+    private float deathDelay = 0f;
 
     void Start()
     {
@@ -59,7 +59,10 @@ public class EnemyLife : MonoBehaviour
 
     public void Die()
     {
-        Debug.Log($"{gameObject.name} murió");
-        Destroy(gameObject);
+        if(gameObject.tag.Contains("Boss"))
+        {
+            deathDelay = 5f;
+        }
+        Destroy(gameObject, deathDelay);
     }
 }

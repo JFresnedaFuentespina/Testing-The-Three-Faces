@@ -32,7 +32,12 @@ public class FireAttackHit : MonoBehaviour
             if (caraAi != null)
             {
                 enemyLife.Damage(attackDamage);
+                caraAi.ReactToHit();
                 enemyLife.UpdateIsAlive();
+                if(!enemyLife.GetIsAlive())
+                {
+                    caraAi.ReactToDeath();
+                }
             }
             Destroy(gameObject, destroyDelay);
         }

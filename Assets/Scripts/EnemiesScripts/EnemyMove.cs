@@ -7,6 +7,8 @@ public class EnemyMove : MonoBehaviour
     private GameObject mainCharacter;
     private float fixedY;
     private Rigidbody rb;
+
+    public bool isAlive = true;
     void Start()
     {
         fixedY = transform.position.y;
@@ -19,30 +21,35 @@ public class EnemyMove : MonoBehaviour
 
     void Update()
     {
-        if (mainCharacter == null)
+        if (isAlive)
         {
-            BuscarJugador();
-            if (mainCharacter == null) return; // aún no existe
-        }
+            if (mainCharacter == null)
+            {
+                BuscarJugador();
+                if (mainCharacter == null) return; // aún no existe
+            }
 
-        // Dirección horizontal hacia el jugador
-        Vector3 targetPos = mainCharacter.transform.position;
-        Vector3 direction = targetPos - transform.position;
-        direction.y = 0; // ignorar altura
-        direction.Normalize();
+            // Dirección horizontal hacia el jugador
+            Vector3 targetPos = mainCharacter.transform.position;
+            Vector3 direction = targetPos - transform.position;
+            direction.y = 0; // ignorar altura
+            direction.Normalize();
 
-        // Mover usando Rigidbody
-        Vector3 horizontalVelocity = direction * velocity;
-        Vector3 currentVelocity = rb.linearVelocity;
-        rb.linearVelocity = new Vector3(horizontalVelocity.x, currentVelocity.y, horizontalVelocity.z);
+            // Mover usando Rigidbody
+            Vector3 horizontalVelocity = direction * velocity;
+            Vector3 currentVelocity = rb.linearVelocity;
+            rb.linearVelocity = new Vector3(horizontalVelocity.x, currentVelocity.y, horizontalVelocity.z);
 
-        // Girar suavemente hacia el jugador
-        Vector3 lookPos = targetPos - transform.position;
-        lookPos.y = 0;
-        if (lookPos.sqrMagnitude > 0.001f)
-        {
-            Quaternion rotation = Quaternion.LookRotation(lookPos);
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 10f * Time.deltaTime);
+            // Girar suavemente hacia el jugador
+            Vector3 lookPos = targetPos - transform.position;
+            lookPos.y = 0;
+            if (lookPos.sqrMagnitude > 0.001f)
+            {
+                Quaternion rotation = Quaternion.LookRotation(lookPos);
+                transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 10f * Time.deltaTime);
+            }
+
+            Debug.Log("Velocidad: " + rb.linearVelocity);
         }
     }
 

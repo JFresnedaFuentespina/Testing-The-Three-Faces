@@ -16,6 +16,7 @@ public class EnemyLife : MonoBehaviour
     public AudioClip defaultAudioClip;
     public AudioClip deathAudioClip;
     public AudioSource audioSource;
+    public bool poisoned = false;
 
     void Start()
     {
@@ -32,17 +33,43 @@ public class EnemyLife : MonoBehaviour
     public void Damage(float hit)
     {
         if (!isAlive) return;
+
         if (audioSource != null && hitAudioClip != null)
-        {
             audioSource.PlayOneShot(hitAudioClip);
-        }
-        audioSource.PlayOneShot(defaultAudioClip);
+
         currentHp -= hit;
         currentHp = Mathf.Clamp(currentHp, 0f, totalHp);
-
         UpdateHealthBar();
         UpdateIsAlive();
+
+        if (poisoned)
+        {
+            StartCoroutine(PoisonDamage(hit*0.2f));
+            poisoned = false;
+        }
     }
+
+    private IEnumerator PoisonDamage(float damage)
+    {
+        int ticks = 3;
+        float delay = 1f; // tiempo entre ticks
+
+        for (int i = 0; i < ticks; i++)
+        {
+            if (!isAlive) yield break;
+
+            yield return new WaitForSeconds(delay);
+
+            currentHp -= damage;
+            currentHp = Mathf.Clamp(currentHp, 0f, totalHp);
+
+
+            UpdateHealthBar();
+            UpdateIsAlive();
+        }
+        poisoned = true;
+    }
+
 
     public void UpdateIsAlive()
     {
@@ -68,7 +95,7 @@ public class EnemyLife : MonoBehaviour
 
     public void Die()
     {
-        if(gameObject.tag.Contains("Boss"))
+        if (gameObject.tag.Contains("Boss"))
         {
             deathDelay = 5f;
         }

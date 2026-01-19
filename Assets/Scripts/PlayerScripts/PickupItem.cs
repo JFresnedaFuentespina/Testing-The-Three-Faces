@@ -177,9 +177,11 @@ public class PickupItem : MonoBehaviour
         {
             msg = "¡Llave recogida!";
         }
-        else if (item.CompareTag("GreenPotion")) // Curación de medio corazón
+        else if (item.CompareTag("GreenPotion")) // Ataque envenenado
         {
-            msg = "¡Poción verde recogida!";
+            msg = "Ataque envenenado!";
+            if(OnPlayerAttackEvent != null)
+                OnPlayerAttackEvent("GreenPotion");
         }
         else if (item.CompareTag("RedVial")) // Curación de un corazón
         {
@@ -192,7 +194,6 @@ public class PickupItem : MonoBehaviour
                 OnHealthIncreasedEvent(1);
             if (OnFullyHealedEvent != null)
                 OnFullyHealedEvent();
-
         }
         else if (item.CompareTag("Shield")) // Escudo que bloquea algunos ataques
         {
@@ -205,6 +206,10 @@ public class PickupItem : MonoBehaviour
                 OnPlayerAttackEvent("Skull");
             if (OnHealthDecreasedEvent != null)
                 OnHealthDecreasedEvent(1);
+        }
+        else if(item.CompareTag("Trophy")) // Trofeo de nivel
+        {
+            msg = "¡Trofeo recogido!";
         }
         ShowMessage(msg);
     }

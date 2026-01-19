@@ -26,6 +26,7 @@ public class PlayerAttack : MonoBehaviour
     private Animator animator;
 
     public GameObject swordGO;
+    public bool appliesPoison = false;
 
     public delegate void OnAttackStatsChanged(float damage, float interval);
     public static event OnAttackStatsChanged OnAttackStatsChangedEvent;
@@ -232,6 +233,9 @@ public class PlayerAttack : MonoBehaviour
             case "Skull":
                 OnPickupSkull();
                 break;
+            case "GreenPotion":
+                ApplyPoisonEffect();
+                break;
         }
     }
 
@@ -276,5 +280,10 @@ public class PlayerAttack : MonoBehaviour
     public void NotifyAttackStatsChanged()
     {
         OnAttackStatsChangedEvent?.Invoke(attackDamage, attackInterval);
+    }
+
+    public void ApplyPoisonEffect()
+    {
+        appliesPoison = true;
     }
 }

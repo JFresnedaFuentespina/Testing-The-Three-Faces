@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour
 {
     public float maxHealth = 3f;
+    public float extraHealth = 0f;
     public float minHealth = 0f;
     public float healthPoints = 3;
     [Header("Health UI")]
@@ -20,6 +21,10 @@ public class PlayerHealth : MonoBehaviour
     public AudioClip hitAudioClip;
     public AudioSource audioSource;
     private List<Image> hearts = new List<Image>();
+    private List<Image> extraHearts = new List<Image>();
+    public Sprite extraHeartSprite;
+    public Sprite
+     halfExtraHeart;
 
     public GameObject hud;
     private List<GameObject> corazones = new List<GameObject>();
@@ -222,6 +227,28 @@ public class PlayerHealth : MonoBehaviour
             }
         }
     }
+
+    private void RefreshExtraHearts()
+    {
+        float extraHp = Mathf.Max(
+            0f,
+            healthPoints - maxHealth
+        );
+
+        for (int i = 0; i < extraHearts.Count; i++)
+        {
+            if (extraHp >= 1f)
+            {
+                extraHearts[i].enabled = true;
+                extraHp -= 1f;
+            }
+            else
+            {
+                extraHearts[i].enabled = false;
+            }
+        }
+    }
+
     public void RebuildHearts()
     {
         InitializeHearts();
@@ -302,5 +329,38 @@ public class PlayerHealth : MonoBehaviour
         maxHealth -= amount;
         RebuildHearts();
     }
+
+    public void AddExtraHeart(float amount)
+    {
+        extraHealth += amount;
+        healthPoints += amount;
+
+        healthPoints = Mathf.Clamp(
+            healthPoints,
+            minHealth,
+            maxHealth + extraHealth
+        );
+
+        int heartsToAdd = Mathf.RoundToInt(amount);
+
+        for (int i = 0; i < heartsToAdd; i++)
+        {
+            GameObject newExtraHeart = new GameObject(
+                "ExtraHeart_" + extraHearts.Count,
+                typeof(Image)
+            );
+
+            newExtraHeart.transform.SetParent(heartContainer.transform, false);
+
+            Image img = newExtraHeart.GetComponent<Image>();
+            img.sprite = extraHeartSprite;
+            img.SetNativeSize();
+
+            extraHearts.Add(img);
+        }
+
+        RefreshExtraHearts();
+    }
+
 
 }

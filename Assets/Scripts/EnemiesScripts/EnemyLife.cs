@@ -118,15 +118,19 @@ public class EnemyLife : MonoBehaviour
 
     public void Die()
     {
-        if (gameObject.tag.Contains("Boss"))
-        {
-            deathDelay = 5f;
-        }
         if (audioSource != null && deathAudioClip != null)
         {
             audioSource.PlayOneShot(deathAudioClip);
         }
-        gameObject.GetComponent<Collider>().enabled = false;
+        
+        if (gameObject.tag.Contains("Boss"))
+        {
+            deathDelay = 5f;
+        }
+        else
+        {
+            gameObject.GetComponent<Collider>().enabled = false;
+        }
         Destroy(gameObject, deathDelay);
     }
 }

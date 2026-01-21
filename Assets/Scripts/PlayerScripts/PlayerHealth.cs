@@ -23,8 +23,7 @@ public class PlayerHealth : MonoBehaviour
     private List<Image> hearts = new List<Image>();
     private List<Image> extraHearts = new List<Image>();
     public Sprite extraHeartSprite;
-    public Sprite
-     halfExtraHeart;
+    public Sprite halfExtraHeart;
 
     public GameObject hud;
     private List<GameObject> corazones = new List<GameObject>();
@@ -40,6 +39,7 @@ public class PlayerHealth : MonoBehaviour
         PickupItem.OnFullyHealedEvent -= FullHeal;
         PickupItem.OnHealthIncreasedEvent -= IncreaseMaxHealth;
         PickupItem.OnHealthDecreasedEvent -= DecreaseMaxHealth;
+        PickupItem.OnSoulHeartEvent -= AddExtraHeart;
     }
 
     void Start()
@@ -117,6 +117,7 @@ public class PlayerHealth : MonoBehaviour
         PickupItem.OnFullyHealedEvent += FullHeal;
         PickupItem.OnHealthIncreasedEvent += IncreaseMaxHealth;
         PickupItem.OnHealthDecreasedEvent += DecreaseMaxHealth;
+        PickupItem.OnSoulHeartEvent += AddExtraHeart;
     }
 
     void EnableDeath() => canDie = true;
@@ -201,6 +202,7 @@ public class PlayerHealth : MonoBehaviour
     public void UpdateHUD(bool checkDeath = true)
     {
         RefreshHearts();
+        RefreshExtraHearts();
 
         if (checkDeath)
             CheckDeath();

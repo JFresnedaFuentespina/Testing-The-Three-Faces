@@ -39,6 +39,9 @@ public class PickupItem : MonoBehaviour
     public delegate void OnAddItemToInventory(string id, Sprite icon);
     public static event OnAddItemToInventory OnAddItemToInventoryEvent;
 
+    public delegate void OnSoulHeart(float amount);
+    public static event OnSoulHeart OnSoulHeartEvent;
+
     void OnEnable()
     {
         PlayerAttack.OnAttackStatsChangedEvent += UpdateAttackStats;
@@ -166,6 +169,8 @@ public class PickupItem : MonoBehaviour
         else if (item.CompareTag("BluePill")) // Corazón extra azul (temporal)
         {
             msg = "¡Pastilla azul recogida!";
+            if(OnSoulHeartEvent != null)
+                OnSoulHeartEvent(1f);
         }
         else if (item.CompareTag("Bomb")) // Explosión alrededor del jugador que daña a los enemigos al girar la moneda
         {

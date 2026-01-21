@@ -34,6 +34,11 @@ public class PlayerHealth : MonoBehaviour
     private RotateCharacterWithJoystick rotateCharacterWithJoystick;
     private PlayerBehaviour playerBehaviour;
 
+    private GameObject endgameManagerGO;
+    private EndgameManager endgameManager;
+
+    private GameObject lastHittedBy;
+
     void OnDestroy()
     {
         PickupItem.OnFullyHealedEvent -= FullHeal;
@@ -48,6 +53,7 @@ public class PlayerHealth : MonoBehaviour
         rotateCharacterToMouse = GetComponent<RotateCharacterToMouse>();
         rotateCharacterWithJoystick = GetComponent<RotateCharacterWithJoystick>();
         playerBehaviour = GetComponent<PlayerBehaviour>();
+        endgameManagerGO = GameObject.Find("EndgameManagerGO");
 
         Transform esqueletoHijo = transform.Find("Esqueleto");
         animator = esqueletoHijo != null ? esqueletoHijo.GetComponent<Animator>() : null;
@@ -130,6 +136,7 @@ public class PlayerHealth : MonoBehaviour
             || other.gameObject.CompareTag("EnemyProjectile")
             )
         {
+            lastHittedBy = other.gameObject;
             Damage();
         }
     }
@@ -148,7 +155,12 @@ public class PlayerHealth : MonoBehaviour
             File.Delete(path);
 
         // Volver al menú tras delay
-        StartCoroutine(DeathAndReturnToMenu());
+        endgameManager = endgameManagerGO.GetComponent<EndgameManager>();
+        if(endgameManager != null)
+        {
+            PlayerInventory playerInventory = GetComponent<PlayerInventory>();
+            endgameManager.ShowEndgameDeath(lastHittedBy, playerInventory.inventory, 0f);
+        }
     }
 
     void BlockPlayerControl()

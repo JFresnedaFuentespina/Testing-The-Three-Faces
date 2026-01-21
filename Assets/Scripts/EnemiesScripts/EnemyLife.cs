@@ -34,8 +34,11 @@ public class EnemyLife : MonoBehaviour
     {
         if (!isAlive) return;
 
+        // Reproducir audio de hit
         if (audioSource != null && hitAudioClip != null)
-            audioSource.PlayOneShot(hitAudioClip);
+        {
+            StartCoroutine(PlayHitThenDefault());
+        }
 
         currentHp -= hit;
         currentHp = Mathf.Clamp(currentHp, 0f, totalHp);
@@ -44,8 +47,28 @@ public class EnemyLife : MonoBehaviour
 
         if (poisoned)
         {
-            StartCoroutine(PoisonDamage(hit*0.2f));
+            StartCoroutine(PoisonDamage(hit * 0.2f));
             poisoned = false;
+        }
+    }
+
+    private IEnumerator PlayHitThenDefault()
+    {
+        if (audioSource == null || hitAudioClip == null)
+            yield break;
+
+        audioSource.Stop();
+        audioSource.loop = false;
+        audioSource.clip = hitAudioClip;
+        audioSource.Play();
+
+        yield return new WaitForSeconds(hitAudioClip.length);
+
+        if (audioSource != null && defaultAudioClip != null && isAlive)
+        {
+            audioSource.clip = defaultAudioClip;
+            audioSource.loop = true;
+            audioSource.Play();
         }
     }
 
@@ -103,6 +126,7 @@ public class EnemyLife : MonoBehaviour
         {
             audioSource.PlayOneShot(deathAudioClip);
         }
+        gameObject.GetComponent<Collider>().enabled = false;
         Destroy(gameObject, deathDelay);
     }
 }

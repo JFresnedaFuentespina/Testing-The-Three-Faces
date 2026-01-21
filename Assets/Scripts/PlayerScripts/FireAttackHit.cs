@@ -30,7 +30,7 @@ public class FireAttackHit : MonoBehaviour
             destroyDelay = 0.5f;
         }
         EnemyLife enemyLife = other.GetComponent<EnemyLife>();
-        if (appliesPoison)
+        if (appliesPoison && enemyLife != null)
         {
             Debug.Log("Aplicando veneno");
             enemyLife.poisoned = true;

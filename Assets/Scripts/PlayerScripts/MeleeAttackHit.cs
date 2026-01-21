@@ -23,7 +23,7 @@ public class MeleeAttackHit : MonoBehaviour
     {
         EnemyLife enemyLife = other.GetComponent<EnemyLife>();
         appliesPoison = playerAttack.appliesPoison;
-        if (appliesPoison)
+        if (appliesPoison && enemyLife != null)
         {
             Debug.Log("Aplicando veneno");
             enemyLife.poisoned = true;

@@ -58,6 +58,7 @@ public class PlayerAttack : MonoBehaviour
             attackDamage = playerData.damage;
             isFireball = playerData.attackType == "Fireball";
             isThunder = playerData.attackType == "Thunder";
+            appliesPoison = playerData.appliesPoison;
         }
         changeCharacter = GetComponent<ChangeCharacter>();
         // Asignar el Animator del hijo llamado "Esqueleto"

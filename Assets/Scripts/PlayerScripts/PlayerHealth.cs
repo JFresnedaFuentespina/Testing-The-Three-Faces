@@ -154,12 +154,16 @@ public class PlayerHealth : MonoBehaviour
         if (File.Exists(path))
             File.Delete(path);
 
-        // Volver al menú tras delay
+        Collider[] colliders = GetComponentsInChildren<Collider>();
+        foreach (Collider col in colliders)
+        {
+            col.enabled = false;
+        }
         endgameManager = endgameManagerGO.GetComponent<EndgameManager>();
-        if(endgameManager != null)
+        if (endgameManager != null)
         {
             PlayerInventory playerInventory = GetComponent<PlayerInventory>();
-            endgameManager.ShowEndgameDeath(lastHittedBy, playerInventory.inventory, 0f);
+            endgameManager.ShowEndgameDeath(lastHittedBy, playerInventory.inventory);
         }
     }
 

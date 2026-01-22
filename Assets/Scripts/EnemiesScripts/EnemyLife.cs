@@ -17,9 +17,17 @@ public class EnemyLife : MonoBehaviour
     public AudioClip deathAudioClip;
     public AudioSource audioSource;
     public bool poisoned = false;
+    public GameObject enemiesDeathCounterGO;
+    public EnemiesDeathCounter enemiesDeathCounter;
 
     void Start()
     {
+        enemiesDeathCounterGO = GameObject.Find("EnemiesDeathCounterGO");
+        if (enemiesDeathCounterGO != null)
+        {
+            enemiesDeathCounter = enemiesDeathCounterGO.GetComponent<EnemiesDeathCounter>();
+        }
+
         audioSource.PlayOneShot(defaultAudioClip);
         currentHp = totalHp;
         if (healthBar != null)
@@ -122,7 +130,7 @@ public class EnemyLife : MonoBehaviour
         {
             audioSource.PlayOneShot(deathAudioClip);
         }
-        
+
         if (gameObject.tag.Contains("Boss"))
         {
             deathDelay = 5f;
@@ -131,6 +139,7 @@ public class EnemyLife : MonoBehaviour
         {
             gameObject.GetComponent<Collider>().enabled = false;
         }
+        enemiesDeathCounter.counter++;
         Destroy(gameObject, deathDelay);
     }
 }

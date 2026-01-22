@@ -1419,6 +1419,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!1 &2125774811 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4458383154401370381, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+  m_PrefabInstance: {fileID: 2010680791}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &94350387150769832
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1548,11 +1553,76 @@ PrefabInstance:
       propertyPath: enemiesKilledTxt
       value: 
       objectReference: {fileID: 618155714}
+    - target: {fileID: 8269909501135449399, guid: 149a16642a3221045b23d37a3e79609e, type: 3}
+      propertyPath: pauseMenuManager
+      value: 
+      objectReference: {fileID: 261188802}
+    - target: {fileID: 8269909501135449399, guid: 149a16642a3221045b23d37a3e79609e, type: 3}
+      propertyPath: endgameDeathPanel
+      value: 
+      objectReference: {fileID: 2125774811}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 149a16642a3221045b23d37a3e79609e, type: 3}
+--- !u!1001 &5377156217695674710
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7604637638452021202, guid: fc97a1ac41dea9146addc7c7569da225, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7604637638452021202, guid: fc97a1ac41dea9146addc7c7569da225, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7604637638452021202, guid: fc97a1ac41dea9146addc7c7569da225, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7604637638452021202, guid: fc97a1ac41dea9146addc7c7569da225, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7604637638452021202, guid: fc97a1ac41dea9146addc7c7569da225, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7604637638452021202, guid: fc97a1ac41dea9146addc7c7569da225, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7604637638452021202, guid: fc97a1ac41dea9146addc7c7569da225, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7604637638452021202, guid: fc97a1ac41dea9146addc7c7569da225, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7604637638452021202, guid: fc97a1ac41dea9146addc7c7569da225, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7604637638452021202, guid: fc97a1ac41dea9146addc7c7569da225, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7619150675382870655, guid: fc97a1ac41dea9146addc7c7569da225, type: 3}
+      propertyPath: m_Name
+      value: EnemiesDeathCounterGO
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fc97a1ac41dea9146addc7c7569da225, type: 3}
 --- !u!1001 &6308067664982948159
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1736,3 +1806,4 @@ SceneRoots:
   - {fileID: 1446592566}
   - {fileID: 94350387150769832}
   - {fileID: 3626641878488781002}
+  - {fileID: 5377156217695674710}

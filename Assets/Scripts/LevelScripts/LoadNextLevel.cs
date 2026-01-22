@@ -138,6 +138,14 @@ public class LoadNextLevel : MonoBehaviour
         var hp = player.GetComponent<PlayerHealth>();
         var changeCharacter = player.GetComponent<ChangeCharacter>();
 
+        float enemiesDeathCounterFloat = 0f;
+
+        EnemiesDeathCounter enemiesDeathCounter = GameObject.Find("EnemiesDeathCounterGO").GetComponent<EnemiesDeathCounter>();
+        if (enemiesDeathCounter != null)
+        {
+            enemiesDeathCounterFloat = enemiesDeathCounter.counter;
+        }
+
         data.maxHealth = hp.maxHealth;
         data.health = hp.healthPoints;
         data.velocity = bh.velocity;
@@ -146,6 +154,8 @@ public class LoadNextLevel : MonoBehaviour
         data.attackRange = atk.attackRange;
         data.attackType = atk.isFireball ? "Fireball" : "Thunder";
         data.actions = changeCharacter.GetUnlockedActions();
+        data.enemiesDeathCounter = enemiesDeathCounterFloat;
+        data.appliesPoison = atk.appliesPoison;
 
         string json = JsonConvert.SerializeObject(data);
         string path = Application.persistentDataPath + "/player.json";

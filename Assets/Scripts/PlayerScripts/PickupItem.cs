@@ -120,104 +120,113 @@ public class PickupItem : MonoBehaviour
         AddItemToHUD(iconComp.icon, iconComp.itemID);
 
         // Aplicar efectos del item
-        ApplyItemEffects(child);
+        ApplyItemEffects(collision.gameObject);
 
         Destroy(child.gameObject);
     }
 
-    private void ApplyItemEffects(Transform item)
+    private void ApplyItemEffects(GameObject item)
     {
-        string msg = "";
-        if (item.CompareTag("ThunderItem"))
+        ItemPickupBehaviour pickup = item.GetComponent<ItemPickupBehaviour>();
+        if(pickup != null)
         {
-            if (OnPlayerAttackEvent != null)
-                OnPlayerAttackEvent("Thunder");
-            msg = "¡Disparo eléctrico!";
+            ShowMessage(pickup.ApplyItemEffects());
         }
-        else if (item.CompareTag("IncreaseSpeedItem"))
-        {
-            if (OnPlayerSpeedEvent != null)
-                OnPlayerSpeedEvent(0.5f);
-            msg = "¡Velocidad aumentada!";
-        }
-        else if (item.CompareTag("IncreaseAttackDamageItem"))
-        {
-            if (OnPlayerAttackEvent != null)
-                OnPlayerAttackEvent("IncreaseAttackDamageItem");
-            msg = "¡Daño de ataque aumentado!";
-        }
-        else if (item.CompareTag("IncreaseAttackSpeedItem"))
-        {
-            if (OnPlayerAttackEvent != null)
-                OnPlayerAttackEvent("IncreaseAttackSpeedItem");
-            msg = "¡Velocidad de ataque aumentada!";
-        }
-        else if (item.CompareTag("Hourglass"))
-        {
-            if (OnNewChangeCharacterActionEvent != null)
-                OnNewChangeCharacterActionEvent("Hourglass");
-            msg = "Ralentiza a los enemigos al girar la moneda";
-        }
-        else if (item.CompareTag("Star"))
-        {
-            if (OnPlayerSpeedEvent != null)
-                OnPlayerSpeedEvent(1.0f);
-            if (OnPlayerAttackEvent != null)
-                OnPlayerAttackEvent("Star");
-            msg = "¡Mejoras en todas las estadísticas!";
-        }
-        else if (item.CompareTag("BluePill")) // Corazón extra azul (temporal)
-        {
-            msg = "¡Pastilla azul recogida!";
-            if(OnSoulHeartEvent != null)
-                OnSoulHeartEvent(1f);
-        }
-        else if (item.CompareTag("Bomb")) // Explosión alrededor del jugador que daña a los enemigos al girar la moneda
-        {
-            if (OnNewChangeCharacterActionEvent != null)
-                OnNewChangeCharacterActionEvent("Bomb");
-            msg = "¡Bomba recogida!";
-        }
-        else if (item.CompareTag("Key")) // Llave para abrir la puerta final
-        {
-            msg = "¡Llave recogida!";
-        }
-        else if (item.CompareTag("GreenPotion")) // Ataque envenenado
-        {
-            msg = "¡Ataque envenenado!";
-            if(OnPlayerAttackEvent != null)
-                OnPlayerAttackEvent("GreenPotion");
-        }
-        else if (item.CompareTag("RedVial")) // Curación de un corazón
-        {
-            msg = "¡Vial rojo recogido!";
-        }
-        else if (item.CompareTag("Heart")) // Vida extra
-        {
-            msg = "¡Vida extra!";
-            if (OnHealthIncreasedEvent != null)
-                OnHealthIncreasedEvent(1);
-            if (OnFullyHealedEvent != null)
-                OnFullyHealedEvent();
-        }
-        else if (item.CompareTag("Shield")) // Escudo que bloquea algunos ataques
-        {
-            msg = "¡Escudo recogido!";
-        }
-        else if (item.CompareTag("Skull")) // Calavera que aumenta el daño pero reduce la vida
-        {
-            msg = "¡Calavera recogida!";
-            if (OnPlayerAttackEvent != null)
-                OnPlayerAttackEvent("Skull");
-            if (OnHealthDecreasedEvent != null)
-                OnHealthDecreasedEvent(1);
-        }
-        else if(item.CompareTag("Trophy")) // Trofeo de nivel
-        {
-            msg = "¡Trofeo recogido!";
-        }
-        ShowMessage(msg);
     }
+
+    // private void ApplyItemEffects(Transform item)
+    // {
+    //     string msg = "";
+    //     if (item.CompareTag("ThunderItem"))
+    //     {
+    //         if (OnPlayerAttackEvent != null)
+    //             OnPlayerAttackEvent("Thunder");
+    //         msg = "¡Disparo eléctrico!";
+    //     }
+    //     else if (item.CompareTag("IncreaseSpeedItem"))
+    //     {
+    //         if (OnPlayerSpeedEvent != null)
+    //             OnPlayerSpeedEvent(0.5f);
+    //         msg = "¡Velocidad aumentada!";
+    //     }
+    //     else if (item.CompareTag("IncreaseAttackDamageItem"))
+    //     {
+    //         if (OnPlayerAttackEvent != null)
+    //             OnPlayerAttackEvent("IncreaseAttackDamageItem");
+    //         msg = "¡Daño de ataque aumentado!";
+    //     }
+    //     else if (item.CompareTag("IncreaseAttackSpeedItem"))
+    //     {
+    //         if (OnPlayerAttackEvent != null)
+    //             OnPlayerAttackEvent("IncreaseAttackSpeedItem");
+    //         msg = "¡Velocidad de ataque aumentada!";
+    //     }
+    //     else if (item.CompareTag("Hourglass"))
+    //     {
+    //         if (OnNewChangeCharacterActionEvent != null)
+    //             OnNewChangeCharacterActionEvent("Hourglass");
+    //         msg = "Ralentiza a los enemigos al girar la moneda";
+    //     }
+    //     else if (item.CompareTag("Star"))
+    //     {
+    //         if (OnPlayerSpeedEvent != null)
+    //             OnPlayerSpeedEvent(1.0f);
+    //         if (OnPlayerAttackEvent != null)
+    //             OnPlayerAttackEvent("Star");
+    //         msg = "¡Mejoras en todas las estadísticas!";
+    //     }
+    //     else if (item.CompareTag("BluePill")) // Corazón extra azul (temporal)
+    //     {
+    //         msg = "¡Pastilla azul recogida!";
+    //         if(OnSoulHeartEvent != null)
+    //             OnSoulHeartEvent(1f);
+    //     }
+    //     else if (item.CompareTag("Bomb")) // Explosión alrededor del jugador que daña a los enemigos al girar la moneda
+    //     {
+    //         if (OnNewChangeCharacterActionEvent != null)
+    //             OnNewChangeCharacterActionEvent("Bomb");
+    //         msg = "¡Bomba recogida!";
+    //     }
+    //     else if (item.CompareTag("Key")) // Llave para abrir la puerta final
+    //     {
+    //         msg = "¡Llave recogida!";
+    //     }
+    //     else if (item.CompareTag("GreenPotion")) // Ataque envenenado
+    //     {
+    //         msg = "¡Ataque envenenado!";
+    //         if(OnPlayerAttackEvent != null)
+    //             OnPlayerAttackEvent("GreenPotion");
+    //     }
+    //     else if (item.CompareTag("RedVial")) // Curación de un corazón
+    //     {
+    //         msg = "¡Vial rojo recogido!";
+    //     }
+    //     else if (item.CompareTag("Heart")) // Vida extra
+    //     {
+    //         msg = "¡Vida extra!";
+    //         if (OnHealthIncreasedEvent != null)
+    //             OnHealthIncreasedEvent(1);
+    //         if (OnFullyHealedEvent != null)
+    //             OnFullyHealedEvent();
+    //     }
+    //     else if (item.CompareTag("Shield")) // Escudo que bloquea algunos ataques
+    //     {
+    //         msg = "¡Escudo recogido!";
+    //     }
+    //     else if (item.CompareTag("Skull")) // Calavera que aumenta el daño pero reduce la vida
+    //     {
+    //         msg = "¡Calavera recogida!";
+    //         if (OnPlayerAttackEvent != null)
+    //             OnPlayerAttackEvent("Skull");
+    //         if (OnHealthDecreasedEvent != null)
+    //             OnHealthDecreasedEvent(1);
+    //     }
+    //     else if(item.CompareTag("Trophy")) // Trofeo de nivel
+    //     {
+    //         msg = "¡Trofeo recogido!";
+    //     }
+    //     ShowMessage(msg);
+    // }
 
     private void AddItemToHUD(Sprite icon, string itemID)
     {

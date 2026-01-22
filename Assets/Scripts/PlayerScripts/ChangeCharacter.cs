@@ -23,7 +23,9 @@ public class ChangeCharacter : MonoBehaviour
 
     void OnDestroy()
     {
-        PickupItem.OnNewChangeCharacterActionEvent -= AddAction;
+        // PickupItem.OnNewChangeCharacterActionEvent -= AddAction;
+        HourglassItemPickupBehaviour.OnNewChangeCharacterActionEvent -= AddAction;
+        BombItemPickupBehaviour.OnNewChangeCharacterActionEvent -= AddAction;
     }
 
     void Start()
@@ -59,7 +61,9 @@ public class ChangeCharacter : MonoBehaviour
 
     public void SubscribeToPickupItemsEvents()
     {
-        PickupItem.OnNewChangeCharacterActionEvent += AddAction;
+        // PickupItem.OnNewChangeCharacterActionEvent += AddAction;
+        HourglassItemPickupBehaviour.OnNewChangeCharacterActionEvent += AddAction;
+        BombItemPickupBehaviour.OnNewChangeCharacterActionEvent += AddAction;
     }
 
     void SwitchCharacter()

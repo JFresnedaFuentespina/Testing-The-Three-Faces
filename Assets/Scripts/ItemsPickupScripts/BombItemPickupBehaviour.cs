@@ -2,20 +2,14 @@ using UnityEngine;
 
 public class BombItemPickupBehaviour : MonoBehaviour, ItemPickupBehaviour
 {
-    public void ApplyItemEffects()
+    public delegate void OnNewChangeCharacterAction(string action);
+    public static event OnNewChangeCharacterAction OnNewChangeCharacterActionEvent;
+    public string ApplyItemEffects()
     {
-        throw new System.NotImplementedException();
-    }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        if (OnNewChangeCharacterActionEvent != null)
+        {
+            OnNewChangeCharacterActionEvent("Bomb");
+        }
+        return "¡Bomba recogida!";
     }
 }

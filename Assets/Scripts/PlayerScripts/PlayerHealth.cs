@@ -45,6 +45,7 @@ public class PlayerHealth : MonoBehaviour
         PickupItem.OnHealthIncreasedEvent -= IncreaseMaxHealth;
         PickupItem.OnHealthDecreasedEvent -= DecreaseMaxHealth;
         PickupItem.OnSoulHeartEvent -= AddExtraHeart;
+        CantoDeathBehaviour.OnVictoryEvent -= BlockPlayerControl;
     }
 
     void Start()
@@ -124,6 +125,7 @@ public class PlayerHealth : MonoBehaviour
         PickupItem.OnHealthIncreasedEvent += IncreaseMaxHealth;
         PickupItem.OnHealthDecreasedEvent += DecreaseMaxHealth;
         PickupItem.OnSoulHeartEvent += AddExtraHeart;
+        CantoDeathBehaviour.OnVictoryEvent += BlockPlayerControl;
     }
 
     void EnableDeath() => canDie = true;
@@ -167,7 +169,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    void BlockPlayerControl()
+    public void BlockPlayerControl()
     {
         if (playerBehaviour != null)
             playerBehaviour.enabled = false;

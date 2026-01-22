@@ -7,19 +7,46 @@ using UnityEngine.UI;
 public class EndgameManager : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    [Header("DeathCondition")]
     public TextMeshProUGUI killedByTxt;
-    public TextMeshProUGUI enemiesKilledTxt;
-    public Button exitButton;
-    public Button restartButton;
-    public GameObject inventoryPanel;
+    public TextMeshProUGUI enemiesKilledTxtDeath;
+    public Button exitButtonDeath;
+    public Button restartButtonDeath;
+    public GameObject inventoryPanelDeath;
     public GameObject endgameDeathPanel;
+
+    [Header("WinCondition")]
+    public GameObject timerGO;
+    public TextMeshProUGUI timerTxt;
+    public TextMeshProUGUI enemiesKilledTxtWin;
+    public Button exitButtonWin;
+    public Button restartButtonWin;
+    public GameObject inventoryPanelWin;
+    public GameObject endgameWinPanel;
+
+    [Header("PauseMenuManager")]
     public GameObject pauseMenuManager;
+
 
     void Start()
     {
-        exitButton.onClick.AddListener(ExitGame);
-        restartButton.onClick.AddListener(RestartGame);
+        exitButtonDeath.onClick.AddListener(ExitGame);
+        restartButtonDeath.onClick.AddListener(RestartGame);
+
+        exitButtonWin.onClick.AddListener(ExitGame);
+        restartButtonWin.onClick.AddListener(RestartGame);
     }
+    void OnEnable()
+    {
+        PlayerInventory.OnInventoryReadyForVictory += ShowEndgameVictory;
+    }
+
+    void OnDisable()
+    {
+        PlayerInventory.OnInventoryReadyForVictory -= ShowEndgameVictory;
+    }
+
 
     public void ShowEndgameDeath(GameObject enemy, Inventory inventory)
     {
@@ -49,13 +76,21 @@ public class EndgameManager : MonoBehaviour
         pauseMenuManager.GetComponent<ShowPauseMenu>().enabled = false;
         endgameDeathPanel.SetActive(true);
         killedByTxt.text += " " + enemyName;
-        enemiesKilledTxt.text = "Mataste a " + enemyKilledCount + " enemigos!";
-        ShowInventory(inventory);
+        enemiesKilledTxtDeath.text = "Mataste a " + enemyKilledCount + " enemigos!";
+        ShowInventory(inventory, false);
     }
 
-    public void ShowEndgameVictory()
+    public void ShowEndgameVictory(Inventory inventory)
     {
         pauseMenuManager.GetComponent<ShowPauseMenu>().enabled = false;
+        float enemyKilledCount = GameObject.Find("EnemiesDeathCounterGO").GetComponent<EnemiesDeathCounter>().counter;
+        endgameWinPanel.SetActive(true);
+        float min = timerGO.GetComponent<GameTimer>().min;
+        float sec = timerGO.GetComponent<GameTimer>().sec;
+        timerGO.GetComponent<GameTimer>().PauseTimer();
+        timerTxt.text = "Completaste el juego en " + min + " minutos y " + sec + " segundos!";
+        enemiesKilledTxtWin.text = "Mataste a " + enemyKilledCount + " enemigos!";
+        ShowInventory(inventory, true);
     }
 
     public void ExitGame()
@@ -84,8 +119,9 @@ public class EndgameManager : MonoBehaviour
         }
     }
 
-    public void ShowInventory(Inventory inventory)
+    public void ShowInventory(Inventory inventory, bool isWin)
     {
+        GameObject inventoryPanel = isWin ? inventoryPanelWin : inventoryPanelDeath;
         // Limpiar iconos anteriores
         foreach (Transform child in inventoryPanel.transform)
             Destroy(child.gameObject);

@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class ShieldItemPickupBehaviour : MonoBehaviour, ItemPickupBehaviour
 {
-    public void ApplyItemEffects()
+    public string ApplyItemEffects()
     {
-        throw new System.NotImplementedException();
+        return "Shield";
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

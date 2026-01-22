@@ -10,6 +10,6 @@ public class BluePillItemPickupBehaviour : MonoBehaviour, ItemPickupBehaviour
         {
             OnSoulHeartEvent(1f);
         }
-        return "Menos vida, ¡pero más daño!";
+        return "¡Corazón extra!";
     }
 }

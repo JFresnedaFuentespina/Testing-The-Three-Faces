@@ -87,7 +87,7 @@ public class PlayerAttack : MonoBehaviour
 
     public void SubscribeToPickupEvents()
     {
-        PickupItem.OnPlayerAttackEvent += DecideChanges;
+        // PickupItem.OnPlayerAttackEvent += DecideChanges;
         ThunderPickupItemBehaviour.OnPlayerAttackEvent += DecideChanges;
         IncreaseAttackDmgItemPickupBehaviour.OnPlayerAttackEvent += DecideChanges;
         StarItemPickupBehaviour.OnPlayerAttackEvent += DecideChanges;

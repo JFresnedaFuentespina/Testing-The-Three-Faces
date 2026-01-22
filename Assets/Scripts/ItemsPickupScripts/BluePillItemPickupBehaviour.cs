@@ -2,20 +2,14 @@ using UnityEngine;
 
 public class BluePillItemPickupBehaviour : MonoBehaviour, ItemPickupBehaviour
 {
-    public void ApplyItemEffects()
+    public delegate void OnSoulHeart(float amount);
+    public static event OnSoulHeart OnSoulHeartEvent;
+    public string ApplyItemEffects()
     {
-        throw new System.NotImplementedException();
-    }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (OnSoulHeartEvent != null)
+        {
+            OnSoulHeartEvent(1f);
+        }
+        return "Menos vida, ¡pero más daño!";
     }
 }

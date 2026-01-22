@@ -41,11 +41,15 @@ public class PlayerHealth : MonoBehaviour
 
     void OnDestroy()
     {
-        PickupItem.OnFullyHealedEvent -= FullHeal;
-        PickupItem.OnHealthIncreasedEvent -= IncreaseMaxHealth;
-        PickupItem.OnHealthDecreasedEvent -= DecreaseMaxHealth;
-        PickupItem.OnSoulHeartEvent -= AddExtraHeart;
+        // PickupItem.OnFullyHealedEvent -= FullHeal;
+        // PickupItem.OnHealthIncreasedEvent -= IncreaseMaxHealth;
+        // PickupItem.OnHealthDecreasedEvent -= DecreaseMaxHealth;
+        // PickupItem.OnSoulHeartEvent -= AddExtraHeart;
         CantoDeathBehaviour.OnVictoryEvent -= BlockPlayerControl;
+        HeartItemPickupBehaviour.OnHealthIncreasedEvent -= IncreaseMaxHealth;
+        SkullItemPickupBehaviour.OnHealthDecreasedEvent -= DecreaseMaxHealth;
+        HeartItemPickupBehaviour.OnFullyHealedEvent -= FullHeal;
+        BluePillItemPickupBehaviour.OnSoulHeartEvent -= AddExtraHeart;
     }
 
     void Start()
@@ -121,11 +125,15 @@ public class PlayerHealth : MonoBehaviour
 
     public void SubscribeToPickupEvents()
     {
-        PickupItem.OnFullyHealedEvent += FullHeal;
-        PickupItem.OnHealthIncreasedEvent += IncreaseMaxHealth;
-        PickupItem.OnHealthDecreasedEvent += DecreaseMaxHealth;
-        PickupItem.OnSoulHeartEvent += AddExtraHeart;
+        // PickupItem.OnFullyHealedEvent += FullHeal;
+        // PickupItem.OnHealthIncreasedEvent += IncreaseMaxHealth;
+        // PickupItem.OnHealthDecreasedEvent += DecreaseMaxHealth;
+        // PickupItem.OnSoulHeartEvent += AddExtraHeart;
         CantoDeathBehaviour.OnVictoryEvent += BlockPlayerControl;
+        HeartItemPickupBehaviour.OnHealthIncreasedEvent += IncreaseMaxHealth;
+        SkullItemPickupBehaviour.OnHealthDecreasedEvent += DecreaseMaxHealth;
+        HeartItemPickupBehaviour.OnFullyHealedEvent += FullHeal;
+        BluePillItemPickupBehaviour.OnSoulHeartEvent += AddExtraHeart;
     }
 
     void EnableDeath() => canDie = true;

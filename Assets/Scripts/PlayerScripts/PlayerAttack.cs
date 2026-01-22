@@ -88,6 +88,11 @@ public class PlayerAttack : MonoBehaviour
     public void SubscribeToPickupEvents()
     {
         PickupItem.OnPlayerAttackEvent += DecideChanges;
+        ThunderPickupItemBehaviour.OnPlayerAttackEvent += DecideChanges;
+        IncreaseAttackDmgItemPickupBehaviour.OnPlayerAttackEvent += DecideChanges;
+        StarItemPickupBehaviour.OnPlayerAttackEvent += DecideChanges;
+        GreenPotionItemPickupBehaviour.OnPlayerAttackEvent += DecideChanges;
+        SkullItemPickupBehaviour.OnPlayerAttackEvent += DecideChanges;
     }
 
     // Buscar el hijo llamado "Esqueleto" y devolver su Animator

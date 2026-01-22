@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class KeyItemPickupBehaviour : MonoBehaviour, ItemPickupBehaviour
 {
-    public void ApplyItemEffects()
+    public string ApplyItemEffects()
     {
         throw new System.NotImplementedException();
     }

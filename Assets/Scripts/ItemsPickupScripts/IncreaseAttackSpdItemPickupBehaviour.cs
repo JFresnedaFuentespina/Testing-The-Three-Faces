@@ -2,20 +2,14 @@ using UnityEngine;
 
 public class IncreaseAttackSpdItemPickupBehaviour : MonoBehaviour, ItemPickupBehaviour
 {
-    public void ApplyItemEffects()
+    public delegate void OnPlayerAttack(string item);
+    public static event OnPlayerAttack OnPlayerAttackEvent;
+    public string ApplyItemEffects()
     {
-        throw new System.NotImplementedException();
-    }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        if (OnPlayerAttackEvent != null)
+        {
+            OnPlayerAttackEvent("IncreaseAttackSpeedItem");
+        }
+        return "¡Velocidad de ataque aumentada!";
     }
 }

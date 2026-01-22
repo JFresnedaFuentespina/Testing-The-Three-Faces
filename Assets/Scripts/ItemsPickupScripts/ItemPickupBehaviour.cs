@@ -2,5 +2,5 @@ using UnityEngine;
 
 public interface ItemPickupBehaviour
 {
-    public void ApplyItemEffects();
+    public string ApplyItemEffects();
 }

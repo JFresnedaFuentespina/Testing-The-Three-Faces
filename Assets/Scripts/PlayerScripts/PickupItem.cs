@@ -184,7 +184,7 @@ public class PickupItem : MonoBehaviour
         }
         else if (item.CompareTag("GreenPotion")) // Ataque envenenado
         {
-            msg = "Ataque envenenado!";
+            msg = "¡Ataque envenenado!";
             if(OnPlayerAttackEvent != null)
                 OnPlayerAttackEvent("GreenPotion");
         }

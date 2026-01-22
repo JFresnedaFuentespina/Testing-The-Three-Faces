@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class IncreaseAttackDmgItemPickupBehaviour : MonoBehaviour, ItemPickupBehaviour
+public class StarItemPickupBehaviour : MonoBehaviour, ItemPickupBehaviour
 {
     public delegate void OnPlayerAttack(string item);
     public static event OnPlayerAttack OnPlayerAttackEvent;
@@ -8,8 +8,8 @@ public class IncreaseAttackDmgItemPickupBehaviour : MonoBehaviour, ItemPickupBeh
     {
         if (OnPlayerAttackEvent != null)
         {
-            OnPlayerAttackEvent("IncreaseAttackDamageItem");
+            OnPlayerAttackEvent("Star");
         }
-        return "¡Daño de ataque aumentado!";
+        return "¡Mejoras en todas las estadísticas!";
     }
 }

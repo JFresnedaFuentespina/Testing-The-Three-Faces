@@ -2,20 +2,15 @@ using UnityEngine;
 
 public class IncreaseSpeedItemPickupBehaviour : MonoBehaviour, ItemPickupBehaviour
 {
+    public delegate void OnPlayerSpeed(float amount);
+    public static event OnPlayerSpeed OnPlayerSpeedEvent;
+
     public string ApplyItemEffects()
     {
-        throw new System.NotImplementedException();
-    }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if(OnPlayerSpeedEvent != null)
+        {
+            OnPlayerSpeedEvent(0.5f);
+        }
+        return "¡Velocidad aumentada!";
     }
 }

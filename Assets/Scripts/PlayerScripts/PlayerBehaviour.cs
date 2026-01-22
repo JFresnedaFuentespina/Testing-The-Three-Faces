@@ -24,7 +24,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         OnSpeedStatsRequestedEvent += SendCurrentStats;
     }
-    void Oestroy()
+    void OnDestroy()
     {
         OnSpeedStatsRequestedEvent -= SendCurrentStats;
     }
@@ -68,7 +68,9 @@ public class PlayerBehaviour : MonoBehaviour
     }
     public void SubscribeToPickupEvents()
     {
-        PickupItem.OnPlayerSpeedEvent += UpdateSpeed;
+        // PickupItem.OnPlayerSpeedEvent += UpdateSpeed;
+        IncreaseSpeedItemPickupBehaviour.OnPlayerSpeedEvent += UpdateSpeed;
+        StarItemPickupBehaviour.OnPlayerSpeedEvent += UpdateSpeed;
     }
 
     public void UpdateSpeed(float amount)

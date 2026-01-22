@@ -5407,6 +5407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7ad61f03c48f714fba12605daa25187, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OptionsAudioPercentatge
+  sliderGO: {fileID: 4158366038424037360}
 --- !u!1 &6531257099954128290
 GameObject:
   m_ObjectHideFlags: 0

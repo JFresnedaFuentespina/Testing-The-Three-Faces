@@ -32,7 +32,6 @@ public class FireAttackHit : MonoBehaviour
         EnemyLife enemyLife = other.GetComponent<EnemyLife>();
         if (appliesPoison && enemyLife != null)
         {
-            Debug.Log("Aplicando veneno");
             enemyLife.poisoned = true;
         }
         if (other.CompareTag("BossCara"))

@@ -109,9 +109,7 @@ public class PickupItem : MonoBehaviour
         ItemPickupBehaviour pickup = item.GetComponent<ItemPickupBehaviour>();
         if(pickup != null)
         {
-            string msg = pickup.ApplyItemEffects();
-            Debug.Log("PICKUPITEM: " + msg);
-            ShowMessage(msg);
+            ShowMessage(pickup.ApplyItemEffects());
         }
         else
         {

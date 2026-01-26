@@ -61,23 +61,10 @@ public class PlayerAttack : MonoBehaviour
             appliesPoison = playerData.appliesPoison;
         }
         changeCharacter = GetComponent<ChangeCharacter>();
-        // Asignar el Animator del hijo llamado "Esqueleto"
         animator = FindEsqueletoAnimator(transform);
         MeleeAttackHit weapon = this.gameObject.GetComponentInChildren<MeleeAttackHit>();
         weapon.attackDamage = attackDamage;
-        if (animator == null)
-        {
-            Debug.LogError("No se encontró el Animator dentro del hijo 'Esqueleto'");
-        }
-        else
-        {
-            Debug.Log("Animator correcto asignado para ataque: " + animator.gameObject.name);
-        }
         swordGO = GameObject.Find("Sword");
-        if (swordGO == null)
-        {
-            Debug.LogError("No se encontró el GameObject 'Sword'");
-        }
     }
 
     public static void RequestAttackStats()
@@ -87,7 +74,6 @@ public class PlayerAttack : MonoBehaviour
 
     public void SubscribeToPickupEvents()
     {
-        // PickupItem.OnPlayerAttackEvent += DecideChanges;
         ThunderPickupItemBehaviour.OnPlayerAttackEvent += DecideChanges;
         IncreaseAttackDmgItemPickupBehaviour.OnPlayerAttackEvent += DecideChanges;
         StarItemPickupBehaviour.OnPlayerAttackEvent += DecideChanges;
@@ -95,7 +81,7 @@ public class PlayerAttack : MonoBehaviour
         SkullItemPickupBehaviour.OnPlayerAttackEvent += DecideChanges;
     }
 
-    // Buscar el hijo llamado "Esqueleto" y devolver su Animator
+    // Buscar el animator del esqueleto
     Animator FindEsqueletoAnimator(Transform raiz)
     {
         foreach (Transform t in raiz)

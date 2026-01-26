@@ -25,7 +25,6 @@ public class MeleeAttackHit : MonoBehaviour
         appliesPoison = playerAttack.appliesPoison;
         if (appliesPoison && enemyLife != null)
         {
-            Debug.Log("Aplicando veneno");
             enemyLife.poisoned = true;
         }
         if (other.CompareTag("BossCara"))

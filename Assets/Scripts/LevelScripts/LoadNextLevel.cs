@@ -148,6 +148,7 @@ public class LoadNextLevel : MonoBehaviour
 
         data.maxHealth = hp.maxHealth;
         data.health = hp.healthPoints;
+        data.extraHealth = hp.extraHealthPoints;
         data.velocity = bh.velocity;
         data.damage = atk.attackDamage;
         data.attackInterval = atk.attackInterval;

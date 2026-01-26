@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -11,7 +12,8 @@ public class PlayerHealth : MonoBehaviour
     public float maxHealth = 3f;
     public float extraHealth = 0f;
     public float minHealth = 0f;
-    public float healthPoints = 3;
+    public float healthPoints = 3f;
+    public float extraHealthPoints = 0f;
     [Header("Health UI")]
     public GameObject heartContainer;
     public Sprite fullHeartSprite;
@@ -41,10 +43,6 @@ public class PlayerHealth : MonoBehaviour
 
     void OnDestroy()
     {
-        // PickupItem.OnFullyHealedEvent -= FullHeal;
-        // PickupItem.OnHealthIncreasedEvent -= IncreaseMaxHealth;
-        // PickupItem.OnHealthDecreasedEvent -= DecreaseMaxHealth;
-        // PickupItem.OnSoulHeartEvent -= AddExtraHeart;
         CantoDeathBehaviour.OnVictoryEvent -= BlockPlayerControl;
         HeartItemPickupBehaviour.OnHealthIncreasedEvent -= IncreaseMaxHealth;
         SkullItemPickupBehaviour.OnHealthDecreasedEvent -= DecreaseMaxHealth;
@@ -77,6 +75,7 @@ public class PlayerHealth : MonoBehaviour
                 {
                     maxHealth = data.maxHealth;
                     healthPoints = Mathf.Clamp(data.health, 0f, data.maxHealth);
+                    extraHealthPoints = data.extraHealth;
                     loadedFromFile = true;
                 }
             }
@@ -119,16 +118,16 @@ public class PlayerHealth : MonoBehaviour
 
         InitializeHearts();
         RefreshHearts();
+        if (extraHealthPoints > 0)
+        {
+            RefreshExtraHearts();
+        }
         Invoke(nameof(EnableDeath), 0.1f);
         SubscribeToPickupEvents();
     }
 
     public void SubscribeToPickupEvents()
     {
-        // PickupItem.OnFullyHealedEvent += FullHeal;
-        // PickupItem.OnHealthIncreasedEvent += IncreaseMaxHealth;
-        // PickupItem.OnHealthDecreasedEvent += DecreaseMaxHealth;
-        // PickupItem.OnSoulHeartEvent += AddExtraHeart;
         CantoDeathBehaviour.OnVictoryEvent += BlockPlayerControl;
         HeartItemPickupBehaviour.OnHealthIncreasedEvent += IncreaseMaxHealth;
         SkullItemPickupBehaviour.OnHealthDecreasedEvent += DecreaseMaxHealth;
@@ -258,18 +257,15 @@ public class PlayerHealth : MonoBehaviour
 
     private void RefreshExtraHearts()
     {
-        float extraHp = Mathf.Max(
-            0f,
-            healthPoints - maxHealth
-        );
-
+        float remainingExtraHp = extraHealthPoints;
         for (int i = 0; i < extraHearts.Count; i++)
         {
-            if (extraHp >= 1f)
+            if (remainingExtraHp >= 1f)
             {
                 extraHearts[i].enabled = true;
-                extraHp -= 1f;
+                remainingExtraHp -= 1f;
             }
+            
             else
             {
                 extraHearts[i].enabled = false;
@@ -277,17 +273,28 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+
     public void RebuildHearts()
     {
         InitializeHearts();
         RefreshHearts();
     }
 
-    public void Damage()
+
+    public void Damage(float amount = 0.5f)
     {
         audioSource.PlayOneShot(hitAudioClip);
-        healthPoints -= 0.5f;
-        healthPoints = Mathf.Clamp(healthPoints, minHealth, maxHealth);
+
+        if (extraHealthPoints > 0)
+        {
+            extraHealthPoints -= 1f;
+            extraHealthPoints = Mathf.Clamp(extraHealthPoints, 0f, extraHealth);
+        }
+        else if (healthPoints > 0)
+        {
+            healthPoints -= amount;
+            healthPoints = Mathf.Clamp(healthPoints, 0f, maxHealth);
+        }
         UpdateHUD();
         BlinkBloodFrame();
     }
@@ -361,34 +368,23 @@ public class PlayerHealth : MonoBehaviour
     public void AddExtraHeart(float amount)
     {
         extraHealth += amount;
-        healthPoints += amount;
-
-        healthPoints = Mathf.Clamp(
-            healthPoints,
-            minHealth,
-            maxHealth + extraHealth
-        );
+        extraHealthPoints += amount; // agregamos vida extra real
 
         int heartsToAdd = Mathf.RoundToInt(amount);
-
         for (int i = 0; i < heartsToAdd; i++)
         {
             GameObject newExtraHeart = new GameObject(
                 "ExtraHeart_" + extraHearts.Count,
                 typeof(Image)
             );
-
             newExtraHeart.transform.SetParent(heartContainer.transform, false);
-
             Image img = newExtraHeart.GetComponent<Image>();
             img.sprite = extraHeartSprite;
             img.SetNativeSize();
-
             extraHearts.Add(img);
         }
 
         RefreshExtraHearts();
     }
-
 
 }

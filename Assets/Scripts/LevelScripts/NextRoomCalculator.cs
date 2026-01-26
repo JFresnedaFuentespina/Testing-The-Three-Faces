@@ -17,7 +17,7 @@ public class NextRoomCalculator : MonoBehaviour
     {
 
         level = FindAnyObjectByType<LevelGenerator>();
-        audioManagerGO = GameObject.Find("Audio Source");
+        audioManagerGO = GameObject.Find("Music");
         audioManager = audioManagerGO.GetComponent<AudioManager>();
         audioManager.level = level.levelWidth;
         if (audioManager == null)

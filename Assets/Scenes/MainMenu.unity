@@ -244,6 +244,8 @@ MonoBehaviour:
   showTutorialButton: {fileID: 244701272}
   videoPlayer: {fileID: 2049231687}
   videoDisplay: {fileID: 2060503490}
+  tutorialVideo: {fileID: 32900000, guid: efe6cbbebe7c14d469be657950b66723, type: 3}
+  videoRenderTexture: {fileID: 8400000, guid: cc4b6399caf76da429b095d9aad870c0, type: 2}
 --- !u!1 &244701270
 GameObject:
   m_ObjectHideFlags: 0
@@ -568,19 +570,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 352647611}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1075016140}
-        m_TargetAssemblyTypeName: LoadLevel1, Assembly-CSharp
-        m_MethodName: CargarNivel1
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: CargarNivel1()
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &352647611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1018,6 +1008,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b173bf7103cf9a1409a9a4cf9cc008e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LoadLevel1
+  videoPlayer: {fileID: 2049231687}
+  videoDisplay: {fileID: 2060503490}
+  loreVideo: {fileID: 0}
+  playButton: {fileID: 352647610}
+  videoRenderTexture: {fileID: 8400000, guid: 289cbeb894c9d1046af438de07421ea1, type: 2}
 --- !u!4 &1075016141
 Transform:
   m_ObjectHideFlags: 0
@@ -1733,11 +1728,11 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2049231685}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: efe6cbbebe7c14d469be657950b66723, type: 3}
+  m_VideoClip: {fileID: 0}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
-  m_TargetTexture: {fileID: 8400000, guid: cc4b6399caf76da429b095d9aad870c0, type: 2}
+  m_TargetTexture: {fileID: 0}
   m_TimeReference: 0
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: <noninit>

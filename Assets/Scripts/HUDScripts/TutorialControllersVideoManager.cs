@@ -8,11 +8,17 @@ public class TutorialControllersVideoManager : MonoBehaviour
     public Button showTutorialButton;
     public VideoPlayer videoPlayer;
     public RawImage videoDisplay;
+    public VideoClip tutorialVideo;
+    public RenderTexture videoRenderTexture;
     void Start()
     {
+        videoRenderTexture = new RenderTexture(1920, 1080, 0);
+        videoPlayer.targetTexture = videoRenderTexture;
+        
         showTutorialButton.onClick.AddListener(ShowTutorialVideo);
         videoPlayer.loopPointReached += OnVideoEnd;
         videoDisplay.gameObject.SetActive(false);
+        videoPlayer.clip = tutorialVideo;
     }
 
     public void ShowTutorialVideo()

@@ -164,12 +164,17 @@ public class PlayerAttack : MonoBehaviour
     }
     private IEnumerator AttackRoutine()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.1f);
+        swordGO.GetComponent<BoxCollider>().enabled = true;
+
+        yield return new WaitForSeconds(0.2f);
         audioSource.PlayOneShot(swordSwingAudioClip);
 
-        yield return new WaitForSeconds(2.2f);
-        isAttacking = false;
+        yield return new WaitForSeconds(0.5f);
         swordGO.GetComponent<BoxCollider>().enabled = false;
+
+        yield return new WaitForSeconds(0.3f);
+        isAttacking = false;
     }
 
     void ShootFire()

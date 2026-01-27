@@ -9,13 +9,13 @@ public class VideoManagerFinal : MonoBehaviour
     public VideoPlayer videoPlayer;
     public VideoClip tutorialClip;
 
-    void Start()
-    {
-        playButton.onClick.AddListener(PlayVideo);
-    }
-    public void PlayVideo()
-    {
-        videoPlayer.clip = tutorialClip;
-        videoPlayer.Play();
-    }
+    // void Start()
+    // {
+    //     playButton.onClick.AddListener(PlayVideo);
+    // }
+    // public void PlayVideo()
+    // {
+    //     videoPlayer.clip = tutorialClip;
+    //     videoPlayer.Play();
+    // }
 }

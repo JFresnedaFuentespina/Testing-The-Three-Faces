@@ -50,62 +50,52 @@ public class LevelGenerator : MonoBehaviour
     }
 
 
-    public int SpawnRooms()
+    public IEnumerator SpawnRoomsAsync()
     {
         minimapBehaviour = GetComponent<MinimapBehaviour>();
         int generatedRooms = 0;
         List<GameObject> roomList = new List<GameObject>();
 
-        // Primero generamos todas las habitaciones normales y el boss si toca
         for (int i = 0; i < levelMap.Count; i++)
         {
             if (levelMap[i])
             {
                 Vector3 position = new Vector3(i * offsetW, levelBaseY, 0);
-
                 GameObject room = Instantiate(roomPrefab, position, Quaternion.identity, transform);
-                room.name = $"Room_{i}";
                 roomList.Add(room);
 
-                if (fogEnabled)
-                {
-                    Transform fog = room.GameObject().transform.Find("Smoke");
-                    if(fog != null)
-                    {
-                        fog.gameObject.SetActive(true);
-                    }
-                }
-
                 if (i == 0 && character != null)
-                {
                     character = Instantiate(characterPrefab, position, Quaternion.identity);
-                }
 
                 roomsDictionary.Add($"Room_{i}", position);
                 generatedRooms++;
 
                 TrySpawnBossRoom(i, position);
+
+                // Cede un frame para que la UI se dibuje
+                if (i % 2 == 0) // cada 2 habitaciones, por ejemplo
+                    yield return null;
             }
         }
 
-        //  Generar la sala del tesoro ANTES de configurar las puertas
+        // Sala tesoro
         Vector3? treasurePos = SpawnTreasureRoom();
 
-        //  Si no se generó bossRoom, forzarla
         if (!bossRoomSpawned && forcedBossRoomPos.HasValue)
         {
             Instantiate(bossRoomPrefab, forcedBossRoomPos.Value, Quaternion.identity, transform);
             roomsDictionary.Add("Boss_Forced", forcedBossRoomPos.Value);
             bossRoomSpawned = true;
         }
-        // Ahora configuramos las puertas correctamente para cada habitación instanciada
+
         for (int i = 0; i < roomList.Count; i++)
         {
             SetupRoomDoors(roomList[i], i, treasurePos);
+            if (i % 2 == 0) yield return null; // ceder frame
         }
+
         minimapBehaviour.initMinimap(this.roomsDictionary, character);
         minimapBehaviour.MovePlayerToRoom("Room_0");
-        return generatedRooms;
     }
 
     public void TrySpawnBossRoom(int i, Vector3 position)

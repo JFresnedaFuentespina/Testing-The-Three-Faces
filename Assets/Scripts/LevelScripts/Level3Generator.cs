@@ -1,25 +1,32 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Level3Generator : MonoBehaviour
 {
-    // Start is called before the first frame update
     private int levelWidth = 10;
 
     void Start()
+    {
+        StartCoroutine(GenerateLevelRoutine());
+    }
+
+    private IEnumerator GenerateLevelRoutine()
     {
         LevelGenerator levelGenerator = GetComponent<LevelGenerator>();
 
         if (levelGenerator == null)
         {
             Debug.LogError("No se encontró un componente LevelGenerator en este GameObject.");
-            return;
+            yield break;
         }
 
+        // Genera el mapa de manera rápida
         levelGenerator.GenerateLevel(levelWidth, 7, 3); // Genera el mapa lógico
-        int totalRooms = levelGenerator.SpawnRooms(); // Genera las habitaciones físicas
 
-        Debug.Log($"Nivel 3 generado con {totalRooms} habitaciones normales + Boss + Tesoro");
+        // Genera habitaciones físicas de manera asincrónica
+        yield return StartCoroutine(levelGenerator.SpawnRoomsAsync());
+
+        Debug.Log("Nivel 3 generado correctamente");
     }
 }
+

@@ -8,18 +8,13 @@ public class LoadLevel1 : MonoBehaviour
 {
     // Esta función se llamará al hacer clic en el botón
     public VideoPlayer videoPlayer;
-    public RawImage videoDisplay;
     public VideoClip loreVideo;
     public Button playButton;
-    public RenderTexture videoRenderTexture;
     void Start()
     {
-        videoRenderTexture = new RenderTexture(1920, 1080, 0);
-        videoPlayer.targetTexture = videoRenderTexture;
 
         playButton.onClick.AddListener(ShowLoreVideo);
         videoPlayer.loopPointReached += OnVideoEnd;
-        videoDisplay.gameObject.SetActive(false);
         if (loreVideo != null)
         {
             videoPlayer.clip = loreVideo;
@@ -37,9 +32,6 @@ public class LoadLevel1 : MonoBehaviour
             Debug.LogWarning("No hay video asignado para reproducir.");
             CargarNivel1();
         }
-
-        videoDisplay.gameObject.SetActive(true);
-        videoDisplay.texture = videoPlayer.targetTexture;
         videoPlayer.Play();
     }
 
@@ -59,7 +51,6 @@ public class LoadLevel1 : MonoBehaviour
     }
     private void OnVideoEnd(VideoPlayer vp)
     {
-        videoDisplay.gameObject.SetActive(false);
         CargarNivel1();
     }
 }

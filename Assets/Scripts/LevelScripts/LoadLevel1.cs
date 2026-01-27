@@ -38,7 +38,6 @@ public class LoadLevel1 : MonoBehaviour
         if (fadeImage != null)
             fadeImage.gameObject.SetActive(false);
 
-        videoPlayer.clip = null; //! quitar el clip temporalmente hasta ver si es compatible con WEBGL
         playButton.onClick.AddListener(ShowLoreVideo);
         videoPlayer.loopPointReached += OnVideoEnd;
 
@@ -56,6 +55,7 @@ public class LoadLevel1 : MonoBehaviour
 
     public void ShowLoreVideo()
     {
+        videoPlayer.clip = null; //! quitar el clip temporalmente hasta ver si es compatible con WEBGL
         if (videoPlayer.clip == null)
         {
             StartCoroutine(PreTransitionFade());

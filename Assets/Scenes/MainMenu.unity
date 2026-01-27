@@ -815,6 +815,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VideoManagerFinal
   playButton: {fileID: 244701272}
   videoPlayer: {fileID: 322482522}
+  tutorialClip: {fileID: 32900000, guid: efe6cbbebe7c14d469be657950b66723, type: 3}
 --- !u!1001 &803000224
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1179,7 +1180,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 522704253515589634, guid: 079f4a7926e002d4f843abff29e08bc2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1235979048}
   m_SourcePrefab: {fileID: 100100000, guid: 079f4a7926e002d4f843abff29e08bc2, type: 3}
 --- !u!1 &1075016139
 GameObject:
@@ -1213,7 +1217,7 @@ MonoBehaviour:
   videoPlayer: {fileID: 322482522}
   loreVideo: {fileID: 32900000, guid: f0177680c4c8d234c96c22c20aa83880, type: 3}
   playButton: {fileID: 352647610}
-  fadePanel: {fileID: 0}
+  fadeDuration: 0.5
 --- !u!4 &1075016141
 Transform:
   m_ObjectHideFlags: 0
@@ -1372,6 +1376,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1235979043 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 522704253515589634, guid: 079f4a7926e002d4f843abff29e08bc2, type: 3}
+  m_PrefabInstance: {fileID: 904163611}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1235979048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1235979043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a7f95b7f8af124789712b0b32d8db6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PersistentLoadingCanvas
 --- !u!1 &1276115390
 GameObject:
   m_ObjectHideFlags: 0

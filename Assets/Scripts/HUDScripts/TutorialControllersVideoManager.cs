@@ -7,6 +7,7 @@ public class VideoManagerFinal : MonoBehaviour
 {
     public Button playButton;
     public VideoPlayer videoPlayer;
+    public VideoClip tutorialClip;
 
     void Start()
     {
@@ -14,6 +15,7 @@ public class VideoManagerFinal : MonoBehaviour
     }
     public void PlayVideo()
     {
+        videoPlayer.clip = tutorialClip;
         videoPlayer.Play();
     }
 }

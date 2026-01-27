@@ -7,36 +7,47 @@ using UnityEngine.Video;
 
 public class LoadLevel1 : MonoBehaviour
 {
-    // Esta función se llamará al hacer clic en el botón
     public VideoPlayer videoPlayer;
     public VideoClip loreVideo;
     public Button playButton;
-    public GameObject loadingPanel;
-    public GameObject fadePanel;
-    public bool isLoading = false;
+
+    public float fadeDuration = 0.5f;
+
+    private GameObject loadingPanel;
+    private Image fadeImage;
+    private bool isLoading = false;
+
     void Start()
     {
+        // Buscar LoadingCanvas y sus hijos
         GameObject loadingCanvas = GameObject.Find("LoadingCanvas");
         if (loadingCanvas != null)
         {
-            loadingPanel = loadingCanvas.transform.Find("LoadingPanel")?.gameObject;
-            fadePanel = loadingCanvas.transform.Find("Fade")?.gameObject;
+            Transform loadingTransform = loadingCanvas.transform.Find("LoadingPanel");
+            if (loadingTransform != null)
+                loadingPanel = loadingTransform.gameObject;
+
+            Transform fadeTransform = loadingCanvas.transform.Find("Fade");
+            if (fadeTransform != null)
+                fadeImage = fadeTransform.GetComponent<Image>();
         }
+
+        if (loadingPanel != null)
+            loadingPanel.SetActive(false);
+
+        if (fadeImage != null)
+            fadeImage.gameObject.SetActive(false);
+
         playButton.onClick.AddListener(ShowLoreVideo);
         videoPlayer.loopPointReached += OnVideoEnd;
+
         if (loreVideo != null)
-        {
             videoPlayer.clip = loreVideo;
-        }
-        else
-        {
-            videoPlayer.clip = null;
-        }
     }
 
     void Update()
     {
-        if (videoPlayer.isPlaying && (Input.GetKeyDown(KeyCode.Space)))
+        if (!isLoading && videoPlayer.isPlaying && Input.GetKeyDown(KeyCode.Space))
         {
             SkipVideo();
         }
@@ -46,50 +57,89 @@ public class LoadLevel1 : MonoBehaviour
     {
         if (videoPlayer.clip == null)
         {
-            Debug.LogWarning("No hay video asignado para reproducir.");
-            CargarNivel1();
+            StartCoroutine(PreTransitionFade());
+            return;
         }
-        videoPlayer.Play();
-    }
 
-    public void CargarNivel1()
-    {
-        string path = Application.persistentDataPath + "/player.json";
-        if (File.Exists(path))
-        {
-            File.Delete(path);
-        }
-        string timerPath = Application.persistentDataPath + "/timer.json";
-        if (File.Exists(timerPath))
-        {
-            File.Delete(timerPath);
-        }
-        SceneManager.LoadScene("Level1Scene");
+        videoPlayer.Play();
     }
 
     public void SkipVideo()
     {
-        // StartCoroutine(FadeAndLoad());
-        CargarNivel1();
+        if (isLoading) return;
+
+        isLoading = true;
+        StartCoroutine(PreTransitionFade());
     }
 
-    // private IEnumerator FadeAndLoad()
-    // {
-    //     // Activar panel y hacer fade in
-    //     // fadePanel.gameObject.SetActive(true);
-    //     // float duration = 0.3f;
-    //     // for (float t = 0; t < duration; t += Time.deltaTime)
-    //     // {
-    //     //     fadePanel.GetComponentalpha = t / duration;
-    //     //     yield return null;
-    //     // }
-    //     // fadePanel.alpha = 1;
-    //     // Ahora cargar la escena
-    //     CargarNivel1();
-    // }
+    private IEnumerator PreTransitionFade()
+    {
+        if (loadingPanel == null || fadeImage == null)
+        {
+            SceneManager.LoadScene("Level1Scene");
+            yield break;
+        }
+
+        // Activar UI de carga
+        loadingPanel.SetActive(true);
+        fadeImage.gameObject.SetActive(true);
+        fadeImage.transform.SetAsLastSibling();
+
+        // Alpha inicial
+        fadeImage.color = new Color(0f, 0f, 0f, 0f);
+
+        yield return null;
+
+        // Cargar escena async
+        yield return StartCoroutine(LoadLevelAsync());
+    }
+
+
+    private IEnumerator Fade(float from, float to)
+    {
+        float t = 0f;
+        Color c = fadeImage.color;
+
+        while (t < fadeDuration)
+        {
+            t += Time.deltaTime;
+            float a = Mathf.Lerp(from, to, t / fadeDuration);
+            fadeImage.color = new Color(c.r, c.g, c.b, a);
+            yield return null;
+        }
+
+        fadeImage.color = new Color(c.r, c.g, c.b, to);
+    }
+
+    private IEnumerator LoadLevelAsync()
+    {
+        string path = Application.persistentDataPath + "/player.json";
+        if (File.Exists(path)) File.Delete(path);
+
+        string timerPath = Application.persistentDataPath + "/timer.json";
+        if (File.Exists(timerPath)) File.Delete(timerPath);
+
+        AsyncOperation op = SceneManager.LoadSceneAsync("Level1Scene");
+        op.allowSceneActivation = false;
+
+        // Mientras se carga, seguimos cediendo frames a Unity
+        // while (op.progress < 0.9f)
+        // {
+        //     // Aquí podrías actualizar barra de progreso: op.progress
+        //     yield return null; // deja que Unity dibuje spinner
+        // }
+
+        // Pequeña espera para asegurarnos que el último frame se dibuje
+        yield return null;
+
+        // Activar la escena
+        op.allowSceneActivation = true;
+    }
+
+
+
     private void OnVideoEnd(VideoPlayer vp)
     {
-        CargarNivel1();
+        SkipVideo();
     }
-
 }

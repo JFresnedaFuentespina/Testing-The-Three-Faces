@@ -1078,7 +1078,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LoadLevel1
   videoPlayer: {fileID: 322482522}
-  loreVideo: {fileID: 32900000, guid: efe6cbbebe7c14d469be657950b66723, type: 3}
+  loreVideo: {fileID: 32900000, guid: f0177680c4c8d234c96c22c20aa83880, type: 3}
   playButton: {fileID: 352647610}
 --- !u!4 &1075016141
 Transform:

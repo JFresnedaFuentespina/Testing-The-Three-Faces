@@ -75,19 +75,19 @@ public class LoadLevel1 : MonoBehaviour
 
     private IEnumerator PreTransitionFade()
     {
-        if (loadingPanel == null || fadeImage == null)
-        {
-            SceneManager.LoadScene("Level1Scene");
-            yield break;
-        }
+        // if (loadingPanel == null || fadeImage == null)
+        // {
+        //     SceneManager.LoadScene("Level1Scene");
+        //     yield break;
+        // }
 
-        // Activar UI de carga
-        loadingPanel.SetActive(true);
-        fadeImage.gameObject.SetActive(true);
-        fadeImage.transform.SetAsLastSibling();
+        // // Activar UI de carga
+        // loadingPanel.SetActive(true);
+        // fadeImage.gameObject.SetActive(true);
+        // fadeImage.transform.SetAsLastSibling();
 
-        // Alpha inicial
-        fadeImage.color = new Color(0f, 0f, 0f, 0f);
+        // // Alpha inicial
+        // fadeImage.color = new Color(0f, 0f, 0f, 0f);
 
         yield return null;
 

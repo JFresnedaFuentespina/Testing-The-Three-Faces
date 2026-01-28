@@ -142,7 +142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireball: {fileID: 7251879486380165639, guid: c2f6a8962aac3814aa56cb9647c93470, type: 3}
   thunderPrefab: {fileID: 3300406336262876018, guid: 67544146273a40e48cb7167c545418e6, type: 3}
-  attackDamage: 100
+  attackDamage: 4
   attackSpeed: 5
   spawnHeight: 1
   attackRange: 5
@@ -170,6 +170,7 @@ MonoBehaviour:
   extraHealth: 0
   minHealth: 0
   healthPoints: 0
+  extraHealthPoints: 0
   heartContainer: {fileID: 0}
   fullHeartSprite: {fileID: 21300000, guid: 34776d0090532804398b8b33cb20041f, type: 3}
   halfHeartSprite: {fileID: 21300000, guid: 85a62e430edfb494bafea3a0205fab28, type: 3}
@@ -354,6 +355,10 @@ PrefabInstance:
       value: Esqueleto
       objectReference: {fileID: 0}
     - target: {fileID: 1696834749189059949, guid: 4a46e821c58b5cd42b14eaab6d197266, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1696834749189059949, guid: 4a46e821c58b5cd42b14eaab6d197266, type: 3}
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
@@ -400,6 +405,10 @@ PrefabInstance:
     - target: {fileID: 2468889828458600031, guid: 4a46e821c58b5cd42b14eaab6d197266, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5412440028912828324, guid: 4a46e821c58b5cd42b14eaab6d197266, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -459,6 +468,7 @@ MonoBehaviour:
   extraHealth: 0
   minHealth: 0
   healthPoints: 0
+  extraHealthPoints: 0
   heartContainer: {fileID: 0}
   fullHeartSprite: {fileID: 0}
   halfHeartSprite: {fileID: 0}
@@ -600,6 +610,7 @@ MonoBehaviour:
   extraHealth: 0
   minHealth: 0
   healthPoints: 0
+  extraHealthPoints: 0
   heartContainer: {fileID: 0}
   fullHeartSprite: {fileID: 0}
   halfHeartSprite: {fileID: 0}

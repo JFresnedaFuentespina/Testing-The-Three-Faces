@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Level2Generator : MonoBehaviour
@@ -7,25 +8,18 @@ public class Level2Generator : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(GenerateLevelRoutine());
-    }
-
-    private IEnumerator GenerateLevelRoutine()
-    {
         LevelGenerator levelGenerator = GetComponent<LevelGenerator>();
 
         if (levelGenerator == null)
         {
             Debug.LogError("No se encontró un componente LevelGenerator en este GameObject.");
-            yield break;
+            return;
         }
+        levelGenerator.fogEnabled = true;
 
-        // Genera el mapa de manera rápida
         levelGenerator.GenerateLevel(levelWidth, 5, 2); // Genera el mapa lógico
+        int totalRooms = levelGenerator.SpawnRooms(); // Genera las habitaciones físicas
 
-        // Genera habitaciones físicas de manera asincrónica
-        yield return StartCoroutine(levelGenerator.SpawnRoomsAsync());
-
-        Debug.Log("Nivel 2 generado correctamente");
+        Debug.Log($"Nivel 2 generado con {totalRooms} habitaciones normales + Boss + Tesoro");
     }
 }

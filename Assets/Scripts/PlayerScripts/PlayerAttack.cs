@@ -23,7 +23,8 @@ public class PlayerAttack : MonoBehaviour
     public AudioClip swordSwingAudioClip;
     public AudioClip fireballAudioClip;
     private AudioSource audioSource;
-    private Animator animator;
+    private Animator animatorEsqueleto;
+    private Animator animatorFantasma;
 
     public GameObject swordGO;
     public bool appliesPoison = false;
@@ -61,7 +62,8 @@ public class PlayerAttack : MonoBehaviour
             appliesPoison = playerData.appliesPoison;
         }
         changeCharacter = GetComponent<ChangeCharacter>();
-        animator = FindEsqueletoAnimator(transform);
+        animatorEsqueleto = FindEsqueletoAnimator(transform);
+        animatorFantasma = FindGhostAnimator(transform);
         MeleeAttackHit weapon = this.gameObject.GetComponentInChildren<MeleeAttackHit>();
         weapon.attackDamage = attackDamage;
         swordGO = GameObject.Find("Sword");
@@ -97,6 +99,22 @@ public class PlayerAttack : MonoBehaviour
         }
         return null;
     }
+    // Buscar el animator del fantasma
+    Animator FindGhostAnimator(Transform raiz)
+    {
+        foreach (Transform t in raiz)
+        {
+            if (t.name == "Ghost")
+            {
+                return t.GetComponent<Animator>();
+            }
+
+            Animator encontrado = FindGhostAnimator(t);
+            if (encontrado != null)
+                return encontrado;
+        }
+        return null;
+    }
 
     // Update is called once per frame
     void Update()
@@ -121,6 +139,7 @@ public class PlayerAttack : MonoBehaviour
     }
     void Shoot()
     {
+        animatorFantasma.SetTrigger("Attack");
         if (isFireball)
         {
             ShootFire();
@@ -137,14 +156,14 @@ public class PlayerAttack : MonoBehaviour
     public void AttackMeelee()
     {
         swordGO.GetComponent<BoxCollider>().enabled = true;
-        if (animator == null) return;
+        if (animatorEsqueleto == null) return;
         if (isAttacking) return;
 
         isAttacking = true;
 
-        animator.applyRootMotion = false;
-        animator.ResetTrigger("Attack");
-        animator.SetTrigger("Attack");
+        animatorEsqueleto.applyRootMotion = false;
+        animatorEsqueleto.ResetTrigger("Attack");
+        animatorEsqueleto.SetTrigger("Attack");
 
         attackCoroutine = StartCoroutine(AttackRoutine());
     }

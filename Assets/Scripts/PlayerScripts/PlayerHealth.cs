@@ -31,10 +31,12 @@ public class PlayerHealth : MonoBehaviour
     private List<GameObject> corazones = new List<GameObject>();
     public bool canDie = false;
     private Rigidbody rb;
-    private Animator animator;
+    private Animator animatorEsqueleto;
+    private Animator animatorFantasma;
     private RotateCharacterToMouse rotateCharacterToMouse;
     private RotateCharacterWithJoystick rotateCharacterWithJoystick;
     private PlayerBehaviour playerBehaviour;
+    private ChangeCharacter changeCharacter;
 
     private GameObject endgameManagerGO;
     private EndgameManager endgameManager;
@@ -56,11 +58,14 @@ public class PlayerHealth : MonoBehaviour
         rotateCharacterToMouse = GetComponent<RotateCharacterToMouse>();
         rotateCharacterWithJoystick = GetComponent<RotateCharacterWithJoystick>();
         playerBehaviour = GetComponent<PlayerBehaviour>();
+        changeCharacter = GetComponent<ChangeCharacter>();
         endgameManagerGO = GameObject.Find("EndgameManagerGO");
 
         Transform esqueletoHijo = transform.Find("Esqueleto");
-        animator = esqueletoHijo != null ? esqueletoHijo.GetComponent<Animator>() : null;
+        animatorEsqueleto = esqueletoHijo != null ? esqueletoHijo.GetComponent<Animator>() : null;
 
+        Transform ghostHijo = transform.Find("Ghost");
+        animatorFantasma = ghostHijo != null ? ghostHijo.GetComponent<Animator>() : null;
         // Cargar JSON
         string path = Application.persistentDataPath + "/player.json";
         bool loadedFromFile = false;
@@ -153,7 +158,14 @@ public class PlayerHealth : MonoBehaviour
     {
         if (!canDie || healthPoints > 0) return;
 
-        animator.SetTrigger("Death");
+        if (!changeCharacter.showingGhost)
+        {
+            animatorEsqueleto.SetTrigger("Death");
+        }
+        else
+        {
+            animatorFantasma.SetTrigger("Death");
+        }
 
         // Bloquear movimiento y rotación
         BlockPlayerControl();
@@ -196,7 +208,7 @@ public class PlayerHealth : MonoBehaviour
 
     private IEnumerator DeathAndReturnToMenu()
     {
-        float deathDuration = animator.GetCurrentAnimatorStateInfo(0).length;
+        float deathDuration = animatorEsqueleto.GetCurrentAnimatorStateInfo(0).length;
         yield return new WaitForSeconds(deathDuration + 5f);
         SceneManager.LoadScene("MainMenu");
     }
@@ -265,7 +277,7 @@ public class PlayerHealth : MonoBehaviour
                 extraHearts[i].enabled = true;
                 remainingExtraHp -= 1f;
             }
-            
+
             else
             {
                 extraHearts[i].enabled = false;

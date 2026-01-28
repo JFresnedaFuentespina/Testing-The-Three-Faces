@@ -344,15 +344,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2611149553095877767, guid: 6b336ea420ed6b54db7e2bf7ec19606b, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 2611149553095877767, guid: 6b336ea420ed6b54db7e2bf7ec19606b, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 2611149553095877767, guid: 6b336ea420ed6b54db7e2bf7ec19606b, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 2611149553095877767, guid: 6b336ea420ed6b54db7e2bf7ec19606b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -360,7 +360,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2611149553095877767, guid: 6b336ea420ed6b54db7e2bf7ec19606b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.8
+      value: -0.45
       objectReference: {fileID: 0}
     - target: {fileID: 2611149553095877767, guid: 6b336ea420ed6b54db7e2bf7ec19606b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -496,9 +496,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1696834749189059949, guid: 4a46e821c58b5cd42b14eaab6d197266, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7930126595499740779}
-    - targetCorrespondingSourceObject: {fileID: 1696834749189059949, guid: 4a46e821c58b5cd42b14eaab6d197266, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7930126595499740776}
   m_SourcePrefab: {fileID: 100100000, guid: 4a46e821c58b5cd42b14eaab6d197266, type: 3}
 --- !u!4 &5498396142341267153 stripped
 Transform:
@@ -531,31 +528,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1.4678942, z: 1}
   m_Center: {x: 0, y: 0.7152576, z: 0}
---- !u!114 &7930126595499740776
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8755321112139365859}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27a1c1202027c9440a70b5d6efd85bbf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 3
-  extraHealth: 0
-  minHealth: 0
-  healthPoints: 0
-  extraHealthPoints: 0
-  heartContainer: {fileID: 0}
-  fullHeartSprite: {fileID: 0}
-  halfHeartSprite: {fileID: 0}
-  emptyHeartSprite: {fileID: 0}
-  bloodFrame: {fileID: 0}
-  hitAudioClip: {fileID: 0}
-  audioSource: {fileID: 0}
-  extraHeartSprite: {fileID: 0}
-  halfExtraHeart: {fileID: 0}
-  hud: {fileID: 0}
-  canDie: 0

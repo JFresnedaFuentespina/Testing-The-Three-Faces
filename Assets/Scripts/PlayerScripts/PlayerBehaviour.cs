@@ -122,7 +122,7 @@ public class PlayerBehaviour : MonoBehaviour
         currentSpeed = (rb.position - lastPosition).magnitude / Time.fixedDeltaTime;
         lastPosition = rb.position;
 
-        if (!changeCharacter.showingGhost)//! ANIMACIÓN CON LA VELOCIDAD DEL RIGIDBODY
+        if (!changeCharacter.showingGhost)
         {
             animatorEsqueleto.SetFloat("Speed", currentSpeed);
         }

@@ -159,13 +159,9 @@ public class PlayerHealth : MonoBehaviour
         if (!canDie || healthPoints > 0) return;
 
         if (!changeCharacter.showingGhost)
-        {
             animatorEsqueleto.SetTrigger("Death");
-        }
         else
-        {
             animatorFantasma.SetTrigger("Death");
-        }
 
         // Bloquear movimiento y rotación
         BlockPlayerControl();
@@ -177,9 +173,23 @@ public class PlayerHealth : MonoBehaviour
 
         Collider[] colliders = GetComponentsInChildren<Collider>();
         foreach (Collider col in colliders)
-        {
             col.enabled = false;
-        }
+
+        // ⬇️ NO mostramos el panel aún
+        StartCoroutine(WaitAndShowEndgame());
+    }
+
+    private IEnumerator WaitAndShowEndgame()
+    {
+        Animator currentAnimator = changeCharacter.showingGhost
+            ? animatorFantasma
+            : animatorEsqueleto;
+
+        float animDuration = currentAnimator
+            .GetCurrentAnimatorStateInfo(0).length;
+
+        yield return new WaitForSeconds(animDuration + 2f);
+
         endgameManager = endgameManagerGO.GetComponent<EndgameManager>();
         if (endgameManager != null)
         {

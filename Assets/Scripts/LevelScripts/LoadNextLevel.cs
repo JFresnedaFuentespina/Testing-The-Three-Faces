@@ -43,19 +43,20 @@ public class LoadNextLevel : MonoBehaviour
     {
         if (!other.CompareTag("Player"))
             return;
-        RemoveKeyFromPlayer(other.gameObject);
+        RemoveKeyFromPlayer();
         SavePlayerStats(other.gameObject);
         StartCoroutine(PreTransitionFade());
     }
 
-    public void RemoveKeyFromPlayer(GameObject player)
+    public void RemoveKeyFromPlayer()
     {
-        PlayerInventory playerInventory = player.GetComponent<PlayerInventory>();
+        PlayerInventory playerInventory = FindFirstObjectByType<PlayerInventory>();
         if (playerInventory != null)
         {
             playerInventory.RemoveItem("Key");
         }
     }
+
 
     private IEnumerator PreTransitionFade()
     {

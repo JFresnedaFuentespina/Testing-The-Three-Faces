@@ -39,8 +39,7 @@ public class SpawnKeyInRoom : MonoBehaviour
             Debug.Log("Ya se ha seleccionado una habitación para la llave: " + selectedRoomPos);
             return;
         }
-
-        // Filtrar habitaciones que no contengan "Boss"
+        // Filtrar habitaciones
         List<Vector3> validRooms = new List<Vector3>();
         foreach (var kvp in roomsDictionary)
         {

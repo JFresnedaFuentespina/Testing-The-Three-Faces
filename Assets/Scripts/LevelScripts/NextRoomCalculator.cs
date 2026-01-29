@@ -229,11 +229,13 @@ public class NextRoomCalculator : MonoBehaviour
 
             var generator = roomObj.GetComponentInChildren<EnemiesGenerator>();
             var doorsEnabler = roomObj.GetComponentInParent<DoorsEnabler>();
+            var keyGenerator = level.GetComponentInChildren<SpawnKeyInRoom>();
 
             if (generator != null && doorsEnabler != null)
             {
                 DisableDoorsInRoom(roomObj);
                 generator.GenerateEnemiesInRoom(roomPos);
+                keyGenerator?.GenerateKey(roomPos);
                 doorsEnabler.StartCheckEnemies();
             }
         }

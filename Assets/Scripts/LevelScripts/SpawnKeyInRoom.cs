@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,7 +16,16 @@ public class SpawnKeyInRoom : MonoBehaviour
         roomsDictionary = levelGenerator.roomsDictionary;
         suelo = GameObject.Find("Suelo");
     }
+    public IEnumerator WaitAndChooseRandomRoom()
+    {
+        // Esperar hasta que el diccionario esté listo
+        while (roomsDictionary == null || roomsDictionary.Count == 0)
+        {
+            yield return null; // esperar 1 frame
+        }
 
+        ChooseRandomRoom();
+    }
     public void ChooseRandomRoom()
     {
         if (roomsDictionary == null || roomsDictionary.Count == 0)
@@ -24,24 +34,39 @@ public class SpawnKeyInRoom : MonoBehaviour
             return;
         }
 
-        if(selectedRoomPos != Vector3.zero)
+        if (selectedRoomPos != Vector3.zero)
         {
             Debug.Log("Ya se ha seleccionado una habitación para la llave: " + selectedRoomPos);
             return;
         }
 
-        // Pasamos los valores del diccionario a una lista
-        List<Vector3> roomPositions = new List<Vector3>(roomsDictionary.Values);
+        // Filtrar habitaciones que no contengan "Boss"
+        List<Vector3> validRooms = new List<Vector3>();
+        foreach (var kvp in roomsDictionary)
+        {
+            if (!kvp.Key.Contains("Boss") && kvp.Value != Vector3.zero)
+            {
+                validRooms.Add(kvp.Value);
+            }
+        }
 
-        // Elegimos una posición aleatoria
-        selectedRoomPos = roomPositions[Random.Range(0, roomPositions.Count)];
+        if (validRooms.Count == 0)
+        {
+            Debug.LogWarning("No hay habitaciones válidas para la llave (todas son Boss).");
+            return;
+        }
+
+        // Elegir una posición aleatoria
+        selectedRoomPos = validRooms[Random.Range(0, validRooms.Count)];
 
         Debug.Log("Habitación seleccionada para la llave: " + selectedRoomPos);
     }
 
 
+
     public void GenerateKey(Vector3 roomPos)
     {
+        Debug.Log("Intentando generar llave en habitación: " + roomPos);
         // Solo generar si es la habitación seleccionada
         if (roomPos != selectedRoomPos)
             return;

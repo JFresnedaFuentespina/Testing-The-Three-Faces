@@ -53,6 +53,14 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
+    public void RemoveItem(string id)
+    {
+        if (inventory != null)
+        {
+            inventory.RemoveItem(id);
+        }
+    }
+
     public void ResetInventory()
     {
         if (inventory != null)

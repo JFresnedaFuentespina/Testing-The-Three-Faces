@@ -28,6 +28,7 @@ public class EndgameManager : MonoBehaviour
     [Header("PauseMenuManager")]
     public GameObject pauseMenuManager;
 
+    public static event System.Action OnResetGameData;
 
     void Start()
     {
@@ -109,15 +110,15 @@ public class EndgameManager : MonoBehaviour
     {
         string path = Application.persistentDataPath + "/player.json";
         if (File.Exists(path))
-        {
             File.Delete(path);
-        }
+
         string timerPath = Application.persistentDataPath + "/timer.json";
         if (File.Exists(timerPath))
-        {
             File.Delete(timerPath);
-        }
+
+        OnResetGameData?.Invoke();
     }
+
 
     public void ShowInventory(Inventory inventory, bool isWin)
     {

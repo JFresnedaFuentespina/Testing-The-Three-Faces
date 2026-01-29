@@ -27,12 +27,14 @@ public class PlayerInventory : MonoBehaviour
     {
         CantoDeathBehaviour.OnVictoryEvent -= HandleVictory;
         PickupItem.OnAddItemToInventoryEvent -= AddItem;
+        EndgameManager.OnResetGameData -= ResetInventory;
     }
 
     public void SubscribeToPickupEvents()
     {
         CantoDeathBehaviour.OnVictoryEvent += HandleVictory;
         PickupItem.OnAddItemToInventoryEvent += AddItem;
+        EndgameManager.OnResetGameData += ResetInventory;
     }
 
     public static void RequestInventoryItems()

@@ -81,33 +81,48 @@ public class PickupItem : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (!collision.gameObject.CompareTag("Pedestal") || collision.transform.childCount == 0) return;
+        if (!collision.gameObject.CompareTag("Pedestal") &&
+            !collision.gameObject.CompareTag("Key"))
+            return;
 
-        Transform child = collision.transform.GetChild(0);
-        ItemIcon iconComp = child.GetComponent<ItemIcon>();
+        GameObject itemToPickup;
+
+        // Caso Key
+        if (collision.gameObject.CompareTag("Key"))
+        {
+            itemToPickup = collision.gameObject;
+        }
+        // Caso Pedestal
+        else
+        {
+            if (collision.transform.childCount == 0)
+                return;
+
+            itemToPickup = collision.transform.GetChild(0).gameObject;
+        }
+
+        ItemIcon iconComp = itemToPickup.GetComponent<ItemIcon>();
         if (iconComp == null)
         {
-            Debug.LogWarning("El objeto en el pedestal no tiene ItemIcon");
+            Debug.LogWarning("El objeto no tiene ItemIcon");
             return;
         }
 
-        // Añadir al inventario y HUD
-        if (OnAddItemToInventoryEvent != null)
-        {
-            OnAddItemToInventoryEvent(iconComp.itemID, iconComp.icon);
-        }
+        // Añadir al inventario
+        OnAddItemToInventoryEvent?.Invoke(iconComp.itemID, iconComp.icon);
         AddItemToHUD(iconComp.icon, iconComp.itemID);
 
-        // Aplicar efectos del item
-        ApplyItemEffects(child.gameObject);
+        // Aplicar efectos
+        ApplyItemEffects(itemToPickup);
 
-        Destroy(child.gameObject);
+        Destroy(itemToPickup);
     }
+
 
     private void ApplyItemEffects(GameObject item)
     {
         ItemPickupBehaviour pickup = item.GetComponent<ItemPickupBehaviour>();
-        if(pickup != null)
+        if (pickup != null)
         {
             ShowMessage(pickup.ApplyItemEffects());
         }

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1795324668599551852}
   - component: {fileID: 1795324668599551853}
   - component: {fileID: -5867485024460347268}
+  - component: {fileID: -3881094382900919000}
   m_Layer: 0
   m_Name: normal woman a
   m_TagString: Untagged
@@ -78,6 +79,20 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &-3881094382900919000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795324668599551850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 136d02ebaad56fd44a712014e6d3695d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HumanMovement
+  wanderRadius: 20
+  waitTime: 2
 --- !u!1001 &1795324668737955065
 PrefabInstance:
   m_ObjectHideFlags: 0

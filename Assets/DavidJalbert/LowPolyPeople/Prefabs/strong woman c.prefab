@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8253660353099379516}
   - component: {fileID: 8253660353099379517}
   - component: {fileID: 3244244810844199931}
+  - component: {fileID: -3292556098224965882}
   m_Layer: 0
   m_Name: strong woman c
   m_TagString: Untagged
@@ -44,7 +45,7 @@ Animator:
   m_GameObject: {fileID: 8253660353099379518}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e5ebc74aa805e39439103fa97ef465d2, type: 2}
+  m_Controller: {fileID: 9100000, guid: cd4e8639a4615f347a114f0495f6600d, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -78,6 +79,20 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &-3292556098224965882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8253660353099379518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 136d02ebaad56fd44a712014e6d3695d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HumanMovement
+  wanderRadius: 20
+  waitTime: 2
 --- !u!1001 &8253660354603441677
 PrefabInstance:
   m_ObjectHideFlags: 0

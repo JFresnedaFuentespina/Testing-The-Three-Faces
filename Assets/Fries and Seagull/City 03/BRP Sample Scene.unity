@@ -1774,7 +1774,10 @@ PrefabInstance:
     - {fileID: -2572967989333021709, guid: 70ea4865e2694944fa398c288da016d8, type: 3}
     - {fileID: 65702495048144492, guid: 70ea4865e2694944fa398c288da016d8, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 70ea4865e2694944fa398c288da016d8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 178407667}
   m_SourcePrefab: {fileID: 100100000, guid: 70ea4865e2694944fa398c288da016d8, type: 3}
 --- !u!1001 &46078760
 PrefabInstance:
@@ -3065,6 +3068,27 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6588826799449942072, guid: a09e4b73688523d49bf8128d9f12766b, type: 3}
   m_PrefabInstance: {fileID: 168118624}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &178407665 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 70ea4865e2694944fa398c288da016d8, type: 3}
+  m_PrefabInstance: {fileID: 45551276}
+  m_PrefabAsset: {fileID: 0}
+--- !u!208 &178407667
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 178407665}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &180697608
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4130,6 +4154,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 247635308}
+  - component: {fileID: 247635309}
   m_Layer: 0
   m_Name: Extension Objects
   m_TagString: Untagged
@@ -4159,6 +4184,22 @@ Transform:
   - {fileID: 2026170800}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!208 &247635309
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 247635307}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &253064593
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5037,6 +5078,43 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4532813242539957488, guid: 9dcd963c09571e340b6acdbc363e9985, type: 3}
   m_PrefabInstance: {fileID: 284719874}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &286743227 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a7393351d55a47244ab654eda3e7034f, type: 3}
+  m_PrefabInstance: {fileID: 1741625921}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &286743229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 286743227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.AI.Navigation::Unity.AI.Navigation.NavMeshSurface
+  m_SerializedVersion: 0
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: 08b46aaa57e40a14ebd086fe3157935a, type: 2}
+  m_BuildHeightMesh: 0
 --- !u!1001 &289686759
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8469,6 +8547,50 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7680655437514316084, guid: 28d4ecd6bbb8cdc47b5f91f4ef9c5b93, type: 3}
   m_PrefabInstance: {fileID: 479353449}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &494007398
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 494007399}
+  - component: {fileID: 494007400}
+  m_Layer: 0
+  m_Name: HumansGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &494007399
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494007398}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &494007400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494007398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d469a2b96f03e5d469e1e9f35a42ded6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HumansGenerator
 --- !u!1001 &494744547
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9179,6 +9301,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 527824329}
+  - component: {fileID: 527824330}
   m_Layer: 0
   m_Name: Ground Object
   m_TagString: Untagged
@@ -9208,6 +9331,22 @@ Transform:
   - {fileID: 721735600}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!208 &527824330
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 527824328}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &530506266
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18366,6 +18505,7 @@ GameObject:
   m_Component:
   - component: {fileID: 998340910}
   - component: {fileID: 998340909}
+  - component: {fileID: 998340911}
   m_Layer: 0
   m_Name: Scene Light
   m_TagString: Untagged
@@ -18453,6 +18593,35 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &998340911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 998340907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_CustomShadowLayers: 0
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
+  m_RenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ShadowRenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_Version: 4
+  m_LightLayerMask: 1
+  m_ShadowLayerMask: 1
+  m_RenderingLayers: 1
+  m_ShadowRenderingLayers: 1
 --- !u!1001 &998430335
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31641,6 +31810,9 @@ PrefabInstance:
     - {fileID: -628237400022674424, guid: a7393351d55a47244ab654eda3e7034f, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a7393351d55a47244ab654eda3e7034f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 286743229}
     - targetCorrespondingSourceObject: {fileID: 1128170723775496236, guid: a7393351d55a47244ab654eda3e7034f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1741625923}
@@ -39825,3 +39997,4 @@ SceneRoots:
   - {fileID: 998340910}
   - {fileID: 1327435097}
   - {fileID: 1623080799}
+  - {fileID: 494007399}

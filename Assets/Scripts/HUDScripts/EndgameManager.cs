@@ -38,15 +38,6 @@ public class EndgameManager : MonoBehaviour
         exitButtonWin.onClick.AddListener(ExitGame);
         restartButtonWin.onClick.AddListener(RestartGame);
     }
-    void OnEnable()
-    {
-        PlayerInventory.OnInventoryReadyForVictory += ShowEndgameVictory;
-    }
-
-    void OnDisable()
-    {
-        PlayerInventory.OnInventoryReadyForVictory -= ShowEndgameVictory;
-    }
 
 
     public void ShowEndgameDeath(GameObject enemy, Inventory inventory)
@@ -79,19 +70,6 @@ public class EndgameManager : MonoBehaviour
         killedByTxt.text += " " + enemyName;
         enemiesKilledTxtDeath.text = "Mataste a " + enemyKilledCount + " enemigos!";
         ShowInventory(inventory, false);
-    }
-
-    public void ShowEndgameVictory(Inventory inventory)
-    {
-        // pauseMenuManager.GetComponent<ShowPauseMenu>().enabled = false;
-        // float enemyKilledCount = GameObject.Find("EnemiesDeathCounterGO").GetComponent<EnemiesDeathCounter>().counter;
-        // endgameWinPanel.SetActive(true);
-        // float min = timerGO.GetComponent<GameTimer>().min;
-        // float sec = timerGO.GetComponent<GameTimer>().sec;
-        // timerGO.GetComponent<GameTimer>().PauseTimer();
-        // timerTxt.text = "Completaste el juego en " + min + " minutos y " + sec + " segundos!";
-        // enemiesKilledTxtWin.text = "Mataste a " + enemyKilledCount + " enemigos!";
-        // ShowInventory(inventory, true);
     }
 
     public void ExitGame()

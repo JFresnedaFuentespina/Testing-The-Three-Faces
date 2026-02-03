@@ -12,6 +12,7 @@ public class LevelGenerator : MonoBehaviour
     public GameObject roomPrefab;
     public GameObject treasureRoomPrefab;
     public GameObject bossRoomPrefab;
+    public GameObject finalBossRoomPrefab;
     public GameObject characterPrefab;
 
     [Header("Level Settings")]
@@ -94,7 +95,12 @@ public class LevelGenerator : MonoBehaviour
         //  Si no se generó bossRoom, forzarla
         if (!bossRoomSpawned && forcedBossRoomPos.HasValue)
         {
-            Instantiate(bossRoomPrefab, forcedBossRoomPos.Value, Quaternion.identity, transform);
+            GameObject bossPrefabToUse = bossRoomPrefab;
+            if (levelId == 3f)
+            {
+                bossPrefabToUse = finalBossRoomPrefab;
+            }
+            Instantiate(bossPrefabToUse, forcedBossRoomPos.Value, Quaternion.identity, transform);
             roomsDictionary.Add("Boss_Forced", forcedBossRoomPos.Value);
             bossRoomSpawned = true;
         }
@@ -112,10 +118,16 @@ public class LevelGenerator : MonoBehaviour
     {
         if (bossRoomSpawned) return;
 
+        GameObject bossPrefabToUse = bossRoomPrefab;
+        if (levelId == 3f)
+        {
+            bossPrefabToUse = finalBossRoomPrefab;
+        }
+
         if (Random.value < 0.3f)
         {
             Vector3 bossPos = position + new Vector3(0, 0, offsetW);
-            Instantiate(bossRoomPrefab, bossPos, Quaternion.identity, transform);
+            Instantiate(bossPrefabToUse, bossPos, Quaternion.identity, transform);
             roomsDictionary.Add("Boss", bossPos);
             bossRoomSpawned = true;
             bossRoomIndex = i;

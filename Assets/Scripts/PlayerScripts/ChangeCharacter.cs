@@ -31,7 +31,10 @@ public class ChangeCharacter : MonoBehaviour
     void Start()
     {
         cursorManagerGO = GameObject.Find("CursorManagerGO");
-        cursorManager = cursorManagerGO.GetComponent<CursorManager>();
+        if (cursorManagerGO != null)
+        {
+            cursorManager = cursorManagerGO.GetComponent<CursorManager>();
+        }
         esqueleto.SetActive(true);
         ghost.SetActive(false);
         monedaOriginal = GameObject.Find("MonedaOriginal").gameObject;
@@ -82,14 +85,16 @@ public class ChangeCharacter : MonoBehaviour
 
         if (showingGhost)
         {
-            cursorManager.ChangeCursorToCross();
+            if (cursorManager != null)
+                cursorManager.ChangeCursorToCross();
             ghost.transform.position = esqueleto.transform.position;
             ghost.SetActive(true);
             esqueleto.SetActive(false);
         }
         else
         {
-            cursorManager.ChangeCursorToSword();
+            if (cursorManager != null)
+                cursorManager.ChangeCursorToSword();
             esqueleto.transform.position = ghost.transform.position;
             esqueleto.SetActive(true);
             ghost.SetActive(false);

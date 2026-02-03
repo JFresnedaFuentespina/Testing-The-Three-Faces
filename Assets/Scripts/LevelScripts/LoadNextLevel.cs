@@ -94,8 +94,17 @@ public class LoadNextLevel : MonoBehaviour
             case "Level2Scene":
                 nextScene = "Level3Scene";
                 break;
-            case "Level3Scene"://! Temporal, llevar a MainMenu
-                nextScene = "MainMenu";
+            case "Level3Scene":
+                GoToBadEnding badEnding = GetComponent<GoToBadEnding>();
+                if (badEnding != null)
+                {
+                    nextScene = "BadEndingScene";
+                }
+                GoToGoodEnding goodEnding = GetComponent<GoToGoodEnding>();
+                if (goodEnding != null)
+                {
+                    nextScene = "GoodEndingScene";
+                }
                 break;
             default:
                 return;
@@ -105,7 +114,8 @@ public class LoadNextLevel : MonoBehaviour
     }
 
     private IEnumerator LoadSceneWithFade(string sceneName)
-    {
+    {  
+        Debug.Log("Cargando escena: " + sceneName);
         AsyncOperation op = SceneManager.LoadSceneAsync(sceneName);
         op.allowSceneActivation = false;
 

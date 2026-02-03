@@ -13399,6 +13399,7 @@ GameObject:
   - component: {fileID: 1168729914951839711}
   - component: {fileID: 4412868380327443112}
   - component: {fileID: 638522981654939351}
+  - component: {fileID: 7428873413317000798}
   m_Layer: 0
   m_Name: Door_Prefab_Closed_Front (Bad)
   m_TagString: Untagged
@@ -13459,7 +13460,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 2.722396, z: 1}
   m_Center: {x: -0, y: 1.4534794, z: 0.00000034653647}
@@ -13506,6 +13507,18 @@ MonoBehaviour:
   fadeImage: {fileID: 0}
   timer: {fileID: 0}
   fadeDuration: 1
+--- !u!114 &7428873413317000798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6568161900062305961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71c7f367b4bbabc4aa9fd108ca487afe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GoToBadEnding
 --- !u!1 &6798520754397648393
 GameObject:
   m_ObjectHideFlags: 0
@@ -19095,6 +19108,7 @@ GameObject:
   - component: {fileID: 14971913194873278}
   - component: {fileID: 7962049832806574985}
   - component: {fileID: 5296063103958431381}
+  - component: {fileID: 8829205465829282928}
   m_Layer: 0
   m_Name: Door_Prefab_Closed_Front (Good)
   m_TagString: Untagged
@@ -19155,7 +19169,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 2.722396, z: 1}
   m_Center: {x: -0, y: 1.4534794, z: 0.00000034653647}
@@ -19202,6 +19216,18 @@ MonoBehaviour:
   fadeImage: {fileID: 0}
   timer: {fileID: 0}
   fadeDuration: 1
+--- !u!114 &8829205465829282928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8157324028021228986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bce1da085822ae4e82301df3391ce22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GoToGoodEnding
 --- !u!1 &8213333198550572446
 GameObject:
   m_ObjectHideFlags: 0

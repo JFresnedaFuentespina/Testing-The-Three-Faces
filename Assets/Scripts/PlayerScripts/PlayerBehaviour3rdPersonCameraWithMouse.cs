@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerBehaviour3rdPersonCameraWithMouse : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public float movementSpeed = 5f;
+    public float movementSpeed = 2f;
     public float mouseSensitivity = 2f;
     public Transform cameraTransform;
     public float verticalRotation = 0f;

@@ -353,7 +353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52f85008b4cea1e449a98906ca8a3730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Rotate3rdPersonCameraWithMouse
-  movementSpeed: 5
+  movementSpeed: 2
   mouseSensitivity: 2
   cameraTransform: {fileID: 0}
   verticalRotation: 0

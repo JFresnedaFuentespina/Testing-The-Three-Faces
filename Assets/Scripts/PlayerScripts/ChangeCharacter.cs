@@ -38,7 +38,8 @@ public class ChangeCharacter : MonoBehaviour
         esqueleto.SetActive(true);
         ghost.SetActive(false);
         monedaOriginal = GameObject.Find("MonedaOriginal").gameObject;
-        rotateCoin = monedaOriginal.GetComponent<RotateCoin>();
+        if (monedaOriginal != null)
+            rotateCoin = monedaOriginal.GetComponent<RotateCoin>();
         SubscribeToPickupItemsEvents();
         string path = Application.persistentDataPath + "/player.json";
         if (File.Exists(path))
@@ -100,7 +101,10 @@ public class ChangeCharacter : MonoBehaviour
             ghost.SetActive(false);
         }
 
-        rotateCoin.rotate = true;
+        if (rotateCoin != null)
+        {
+            rotateCoin.rotate = true;
+        }
     }
     public void RemoveAction(string action)
     {

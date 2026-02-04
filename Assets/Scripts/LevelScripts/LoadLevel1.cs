@@ -19,6 +19,7 @@ public class LoadLevel1 : MonoBehaviour
 
     void Start()
     {
+        Cursor.visible = true;
         // Buscar LoadingCanvas y sus hijos
         GameObject loadingCanvas = GameObject.Find("LoadingCanvas");
         if (loadingCanvas != null)
@@ -43,6 +44,7 @@ public class LoadLevel1 : MonoBehaviour
 
         if (loreVideo != null)
             videoPlayer.clip = loreVideo;
+
     }
 
     void Update()

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Video;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class VideoTriggerBehaviour : MonoBehaviour
 {
@@ -15,7 +16,8 @@ public class VideoTriggerBehaviour : MonoBehaviour
             Debug.LogError("No hay VideoPlayer en este GameObject");
             return;
         }
-
+        videoPlayer.source = VideoSource.Url;
+        videoPlayer.url = Application.streamingAssetsPath + "/BadEnding.mp4";
         videoPlayer.loopPointReached += OnVideoFinished;
     }
 
@@ -27,6 +29,15 @@ public class VideoTriggerBehaviour : MonoBehaviour
         Debug.Log("Player entered the bad ending trigger area.");
 
         other.gameObject.SetActive(false);
+        StartCoroutine(PrepareAndPlay());
+    }
+    private IEnumerator PrepareAndPlay()
+    {
+        videoPlayer.Prepare();
+        while (!videoPlayer.isPrepared)
+        {
+            yield return null;
+        }
         videoPlayer.Play();
     }
 

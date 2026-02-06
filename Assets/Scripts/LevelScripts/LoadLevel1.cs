@@ -8,43 +8,19 @@ using UnityEngine.Video;
 public class LoadLevel1 : MonoBehaviour
 {
     public VideoPlayer videoPlayer;
-    public VideoClip loreVideo;
     public Button playButton;
-
-    public float fadeDuration = 0.5f;
-
-    private GameObject loadingPanel;
-    private Image fadeImage;
     private bool isLoading = false;
 
     void Start()
     {
         Cursor.visible = true;
-        // Buscar LoadingCanvas y sus hijos
-        GameObject loadingCanvas = GameObject.Find("LoadingCanvas");
-        if (loadingCanvas != null)
-        {
-            Transform loadingTransform = loadingCanvas.transform.Find("LoadingPanel");
-            if (loadingTransform != null)
-                loadingPanel = loadingTransform.gameObject;
-
-            Transform fadeTransform = loadingCanvas.transform.Find("Fade");
-            if (fadeTransform != null)
-                fadeImage = fadeTransform.GetComponent<Image>();
-        }
-
-        if (loadingPanel != null)
-            loadingPanel.SetActive(false);
-
-        if (fadeImage != null)
-            fadeImage.gameObject.SetActive(false);
-
+        videoPlayer.source = VideoSource.Url;
+        videoPlayer.url = System.IO.Path.Combine(
+            Application.streamingAssetsPath,
+            "TheThreeFacesLoreVideo.mp4"
+        );
         playButton.onClick.AddListener(ShowLoreVideo);
         videoPlayer.loopPointReached += OnVideoEnd;
-
-        if (loreVideo != null)
-            videoPlayer.clip = loreVideo;
-
     }
 
     void Update()
@@ -57,15 +33,20 @@ public class LoadLevel1 : MonoBehaviour
 
     public void ShowLoreVideo()
     {
-        videoPlayer.clip = null; //! quitar el clip temporalmente hasta ver si es compatible con WEBGL
-        if (videoPlayer.clip == null)
+        StartCoroutine(PrepareAndPlay());
+    }
+
+    private IEnumerator PrepareAndPlay()
+    {
+        videoPlayer.Prepare();
+        while (!videoPlayer.isPrepared)
         {
-            StartCoroutine(PreTransitionFade());
-            return;
+            yield return null;
         }
 
         videoPlayer.Play();
     }
+
 
     public void SkipVideo()
     {
@@ -77,41 +58,8 @@ public class LoadLevel1 : MonoBehaviour
 
     private IEnumerator PreTransitionFade()
     {
-        // if (loadingPanel == null || fadeImage == null)
-        // {
-        //     SceneManager.LoadScene("Level1Scene");
-        //     yield break;
-        // }
-
-        // // Activar UI de carga
-        // loadingPanel.SetActive(true);
-        // fadeImage.gameObject.SetActive(true);
-        // fadeImage.transform.SetAsLastSibling();
-
-        // // Alpha inicial
-        // fadeImage.color = new Color(0f, 0f, 0f, 0f);
-
         yield return null;
-
-        // Cargar escena async
         yield return StartCoroutine(LoadLevelAsync());
-    }
-
-
-    private IEnumerator Fade(float from, float to)
-    {
-        float t = 0f;
-        Color c = fadeImage.color;
-
-        while (t < fadeDuration)
-        {
-            t += Time.deltaTime;
-            float a = Mathf.Lerp(from, to, t / fadeDuration);
-            fadeImage.color = new Color(c.r, c.g, c.b, a);
-            yield return null;
-        }
-
-        fadeImage.color = new Color(c.r, c.g, c.b, to);
     }
 
     private IEnumerator LoadLevelAsync()
@@ -124,13 +72,6 @@ public class LoadLevel1 : MonoBehaviour
 
         AsyncOperation op = SceneManager.LoadSceneAsync("Level1Scene");
         op.allowSceneActivation = false;
-
-        // Mientras se carga, seguimos cediendo frames a Unity
-        // while (op.progress < 0.9f)
-        // {
-        //     // Aquí podrías actualizar barra de progreso: op.progress
-        //     yield return null; // deja que Unity dibuje spinner
-        // }
 
         // Pequeña espera para asegurarnos que el último frame se dibuje
         yield return null;

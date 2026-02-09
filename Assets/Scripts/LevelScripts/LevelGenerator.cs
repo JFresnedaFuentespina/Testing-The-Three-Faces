@@ -70,7 +70,7 @@ public class LevelGenerator : MonoBehaviour
 
                 if (fogEnabled)
                 {
-                    Transform fog = room.GameObject().transform.Find("Smoke");
+                    Transform fog = room.gameObject.transform.Find("Smoke");
                     if (fog != null)
                     {
                         fog.gameObject.SetActive(true);

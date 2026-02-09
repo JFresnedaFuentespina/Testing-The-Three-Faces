@@ -305,7 +305,10 @@ public class PlayerHealth : MonoBehaviour
 
     public void Damage(float amount = 0.5f)
     {
-        audioSource.PlayOneShot(hitAudioClip);
+        if (audioSource != null)
+        {
+            audioSource.PlayOneShot(hitAudioClip);
+        }
 
         if (extraHealthPoints > 0)
         {

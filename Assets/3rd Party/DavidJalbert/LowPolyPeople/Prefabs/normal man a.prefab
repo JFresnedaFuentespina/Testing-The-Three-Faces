@@ -140,6 +140,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GreetingPlayer
   raycastOrigin: {fileID: 6276738578819806781}
   animator: {fileID: 0}
+  rayDistance: 2
+  rayRadius: 0.5
 --- !u!1001 &1303869121726273177
 PrefabInstance:
   m_ObjectHideFlags: 0

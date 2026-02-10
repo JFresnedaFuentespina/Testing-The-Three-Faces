@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2048
     height: 1085.6
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Game
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 43
+  controlID: 36797
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 44
+  controlID: 36798
   draggingID: 0
 --- !u!114 &7
 MonoBehaviour:
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 45
+  controlID: 36799
   draggingID: 0
 --- !u!114 &8
 MonoBehaviour:
@@ -223,10 +223,10 @@ MonoBehaviour:
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
-  - {fileID: 12}
   - {fileID: 15}
+  - {fileID: 12}
   m_Selected: 0
-  m_LastSelected: 1
+  m_LastSelected: 2
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -278,8 +278,9 @@ MonoBehaviour:
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
+  - {fileID: 19}
   m_Selected: 0
-  m_LastSelected: 0
+  m_LastSelected: 1
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -349,7 +350,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 1
+    m_EnableMouseInput: 0
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -374,7 +375,7 @@ MonoBehaviour:
       height: 864
     m_MinimalGUI: 1
   m_defaultScale: 0.7113426
-  m_LastWindowPixelSize: {x: 1224.4, y: 635.6}
+  m_LastWindowPixelSize: {x: 1530.5, y: 794.5}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
@@ -403,7 +404,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 24
+    y: 70.4
     width: 296.6
     height: 635.6
   m_SerializedDataModeController:
@@ -422,7 +423,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: d686fcffd4a9fcff3425fdff4eadfdff66c5ffff3ef3ffffc8faffffceab0100
+      m_ExpandedIDs: 32e3ddff4ae3ddff363bdeff6c3ddfff1c40dfffcc42dfffa245dfffec45dfff0c46dfff288be0ff1e96e0ff3696e0ff24eee0ff5cf0e1ff0ef3e1ffc0f5e1ff98f8e1ffe4f8e1ff06f9e1ff4cc3e2ffaaffe3ffe2c2e5ffb00fe6ff2045e6ff2c9ae6ff8e8bffff928bffff968bffff9a8bffff9e8bffffa28bffffce8bffffd28bffffd68bffff028cffff408cffff5c8fffff3690ffff38e9fffffc3b0100a23c0100403d01007aeb0d0070ee0d0018ef0d0088ef0d00acf30d0034f40d008af80d00fefb0d000aff0d00c8851d00a6881d00
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -468,8 +469,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Scene\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 298.6
-    y: 24
+    x: 297.6
+    y: 70.4
     width: 1224.4
     height: 635.6
   m_SerializedDataModeController:
@@ -904,7 +905,7 @@ MonoBehaviour:
       scrollOffset: 0
     m_OverlaysVisible: 1
   m_WindowGUID: cc27987af1a868c49b0894db9c0f5429
-  m_Gizmos: 1
+  m_Gizmos: 0
   m_OverrideSceneCullingMask: 6917529027641081856
   m_SceneIsLit: 1
   m_SceneLighting: 1
@@ -914,9 +915,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 32.304333, y: 0.7044066, z: 17.333572}
+    m_Target: {x: 0, y: 3.1999998, z: 34.649998}
     speed: 2
-    m_Value: {x: 18.158894, y: -29.15593, z: -15.239005}
+    m_Value: {x: 0, y: 3.1999998, z: 34.649998}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -962,13 +963,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.06911579, y: 0.3731871, z: -0.027446995, w: 0.92511594}
+    m_Target: {x: -0.30345237, y: 0.5614468, z: -0.23114185, w: -0.73488724}
     speed: 2
-    m_Value: {x: -0.27003402, y: 0.585528, z: -0.21559525, w: -0.7333461}
+    m_Value: {x: -0.30333233, y: 0.56122464, z: -0.2310504, w: -0.7345965}
   m_Size:
-    m_Target: 12.124356
+    m_Target: 12.124355
     speed: 2
-    m_Value: 39.00253
+    m_Value: 12.124355
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -986,7 +987,7 @@ MonoBehaviour:
     m_FarClip: 10000
     m_DynamicClip: 1
     m_OcclusionCulling: 0
-  m_LastSceneViewRotation: {x: -0.08717229, y: 0.89959055, z: -0.21045254, w: -0.3726226}
+  m_LastSceneViewRotation: {x: -0.36400527, y: 0.2520289, z: -0.10236824, w: -0.89123136}
   m_LastSceneViewOrtho: 0
   m_Viewpoint:
     m_SceneView: {fileID: 14}
@@ -1048,15 +1049,22 @@ MonoBehaviour:
     - {fileID: 1874169182819935241, guid: ec74708cbf9a55f4480e35a959740fae, type: 2}
     - {fileID: -959994461771868811, guid: c17493164d8ab2d4ab87a595530e96f7, type: 2}
     - {fileID: -1377905860117680730, guid: cd4e8639a4615f347a114f0495f6600d, type: 2}
+    - {fileID: -7973901634359587509, guid: 74b8d7149bba19244b15464b7a411346, type: 2}
+    - {fileID: -7973901634359587509, guid: 46e482216669f1a43907aa184aa8a108, type: 2}
+    - {fileID: -5032077427848068428, guid: 74b8d7149bba19244b15464b7a411346, type: 2}
+    - {fileID: -5032077427848068428, guid: 46e482216669f1a43907aa184aa8a108, type: 2}
+    - {fileID: 110715302, guid: 8b9a677f24793ba45bdc27a1dab7745e, type: 2}
+    - {fileID: 1107272167540500710, guid: 73afe8e677235174585cbe849ff537c2, type: 2}
+    - {fileID: -7973901634359587509, guid: 18a6d2a768a364b4289b2cf1845df4ae, type: 2}
     m_ValueSerializationHelper:
-    - e00: 0.77854633
+    - e00: 0.6656842
       e01: 0
       e02: 0
-      e03: 128.50993
+      e03: 328.91583
       e10: 0
-      e11: 0.77854633
+      e11: 0.6656842
       e12: 0
-      e13: 215.91138
+      e13: 208.63155
       e20: 0
       e21: 0
       e22: 1
@@ -1065,14 +1073,14 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
-    - e00: 1
+    - e00: 1.1277505
       e01: 0
       e02: 0
-      e03: 419
+      e03: 182.9826
       e10: 0
-      e11: 1
+      e11: 1.1277505
       e12: 0
-      e13: 327
+      e13: 247.95085
       e20: 0
       e21: 0
       e22: 1
@@ -1164,11 +1172,123 @@ MonoBehaviour:
     - e00: 1
       e01: 0
       e02: 0
-      e03: 0
+      e03: 9.599976
       e10: 0
       e11: 1
       e12: 0
-      e13: 0
+      e13: 154.40001
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    - e00: 0.6656842
+      e01: 0
+      e02: 0
+      e03: 328.91583
+      e10: 0
+      e11: 0.6656842
+      e12: 0
+      e13: 208.63155
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    - e00: 0.6656842
+      e01: 0
+      e02: 0
+      e03: -18.28421
+      e10: 0
+      e11: 0.6656842
+      e12: 0
+      e13: 235.15999
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    - e00: 1
+      e01: 0
+      e02: 0
+      e03: 228.09998
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 240.9
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    - e00: 0.81747174
+      e01: 0
+      e02: 0
+      e03: 418.08316
+      e10: 0
+      e11: 0.81747174
+      e12: 0
+      e13: 171.83147
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    - e00: 0.93
+      e01: 0
+      e02: 0
+      e03: 59.640015
+      e10: 0
+      e11: 0.93
+      e12: 0
+      e13: 403.49
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    - e00: 0.5899254
+      e01: 0
+      e02: 0
+      e03: 57.47461
+      e10: 0
+      e11: 0.5899254
+      e12: 0
+      e13: 291.91083
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    - e00: 0.6656842
+      e01: 0
+      e02: 0
+      e03: -18.28421
+      e10: 0
+      e11: 0.6656842
+      e12: 0
+      e13: 231.83157
       e20: 0
       e21: 0
       e22: 1
@@ -1178,9 +1298,11 @@ MonoBehaviour:
       e32: 0
       e33: 1
   m_PreviewAnimator: {fileID: 0}
-  m_AnimatorController: {fileID: 9100000, guid: cd4e8639a4615f347a114f0495f6600d, type: 2}
+  m_AnimatorController: {fileID: 9100000, guid: 74b8d7149bba19244b15464b7a411346, type: 2}
   m_BreadCrumbs:
-  - m_Target: {fileID: -1377905860117680730, guid: cd4e8639a4615f347a114f0495f6600d, type: 2}
+  - m_Target: {fileID: -7973901634359587509, guid: 74b8d7149bba19244b15464b7a411346, type: 2}
+    m_ScrollPosition: {x: 0, y: 0}
+  - m_Target: {fileID: -5032077427848068428, guid: 74b8d7149bba19244b15464b7a411346, type: 2}
     m_ScrollPosition: {x: 0, y: 0}
   stateMachineGraph: {fileID: 0}
   stateMachineGraphGUI: {fileID: 0}
@@ -1215,7 +1337,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 685.6
+    y: 732
     width: 1523
     height: 342
   m_SerializedDataModeController:
@@ -1240,7 +1362,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/3rd Party/DavidJalbert/LowPolyPeople/Prefabs
+    - Assets/3rd Party/EsqueletoAsset/Models/Animations
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1250,16 +1372,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 66
   m_LastFolders:
-  - Assets/3rd Party/DavidJalbert/LowPolyPeople/Prefabs
+  - Assets/3rd Party/EsqueletoAsset/Models/Animations
   m_LastFoldersGridSize: 66
   m_LastProjectPath: C:\Users\EVRV\Desktop\UnityProjects\The Three Faces Testing\Test-The-Three-Faces
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 335}
-    m_SelectedIDs: ca1e0100
-    m_LastClickedID: 73418
-    m_ExpandedIDs: 0000000080380100823801008438010086380100883801008a3801008c3801008e38010090380100923801009438010096380100983801009a3801009c3801009e380100a0380100a2380100a4380100a6380100a8380100aa380100ac380100ae380100b0380100b2380100b4380100b6380100b8380100ba380100bc380100be380100c0380100c2380100c4380100c6380100c8380100ca380100cc380100ce380100d0380100d2380100d4380100d6380100d8380100da380100dc380100de380100e0380100e2380100e4380100e6380100e8380100ea380100ec380100ee380100f0380100f2380100f4380100f6380100f8380100fa380100fc380100fe38010000390100023901000439010006390100083901000a3901000c3901000e39010010390100123901001439010016390100183901001a3901001c3901001e39010020390100223901002439010026390100283901002a3901002c3901002e390100
+    scrollPos: {x: 0, y: 351}
+    m_SelectedIDs: 1c2f0600
+    m_LastClickedID: 405276
+    m_ExpandedIDs: 0000000080380100823801008438010086380100883801008a3801008c3801008e38010090380100923801009438010096380100983801009a3801009c3801009e380100a0380100a2380100a4380100a6380100a8380100aa380100ac380100ae380100b0380100b2380100b4380100b6380100b8380100ba380100bc380100be380100c0380100c2380100c4380100c6380100c8380100ca380100cc380100ce380100d0380100d2380100d4380100d6380100d8380100da380100dc380100de380100e0380100e2380100e4380100e6380100e8380100ea380100ec380100ee380100f0380100f2380100f4380100f6380100f8380100fa380100fc380100fe38010000390100023901000439010006390100083901000a3901000c3901000e39010010390100123901001439010016390100183901001a3901001c3901001e39010020390100223901002439010026390100283901002a3901002c3901002e3901008a3a010000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1288,7 +1410,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000080380100823801008438010086380100883801008a3801008c3801008e38010090380100923801009438010096380100983801009a3801009c3801009e380100a0380100a2380100a4380100a6380100a8380100aa380100ac380100ae380100b0380100b2380100b4380100b6380100b8380100ba380100bc380100be380100c0380100c2380100c4380100c6380100c8380100ca380100cc380100ce380100d0380100d2380100d4380100d6380100d8380100da380100dc380100de380100e0380100e2380100e4380100e6380100e8380100ea380100ec380100ee380100f0380100f2380100f4380100f6380100f8380100fa380100fc380100fe38010000390100023901000439010006390100083901000a3901000c3901000e39010010390100123901001439010016390100183901001a3901001c3901001e39010020390100223901002439010026390100283901002a3901002c3901002e390100
+    m_ExpandedIDs: 0000000080380100823801008438010086380100883801008a3801008c3801008e38010090380100923801009438010096380100983801009a3801009c3801009e380100a0380100a2380100a4380100a6380100a8380100aa380100ac380100ae380100b0380100b2380100b4380100b6380100b8380100ba380100bc380100be380100c0380100c2380100c4380100c6380100c8380100ca380100cc380100ce380100d0380100d2380100d4380100d6380100d8380100da380100dc380100de380100e0380100e2380100e4380100e6380100e8380100ea380100ec380100ee380100f0380100f2380100f4380100f6380100f8380100fa380100fc380100fe38010000390100023901000439010006390100083901000a3901000c3901000e39010010390100123901001439010016390100183901001a3901001c3901001e39010020390100223901002439010026390100283901002a3901002c3901002e3901008a3a010000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1317,7 +1439,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c6230000f24700009a080100d4d501003ed50100ccd30100c4030100da070100a61b01002a050100427f0100c6ea0000d426010048cc000016f300002cf30000000000002cd90000f4931100e4931100ecda1100
+    m_ExpandedInstanceIDs: c6230000f24700009a080100d4d501003ed50100ccd30100c4030100da070100a61b01002a050100427f0100c6ea0000d426010048cc000016f300002cf30000000000002cd90000f4931100e4931100ecda110018020100d43006008a4c0900daf80c00e6960900de9609007895090080950900
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1334,7 +1456,7 @@ MonoBehaviour:
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_TrimLeadingAndTrailingWhitespace: 0
-      m_ClientGUIView: {fileID: 9}
+      m_ClientGUIView: {fileID: 10}
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
       m_InstanceID: 0
@@ -1403,8 +1525,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Inspector\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 1525
-    y: 24
+    x: 1524
+    y: 70.4
     width: 523
     height: 1003.6
   m_SerializedDataModeController:
@@ -1431,3 +1553,368 @@ MonoBehaviour:
   m_LockTracker:
     m_IsLocked: 0
   m_PreviewWindow: {fileID: 0}
+--- !u!114 &19
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 13401, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEditor.TestRunner.dll::UnityEditor.TestTools.TestRunner.TestRunnerWindow
+  m_MinSize: {x: 50, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_TitleContent:
+    m_Text: Test Runner
+    m_Image: {fileID: 0}
+    m_Tooltip: Test framework for running Edit mode and Play mode tests in Unity.
+      Part of the com.unity.test-framework package.
+    m_TextWithWhitespace: "Test Runner\u200B"
+  m_Pos:
+    serializedVersion: 2
+    x: 1524
+    y: 70.4
+    width: 523
+    height: 1003.6
+  m_SerializedDataModeController:
+    m_DataMode: 0
+    m_PreferredDataMode: 0
+    m_SupportedDataModes: 
+    isAutomatic: 1
+  m_ViewDataDictionary: {fileID: 0}
+  m_OverlayCanvas:
+    m_LastAppliedPresetName: Default
+    m_SaveData: []
+    m_ContainerData: []
+    m_OverlaysVisible: 1
+  m_Spl:
+    ID: 38964
+    splitterInitialOffset: 0
+    currentActiveSplitter: -1
+    realSizes:
+    - 700
+    - 233.6
+    relativeSizes:
+    - 0.75
+    - 0.25
+    minSizes:
+    - 32
+    - 32
+    maxSizes:
+    - 0
+    - 0
+    lastTotalSize: 933.6
+    splitSize: 6
+    xOffset: 0
+    m_Version: 1
+    oldRealSizes: 
+    oldMinSizes: 
+    oldMaxSizes: 
+    oldSplitSize: 0
+  m_TestTypeToolbarIndex: 0
+  m_TestListGUIs:
+  - m_Window: {fileID: 19}
+    runProgress:
+      RunGuid: fe135fad-74a0-4e99-a45d-7d8b86bbe3d7
+      ExecutionSettings:
+        m_TargetPlatform: 0
+        m_HasTargetPlatform: 0
+        filter:
+          testMode: 0
+          testNames: []
+          groupNames: []
+          categoryNames: []
+          assemblyNames: []
+        filters:
+        - testMode: 1
+          testNames: []
+          groupNames:
+          - .*
+          categoryNames: []
+          assemblyNames: []
+        runSynchronously: 0
+        playerHeartbeatTimeout: 600
+        orderedTestNames: []
+        ignoreTests: []
+        featureFlags:
+          fileCleanUpCheck: 0
+          requiresSplashScreen: 0
+          strictDomainReload: 0
+          disableNestedEnumeratorBugfix: 0
+        randomOrderSeed: 0
+      HasFinished: 1
+      Progress: 0.9999999
+      CurrentStepName: Unlock Reload Assemblies
+      CurrentStageName: 
+    m_NewResultList:
+    - id: 1000
+      uniqueId: '[The Three Faces][suite]'
+      name: The Three Faces
+      fullName: The Three Faces
+      resultStatus: 1
+      duration: 0.0580946
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 
+      parentUniqueId: 
+    - id: 1005
+      uniqueId: '[EditMode][C:/Users/EVRV/Desktop/UnityProjects/The Three Faces Testing/Test-The-Three-Faces/Library/ScriptAssemblies/EditMode.dll][suite]'
+      name: EditMode.dll
+      fullName: C:/Users/EVRV/Desktop/UnityProjects/The Three Faces Testing/Test-The-Three-Faces/Library/ScriptAssemblies/EditMode.dll
+      resultStatus: 1
+      duration: 0.0580946
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1000
+      parentUniqueId: '[The Three Faces][suite]'
+    - id: 1001
+      uniqueId: 'EditMode.dll/[EditMode][EnemyLifeTest][suite]'
+      name: EnemyLifeTest
+      fullName: EnemyLifeTest
+      resultStatus: 1
+      duration: 0.0419436
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1005
+      parentUniqueId: '[EditMode][C:/Users/EVRV/Desktop/UnityProjects/The Three Faces
+        Testing/Test-The-Three-Faces/Library/ScriptAssemblies/EditMode.dll][suite]'
+    - id: 1002
+      uniqueId: 'EditMode.dll/EnemyLifeTest/[EditMode][EnemyLifeTest.EnemyTakeDamage]'
+      name: EnemyTakeDamage
+      fullName: EnemyLifeTest.EnemyTakeDamage
+      resultStatus: 1
+      duration: 0.0419436
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: 'EditMode.dll/[EditMode][EnemyLifeTest][suite]'
+    - id: 1003
+      uniqueId: 'EditMode.dll/[EditMode][PlayerHalthTest][suite]'
+      name: PlayerHalthTest
+      fullName: PlayerHalthTest
+      resultStatus: 1
+      duration: 0.016151
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1005
+      parentUniqueId: '[EditMode][C:/Users/EVRV/Desktop/UnityProjects/The Three Faces
+        Testing/Test-The-Three-Faces/Library/ScriptAssemblies/EditMode.dll][suite]'
+    - id: 1004
+      uniqueId: 'EditMode.dll/PlayerHalthTest/[EditMode][PlayerHalthTest.PlayerTakeDamage]'
+      name: PlayerTakeDamage
+      fullName: PlayerHalthTest.PlayerTakeDamage
+      resultStatus: 1
+      duration: 0.016151
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1003
+      parentUniqueId: 'EditMode.dll/[EditMode][PlayerHalthTest][suite]'
+    m_ResultText: The Three Faces (2 tests) (0,058s)
+    m_ResultStacktrace: 
+    m_TestListState:
+      scrollPos: {x: 0, y: 0}
+      m_SelectedIDs: 9b7ec086
+      m_LastClickedID: -2034205029
+      m_ExpandedIDs: 9b7ec0868b4a7e96fd1fdda93b5b66c9ffffff7f
+      m_RenameOverlay:
+        m_UserAcceptedRename: 0
+        m_Name: 
+        m_OriginalName: 
+        m_EditFieldRect:
+          serializedVersion: 2
+          x: 0
+          y: 0
+          width: 0
+          height: 0
+        m_UserData: 0
+        m_IsWaitingForDelay: 0
+        m_IsRenaming: 0
+        m_OriginalEventType: 11
+        m_IsRenamingFilename: 0
+        m_TrimLeadingAndTrailingWhitespace: 0
+        m_ClientGUIView: {fileID: 0}
+      m_SearchString: 
+    m_TestRunnerUIFilter:
+      PassedHidden: 0
+      FailedHidden: 0
+      NotRunHidden: 0
+      m_SearchString: 
+      selectedCategories: []
+      availableCategories:
+      - Uncategorized
+    m_SelectedOption: 0
+  - m_Window: {fileID: 0}
+    runProgress:
+      RunGuid: fe135fad-74a0-4e99-a45d-7d8b86bbe3d7
+      ExecutionSettings:
+        m_TargetPlatform: 0
+        m_HasTargetPlatform: 0
+        filter:
+          testMode: 0
+          testNames: []
+          groupNames: []
+          categoryNames: []
+          assemblyNames: []
+        filters:
+        - testMode: 1
+          testNames: []
+          groupNames:
+          - .*
+          categoryNames: []
+          assemblyNames: []
+        runSynchronously: 0
+        playerHeartbeatTimeout: 600
+        orderedTestNames: []
+        ignoreTests: []
+        featureFlags:
+          fileCleanUpCheck: 0
+          requiresSplashScreen: 0
+          strictDomainReload: 0
+          disableNestedEnumeratorBugfix: 0
+        randomOrderSeed: 0
+      HasFinished: 1
+      Progress: 0.9999999
+      CurrentStepName: Unlock Reload Assemblies
+      CurrentStageName: 
+    m_NewResultList: []
+    m_ResultText: 
+    m_ResultStacktrace: 
+    m_TestListState:
+      scrollPos: {x: 0, y: 0}
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 
+      m_RenameOverlay:
+        m_UserAcceptedRename: 0
+        m_Name: 
+        m_OriginalName: 
+        m_EditFieldRect:
+          serializedVersion: 2
+          x: 0
+          y: 0
+          width: 0
+          height: 0
+        m_UserData: 0
+        m_IsWaitingForDelay: 0
+        m_IsRenaming: 0
+        m_OriginalEventType: 11
+        m_IsRenamingFilename: 0
+        m_TrimLeadingAndTrailingWhitespace: 0
+        m_ClientGUIView: {fileID: 0}
+      m_SearchString: 
+    m_TestRunnerUIFilter:
+      PassedHidden: 0
+      FailedHidden: 0
+      NotRunHidden: 0
+      m_SearchString: 
+      selectedCategories: []
+      availableCategories: []
+    m_SelectedOption: 0
+  - m_Window: {fileID: 0}
+    runProgress:
+      RunGuid: fe135fad-74a0-4e99-a45d-7d8b86bbe3d7
+      ExecutionSettings:
+        m_TargetPlatform: 0
+        m_HasTargetPlatform: 0
+        filter:
+          testMode: 0
+          testNames: []
+          groupNames: []
+          categoryNames: []
+          assemblyNames: []
+        filters:
+        - testMode: 1
+          testNames: []
+          groupNames:
+          - .*
+          categoryNames: []
+          assemblyNames: []
+        runSynchronously: 0
+        playerHeartbeatTimeout: 600
+        orderedTestNames: []
+        ignoreTests: []
+        featureFlags:
+          fileCleanUpCheck: 0
+          requiresSplashScreen: 0
+          strictDomainReload: 0
+          disableNestedEnumeratorBugfix: 0
+        randomOrderSeed: 0
+      HasFinished: 1
+      Progress: 0.9999999
+      CurrentStepName: Unlock Reload Assemblies
+      CurrentStageName: 
+    m_NewResultList: []
+    m_ResultText: 
+    m_ResultStacktrace: 
+    m_TestListState:
+      scrollPos: {x: 0, y: 0}
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 
+      m_RenameOverlay:
+        m_UserAcceptedRename: 0
+        m_Name: 
+        m_OriginalName: 
+        m_EditFieldRect:
+          serializedVersion: 2
+          x: 0
+          y: 0
+          width: 0
+          height: 0
+        m_UserData: 0
+        m_IsWaitingForDelay: 0
+        m_IsRenaming: 0
+        m_OriginalEventType: 11
+        m_IsRenamingFilename: 0
+        m_TrimLeadingAndTrailingWhitespace: 0
+        m_ClientGUIView: {fileID: 0}
+      m_SearchString: 
+    m_TestRunnerUIFilter:
+      PassedHidden: 0
+      FailedHidden: 0
+      NotRunHidden: 0
+      m_SearchString: 
+      selectedCategories: []
+      availableCategories: []
+    m_SelectedOption: 0

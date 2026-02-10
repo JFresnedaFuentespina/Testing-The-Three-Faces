@@ -16,10 +16,18 @@ public class VideoTriggerBehaviour : MonoBehaviour
             Debug.LogError("No hay VideoPlayer en este GameObject");
             return;
         }
+
         videoPlayer.source = VideoSource.Url;
         videoPlayer.url = Application.streamingAssetsPath + "/BadEnding.mp4";
+
+        // NUEVO: render directo en la cámara
+        videoPlayer.renderMode = VideoRenderMode.CameraNearPlane;
+        videoPlayer.targetCamera = GameObject.Find("Camera").GetComponent<Camera>();
+        videoPlayer.targetCameraAlpha = 1f;
+
         videoPlayer.loopPointReached += OnVideoFinished;
     }
+
 
     void OnTriggerEnter(Collider other)
     {

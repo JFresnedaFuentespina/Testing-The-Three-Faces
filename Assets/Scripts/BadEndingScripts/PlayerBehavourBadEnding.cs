@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerBehaviour3rdPersonCameraWithMouse : MonoBehaviour
+public class PlayerBehavourBadEnding : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public float movementSpeed = 2f;
@@ -33,11 +33,10 @@ public class PlayerBehaviour3rdPersonCameraWithMouse : MonoBehaviour
 
         rb.MovePosition(rb.position + movement * Time.fixedDeltaTime);
 
-        // Parámetros para Blend Tree
-        // Velocidad vertical: adelante (+) o atrás (-)
-        animatorEsqueleto.SetFloat("Vertical", inputV * movementSpeed);
-        // Velocidad horizontal: izquierda/derecha si quieres strafing
-        animatorEsqueleto.SetFloat("Horizontal", inputH * movementSpeed);
-    }
+        // SPEED para Blend Tree (0–5)
+        float inputMagnitude = new Vector2(inputH, inputV).magnitude;
+        float speed = inputMagnitude * movementSpeed;
 
+        animatorEsqueleto.SetFloat("Speed", speed);
+    }
 }

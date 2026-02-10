@@ -126,17 +126,17 @@ BlendTree:
     m_DirectBlendParameter: Blend
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: 41378b182f019d0459a5b2ca44ce0ec9, type: 3}
-    m_Threshold: 5
+    m_Motion: {fileID: -203655887218126122, guid: c5759811282ea1b49a6efa2318f26c2b, type: 3}
+    m_Threshold: 2
     m_Position: {x: 0, y: 0}
-    m_TimeScale: 1
+    m_TimeScale: 1.2
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
     m_Mirror: 0
   m_BlendParameter: Speed
   m_BlendParameterY: Blend
   m_MinThreshold: 0
-  m_MaxThreshold: 5
+  m_MaxThreshold: 2
   m_UseAutomaticThresholds: 0
   m_NormalizedBlendValues: 0
   m_BlendType: 0
@@ -146,7 +146,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Mini simple Characters Animation Controller Demo
+  m_Name: Mini simple Characters Animation Controller Demo 2
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Blend

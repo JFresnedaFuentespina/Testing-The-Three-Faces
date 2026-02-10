@@ -33,12 +33,13 @@ public class PlayerBehaviour3rdPersonCameraWithMouse : MonoBehaviour
 
         rb.MovePosition(rb.position + movement * Time.fixedDeltaTime);
 
-        // SPEED para Blend Tree (0–5)
-        float inputMagnitude = new Vector2(inputH, inputV).magnitude;
-        float speed = inputMagnitude * movementSpeed;
-
-        animatorEsqueleto.SetFloat("Speed", speed);
+        // Parámetros para Blend Tree
+        // Velocidad vertical: adelante (+) o atrás (-)
+        animatorEsqueleto.SetFloat("Vertical", inputV * movementSpeed);
+        // Velocidad horizontal: izquierda/derecha si quieres strafing
+        animatorEsqueleto.SetFloat("Horizontal", inputH * movementSpeed);
     }
+
 
 
 }

@@ -6,23 +6,22 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
-public class Login : MonoBehaviour
+public class PostLogin : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private UserDTO user;
-    private ApiDTO loginData;
     public TMP_InputField nameInput;
     public TMP_InputField mailInput;
     public Button loginButton;
     void Start()
     {
-        loginButton.onClick.AddListener(login);
+        user = new UserDTO();
+        loginButton.onClick.AddListener(Login);
     }
 
-    public void login()
+    public void Login()
     {
         Debug.Log("Login");
-        user = new UserDTO();
         user.name = nameInput.text;
         user.email = mailInput.text;
         StartCoroutine(TryLogin());
@@ -32,7 +31,7 @@ public class Login : MonoBehaviour
     {
         if (user != null)
         {
-            loginData = new ApiDTO();
+            ApiDTO loginData = new ApiDTO();
             UnityWebRequest httpClient = new UnityWebRequest();
             httpClient.method = UnityWebRequest.kHttpVerbPOST;
             httpClient.url = loginData.apiUrl + "/auth/login";

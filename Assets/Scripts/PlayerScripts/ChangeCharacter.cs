@@ -103,7 +103,8 @@ public class ChangeCharacter : MonoBehaviour
 
         if (rotateCoin != null)
         {
-            rotateCoin.rotate = true;
+            rotateCoin.rotate = true;                // gira la moneda
+            rotateCoin.StartCooldown(switchCooldown); // sincroniza la barra
         }
     }
     public void RemoveAction(string action)

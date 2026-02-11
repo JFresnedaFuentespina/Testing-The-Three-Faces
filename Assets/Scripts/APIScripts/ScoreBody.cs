@@ -1,6 +1,6 @@
 
 [System.Serializable]
-public class PostScore
+public class ScoreBody
 {
     public string name;
     public string email;

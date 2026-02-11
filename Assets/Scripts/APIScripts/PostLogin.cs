@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PostLogin : MonoBehaviour
@@ -46,6 +47,8 @@ public class PostLogin : MonoBehaviour
                 apiToken = loginData.apiToken
             };
 
+            Debug.Log("Attempting login with Name: " + loginBody.name + " and Email: " + loginBody.email);
+
             string jsonData = JsonConvert.SerializeObject(loginBody);
             byte[] dataToSend = Encoding.UTF8.GetBytes(jsonData);
 
@@ -56,6 +59,8 @@ public class PostLogin : MonoBehaviour
             if (httpClient.result == UnityWebRequest.Result.ConnectionError || httpClient.result == UnityWebRequest.Result.ProtocolError)
             {
                 Debug.Log("Error: " + httpClient.error);
+                StartCoroutine(LoadLevel1Async());
+                yield return null;
             }
 
             string jsonResponse = httpClient.downloadHandler.text;
@@ -63,8 +68,19 @@ public class PostLogin : MonoBehaviour
             Debug.Log("Login successful. User hasRated: " + user.has_rated);
             SaveUserData();
             httpClient.Dispose();
+            StartCoroutine(LoadLevel1Async());
         }
         yield return null;
+    }
+
+    private IEnumerator LoadLevel1Async()
+    {
+        AsyncOperation op = SceneManager.LoadSceneAsync("Level1Scene");
+        op.allowSceneActivation = false;
+
+        yield return null;
+
+        op.allowSceneActivation = true;
     }
 
     public void SaveUserData()

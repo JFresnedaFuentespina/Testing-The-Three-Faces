@@ -58,14 +58,14 @@ public class LoadLevel1 : MonoBehaviour
     private IEnumerator PreTransitionFade()
     {
         yield return null;
-        yield return StartCoroutine(LoadLevelAsync());
+        yield return StartCoroutine(LoadLogin());
     }
 
-    private IEnumerator LoadLevelAsync()
+    private IEnumerator LoadLogin()
     {
         DeleteFiles();
 
-        AsyncOperation op = SceneManager.LoadSceneAsync("Level1Scene");
+        AsyncOperation op = SceneManager.LoadSceneAsync("LoginScene");
         op.allowSceneActivation = false;
 
         // Pequeña espera para asegurarnos que el último frame se dibuje

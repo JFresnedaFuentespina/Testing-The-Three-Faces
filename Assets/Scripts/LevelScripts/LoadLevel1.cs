@@ -47,7 +47,6 @@ public class LoadLevel1 : MonoBehaviour
         videoPlayer.Play();
     }
 
-
     public void SkipVideo()
     {
         if (isLoading) return;
@@ -64,11 +63,7 @@ public class LoadLevel1 : MonoBehaviour
 
     private IEnumerator LoadLevelAsync()
     {
-        string path = Application.persistentDataPath + "/player.json";
-        if (File.Exists(path)) File.Delete(path);
-
-        string timerPath = Application.persistentDataPath + "/timer.json";
-        if (File.Exists(timerPath)) File.Delete(timerPath);
+        DeleteFiles();
 
         AsyncOperation op = SceneManager.LoadSceneAsync("Level1Scene");
         op.allowSceneActivation = false;
@@ -80,7 +75,20 @@ public class LoadLevel1 : MonoBehaviour
         op.allowSceneActivation = true;
     }
 
+    public void DeleteFiles()
+    {
+        string path = Application.persistentDataPath + "/player.json";
+        if (File.Exists(path)) File.Delete(path);
 
+        string timerPath = Application.persistentDataPath + "/timer.json";
+        if (File.Exists(timerPath)) File.Delete(timerPath);
+
+        string scorePath = Application.persistentDataPath + "/score.json";
+        if (File.Exists(scorePath)) File.Delete(scorePath);
+
+        string userPath = Application.persistentDataPath + "/user.json";
+        if (File.Exists(userPath)) File.Delete(userPath);
+    }
 
     private void OnVideoEnd(VideoPlayer vp)
     {

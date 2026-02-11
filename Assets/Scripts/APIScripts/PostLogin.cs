@@ -1,4 +1,5 @@
 using System.Collections;
+using System.IO;
 using System.Text;
 using Newtonsoft.Json;
 using TMPro;
@@ -70,6 +71,21 @@ public class PostLogin : MonoBehaviour
     {
         string json = JsonConvert.SerializeObject(user);
         string path = Application.persistentDataPath + "/user.json";
-        System.IO.File.WriteAllText(path, json);
+        File.WriteAllText(path, json);
+    }
+
+    public void Logout()
+    {
+        user = null;
+        string path = Application.persistentDataPath + "/user.json";
+        if (File.Exists(path))
+        {
+            File.Delete(path);
+            Debug.Log("User data deleted at: " + path);
+        }
+        else
+        {
+            Debug.LogWarning("No user data found to delete at: " + path);
+        }
     }
 }

@@ -45,8 +45,7 @@ public class ScoreGenerator : MonoBehaviour
     public void CalculateScore()
     {
         mins = Mathf.FloorToInt(time / 60f);
-        float modifier = 0f;
-        // Fórmula de puntuación: (baseScore + enemiesDeathCounter) * modifier
+        float modifier;
         if (mins < 3f)
         {
             modifier = 1.5f;
@@ -60,7 +59,7 @@ public class ScoreGenerator : MonoBehaviour
             modifier = 0.7f;
         }
         score = (baseScore + enemiesDeathCounter) * modifier;
-        
+
         string json = JsonConvert.SerializeObject(new ScoreDTO { score = score });
         string path = Application.persistentDataPath + "/score.json";
         File.WriteAllText(path, json);

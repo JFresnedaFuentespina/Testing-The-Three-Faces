@@ -29,5 +29,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GoodEndingScene.unity
     guid: ab87d11da6d96f843bfe3ecf6b8a89ba
+  - enabled: 1
+    path: Assets/Scenes/LoginScene.unity
+    guid: 909e18231efc3354d9ff383a1a13a05c
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

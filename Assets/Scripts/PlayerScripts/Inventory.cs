@@ -23,4 +23,9 @@ public class Inventory : ScriptableObject
     {
         items.RemoveAll(i => i.itemID == id);
     }
+
+    public bool HasItem(string id)
+    {
+        return items.Exists(i => i.itemID == id);
+    }
 }

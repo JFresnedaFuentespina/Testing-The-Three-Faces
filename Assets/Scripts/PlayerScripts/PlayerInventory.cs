@@ -62,4 +62,16 @@ public class PlayerInventory : MonoBehaviour
         if (inventory != null)
             inventory.ResetInventory();
     }
+
+    public bool hasKey
+    {
+        get
+        {
+            if (inventory != null)
+            {
+                return inventory.HasItem("Key");
+            }
+            return false;
+        }
+    }
 }

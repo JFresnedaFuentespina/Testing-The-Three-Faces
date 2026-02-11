@@ -6,6 +6,7 @@ using System.Collections;
 public class VideoTriggerBehaviour : MonoBehaviour
 {
     private VideoPlayer videoPlayer;
+    public PostScore postScoreScript;
 
     void Start()
     {
@@ -36,6 +37,7 @@ public class VideoTriggerBehaviour : MonoBehaviour
         Debug.Log("Player entered the bad ending trigger area.");
 
         other.gameObject.SetActive(false);
+        postScoreScript.PostScoreToAPI();
         StartCoroutine(PrepareAndPlay());
     }
     private IEnumerator PrepareAndPlay()

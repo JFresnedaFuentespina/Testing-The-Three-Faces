@@ -40,6 +40,7 @@ public class ScoreGenerator : MonoBehaviour
         {
             time = 0f;
         }
+        CalculateScore();
     }
 
     public void CalculateScore()

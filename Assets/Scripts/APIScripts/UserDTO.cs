@@ -4,5 +4,5 @@ public class UserDTO
 {
     public string name;
     public string email;
-    public bool hasRated;
+    public bool has_rated;
 }

@@ -15,7 +15,10 @@ public class PostScore : MonoBehaviour
     {
         user = new UserDTO();
         scoreData = new ScoreDTO();
+    }
 
+    public void PostScoreToAPI()
+    {
         // Cargar el usuario desde user.json
         string userPath = Application.persistentDataPath + "/user.json";
         if (File.Exists(userPath))
@@ -25,7 +28,9 @@ public class PostScore : MonoBehaviour
         }
         else
         {
-            Debug.LogError("User data not found at: " + userPath);
+            Debug.LogWarning("User data not found at: " + userPath);
+            user.email = "testing@testing.com";
+            user.name = "Testing User";
         }
 
         // Cargar la puntuación desde score.json
@@ -34,25 +39,28 @@ public class PostScore : MonoBehaviour
         {
             string json = File.ReadAllText(scorePath);
             scoreData = JsonUtility.FromJson<ScoreDTO>(json);
-            StartCoroutine(TryPostScore());
         }
         else
         {
-            Debug.LogError("Score data not found at: " + scorePath);
+            Debug.LogWarning("Score data not found at: " + scorePath);
+            scoreData.score = 10f;
         }
+        StartCoroutine(TryPostScore());
     }
 
     private IEnumerator TryPostScore()
     {
         if (user != null && scoreData != null)
         {
+            ApiDTO apiData = new ApiDTO();
             ScoreBody scoreBody = new ScoreBody
             {
+                api_token = apiData.apiToken,
                 name = user.name,
-                email = user.email,
-                score = scoreData.score
+                puntuacion = scoreData.score
             };
-            ApiDTO apiData = new ApiDTO();
+
+            Debug.Log("Posting score: " + scoreBody.name + " - " + scoreBody.puntuacion);
 
             UnityWebRequest httpClient = new UnityWebRequest();
             httpClient.method = UnityWebRequest.kHttpVerbPOST;
@@ -62,6 +70,9 @@ public class PostScore : MonoBehaviour
 
             string jsonData = JsonUtility.ToJson(scoreBody);
             byte[] dataToSend = Encoding.UTF8.GetBytes(jsonData);
+
+            httpClient.uploadHandler = new UploadHandlerRaw(dataToSend);
+            httpClient.downloadHandler = new DownloadHandlerBuffer();
 
             yield return httpClient.SendWebRequest();
             if (httpClient.result == UnityWebRequest.Result.ConnectionError || httpClient.result == UnityWebRequest.Result.ProtocolError)

@@ -59,8 +59,8 @@ public class PostLogin : MonoBehaviour
             }
 
             string jsonResponse = httpClient.downloadHandler.text;
-            user.hasRated = JsonConvert.DeserializeObject<UserDTO>(jsonResponse).hasRated;
-            Debug.Log("Login successful. User hasRated: " + user.hasRated);
+            user.has_rated = JsonConvert.DeserializeObject<UserDTO>(jsonResponse).has_rated;
+            Debug.Log("Login successful. User hasRated: " + user.has_rated);
             SaveUserData();
             httpClient.Dispose();
         }

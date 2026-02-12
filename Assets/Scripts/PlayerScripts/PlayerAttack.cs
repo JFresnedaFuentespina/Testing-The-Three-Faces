@@ -204,9 +204,36 @@ public class PlayerAttack : MonoBehaviour
     {
         isFireball = false;
 
-        Vector3 direction = transform.forward;
-        Vector3 spawnPos = transform.position + direction * attackRange;
-        spawnPos.y = thunderSpawnY; // forzar la altura exacta
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Vector3 origin = transform.position;
+
+        Vector3 targetPoint;
+
+        if (Physics.Raycast(ray, out RaycastHit mouseHit))
+        {
+            Vector3 clickPoint = mouseHit.point;
+
+            float distance = Vector3.Distance(origin, clickPoint);
+
+            if (distance <= attackRange)
+            {
+                targetPoint = clickPoint;
+            }
+            else
+            {
+                // Limitar al rango máximo
+                Vector3 direction = (clickPoint - origin).normalized;
+                targetPoint = origin + direction * attackRange;
+            }
+        }
+        else
+        {
+            // Si no golpea nada, usar rango máximo hacia delante
+            targetPoint = origin + transform.forward * attackRange;
+        }
+
+        // Forzar altura del rayo
+        Vector3 spawnPos = new Vector3(targetPoint.x, thunderSpawnY, targetPoint.z);
 
         GameObject newThunder = Instantiate(
             thunderPrefab,
@@ -214,9 +241,12 @@ public class PlayerAttack : MonoBehaviour
             Quaternion.identity
         );
 
-        if (Physics.Raycast(spawnPos, Vector3.down, out RaycastHit hitInfo, 20f))
+        // Raycast hacia abajo para aplicar daño
+        if (Physics.Raycast(spawnPos, Vector3.down, out RaycastHit hitInfo, 50f))
         {
-            if (hitInfo.collider.tag.Contains("Boss") || hitInfo.collider.CompareTag("Enemy_Zombie") || hitInfo.collider.CompareTag("Enemy_Ghost"))
+            if (hitInfo.collider.tag.Contains("Boss") ||
+                hitInfo.collider.CompareTag("Enemy_Zombie") ||
+                hitInfo.collider.CompareTag("Enemy_Ghost"))
             {
                 EnemyLife enemyLife = hitInfo.collider.GetComponent<EnemyLife>();
                 if (enemyLife != null)
@@ -229,6 +259,7 @@ public class PlayerAttack : MonoBehaviour
 
         Destroy(newThunder, thunderLifeTime);
     }
+
 
     public void DecideChanges(string item)
     {

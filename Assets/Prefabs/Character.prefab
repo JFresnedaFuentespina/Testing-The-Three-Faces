@@ -148,8 +148,8 @@ MonoBehaviour:
   attackRange: 5
   attackInterval: 1
   thunderLifeTime: 0.5
-  isFireball: 1
-  isThunder: 0
+  isFireball: 0
+  isThunder: 1
   swordSwingAudioClip: {fileID: 8300000, guid: 75007150f322cce46a01a6c889e3402d, type: 3}
   fireballAudioClip: {fileID: 8300000, guid: d8c9f6964b00f354ea48560606339ed6, type: 3}
   swordGO: {fileID: 0}

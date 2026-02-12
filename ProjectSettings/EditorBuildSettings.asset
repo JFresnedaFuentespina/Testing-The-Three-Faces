@@ -32,5 +32,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LoginScene.unity
     guid: 909e18231efc3354d9ff383a1a13a05c
+  - enabled: 1
+    path: Assets/Scenes/Classifications.unity
+    guid: eaf64743a5c3fd140b4d760856921f46
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

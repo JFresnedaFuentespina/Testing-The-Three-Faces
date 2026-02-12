@@ -10,13 +10,32 @@ public class GetClassifications : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private List<ScoreResponse> classifications;
     private ApiDTO apiData;
-    public GameObject classificationsTable;
+    // public GameObject classificationsTable;
+    public GameObject contentContainer;
+    public GameObject headerContainer;
     public GameObject classificationItemPrefab;
+    public GameObject classificationItemHeaderPrefab;
+    public GameObject loadingPanel;
+    private bool isLoading = true;
     void Start()
     {
         apiData = new ApiDTO();
         classifications = new List<ScoreResponse>();
+        StartCoroutine(ShowLoadingPanel());
         StartCoroutine(GetClassificationsFromAPI());
+    }
+
+    private IEnumerator ShowLoadingPanel()
+    {
+        if (isLoading)
+        {
+            loadingPanel.SetActive(true);
+        }
+        else
+        {
+            loadingPanel.SetActive(false);
+        }
+        yield return null;
     }
 
     private IEnumerator GetClassificationsFromAPI()
@@ -48,20 +67,22 @@ public class GetClassifications : MonoBehaviour
     public void DisplayClassifications()
     {
         // Limpia hijos anteriores (por si recargas)
-        foreach (Transform child in classificationsTable.transform)
+        foreach (Transform child in contentContainer.transform)
         {
             Destroy(child.gameObject);
         }
 
-        Instantiate(classificationItemPrefab, classificationsTable.transform); // Instancia el encabezado de la tabla
+        Instantiate(classificationItemHeaderPrefab, headerContainer.transform); // Instancia el encabezado de la tabla
 
         foreach (ScoreResponse score in classifications)
         {
-            GameObject item = Instantiate(classificationItemPrefab, classificationsTable.transform);
+            GameObject item = Instantiate(classificationItemPrefab, contentContainer.transform);
 
             ClassificationItemUI itemUI = item.GetComponent<ClassificationItemUI>();
             itemUI.Setup(score.name, score.puntuacion);
         }
+        isLoading = false;
+        loadingPanel.SetActive(false);
     }
 
 }

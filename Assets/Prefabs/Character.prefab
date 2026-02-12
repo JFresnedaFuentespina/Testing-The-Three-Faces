@@ -142,7 +142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireball: {fileID: 7251879486380165639, guid: c2f6a8962aac3814aa56cb9647c93470, type: 3}
   thunderPrefab: {fileID: 3300406336262876018, guid: 67544146273a40e48cb7167c545418e6, type: 3}
-  attackDamage: 4
+  attackDamage: 100
   attackSpeed: 5
   spawnHeight: 1
   attackRange: 5

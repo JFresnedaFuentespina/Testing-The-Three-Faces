@@ -146,34 +146,61 @@ public class LevelGenerator : MonoBehaviour
 
         Vector3 currentPos = room.transform.position;
 
-        //  Determinar si hay habitaciones vecinas en los lados
         bool hasLeft = (x > 0 && levelMap[x - 1]);
         bool hasRight = (x < levelMap.Count - 1 && levelMap[x + 1]);
         bool hasFront = false;
 
-        // Comprobar si la BossRoom (normal o forzada) está justo delante (+Z)
+        // --- BOSS ---
         var bossEntry = roomsDictionary.FirstOrDefault(r =>
             r.Key.StartsWith("Boss") || r.Key.StartsWith("Boss_Forced"));
+
         if (!bossEntry.Equals(default(KeyValuePair<string, Vector3>)))
         {
             if (Vector3.Distance(bossEntry.Value, currentPos + new Vector3(0, 0, offsetW)) < 1f)
                 hasFront = true;
         }
 
-        // Comprobar si el tesoro está justo a la izquierda o derecha
+        // --- TREASURE ---
+        bool connectsToTreasureLeft = false;
+        bool connectsToTreasureRight = false;
+
         if (treasurePos.HasValue)
         {
             if (Vector3.Distance(treasurePos.Value, currentPos + new Vector3(-offsetW, 0, 0)) < 1f)
+            {
                 hasLeft = true;
+                connectsToTreasureLeft = true;
+            }
+
             if (Vector3.Distance(treasurePos.Value, currentPos + new Vector3(offsetW, 0, 0)) < 1f)
+            {
                 hasRight = true;
+                connectsToTreasureRight = true;
+            }
         }
 
-        // Activar o desactivar las puertas
+        // Activar puertas normales
         if (leftDoor != null) leftDoor.gameObject.SetActive(hasLeft);
         if (rightDoor != null) rightDoor.gameObject.SetActive(hasRight);
         if (frontDoor != null) frontDoor.gameObject.SetActive(hasFront);
+
+        // --- ACTIVAR CHEST SI CONECTA CON TESORO ---
+
+        if (connectsToTreasureLeft && leftDoor != null)
+        {
+            Transform chest = leftDoor.Find("Chest");
+            if (chest != null)
+                chest.gameObject.SetActive(true);
+        }
+
+        if (connectsToTreasureRight && rightDoor != null)
+        {
+            Transform chest = rightDoor.Find("Chest");
+            if (chest != null)
+                chest.gameObject.SetActive(true);
+        }
     }
+
 
 
     public Vector3? SpawnTreasureRoom()

@@ -7,6 +7,7 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     private ChangeCharacter changeCharacter;
+    public RadioRayo radioRayo;
     public GameObject fireball;
     public GameObject thunderPrefab;
     public float attackDamage = 5f;
@@ -291,6 +292,7 @@ public class PlayerAttack : MonoBehaviour
         isFireball = false;
         isThunder = true;
         attackDamage += 2f;
+        radioRayo.isThunderActive = true;
         NotifyAttackStatsChanged();
     }
 

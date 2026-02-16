@@ -109,7 +109,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2253393103804301607}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 845c415f3181b4840ab566c40e714752, type: 3}
   m_Name: 
@@ -119,14 +119,14 @@ MonoBehaviour:
   rotateY: 1
   rotateZ: 0
   rotationSpeed: 85.67
-  isFloating: 1
+  isFloating: 0
   useEasingForFloating: 1
-  floatHeight: 1.93
-  floatSpeed: 0.4
+  floatHeight: 1.5
+  floatSpeed: 1
   startScale: {x: 0.7, y: 0.7, z: 0.7}
   endScale: {x: 1, y: 1, z: 1}
-  isScaling: 1
-  useEasingForScaling: 1
+  isScaling: 0
+  useEasingForScaling: 0
   scaleLerpSpeed: 1.11
 --- !u!114 &-4198613675827595217
 MonoBehaviour:

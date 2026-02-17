@@ -66,23 +66,29 @@ public class DialogueManager : MonoBehaviour
     {
         if (Input.GetKeyDown(keyToContinue))
         {
-            if (isTyping)
+            if (keyToContinue == KeyCode.E)
             {
-                StopCoroutine(typingCoroutine);
-                message.text = fullMessage;
-                isTyping = false;
-                dialogueFinished = true;
+                SkipDialogWithE();
             }
-            else if (dialogueFinished)
+            else
             {
-                gameObject.SetActive(false);
-                if (nextDialogue != null)
+                if (isTyping)
                 {
-                    nextDialogue.SetActive(true);
+                    // Termina de escribir
+                    StopCoroutine(typingCoroutine);
+                    message.text = fullMessage;
+                    isTyping = false;
+                    dialogueFinished = true;
                 }
-                else
+                else if (dialogueFinished)
                 {
-                    if (pararTiempo)
+                    // Cierra el diálogo y activa el siguiente
+                    gameObject.SetActive(false);
+                    if (nextDialogue != null)
+                    {
+                        nextDialogue.SetActive(true);
+                    }
+                    else if (pararTiempo)
                     {
                         Time.timeScale = 1f;
                     }
@@ -90,4 +96,28 @@ public class DialogueManager : MonoBehaviour
             }
         }
     }
+
+    private void SkipDialogWithE()
+    {
+        // Pulso E → termina de escribir y pasa al siguiente de inmediato
+        if (isTyping)
+        {
+            StopCoroutine(typingCoroutine);
+            message.text = fullMessage;
+            isTyping = false;
+            dialogueFinished = true;
+        }
+
+        // Pasar al siguiente diálogo inmediatamente
+        gameObject.SetActive(false);
+        if (nextDialogue != null)
+        {
+            nextDialogue.SetActive(true);
+        }
+        else if (pararTiempo)
+        {
+            Time.timeScale = 1f;
+        }
+    }
+
 }

@@ -149,8 +149,8 @@ MonoBehaviour:
   attackRange: 5
   attackInterval: 1
   thunderLifeTime: 0.5
-  isFireball: 0
-  isThunder: 1
+  isFireball: 1
+  isThunder: 0
   swordSwingAudioClip: {fileID: 8300000, guid: 75007150f322cce46a01a6c889e3402d, type: 3}
   fireballAudioClip: {fileID: 8300000, guid: d8c9f6964b00f354ea48560606339ed6, type: 3}
   swordGO: {fileID: 0}
@@ -437,7 +437,7 @@ MonoBehaviour:
   isThunderActive: 0
 --- !u!120 &3136132285449810611
 LineRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -483,6 +483,7 @@ LineRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
   m_Parameters:
@@ -540,7 +541,6 @@ LineRenderer:
     textureScale: {x: 0.05, y: 0.05}
     shadowBias: 0.5
     generateLightingData: 0
-  m_MaskInteraction: 0
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1

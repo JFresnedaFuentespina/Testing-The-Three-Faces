@@ -8,6 +8,7 @@ public class ClassificationsButtonsManager : MonoBehaviour
     public Button restartButton;
     void Start()
     {
+        Cursor.visible = true;
         exitButton.onClick.AddListener(ExitGame);
         restartButton.onClick.AddListener(RestartGame);
     }

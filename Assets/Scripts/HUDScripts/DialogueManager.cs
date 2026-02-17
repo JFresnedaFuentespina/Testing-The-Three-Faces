@@ -21,6 +21,7 @@ public class DialogueManager : MonoBehaviour
     private Coroutine typingCoroutine;
     public GameObject nextDialogue;
     public KeyCode keyToContinue;
+    public bool pararTiempo = true;
 
     void Start()
     {
@@ -44,13 +45,17 @@ public class DialogueManager : MonoBehaviour
 
     IEnumerator TypeMessage()
     {
+        if (pararTiempo)
+        {
+            Time.timeScale = 0f;
+        }
         isTyping = true;
         message.text = "";
 
         foreach (char letter in fullMessage)
         {
             message.text += letter;
-            yield return new WaitForSeconds(letterSpeed);
+            yield return new WaitForSecondsRealtime(letterSpeed);
         }
 
         isTyping = false;
@@ -74,6 +79,13 @@ public class DialogueManager : MonoBehaviour
                 if (nextDialogue != null)
                 {
                     nextDialogue.SetActive(true);
+                }
+                else
+                {
+                    if (pararTiempo)
+                    {
+                        Time.timeScale = 1f;
+                    }
                 }
             }
         }

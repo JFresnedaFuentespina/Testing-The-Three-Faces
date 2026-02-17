@@ -18,6 +18,7 @@ public class CantoMovement : MonoBehaviour
     private CantoAI cantoAI;
     private Animator animator;
     private EnemyLife enemyLife;
+    private CantoDialogueManager cantoDialogueManager;
 
     private bool isWalking = false;
     private bool isAttacking = false;
@@ -30,6 +31,8 @@ public class CantoMovement : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         agent.speed = moveSpeed;
+
+        cantoDialogueManager = GetComponent<CantoDialogueManager>();
 
         BuscarJugador();
         cantoAI = GetComponent<CantoAI>();
@@ -198,6 +201,7 @@ public class CantoMovement : MonoBehaviour
     {
         isWalking = false;
         isAttacking = false;
+        cantoDialogueManager.ShowDeathDialog();
         cantoAI.SetWalking(false);
         cantoAI.SetDeath();
         agent.isStopped = true;

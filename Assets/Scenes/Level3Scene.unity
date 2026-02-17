@@ -2400,7 +2400,7 @@ MonoBehaviour:
   letterSpeed: 0.05
   fullMessage: "Aqu\xED las tienes."
   inputMessage: Pulsa "Espacio" para avanzar
-  nextDialogue: {fileID: 0}
+  nextDialogue: {fileID: 1438931031}
   keyToContinue: 32
   pararTiempo: 1
 --- !u!1 &688446440

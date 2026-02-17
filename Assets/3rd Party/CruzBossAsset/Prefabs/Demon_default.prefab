@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 233475109936759351}
   - component: {fileID: 3383421779063375692}
   - component: {fileID: 8785932582204096324}
+  - component: {fileID: 8394536434697709217}
   m_Layer: 9
   m_Name: Demon_default
   m_TagString: BossCruz
@@ -119,6 +120,13 @@ MonoBehaviour:
   totalHp: 60
   currentHp: 0
   healthBar: {fileID: 4907457705083208227}
+  hitAudioClip: {fileID: 0}
+  defaultAudioClip: {fileID: 0}
+  deathAudioClip: {fileID: 0}
+  audioSource: {fileID: 0}
+  poisoned: 0
+  enemiesDeathCounterGO: {fileID: 0}
+  enemiesDeathCounter: {fileID: 0}
 --- !u!65 &8785932582204096324
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -140,6 +148,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 3.0336978, z: 0.7531148}
   m_Center: {x: 0, y: 1.478721, z: 0.123442575}
+--- !u!114 &8394536434697709217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6334826068141619221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c9829253e57f8a49a6ffaf74a67e7cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PlayerHealthAssembly::CruzDialogManager
 --- !u!1001 &998865375114100220
 PrefabInstance:
   m_ObjectHideFlags: 0

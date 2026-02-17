@@ -53,7 +53,7 @@ public class CruzAI : MonoBehaviour
         }
     }
 
-    public void SetDead()
+    public void SetDeath()
     {
         if (animator != null)
         {

@@ -387,7 +387,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -197, y: -227}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &563469076907077247
@@ -407,11 +407,13 @@ MonoBehaviour:
   message: {fileID: 6449296285419502213}
   nameText: {fileID: 6449296285614807723}
   inputText: {fileID: 2338859298468319739}
+  bossName: 
   letterSpeed: 0.05
   fullMessage: Message...
   inputMessage: Pulsa "Espacio" para avanzar
-  nextDialogue: {fileID: 626729616654755166}
-  keyToContinue: 27
+  nextDialogue: {fileID: 0}
+  keyToContinue: 32
+  pararTiempo: 1
 --- !u!1 &6449296285419502215
 GameObject:
   m_ObjectHideFlags: 0

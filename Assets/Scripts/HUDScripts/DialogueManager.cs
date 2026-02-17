@@ -12,6 +12,8 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI message;
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI inputText;
+    private string displayName;
+    public string bossName = "";
     private bool isTyping = false;
     private bool dialogueFinished = false;
 
@@ -30,13 +32,19 @@ public class DialogueManager : MonoBehaviour
         {
             string json = File.ReadAllText(path);
             UserDTO userData = JsonUtility.FromJson<UserDTO>(json);
-            nameText.text = userData.name;
+            displayName = userData.name;
         }
         else
         {
-            nameText.text = "Player";
+            displayName = "Player";
         }
 
+        if (bossName != "")
+        {
+            displayName = bossName;
+        }
+
+        nameText.text = displayName;
         portraitImage.sprite = portrait;
         inputText.text = inputMessage;
         gameObject.SetActive(true);

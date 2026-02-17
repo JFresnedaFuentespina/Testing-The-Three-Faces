@@ -1101,6 +1101,7 @@ MonoBehaviour:
   message: {fileID: 674481557}
   nameText: {fileID: 1913805388}
   inputText: {fileID: 113603486}
+  bossName: 
   letterSpeed: 0.05
   fullMessage: "Tu control termina aqu\xED."
   inputMessage: Pulsa "Espacio" para continuar
@@ -1319,6 +1320,7 @@ MonoBehaviour:
   message: {fileID: 1208106994}
   nameText: {fileID: 1957656820}
   inputText: {fileID: 1708469014}
+  bossName: Cara
   letterSpeed: 0.05
   fullMessage: "Acabar\xE9 contigo y tu dichosa moneda."
   inputMessage: Pulsa "Espacio" para continuar
@@ -1985,6 +1987,7 @@ MonoBehaviour:
   message: {fileID: 1067661306}
   nameText: {fileID: 236211164}
   inputText: {fileID: 1480192816}
+  bossName: Cara
   letterSpeed: 0.05
   fullMessage: "No deber\xEDas existir. Las cosas deben ser una sola cosa."
   inputMessage: Pulsa "Espacio" para continuar
@@ -3386,6 +3389,7 @@ MonoBehaviour:
   message: {fileID: 985153466}
   nameText: {fileID: 788559429}
   inputText: {fileID: 966663471}
+  bossName: 
   letterSpeed: 0.05
   fullMessage: Easy peasy mi abuela en bici.
   inputMessage: Pulsa "Espacio" para continuar
@@ -3979,6 +3983,7 @@ MonoBehaviour:
   message: {fileID: 1943649513}
   nameText: {fileID: 281501555}
   inputText: {fileID: 917343965}
+  bossName: 
   letterSpeed: 0.05
   fullMessage: "Y aun as\xED, aqu\xED estoy."
   inputMessage: Pulsa "Espacio" para continuar

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CruzAI : MonoBehaviour
+public class CruzAnimatorController : MonoBehaviour
 {
     public Animator animator;
 

@@ -15,7 +15,7 @@ public class CantoMovement : MonoBehaviour
 
     private GameObject player;
     private NavMeshAgent agent;
-    private CantoAI cantoAI;
+    private CantoAnimatorController cantoAI;
     private Animator animator;
     private EnemyLife enemyLife;
     private CantoDialogueManager cantoDialogueManager;
@@ -35,7 +35,7 @@ public class CantoMovement : MonoBehaviour
         cantoDialogueManager = GetComponent<CantoDialogueManager>();
 
         BuscarJugador();
-        cantoAI = GetComponent<CantoAI>();
+        cantoAI = GetComponent<CantoAnimatorController>();
         animator = cantoAI.animator;
         enemyLife = GetComponent<EnemyLife>();
     }

@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class CaraAI : MonoBehaviour
+public class CaraAnimatorController : MonoBehaviour
 {
     private float distanceToPlayerFloat;
     private Animator animator;

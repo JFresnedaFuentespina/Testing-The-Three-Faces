@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CantoAI : MonoBehaviour
+public class CantoAnimatorController : MonoBehaviour
 {
     public Animator animator;
     void Start()

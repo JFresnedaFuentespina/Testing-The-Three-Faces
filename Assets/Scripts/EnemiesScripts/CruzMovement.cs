@@ -16,7 +16,7 @@ public class CruzMovement : MonoBehaviour
 
     private GameObject player;
     private NavMeshAgent agent;
-    private CruzAI cruzAI;
+    private CruzAnimatorController cruzAI;
     private Animator animator;
     private CruzDialogManager dialogManager;
     private EnemyLife enemyLife;
@@ -37,7 +37,7 @@ public class CruzMovement : MonoBehaviour
         agent.speed = 0f;
 
         BuscarJugador();
-        cruzAI = GetComponent<CruzAI>();
+        cruzAI = GetComponent<CruzAnimatorController>();
         animator = cruzAI.animator;
     }
 

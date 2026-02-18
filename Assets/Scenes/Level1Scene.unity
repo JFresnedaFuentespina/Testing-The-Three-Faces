@@ -1053,6 +1053,7 @@ GameObject:
   m_Component:
   - component: {fileID: 314555696}
   - component: {fileID: 314555697}
+  - component: {fileID: 314555698}
   m_Layer: 5
   m_Name: CaraDeathDialogue
   m_TagString: Untagged
@@ -1108,6 +1109,23 @@ MonoBehaviour:
   nextDialogue: {fileID: 0}
   keyToContinue: 32
   pararTiempo: 1
+--- !u!114 &314555698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314555695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28c852f23060ca044814012a6ae05b43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PlayerHealthAssembly::CameraDialogueManager
+  mainCamera: {fileID: 261188804}
+  playerCamera: {fileID: 0}
+  bossCamera: {fileID: 0}
+  cameraToUse: 1
+  nextCameraDialoguemanager: {fileID: 0}
 --- !u!1 &325778198
 GameObject:
   m_ObjectHideFlags: 0
@@ -1272,6 +1290,7 @@ GameObject:
   m_Component:
   - component: {fileID: 338766098}
   - component: {fileID: 338766099}
+  - component: {fileID: 338766100}
   m_Layer: 5
   m_Name: CaraDialogue2
   m_TagString: Untagged
@@ -1327,6 +1346,23 @@ MonoBehaviour:
   nextDialogue: {fileID: 0}
   keyToContinue: 32
   pararTiempo: 1
+--- !u!114 &338766100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338766097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28c852f23060ca044814012a6ae05b43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PlayerHealthAssembly::CameraDialogueManager
+  mainCamera: {fileID: 261188804}
+  playerCamera: {fileID: 0}
+  bossCamera: {fileID: 0}
+  cameraToUse: 2
+  nextCameraDialoguemanager: {fileID: 314555698}
 --- !u!1 &340062611 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3910886895333099084, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
@@ -1939,6 +1975,7 @@ GameObject:
   m_Component:
   - component: {fileID: 898262896}
   - component: {fileID: 898262897}
+  - component: {fileID: 898262898}
   m_Layer: 5
   m_Name: CaraDialogue1
   m_TagString: Untagged
@@ -1994,6 +2031,23 @@ MonoBehaviour:
   nextDialogue: {fileID: 1924077277}
   keyToContinue: 32
   pararTiempo: 1
+--- !u!114 &898262898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 898262895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28c852f23060ca044814012a6ae05b43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PlayerHealthAssembly::CameraDialogueManager
+  mainCamera: {fileID: 261188804}
+  playerCamera: {fileID: 0}
+  bossCamera: {fileID: 0}
+  cameraToUse: 2
+  nextCameraDialoguemanager: {fileID: 1924077280}
 --- !u!114 &911072702 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4783482992638389572, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
@@ -3341,6 +3395,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1482305627}
   - component: {fileID: 1482305628}
+  - component: {fileID: 1482305629}
   m_Layer: 5
   m_Name: Dialogue2
   m_TagString: Untagged
@@ -3396,6 +3451,23 @@ MonoBehaviour:
   nextDialogue: {fileID: 0}
   keyToContinue: 32
   pararTiempo: 0
+--- !u!114 &1482305629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1482305626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28c852f23060ca044814012a6ae05b43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PlayerHealthAssembly::CameraDialogueManager
+  mainCamera: {fileID: 261188804}
+  playerCamera: {fileID: 0}
+  bossCamera: {fileID: 0}
+  cameraToUse: 0
+  nextCameraDialoguemanager: {fileID: 898262898}
 --- !u!114 &1514585173 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5944919036071274420, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
@@ -3935,6 +4007,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1924077278}
   - component: {fileID: 1924077279}
+  - component: {fileID: 1924077280}
   m_Layer: 5
   m_Name: PlayerDialogue1
   m_TagString: Untagged
@@ -3990,6 +4063,23 @@ MonoBehaviour:
   nextDialogue: {fileID: 338766097}
   keyToContinue: 32
   pararTiempo: 1
+--- !u!114 &1924077280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1924077277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28c852f23060ca044814012a6ae05b43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PlayerHealthAssembly::CameraDialogueManager
+  mainCamera: {fileID: 261188804}
+  playerCamera: {fileID: 0}
+  bossCamera: {fileID: 0}
+  cameraToUse: 1
+  nextCameraDialoguemanager: {fileID: 338766100}
 --- !u!1 &1943649511
 GameObject:
   m_ObjectHideFlags: 0
@@ -4708,6 +4798,22 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8744966901279960690, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 261188804}
+    - target: {fileID: 8744966901279960690, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: cameraToUse
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8744966901279960690, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: showPlayerCamera
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8744966901279960690, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: nextCameraDialoguemanager
+      value: 
+      objectReference: {fileID: 1482305629}
     - target: {fileID: 9032366882447832888, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -373
@@ -4728,7 +4834,8 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 82.5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1878606772249265039, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1878606772249265038, guid: 519c87607748a6648b3d503d073a62b1, type: 3}

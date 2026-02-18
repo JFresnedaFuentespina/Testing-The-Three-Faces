@@ -15,6 +15,8 @@ public class EnemiesGenerator : MonoBehaviour
     public float spawnAreaX = 2f;
     public float spawnAreaZ = 2f;
 
+    private CameraDialogueManager cameraDialogueManager;
+
     private bool enemiesSpawned = false;
     private List<EnemyLife> spawnedEnemies = new List<EnemyLife>();
     public bool enemiesDefeated = false;
@@ -69,15 +71,15 @@ public class EnemiesGenerator : MonoBehaviour
         // Spawn de boss si es sala de boss
         if (gameObject.name.IndexOf("Boss", System.StringComparison.OrdinalIgnoreCase) >= 0)
         {
-            if(SceneManager.GetActiveScene().name == "Level1Scene")
+            if (SceneManager.GetActiveScene().name == "Level1Scene")
             {
                 GenerateBoss(bossCaraPrefab, bounds, roomPos);
             }
-            else if(SceneManager.GetActiveScene().name == "Level2Scene")
+            else if (SceneManager.GetActiveScene().name == "Level2Scene")
             {
                 GenerateBoss(bossCruzPrefab, bounds, roomPos);
             }
-            else if(SceneManager.GetActiveScene().name == "Level3Scene")
+            else if (SceneManager.GetActiveScene().name == "Level3Scene")
             {
                 GenerateBoss(bossCantoPrefab, bounds, roomPos);
             }
@@ -90,6 +92,7 @@ public class EnemiesGenerator : MonoBehaviour
 
     private void GenerateBoss(GameObject bossPrefab, Bounds bounds, Vector3 roomPos)
     {
+        cameraDialogueManager = GameObject.FindAnyObjectByType<CameraDialogueManager>();
         GameObject boss = bossPrefab;
         // Revisar si ya existe un BossCara en la escena
         bool bossExists = FindObjectsOfType<EnemyLife>()
@@ -105,6 +108,12 @@ public class EnemiesGenerator : MonoBehaviour
             GameObject newBoss = Instantiate(boss, bossSpawn, Quaternion.identity);
             EnemyLife bossLife = newBoss.GetComponent<EnemyLife>();
             if (bossLife != null) spawnedEnemies.Add(bossLife);
+            Camera cameraBoss = newBoss.transform.Find("BossCamera").GetComponent<Camera>();
+            if (cameraDialogueManager != null)
+            {
+                cameraDialogueManager.RegisterBossCamera(cameraBoss);
+                cameraDialogueManager.RefreshCamera();
+            }
         }
     }
 

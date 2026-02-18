@@ -359,6 +359,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6449296285370776043}
   - component: {fileID: 563469076907077247}
+  - component: {fileID: 4237600530089277237}
   m_Layer: 5
   m_Name: Dialogue1
   m_TagString: Untagged
@@ -414,6 +415,21 @@ MonoBehaviour:
   nextDialogue: {fileID: 0}
   keyToContinue: 32
   pararTiempo: 1
+--- !u!114 &4237600530089277237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6449296285370776052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28c852f23060ca044814012a6ae05b43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PlayerHealthAssembly::CameraDialogueManager
+  mainCamera: {fileID: 0}
+  showBossCamera: 0
+  showPlayerCamera: 0
 --- !u!1 &6449296285419502215
 GameObject:
   m_ObjectHideFlags: 0
@@ -772,7 +788,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6449296285829880521}
-  - component: {fileID: 6449296285829880520}
   - component: {fileID: 6449296285829880522}
   - component: {fileID: 6449296285829880523}
   - component: {fileID: 6449296285829880532}
@@ -805,26 +820,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &6449296285829880520
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6449296285829880533}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8806150b481b8f543a5774ddeb2d013a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  portrait: {fileID: 6449296285444158431}
-  nameText: {fileID: 6449296285614807723}
-  messageText: {fileID: 6449296285419502213}
-  dialogueWindow: {fileID: 6449296285370776052}
-  interactionUI: {fileID: 7386985446916643908}
-  animateText: 1
-  textAnimationSpeed: 0.5
-  actionInput: 32
 --- !u!223 &6449296285829880522
 Canvas:
   m_ObjectHideFlags: 0

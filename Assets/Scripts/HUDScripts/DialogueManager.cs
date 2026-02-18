@@ -18,7 +18,7 @@ public class DialogueManager : MonoBehaviour
     private bool dialogueFinished = false;
 
     public float letterSpeed = 0.05f;
-    public string fullMessage = "Oh sh*t, here we go again...";
+    public string fullMessage;
     public string inputMessage;
     private Coroutine typingCoroutine;
     public GameObject nextDialogue;

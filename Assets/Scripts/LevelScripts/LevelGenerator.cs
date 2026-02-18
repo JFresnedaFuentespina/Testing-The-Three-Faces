@@ -32,6 +32,8 @@ public class LevelGenerator : MonoBehaviour
     public Dictionary<string, Vector3> roomsDictionary = new Dictionary<string, Vector3>();
 
     private MinimapBehaviour minimapBehaviour;
+
+    private CameraDialogueManager cameraDialogueManager;
     public bool fogEnabled = false;
 
     public void GenerateLevel(int width, int minRooms, int levelId)
@@ -40,6 +42,8 @@ public class LevelGenerator : MonoBehaviour
         this.levelId = levelId;
         levelMap.Clear();
         roomsDictionary.Clear();
+
+        cameraDialogueManager = GameObject.FindAnyObjectByType<CameraDialogueManager>();
 
         int totalRooms = Random.Range(minRooms, levelWidth + 1);
 
@@ -80,6 +84,9 @@ public class LevelGenerator : MonoBehaviour
                 if (i == 0 && character != null)
                 {
                     character = Instantiate(characterPrefab, position, Quaternion.identity);
+                    Camera cameraPlayer = character.transform.Find("PlayerCamera").GetComponent<Camera>();
+                    if (cameraDialogueManager != null)
+                        cameraDialogueManager.RegisterPlayerCamera(cameraPlayer);
                 }
 
                 roomsDictionary.Add($"Room_{i}", position);

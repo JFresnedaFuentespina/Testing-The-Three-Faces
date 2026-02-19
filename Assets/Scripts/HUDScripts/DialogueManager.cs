@@ -7,7 +7,9 @@ using UnityEngine.UI;
 public class DialogueManager : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public Sprite portrait;
+    public Sprite portraitFantasma;
+    public Sprite portraitEsqueleto;
+    public Sprite portraitBoss;
     public Image portraitImage;
     public TextMeshProUGUI message;
     public TextMeshProUGUI nameText;
@@ -16,6 +18,7 @@ public class DialogueManager : MonoBehaviour
     public string bossName = "";
     private bool isTyping = false;
     private bool dialogueFinished = false;
+    public bool showingGhost = true;
 
     public float letterSpeed = 0.05f;
     public string fullMessage;
@@ -45,10 +48,29 @@ public class DialogueManager : MonoBehaviour
         }
 
         nameText.text = displayName;
-        portraitImage.sprite = portrait;
         inputText.text = inputMessage;
+        if (bossName == "")
+        {
+            RefreshPortraitImage();
+        }
+        else
+        {
+            portraitImage.sprite = portraitBoss;
+        }
         gameObject.SetActive(true);
         typingCoroutine = StartCoroutine(TypeMessage());
+    }
+
+    public void RefreshPortraitImage()
+    {
+        if (!showingGhost)
+        {
+            portraitImage.sprite = portraitEsqueleto;
+        }
+        else
+        {
+            portraitImage.sprite = portraitEsqueleto;
+        }
     }
 
     void OnDisable()
@@ -142,6 +164,7 @@ public class DialogueManager : MonoBehaviour
         {
             nextDialogue.SetActive(true);
         }
+        showingGhost = false;
     }
 
 }

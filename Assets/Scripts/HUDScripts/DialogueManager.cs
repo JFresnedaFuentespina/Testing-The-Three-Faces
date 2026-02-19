@@ -25,8 +25,12 @@ public class DialogueManager : MonoBehaviour
     public string inputMessage;
     private Coroutine typingCoroutine;
     public GameObject nextDialogue;
+    public GameObject hp;
+    public GameObject minimap;
+    public GameObject Timer;
     public KeyCode keyToContinue;
     public bool pararTiempo = true;
+
 
     void Start()
     {
@@ -57,6 +61,9 @@ public class DialogueManager : MonoBehaviour
         {
             portraitImage.sprite = portraitBoss;
         }
+
+        SetGameplayUI(false);
+
         gameObject.SetActive(true);
         typingCoroutine = StartCoroutine(TypeMessage());
     }
@@ -79,7 +86,16 @@ public class DialogueManager : MonoBehaviour
         {
             Time.timeScale = 1f;
         }
+        SetGameplayUI(true);
     }
+
+    private void SetGameplayUI(bool value)
+    {
+        if (hp) hp.SetActive(value);
+        if (minimap) minimap.SetActive(value);
+        if (Timer) Timer.SetActive(value);
+    }
+
 
     IEnumerator TypeMessage()
     {

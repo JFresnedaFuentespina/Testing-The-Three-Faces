@@ -1105,10 +1105,14 @@ MonoBehaviour:
   nameText: {fileID: 1913805388}
   inputText: {fileID: 113603486}
   bossName: 
+  showingEsqueleto: 1
   letterSpeed: 0.05
   fullMessage: "Tu control termina aqu\xED."
   inputMessage: Pulsa "Espacio" para continuar
   nextDialogue: {fileID: 0}
+  hp: {fileID: 1063806015}
+  minimap: {fileID: 2010680792}
+  Timer: {fileID: 1398573763}
   keyToContinue: 32
   pararTiempo: 1
 --- !u!114 &314555698
@@ -1344,10 +1348,14 @@ MonoBehaviour:
   nameText: {fileID: 1957656820}
   inputText: {fileID: 1708469014}
   bossName: Cara
+  showingEsqueleto: 1
   letterSpeed: 0.05
   fullMessage: "Acabar\xE9 contigo y tu dichosa moneda."
   inputMessage: Pulsa "Espacio" para continuar
   nextDialogue: {fileID: 0}
+  hp: {fileID: 1063806015}
+  minimap: {fileID: 2010680792}
+  Timer: {fileID: 1398573763}
   keyToContinue: 32
   pararTiempo: 1
 --- !u!114 &338766100
@@ -2031,10 +2039,14 @@ MonoBehaviour:
   nameText: {fileID: 236211164}
   inputText: {fileID: 1480192816}
   bossName: Cara
+  showingEsqueleto: 1
   letterSpeed: 0.05
   fullMessage: "No deber\xEDas existir. Las cosas deben ser una sola cosa."
   inputMessage: Pulsa "Espacio" para continuar
   nextDialogue: {fileID: 1924077277}
+  hp: {fileID: 1063806015}
+  minimap: {fileID: 2010680792}
+  Timer: {fileID: 1398573763}
   keyToContinue: 32
   pararTiempo: 1
 --- !u!114 &898262898
@@ -2523,6 +2535,11 @@ CanvasRenderer:
 --- !u!1 &1050086307 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 597103750582987071, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+  m_PrefabInstance: {fileID: 2010680791}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1063806015 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1736985065932279325, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
   m_PrefabInstance: {fileID: 2010680791}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1067661304
@@ -3453,10 +3470,14 @@ MonoBehaviour:
   nameText: {fileID: 788559429}
   inputText: {fileID: 966663471}
   bossName: 
+  showingEsqueleto: 1
   letterSpeed: 0.05
   fullMessage: Easy peasy mi abuela en bici.
   inputMessage: Pulsa "Espacio" para continuar
   nextDialogue: {fileID: 0}
+  hp: {fileID: 1063806015}
+  minimap: {fileID: 2010680792}
+  Timer: {fileID: 1398573763}
   keyToContinue: 32
   pararTiempo: 0
 --- !u!114 &1482305629
@@ -4067,10 +4088,14 @@ MonoBehaviour:
   nameText: {fileID: 281501555}
   inputText: {fileID: 917343965}
   bossName: 
+  showingEsqueleto: 1
   letterSpeed: 0.05
   fullMessage: "Y aun as\xED, aqu\xED estoy."
   inputMessage: Pulsa "Espacio" para continuar
   nextDialogue: {fileID: 338766097}
+  hp: {fileID: 1063806015}
+  minimap: {fileID: 2010680792}
+  Timer: {fileID: 1398573763}
   keyToContinue: 32
   pararTiempo: 1
 --- !u!114 &1924077280
@@ -4604,6 +4629,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4918913797124257592, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: hp
+      value: 
+      objectReference: {fileID: 1063806015}
+    - target: {fileID: 4918913797124257592, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: Timer
+      value: 
+      objectReference: {fileID: 1398573763}
+    - target: {fileID: 4918913797124257592, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: minimap
+      value: 
+      objectReference: {fileID: 2010680792}
     - target: {fileID: 4918913797124257592, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: portrait
       value: 

@@ -1070,6 +1070,7 @@ GameObject:
   m_Component:
   - component: {fileID: 342017180}
   - component: {fileID: 342017181}
+  - component: {fileID: 342017182}
   m_Layer: 5
   m_Name: CantoDialogue6
   m_TagString: Untagged
@@ -1113,18 +1114,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a19473376b5e4d4d84ccb7354b9026c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: PlayerHealthAssembly::DialogueManager
-  portrait: {fileID: 21300000, guid: ad3e9c98c640e56499a03cd1687ce117, type: 3}
+  portraitFantasma: {fileID: 21300000, guid: 9f878f8183abee3439d1d3008ae44012, type: 3}
+  portraitEsqueleto: {fileID: 21300000, guid: aa77bfd0a3ff24747a154d9629af58f3, type: 3}
+  portraitBoss: {fileID: 21300000, guid: ad3e9c98c640e56499a03cd1687ce117, type: 3}
   portraitImage: {fileID: 1071425057}
   message: {fileID: 67949675}
   nameText: {fileID: 1738532572}
   inputText: {fileID: 904891055}
   bossName: Canto
+  showingEsqueleto: 1
   letterSpeed: 0.05
   fullMessage: Solo caos.
   inputMessage: Pulsa "Espacio" para avanzar
   nextDialogue: {fileID: 0}
+  hp: {fileID: 355301824}
+  minimap: {fileID: 2067796229}
+  Timer: {fileID: 1681170303}
   keyToContinue: 32
   pararTiempo: 1
+--- !u!114 &342017182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 342017179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28c852f23060ca044814012a6ae05b43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PlayerHealthAssembly::CameraDialogueManager
+  mainCamera: {fileID: 1520116358}
+  playerCamera: {fileID: 0}
+  bossCamera: {fileID: 0}
+  cameraToUse: 0
+  nextCameraDialoguemanager: {fileID: 1900154079}
 --- !u!114 &354392125 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 233580523763100842, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
@@ -1150,6 +1174,11 @@ MonoBehaviour:
 --- !u!1 &354392127 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2355468460083792588, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+  m_PrefabInstance: {fileID: 2067796228}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &355301824 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1736985065932279325, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
   m_PrefabInstance: {fileID: 2067796228}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &393050579
@@ -1442,6 +1471,7 @@ GameObject:
   m_Component:
   - component: {fileID: 414908640}
   - component: {fileID: 414908641}
+  - component: {fileID: 414908642}
   m_Layer: 5
   m_Name: CantoDialogue5
   m_TagString: Untagged
@@ -1485,18 +1515,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a19473376b5e4d4d84ccb7354b9026c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: PlayerHealthAssembly::DialogueManager
-  portrait: {fileID: 21300000, guid: ad3e9c98c640e56499a03cd1687ce117, type: 3}
+  portraitFantasma: {fileID: 21300000, guid: 9f878f8183abee3439d1d3008ae44012, type: 3}
+  portraitEsqueleto: {fileID: 21300000, guid: aa77bfd0a3ff24747a154d9629af58f3, type: 3}
+  portraitBoss: {fileID: 21300000, guid: ad3e9c98c640e56499a03cd1687ce117, type: 3}
   portraitImage: {fileID: 942082607}
   message: {fileID: 1555920958}
   nameText: {fileID: 46371574}
   inputText: {fileID: 908344450}
   bossName: Canto
+  showingEsqueleto: 1
   letterSpeed: 0.05
   fullMessage: "Aqu\xED no hay elecci\xF3n correcta."
   inputMessage: Pulsa "Espacio" para avanzar
   nextDialogue: {fileID: 342017179}
+  hp: {fileID: 355301824}
+  minimap: {fileID: 2067796229}
+  Timer: {fileID: 1681170303}
   keyToContinue: 32
   pararTiempo: 1
+--- !u!114 &414908642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414908639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28c852f23060ca044814012a6ae05b43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PlayerHealthAssembly::CameraDialogueManager
+  mainCamera: {fileID: 1520116358}
+  playerCamera: {fileID: 0}
+  bossCamera: {fileID: 0}
+  cameraToUse: 2
+  nextCameraDialoguemanager: {fileID: 342017182}
 --- !u!114 &443892101 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2893021177739772073, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
@@ -1518,6 +1571,7 @@ GameObject:
   m_Component:
   - component: {fileID: 477368281}
   - component: {fileID: 477368282}
+  - component: {fileID: 477368283}
   m_Layer: 5
   m_Name: CantoDialogue4
   m_TagString: Untagged
@@ -1561,18 +1615,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a19473376b5e4d4d84ccb7354b9026c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: PlayerHealthAssembly::DialogueManager
-  portrait: {fileID: 21300000, guid: ad3e9c98c640e56499a03cd1687ce117, type: 3}
+  portraitFantasma: {fileID: 21300000, guid: 9f878f8183abee3439d1d3008ae44012, type: 3}
+  portraitEsqueleto: {fileID: 21300000, guid: aa77bfd0a3ff24747a154d9629af58f3, type: 3}
+  portraitBoss: {fileID: 21300000, guid: ad3e9c98c640e56499a03cd1687ce117, type: 3}
   portraitImage: {fileID: 632141735}
   message: {fileID: 395281800}
   nameText: {fileID: 1359937109}
   inputText: {fileID: 935116781}
   bossName: Canto
+  showingEsqueleto: 1
   letterSpeed: 0.05
   fullMessage: "No. Empez\xF3 cuando intentaron decidirlo todo."
   inputMessage: Pulsa "Espacio" para avanzar
   nextDialogue: {fileID: 414908639}
+  hp: {fileID: 355301824}
+  minimap: {fileID: 2067796229}
+  Timer: {fileID: 1681170303}
   keyToContinue: 32
   pararTiempo: 1
+--- !u!114 &477368283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477368280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28c852f23060ca044814012a6ae05b43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PlayerHealthAssembly::CameraDialogueManager
+  mainCamera: {fileID: 1520116358}
+  playerCamera: {fileID: 0}
+  bossCamera: {fileID: 0}
+  cameraToUse: 2
+  nextCameraDialoguemanager: {fileID: 414908642}
 --- !u!1 &496267266
 GameObject:
   m_ObjectHideFlags: 0
@@ -2348,6 +2425,7 @@ GameObject:
   m_Component:
   - component: {fileID: 679086719}
   - component: {fileID: 679086720}
+  - component: {fileID: 679086721}
   m_Layer: 5
   m_Name: CantoDialogue2
   m_TagString: Untagged
@@ -2391,18 +2469,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a19473376b5e4d4d84ccb7354b9026c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: PlayerHealthAssembly::DialogueManager
-  portrait: {fileID: 21300000, guid: ad3e9c98c640e56499a03cd1687ce117, type: 3}
+  portraitFantasma: {fileID: 21300000, guid: 9f878f8183abee3439d1d3008ae44012, type: 3}
+  portraitEsqueleto: {fileID: 21300000, guid: aa77bfd0a3ff24747a154d9629af58f3, type: 3}
+  portraitBoss: {fileID: 21300000, guid: ad3e9c98c640e56499a03cd1687ce117, type: 3}
   portraitImage: {fileID: 512554470}
   message: {fileID: 1691816495}
   nameText: {fileID: 1284207197}
   inputText: {fileID: 1858111706}
   bossName: Canto
+  showingEsqueleto: 1
   letterSpeed: 0.05
   fullMessage: "Aqu\xED las tienes."
   inputMessage: Pulsa "Espacio" para avanzar
   nextDialogue: {fileID: 1438931031}
+  hp: {fileID: 355301824}
+  minimap: {fileID: 2067796229}
+  Timer: {fileID: 1681170303}
   keyToContinue: 32
   pararTiempo: 1
+--- !u!114 &679086721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 679086718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28c852f23060ca044814012a6ae05b43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PlayerHealthAssembly::CameraDialogueManager
+  mainCamera: {fileID: 1520116358}
+  playerCamera: {fileID: 0}
+  bossCamera: {fileID: 0}
+  cameraToUse: 2
+  nextCameraDialoguemanager: {fileID: 1438931034}
 --- !u!1 &688446440
 GameObject:
   m_ObjectHideFlags: 0
@@ -5960,6 +6061,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1414208672}
   - component: {fileID: 1414208673}
+  - component: {fileID: 1414208674}
   m_Layer: 5
   m_Name: CantoDeathDialogue4
   m_TagString: Untagged
@@ -6003,18 +6105,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a19473376b5e4d4d84ccb7354b9026c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: PlayerHealthAssembly::DialogueManager
-  portrait: {fileID: 21300000, guid: aa77bfd0a3ff24747a154d9629af58f3, type: 3}
+  portraitFantasma: {fileID: 21300000, guid: 9f878f8183abee3439d1d3008ae44012, type: 3}
+  portraitEsqueleto: {fileID: 21300000, guid: aa77bfd0a3ff24747a154d9629af58f3, type: 3}
+  portraitBoss: {fileID: 21300000, guid: ad3e9c98c640e56499a03cd1687ce117, type: 3}
   portraitImage: {fileID: 946307686}
   message: {fileID: 1209237532}
   nameText: {fileID: 61894189}
   inputText: {fileID: 1239294375}
   bossName: 
+  showingEsqueleto: 1
   letterSpeed: 0.05
   fullMessage: "\xBFY cruz?"
   inputMessage: Pulsa "Espacio" para avanzar
   nextDialogue: {fileID: 1974065321}
+  hp: {fileID: 355301824}
+  minimap: {fileID: 2067796229}
+  Timer: {fileID: 1681170303}
   keyToContinue: 32
   pararTiempo: 1
+--- !u!114 &1414208674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1414208671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28c852f23060ca044814012a6ae05b43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PlayerHealthAssembly::CameraDialogueManager
+  mainCamera: {fileID: 1520116358}
+  playerCamera: {fileID: 0}
+  bossCamera: {fileID: 0}
+  cameraToUse: 0
+  nextCameraDialoguemanager: {fileID: 1974065324}
 --- !u!1 &1436763689
 GameObject:
   m_ObjectHideFlags: 0
@@ -6025,6 +6150,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1436763690}
   - component: {fileID: 1436763691}
+  - component: {fileID: 1436763692}
   m_Layer: 5
   m_Name: Dialogue2
   m_TagString: Untagged
@@ -6068,18 +6194,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a19473376b5e4d4d84ccb7354b9026c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: PlayerHealthAssembly::DialogueManager
-  portrait: {fileID: 21300000, guid: 9f878f8183abee3439d1d3008ae44012, type: 3}
+  portraitFantasma: {fileID: 21300000, guid: 9f878f8183abee3439d1d3008ae44012, type: 3}
+  portraitEsqueleto: {fileID: 21300000, guid: aa77bfd0a3ff24747a154d9629af58f3, type: 3}
+  portraitBoss: {fileID: 21300000, guid: ad3e9c98c640e56499a03cd1687ce117, type: 3}
   portraitImage: {fileID: 27675116}
   message: {fileID: 621343170}
   nameText: {fileID: 755672716}
   inputText: {fileID: 1247772953}
   bossName: 
+  showingEsqueleto: 0
   letterSpeed: 0.05
   fullMessage: Ni idea, pero pronto lo descubriremos.
   inputMessage: Pulsa "Espacio" para avanzar
   nextDialogue: {fileID: 0}
+  hp: {fileID: 355301824}
+  minimap: {fileID: 2067796229}
+  Timer: {fileID: 1681170303}
   keyToContinue: 32
   pararTiempo: 0
+--- !u!114 &1436763692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1436763689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28c852f23060ca044814012a6ae05b43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PlayerHealthAssembly::CameraDialogueManager
+  mainCamera: {fileID: 1520116358}
+  playerCamera: {fileID: 0}
+  bossCamera: {fileID: 0}
+  cameraToUse: 0
+  nextCameraDialoguemanager: {fileID: 1523184489}
 --- !u!1 &1438044208
 GameObject:
   m_ObjectHideFlags: 0
@@ -6227,6 +6376,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1438931032}
   - component: {fileID: 1438931033}
+  - component: {fileID: 1438931034}
   m_Layer: 5
   m_Name: CantoDialogue3
   m_TagString: Untagged
@@ -6270,18 +6420,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a19473376b5e4d4d84ccb7354b9026c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: PlayerHealthAssembly::DialogueManager
-  portrait: {fileID: 21300000, guid: aa77bfd0a3ff24747a154d9629af58f3, type: 3}
+  portraitFantasma: {fileID: 21300000, guid: 9f878f8183abee3439d1d3008ae44012, type: 3}
+  portraitEsqueleto: {fileID: 21300000, guid: aa77bfd0a3ff24747a154d9629af58f3, type: 3}
+  portraitBoss: {fileID: 21300000, guid: ad3e9c98c640e56499a03cd1687ce117, type: 3}
   portraitImage: {fileID: 1507047956}
   message: {fileID: 1920343566}
   nameText: {fileID: 1709536187}
   inputText: {fileID: 984516197}
   bossName: 
+  showingEsqueleto: 1
   letterSpeed: 0.05
   fullMessage: "Todo esto empez\xF3 cuando desapareciste."
   inputMessage: Pulsa "Espacio" para avanzar
   nextDialogue: {fileID: 477368280}
+  hp: {fileID: 355301824}
+  minimap: {fileID: 2067796229}
+  Timer: {fileID: 1681170303}
   keyToContinue: 32
   pararTiempo: 1
+--- !u!114 &1438931034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1438931031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28c852f23060ca044814012a6ae05b43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PlayerHealthAssembly::CameraDialogueManager
+  mainCamera: {fileID: 1520116358}
+  playerCamera: {fileID: 0}
+  bossCamera: {fileID: 0}
+  cameraToUse: 1
+  nextCameraDialoguemanager: {fileID: 477368283}
 --- !u!1 &1450081409
 GameObject:
   m_ObjectHideFlags: 0
@@ -6661,6 +6834,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1523184487}
   - component: {fileID: 1523184488}
+  - component: {fileID: 1523184489}
   m_Layer: 5
   m_Name: CantoDialogue1
   m_TagString: Untagged
@@ -6704,18 +6878,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a19473376b5e4d4d84ccb7354b9026c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: PlayerHealthAssembly::DialogueManager
-  portrait: {fileID: 21300000, guid: ad3e9c98c640e56499a03cd1687ce117, type: 3}
+  portraitFantasma: {fileID: 21300000, guid: 9f878f8183abee3439d1d3008ae44012, type: 3}
+  portraitEsqueleto: {fileID: 21300000, guid: aa77bfd0a3ff24747a154d9629af58f3, type: 3}
+  portraitBoss: {fileID: 21300000, guid: ad3e9c98c640e56499a03cd1687ce117, type: 3}
   portraitImage: {fileID: 1734690367}
   message: {fileID: 923009702}
   nameText: {fileID: 2082606275}
   inputText: {fileID: 1750616861}
   bossName: Canto
+  showingEsqueleto: 1
   letterSpeed: 0.05
   fullMessage: "\xBFEsperabas respuestas?"
   inputMessage: Pulsa "Espacio" para avanzar
   nextDialogue: {fileID: 679086718}
+  hp: {fileID: 355301824}
+  minimap: {fileID: 2067796229}
+  Timer: {fileID: 1681170303}
   keyToContinue: 32
   pararTiempo: 1
+--- !u!114 &1523184489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1523184486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28c852f23060ca044814012a6ae05b43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PlayerHealthAssembly::CameraDialogueManager
+  mainCamera: {fileID: 1520116358}
+  playerCamera: {fileID: 0}
+  bossCamera: {fileID: 0}
+  cameraToUse: 2
+  nextCameraDialoguemanager: {fileID: 679086721}
 --- !u!1 &1555920956
 GameObject:
   m_ObjectHideFlags: 0
@@ -7990,6 +8187,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1773268501}
   - component: {fileID: 1773268502}
+  - component: {fileID: 1773268503}
   m_Layer: 5
   m_Name: CantoDeathDialogue2
   m_TagString: Untagged
@@ -8033,18 +8231,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a19473376b5e4d4d84ccb7354b9026c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: PlayerHealthAssembly::DialogueManager
-  portrait: {fileID: 21300000, guid: ad3e9c98c640e56499a03cd1687ce117, type: 3}
+  portraitFantasma: {fileID: 21300000, guid: 9f878f8183abee3439d1d3008ae44012, type: 3}
+  portraitEsqueleto: {fileID: 21300000, guid: aa77bfd0a3ff24747a154d9629af58f3, type: 3}
+  portraitBoss: {fileID: 21300000, guid: ad3e9c98c640e56499a03cd1687ce117, type: 3}
   portraitImage: {fileID: 725173778}
   message: {fileID: 2075837686}
   nameText: {fileID: 1656930932}
   inputText: {fileID: 688446442}
   bossName: Canto
+  showingEsqueleto: 1
   letterSpeed: 0.05
   fullMessage: Cara para restaurar el equilibrio.
   inputMessage: Pulsa "Espacio" para avanzar
   nextDialogue: {fileID: 2019961488}
+  hp: {fileID: 355301824}
+  minimap: {fileID: 2067796229}
+  Timer: {fileID: 1681170303}
   keyToContinue: 32
   pararTiempo: 1
+--- !u!114 &1773268503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1773268500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28c852f23060ca044814012a6ae05b43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PlayerHealthAssembly::CameraDialogueManager
+  mainCamera: {fileID: 1520116358}
+  playerCamera: {fileID: 0}
+  bossCamera: {fileID: 0}
+  cameraToUse: 0
+  nextCameraDialoguemanager: {fileID: 2019961491}
 --- !u!1 &1856902798
 GameObject:
   m_ObjectHideFlags: 0
@@ -8055,6 +8276,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1856902799}
   - component: {fileID: 1856902800}
+  - component: {fileID: 1856902801}
   m_Layer: 5
   m_Name: CantoDeathDialogue6
   m_TagString: Untagged
@@ -8098,18 +8320,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a19473376b5e4d4d84ccb7354b9026c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: PlayerHealthAssembly::DialogueManager
-  portrait: {fileID: 21300000, guid: ad3e9c98c640e56499a03cd1687ce117, type: 3}
+  portraitFantasma: {fileID: 21300000, guid: 9f878f8183abee3439d1d3008ae44012, type: 3}
+  portraitEsqueleto: {fileID: 21300000, guid: aa77bfd0a3ff24747a154d9629af58f3, type: 3}
+  portraitBoss: {fileID: 21300000, guid: ad3e9c98c640e56499a03cd1687ce117, type: 3}
   portraitImage: {fileID: 1124328630}
   message: {fileID: 1883758112}
   nameText: {fileID: 1900508300}
   inputText: {fileID: 1438044210}
   bossName: Canto
+  showingEsqueleto: 1
   letterSpeed: 0.05
   fullMessage: "T\xFA eliges..."
   inputMessage: Pulsa "Espacio" para avanzar
   nextDialogue: {fileID: 0}
+  hp: {fileID: 355301824}
+  minimap: {fileID: 2067796229}
+  Timer: {fileID: 1681170303}
   keyToContinue: 32
   pararTiempo: 1
+--- !u!114 &1856902801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856902798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28c852f23060ca044814012a6ae05b43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PlayerHealthAssembly::CameraDialogueManager
+  mainCamera: {fileID: 1520116358}
+  playerCamera: {fileID: 0}
+  bossCamera: {fileID: 0}
+  cameraToUse: 0
+  nextCameraDialoguemanager: {fileID: 0}
 --- !u!1 &1858111704
 GameObject:
   m_ObjectHideFlags: 0
@@ -8394,6 +8639,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1900154077}
   - component: {fileID: 1900154078}
+  - component: {fileID: 1900154079}
   m_Layer: 5
   m_Name: CantoDeathDialogue1
   m_TagString: Untagged
@@ -8437,18 +8683,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a19473376b5e4d4d84ccb7354b9026c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: PlayerHealthAssembly::DialogueManager
-  portrait: {fileID: 21300000, guid: ad3e9c98c640e56499a03cd1687ce117, type: 3}
+  portraitFantasma: {fileID: 21300000, guid: 9f878f8183abee3439d1d3008ae44012, type: 3}
+  portraitEsqueleto: {fileID: 21300000, guid: aa77bfd0a3ff24747a154d9629af58f3, type: 3}
+  portraitBoss: {fileID: 21300000, guid: ad3e9c98c640e56499a03cd1687ce117, type: 3}
   portraitImage: {fileID: 1450081411}
   message: {fileID: 2088549480}
   nameText: {fileID: 818542020}
   inputText: {fileID: 496267268}
   bossName: Canto
+  showingEsqueleto: 1
   letterSpeed: 0.05
   fullMessage: "Ahora solo os queda un \xFAltimo lanzamiento."
   inputMessage: Pulsa "Espacio" para avanzar
   nextDialogue: {fileID: 1773268500}
+  hp: {fileID: 355301824}
+  minimap: {fileID: 2067796229}
+  Timer: {fileID: 1681170303}
   keyToContinue: 32
   pararTiempo: 1
+--- !u!114 &1900154079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1900154076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28c852f23060ca044814012a6ae05b43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PlayerHealthAssembly::CameraDialogueManager
+  mainCamera: {fileID: 1520116358}
+  playerCamera: {fileID: 0}
+  bossCamera: {fileID: 0}
+  cameraToUse: 0
+  nextCameraDialoguemanager: {fileID: 1773268503}
 --- !u!1 &1900508298
 GameObject:
   m_ObjectHideFlags: 0
@@ -8808,6 +9077,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1974065322}
   - component: {fileID: 1974065323}
+  - component: {fileID: 1974065324}
   m_Layer: 5
   m_Name: CantoDeathDialogue5
   m_TagString: Untagged
@@ -8851,18 +9121,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a19473376b5e4d4d84ccb7354b9026c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: PlayerHealthAssembly::DialogueManager
-  portrait: {fileID: 21300000, guid: ad3e9c98c640e56499a03cd1687ce117, type: 3}
+  portraitFantasma: {fileID: 21300000, guid: 9f878f8183abee3439d1d3008ae44012, type: 3}
+  portraitEsqueleto: {fileID: 21300000, guid: aa77bfd0a3ff24747a154d9629af58f3, type: 3}
+  portraitBoss: {fileID: 21300000, guid: ad3e9c98c640e56499a03cd1687ce117, type: 3}
   portraitImage: {fileID: 2062513266}
   message: {fileID: 2029894279}
   nameText: {fileID: 1684734999}
   inputText: {fileID: 604490999}
   bossName: Canto
+  showingEsqueleto: 1
   letterSpeed: 0.05
   fullMessage: "Cruz demostrar\xE1 que sois capaces de triunfar donde yo fracas\xE9."
   inputMessage: Pulsa "Espacio" para avanzar
   nextDialogue: {fileID: 1856902798}
+  hp: {fileID: 355301824}
+  minimap: {fileID: 2067796229}
+  Timer: {fileID: 1681170303}
   keyToContinue: 32
   pararTiempo: 1
+--- !u!114 &1974065324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1974065321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28c852f23060ca044814012a6ae05b43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PlayerHealthAssembly::CameraDialogueManager
+  mainCamera: {fileID: 1520116358}
+  playerCamera: {fileID: 0}
+  bossCamera: {fileID: 0}
+  cameraToUse: 0
+  nextCameraDialoguemanager: {fileID: 1856902801}
 --- !u!1001 &1975422058
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9120,6 +9413,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2019961489}
   - component: {fileID: 2019961490}
+  - component: {fileID: 2019961491}
   m_Layer: 5
   m_Name: CantoDeathDialogue3
   m_TagString: Untagged
@@ -9163,18 +9457,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a19473376b5e4d4d84ccb7354b9026c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: PlayerHealthAssembly::DialogueManager
-  portrait: {fileID: 21300000, guid: ad3e9c98c640e56499a03cd1687ce117, type: 3}
+  portraitFantasma: {fileID: 21300000, guid: 9f878f8183abee3439d1d3008ae44012, type: 3}
+  portraitEsqueleto: {fileID: 21300000, guid: aa77bfd0a3ff24747a154d9629af58f3, type: 3}
+  portraitBoss: {fileID: 21300000, guid: ad3e9c98c640e56499a03cd1687ce117, type: 3}
   portraitImage: {fileID: 1618367193}
   message: {fileID: 1181861716}
   nameText: {fileID: 1190328743}
   inputText: {fileID: 317216111}
   bossName: Canto
+  showingEsqueleto: 1
   letterSpeed: 0.05
   fullMessage: Y que todo sea como antes.
   inputMessage: Pulsa "Espacio" para avanzar
   nextDialogue: {fileID: 1414208671}
+  hp: {fileID: 355301824}
+  minimap: {fileID: 2067796229}
+  Timer: {fileID: 1681170303}
   keyToContinue: 32
   pararTiempo: 1
+--- !u!114 &2019961491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019961488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28c852f23060ca044814012a6ae05b43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PlayerHealthAssembly::CameraDialogueManager
+  mainCamera: {fileID: 1520116358}
+  playerCamera: {fileID: 0}
+  bossCamera: {fileID: 0}
+  cameraToUse: 0
+  nextCameraDialoguemanager: {fileID: 1414208674}
 --- !u!1 &2029894277
 GameObject:
   m_ObjectHideFlags: 0
@@ -9403,6 +9720,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1471922683332109711, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1878606770568962220, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
@@ -9455,14 +9776,34 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4254269856754233897, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4458383154401370381, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4466733418361474571, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4654720437741284105, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4918913797124257592, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: hp
+      value: 
+      objectReference: {fileID: 355301824}
+    - target: {fileID: 4918913797124257592, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: Timer
+      value: 
+      objectReference: {fileID: 1681170303}
+    - target: {fileID: 4918913797124257592, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: minimap
+      value: 
+      objectReference: {fileID: 2067796229}
     - target: {fileID: 4918913797124257592, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: portrait
       value: 
@@ -9473,12 +9814,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4918913797124257592, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: pararTiempo
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4918913797124257592, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: nextDialogue
       value: 
       objectReference: {fileID: 1436763689}
+    - target: {fileID: 4918913797124257592, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: portraitFantasma
+      value: 
+      objectReference: {fileID: 21300000, guid: 9f878f8183abee3439d1d3008ae44012, type: 3}
+    - target: {fileID: 4918913797124257592, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: portraitEsqueleto
+      value: 
+      objectReference: {fileID: 21300000, guid: aa77bfd0a3ff24747a154d9629af58f3, type: 3}
     - target: {fileID: 6422006424913099384, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: m_SizeDelta.x
       value: -1088.2416
@@ -9755,10 +10104,26 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7989113974950068906, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8571109509753157046, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8744966901279960690, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 1520116358}
+    - target: {fileID: 8744966901279960690, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: cameraToUse
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8744966901279960690, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: nextCameraDialoguemanager
+      value: 
+      objectReference: {fileID: 1436763692}
     - target: {fileID: 9103073979521897211, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: m_SizeDelta.x
       value: -1090.17

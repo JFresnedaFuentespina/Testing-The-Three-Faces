@@ -18,7 +18,7 @@ public class DialogueManager : MonoBehaviour
     public string bossName = "";
     private bool isTyping = false;
     private bool dialogueFinished = false;
-    public bool showingGhost = true;
+    public bool showingEsqueleto = true;
 
     public float letterSpeed = 0.05f;
     public string fullMessage;
@@ -63,13 +63,13 @@ public class DialogueManager : MonoBehaviour
 
     public void RefreshPortraitImage()
     {
-        if (!showingGhost)
+        if (showingEsqueleto)
         {
             portraitImage.sprite = portraitEsqueleto;
         }
         else
         {
-            portraitImage.sprite = portraitEsqueleto;
+            portraitImage.sprite = portraitFantasma;
         }
     }
 
@@ -164,7 +164,7 @@ public class DialogueManager : MonoBehaviour
         {
             nextDialogue.SetActive(true);
         }
-        showingGhost = false;
+        showingEsqueleto = false;
     }
 
 }

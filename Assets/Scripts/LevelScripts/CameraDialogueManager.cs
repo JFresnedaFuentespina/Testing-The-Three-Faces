@@ -17,15 +17,19 @@ public class CameraDialogueManager : MonoBehaviour
     public void RegisterPlayerCamera(Camera cam)
     {
         playerCamera = cam;
-        if (nextCameraDialoguemanager)
+
+        if (nextCameraDialoguemanager != null &&
+            nextCameraDialoguemanager != this)
         {
             nextCameraDialoguemanager.RegisterPlayerCamera(cam);
         }
     }
+
     public void RegisterBossCamera(Camera cam)
     {
         bossCamera = cam;
-        if (nextCameraDialoguemanager)
+        if (nextCameraDialoguemanager != null &&
+            nextCameraDialoguemanager != this)
         {
             nextCameraDialoguemanager.RegisterBossCamera(cam);
         }

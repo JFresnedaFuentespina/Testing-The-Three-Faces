@@ -986,6 +986,7 @@ GameObject:
   m_Component:
   - component: {fileID: 428690539}
   - component: {fileID: 428690540}
+  - component: {fileID: 428690541}
   m_Layer: 5
   m_Name: CruzDialogue3
   m_TagString: Untagged
@@ -1029,18 +1030,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a19473376b5e4d4d84ccb7354b9026c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: PlayerHealthAssembly::DialogueManager
-  portrait: {fileID: 21300000, guid: 9f878f8183abee3439d1d3008ae44012, type: 3}
+  portraitFantasma: {fileID: 21300000, guid: 9f878f8183abee3439d1d3008ae44012, type: 3}
+  portraitEsqueleto: {fileID: 21300000, guid: aa77bfd0a3ff24747a154d9629af58f3, type: 3}
+  portraitBoss: {fileID: 0}
   portraitImage: {fileID: 399785365}
   message: {fileID: 2062487499}
   nameText: {fileID: 432338131}
   inputText: {fileID: 474091664}
   bossName: 
+  showingEsqueleto: 0
   letterSpeed: 0.05
   fullMessage: "Vuestra guerra nos conden\xF3."
   inputMessage: Pulsa "Espacio" para avanzar
   nextDialogue: {fileID: 1550098782}
   keyToContinue: 32
   pararTiempo: 1
+--- !u!114 &428690541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 428690538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28c852f23060ca044814012a6ae05b43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PlayerHealthAssembly::CameraDialogueManager
+  mainCamera: {fileID: 1280783114}
+  playerCamera: {fileID: 0}
+  bossCamera: {fileID: 0}
+  cameraToUse: 1
+  nextCameraDialoguemanager: {fileID: 1550098785}
 --- !u!1 &432338129
 GameObject:
   m_ObjectHideFlags: 0
@@ -2141,6 +2162,22 @@ PrefabInstance:
       propertyPath: nextDialogue
       value: 
       objectReference: {fileID: 1060385609}
+    - target: {fileID: 4918913797124257592, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: showingGhost
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4918913797124257592, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: portraitFantasma
+      value: 
+      objectReference: {fileID: 21300000, guid: 9f878f8183abee3439d1d3008ae44012, type: 3}
+    - target: {fileID: 4918913797124257592, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: showingEsqueleto
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4918913797124257592, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: portraitEsqueleto
+      value: 
+      objectReference: {fileID: 21300000, guid: aa77bfd0a3ff24747a154d9629af58f3, type: 3}
     - target: {fileID: 6422006424913099384, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: m_SizeDelta.x
       value: -1088.2416
@@ -2429,6 +2466,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8744966901279960690, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 1280783114}
+    - target: {fileID: 8744966901279960690, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: nextCameraDialoguemanager
+      value: 
+      objectReference: {fileID: 1060385612}
     - target: {fileID: 9103073979521897211, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: m_SizeDelta.x
       value: -1090.17
@@ -3595,6 +3640,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1060385610}
   - component: {fileID: 1060385611}
+  - component: {fileID: 1060385612}
   m_Layer: 5
   m_Name: Dialogue2
   m_TagString: Untagged
@@ -3638,18 +3684,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a19473376b5e4d4d84ccb7354b9026c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: PlayerHealthAssembly::DialogueManager
-  portrait: {fileID: 21300000, guid: 9f878f8183abee3439d1d3008ae44012, type: 3}
+  portraitFantasma: {fileID: 21300000, guid: 9f878f8183abee3439d1d3008ae44012, type: 3}
+  portraitEsqueleto: {fileID: 21300000, guid: aa77bfd0a3ff24747a154d9629af58f3, type: 3}
+  portraitBoss: {fileID: 0}
   portraitImage: {fileID: 1239513850}
   message: {fileID: 19076752}
   nameText: {fileID: 990925710}
   inputText: {fileID: 670632357}
   bossName: 
+  showingEsqueleto: 0
   letterSpeed: 0.05
   fullMessage: Este sitio... Me resulta familiar.
   inputMessage: Pulsa "Espacio" para avanzar
   nextDialogue: {fileID: 0}
   keyToContinue: 32
   pararTiempo: 0
+--- !u!114 &1060385612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1060385609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28c852f23060ca044814012a6ae05b43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PlayerHealthAssembly::CameraDialogueManager
+  mainCamera: {fileID: 1280783114}
+  playerCamera: {fileID: 0}
+  bossCamera: {fileID: 0}
+  cameraToUse: 0
+  nextCameraDialoguemanager: {fileID: 2067470486}
 --- !u!1 &1070820154
 GameObject:
   m_ObjectHideFlags: 0
@@ -4618,6 +4684,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1550098783}
   - component: {fileID: 1550098784}
+  - component: {fileID: 1550098785}
   m_Layer: 5
   m_Name: CruzDialogue4
   m_TagString: Untagged
@@ -4661,18 +4728,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a19473376b5e4d4d84ccb7354b9026c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: PlayerHealthAssembly::DialogueManager
-  portrait: {fileID: 21300000, guid: 9f878f8183abee3439d1d3008ae44012, type: 3}
+  portraitFantasma: {fileID: 21300000, guid: 9f878f8183abee3439d1d3008ae44012, type: 3}
+  portraitEsqueleto: {fileID: 21300000, guid: aa77bfd0a3ff24747a154d9629af58f3, type: 3}
+  portraitBoss: {fileID: 0}
   portraitImage: {fileID: 410513457}
   message: {fileID: 1043270191}
   nameText: {fileID: 1834247874}
   inputText: {fileID: 1313442849}
   bossName: 
+  showingEsqueleto: 1
   letterSpeed: 0.05
   fullMessage: Pero le pondremos fin.
   inputMessage: Pulsa "Espacio" para avanzar
   nextDialogue: {fileID: 0}
   keyToContinue: 32
   pararTiempo: 1
+--- !u!114 &1550098785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1550098782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28c852f23060ca044814012a6ae05b43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PlayerHealthAssembly::CameraDialogueManager
+  mainCamera: {fileID: 1280783114}
+  playerCamera: {fileID: 0}
+  bossCamera: {fileID: 0}
+  cameraToUse: 0
+  nextCameraDialoguemanager: {fileID: 1983496190}
 --- !u!1001 &1582419330
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5373,6 +5460,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1867687073}
   - component: {fileID: 1867687074}
+  - component: {fileID: 1867687075}
   m_Layer: 5
   m_Name: CruzDialogue2
   m_TagString: Untagged
@@ -5416,18 +5504,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a19473376b5e4d4d84ccb7354b9026c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: PlayerHealthAssembly::DialogueManager
-  portrait: {fileID: 21300000, guid: 971d63ba76ae53a4cbdc30f64c6cb130, type: 3}
+  portraitFantasma: {fileID: 0}
+  portraitEsqueleto: {fileID: 0}
+  portraitBoss: {fileID: 21300000, guid: 971d63ba76ae53a4cbdc30f64c6cb130, type: 3}
   portraitImage: {fileID: 679181407}
   message: {fileID: 1293646612}
   nameText: {fileID: 1654742822}
   inputText: {fileID: 1612068718}
   bossName: Cruz
+  showingEsqueleto: 0
   letterSpeed: 0.05
   fullMessage: No eres como el resto.
   inputMessage: Pulsa "Espacio" para avanzar
   nextDialogue: {fileID: 428690538}
   keyToContinue: 32
-  pararTiempo: 1
+  pararTiempo: 0
+--- !u!114 &1867687075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1867687072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28c852f23060ca044814012a6ae05b43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PlayerHealthAssembly::CameraDialogueManager
+  mainCamera: {fileID: 1280783114}
+  playerCamera: {fileID: 0}
+  bossCamera: {fileID: 0}
+  cameraToUse: 2
+  nextCameraDialoguemanager: {fileID: 428690541}
 --- !u!114 &1905337991 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8352749500773666589, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
@@ -5465,6 +5573,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1983496188}
   - component: {fileID: 1983496189}
+  - component: {fileID: 1983496190}
   m_Layer: 5
   m_Name: CruzDeathDialogue
   m_TagString: Untagged
@@ -5508,18 +5617,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a19473376b5e4d4d84ccb7354b9026c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: PlayerHealthAssembly::DialogueManager
-  portrait: {fileID: 21300000, guid: 9f878f8183abee3439d1d3008ae44012, type: 3}
+  portraitFantasma: {fileID: 21300000, guid: 9f878f8183abee3439d1d3008ae44012, type: 3}
+  portraitEsqueleto: {fileID: 21300000, guid: aa77bfd0a3ff24747a154d9629af58f3, type: 3}
+  portraitBoss: {fileID: 0}
   portraitImage: {fileID: 800271558}
   message: {fileID: 370844059}
   nameText: {fileID: 855043759}
   inputText: {fileID: 470866624}
   bossName: 
+  showingEsqueleto: 0
   letterSpeed: 0.05
   fullMessage: Pal lobby tontito.
   inputMessage: Pulsa "Espacio" para avanzar
   nextDialogue: {fileID: 0}
   keyToContinue: 32
   pararTiempo: 1
+--- !u!114 &1983496190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983496187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28c852f23060ca044814012a6ae05b43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PlayerHealthAssembly::CameraDialogueManager
+  mainCamera: {fileID: 1280783114}
+  playerCamera: {fileID: 0}
+  bossCamera: {fileID: 0}
+  cameraToUse: 0
+  nextCameraDialoguemanager: {fileID: 0}
 --- !u!1 &2038924137
 GameObject:
   m_ObjectHideFlags: 0
@@ -5742,6 +5871,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2067470484}
   - component: {fileID: 2067470485}
+  - component: {fileID: 2067470486}
   m_Layer: 5
   m_Name: CruzDialogue1
   m_TagString: Untagged
@@ -5785,18 +5915,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a19473376b5e4d4d84ccb7354b9026c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: PlayerHealthAssembly::DialogueManager
-  portrait: {fileID: 21300000, guid: 971d63ba76ae53a4cbdc30f64c6cb130, type: 3}
+  portraitFantasma: {fileID: 0}
+  portraitEsqueleto: {fileID: 0}
+  portraitBoss: {fileID: 21300000, guid: 971d63ba76ae53a4cbdc30f64c6cb130, type: 3}
   portraitImage: {fileID: 1802490612}
   message: {fileID: 1070820156}
   nameText: {fileID: 2103793656}
   inputText: {fileID: 919622622}
   bossName: Cruz
+  showingEsqueleto: 0
   letterSpeed: 0.05
   fullMessage: "Te siento\u2026 a medias. Ni vivo, ni muerto."
   inputMessage: Pulsa "Espacio" para avanzar
   nextDialogue: {fileID: 1867687072}
   keyToContinue: 32
   pararTiempo: 1
+--- !u!114 &2067470486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2067470483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28c852f23060ca044814012a6ae05b43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PlayerHealthAssembly::CameraDialogueManager
+  mainCamera: {fileID: 1280783114}
+  playerCamera: {fileID: 0}
+  bossCamera: {fileID: 0}
+  cameraToUse: 2
+  nextCameraDialoguemanager: {fileID: 1867687075}
 --- !u!1 &2103793654
 GameObject:
   m_ObjectHideFlags: 0

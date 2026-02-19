@@ -51,12 +51,24 @@ public class DialogueManager : MonoBehaviour
         typingCoroutine = StartCoroutine(TypeMessage());
     }
 
+    void OnDisable()
+    {
+        if (pararTiempo)
+        {
+            Time.timeScale = 1f;
+        }
+    }
+
     IEnumerator TypeMessage()
     {
         if (pararTiempo)
         {
             Time.timeScale = 0f;
         }
+        // else
+        // {
+        //     Time.timeScale = 1f;
+        // }
         isTyping = true;
         message.text = "";
 
@@ -91,14 +103,16 @@ public class DialogueManager : MonoBehaviour
                 else if (dialogueFinished)
                 {
                     // Cierra el diálogo y activa el siguiente
+                    if (pararTiempo)
+                    {
+                        Time.timeScale = 1f;
+                    }
+
                     gameObject.SetActive(false);
+
                     if (nextDialogue != null)
                     {
                         nextDialogue.SetActive(true);
-                    }
-                    else if (pararTiempo)
-                    {
-                        Time.timeScale = 1f;
                     }
                 }
             }
@@ -117,14 +131,16 @@ public class DialogueManager : MonoBehaviour
         }
 
         // Pasar al siguiente diálogo inmediatamente
+        if (pararTiempo)
+        {
+            Time.timeScale = 1f;
+        }
+
         gameObject.SetActive(false);
+
         if (nextDialogue != null)
         {
             nextDialogue.SetActive(true);
-        }
-        else if (pararTiempo)
-        {
-            Time.timeScale = 1f;
         }
     }
 

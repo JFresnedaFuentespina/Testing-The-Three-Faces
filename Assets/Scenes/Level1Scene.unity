@@ -1124,7 +1124,7 @@ MonoBehaviour:
   mainCamera: {fileID: 261188804}
   playerCamera: {fileID: 0}
   bossCamera: {fileID: 0}
-  cameraToUse: 1
+  cameraToUse: 0
   nextCameraDialoguemanager: {fileID: 0}
 --- !u!1 &325778198
 GameObject:
@@ -1361,7 +1361,7 @@ MonoBehaviour:
   mainCamera: {fileID: 261188804}
   playerCamera: {fileID: 0}
   bossCamera: {fileID: 0}
-  cameraToUse: 2
+  cameraToUse: 0
   nextCameraDialoguemanager: {fileID: 314555698}
 --- !u!1 &340062611 stripped
 GameObject:
@@ -4604,7 +4604,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4918913797124257592, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: pararTiempo
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4918913797124257592, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: inputMessage

@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.SceneManagement;
+using Codice.Client.Common;
 // using System;
 
 public class EnemiesGenerator : MonoBehaviour
@@ -22,6 +23,16 @@ public class EnemiesGenerator : MonoBehaviour
     public bool enemiesDefeated = false;
 
     public bool enemiesActuallySpawned = false;
+
+    void Awake()
+    {
+        cameraDialogueManager = FindAnyObjectByType<CameraDialogueManager>();
+        if (cameraDialogueManager == null)
+        {
+            Debug.LogWarning("CAMERA DIALOGUE MANAGER NOT FOUND");
+        }
+    }
+
 
     public void GenerateEnemiesInRoom(Vector3 roomPos)
     {
@@ -92,7 +103,6 @@ public class EnemiesGenerator : MonoBehaviour
 
     private void GenerateBoss(GameObject bossPrefab, Bounds bounds, Vector3 roomPos)
     {
-        cameraDialogueManager = GameObject.FindAnyObjectByType<CameraDialogueManager>();
         GameObject boss = bossPrefab;
         // Revisar si ya existe un BossCara en la escena
         bool bossExists = FindObjectsOfType<EnemyLife>()
@@ -108,12 +118,19 @@ public class EnemiesGenerator : MonoBehaviour
             GameObject newBoss = Instantiate(boss, bossSpawn, Quaternion.identity);
             EnemyLife bossLife = newBoss.GetComponent<EnemyLife>();
             if (bossLife != null) spawnedEnemies.Add(bossLife);
-            Camera cameraBoss = newBoss.transform.Find("BossCamera").GetComponent<Camera>();
-            if (cameraDialogueManager != null)
+            Camera cameraBoss = newBoss.GetComponentInChildren<Camera>(true);
+            if (cameraBoss == null)
             {
-                cameraDialogueManager.RegisterBossCamera(cameraBoss);
-                cameraDialogueManager.RefreshCamera();
+                Debug.LogError("BOSS CAMERA NOT FOUND IN PREFAB");
             }
+            else
+            {
+                Debug.Log("BOSS CAMERA FOUND: " + cameraBoss.name);
+            }
+
+            cameraDialogueManager.RegisterBossCamera(cameraBoss);
+            cameraDialogueManager.RefreshCamera();
+
         }
     }
 

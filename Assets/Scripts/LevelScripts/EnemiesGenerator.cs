@@ -2,7 +2,6 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.SceneManagement;
-using Codice.Client.Common;
 // using System;
 
 public class EnemiesGenerator : MonoBehaviour

@@ -31,6 +31,9 @@ public class DialogueManager : MonoBehaviour
     public KeyCode keyToContinue;
     public bool pararTiempo = true;
 
+    public delegate void OnRestoreHealth();
+    public static event OnRestoreHealth OnRestoreHealthEvent;
+
 
     void Start()
     {
@@ -87,11 +90,19 @@ public class DialogueManager : MonoBehaviour
             Time.timeScale = 1f;
         }
         SetGameplayUI(true);
+        
     }
 
     private void SetGameplayUI(bool value)
     {
         if (hp) hp.SetActive(value);
+        if (value)
+        {
+            if(OnRestoreHealthEvent != null)
+            {
+                OnRestoreHealthEvent();
+            }
+        }
         if (minimap) minimap.SetActive(value);
         if (Timer) Timer.SetActive(value);
     }

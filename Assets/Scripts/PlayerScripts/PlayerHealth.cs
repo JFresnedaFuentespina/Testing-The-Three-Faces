@@ -50,6 +50,7 @@ public class PlayerHealth : MonoBehaviour
         SkullItemPickupBehaviour.OnHealthDecreasedEvent -= DecreaseMaxHealth;
         HeartItemPickupBehaviour.OnFullyHealedEvent -= FullHeal;
         BluePillItemPickupBehaviour.OnSoulHeartEvent -= AddExtraHeart;
+        DialogueManager.OnRestoreHealthEvent -= RefreshHearts;
     }
 
     void Start()
@@ -138,6 +139,7 @@ public class PlayerHealth : MonoBehaviour
         SkullItemPickupBehaviour.OnHealthDecreasedEvent += DecreaseMaxHealth;
         HeartItemPickupBehaviour.OnFullyHealedEvent += FullHeal;
         BluePillItemPickupBehaviour.OnSoulHeartEvent += AddExtraHeart;
+        DialogueManager.OnRestoreHealthEvent += RefreshHearts;
     }
 
     void EnableDeath() => canDie = true;

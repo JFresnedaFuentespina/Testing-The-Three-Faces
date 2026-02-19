@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &10717360 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1736985065932279325, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+  m_PrefabInstance: {fileID: 779359650}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &19076750
 GameObject:
   m_ObjectHideFlags: 0
@@ -1043,6 +1048,9 @@ MonoBehaviour:
   fullMessage: "Vuestra guerra nos conden\xF3."
   inputMessage: Pulsa "Espacio" para avanzar
   nextDialogue: {fileID: 1550098782}
+  hp: {fileID: 10717360}
+  minimap: {fileID: 779359651}
+  Timer: {fileID: 850513364}
   keyToContinue: 32
   pararTiempo: 1
 --- !u!114 &428690541
@@ -2146,6 +2154,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4918913797124257592, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: hp
+      value: 
+      objectReference: {fileID: 10717360}
+    - target: {fileID: 4918913797124257592, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: Timer
+      value: 
+      objectReference: {fileID: 850513364}
+    - target: {fileID: 4918913797124257592, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: minimap
+      value: 
+      objectReference: {fileID: 779359651}
     - target: {fileID: 4918913797124257592, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: portrait
       value: 
@@ -3697,6 +3717,9 @@ MonoBehaviour:
   fullMessage: Este sitio... Me resulta familiar.
   inputMessage: Pulsa "Espacio" para avanzar
   nextDialogue: {fileID: 0}
+  hp: {fileID: 10717360}
+  minimap: {fileID: 779359651}
+  Timer: {fileID: 850513364}
   keyToContinue: 32
   pararTiempo: 0
 --- !u!114 &1060385612
@@ -4741,6 +4764,9 @@ MonoBehaviour:
   fullMessage: Pero le pondremos fin.
   inputMessage: Pulsa "Espacio" para avanzar
   nextDialogue: {fileID: 0}
+  hp: {fileID: 10717360}
+  minimap: {fileID: 779359651}
+  Timer: {fileID: 850513364}
   keyToContinue: 32
   pararTiempo: 1
 --- !u!114 &1550098785
@@ -5517,6 +5543,9 @@ MonoBehaviour:
   fullMessage: No eres como el resto.
   inputMessage: Pulsa "Espacio" para avanzar
   nextDialogue: {fileID: 428690538}
+  hp: {fileID: 10717360}
+  minimap: {fileID: 779359651}
+  Timer: {fileID: 850513364}
   keyToContinue: 32
   pararTiempo: 0
 --- !u!114 &1867687075
@@ -5630,6 +5659,9 @@ MonoBehaviour:
   fullMessage: Pal lobby tontito.
   inputMessage: Pulsa "Espacio" para avanzar
   nextDialogue: {fileID: 0}
+  hp: {fileID: 10717360}
+  minimap: {fileID: 779359651}
+  Timer: {fileID: 850513364}
   keyToContinue: 32
   pararTiempo: 1
 --- !u!114 &1983496190
@@ -5928,6 +5960,9 @@ MonoBehaviour:
   fullMessage: "Te siento\u2026 a medias. Ni vivo, ni muerto."
   inputMessage: Pulsa "Espacio" para avanzar
   nextDialogue: {fileID: 1867687072}
+  hp: {fileID: 10717360}
+  minimap: {fileID: 779359651}
+  Timer: {fileID: 850513364}
   keyToContinue: 32
   pararTiempo: 1
 --- !u!114 &2067470486

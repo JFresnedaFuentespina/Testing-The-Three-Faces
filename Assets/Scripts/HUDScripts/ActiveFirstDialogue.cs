@@ -1,11 +1,31 @@
+using System.Collections;
 using UnityEngine;
 
 public class ActiveFirstDialogue : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public bool waitOneFrame = false;
+    public bool hasBeenActivated = false;
     public GameObject dialoguePanel;
+
     void Start()
     {
+        if (hasBeenActivated) return;
+
+        hasBeenActivated = true;
+
+        if (waitOneFrame)
+        {
+            StartCoroutine(ActivateAfterDelay());
+        }
+        else
+        {
+            dialoguePanel.SetActive(true);
+        }
+    }
+
+    IEnumerator ActivateAfterDelay()
+    {
+        yield return new WaitForSeconds(1f);
         dialoguePanel.SetActive(true);
     }
 }

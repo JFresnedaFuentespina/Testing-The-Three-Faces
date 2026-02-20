@@ -10,6 +10,7 @@ public class DialogueManager : MonoBehaviour
     public Sprite portraitFantasma;
     public Sprite portraitEsqueleto;
     public Sprite portraitBoss;
+    public Sprite portraitPlayerGE;
     public Image portraitImage;
     public TextMeshProUGUI message;
     public TextMeshProUGUI nameText;
@@ -54,6 +55,7 @@ public class DialogueManager : MonoBehaviour
             displayName = bossName;
         }
 
+
         nameText.text = displayName;
         inputText.text = inputMessage;
         if (bossName == "")
@@ -81,6 +83,11 @@ public class DialogueManager : MonoBehaviour
         {
             portraitImage.sprite = portraitFantasma;
         }
+
+        if (portraitPlayerGE != null)
+        {
+            portraitImage.sprite = portraitPlayerGE;
+        }
     }
 
     void OnDisable()
@@ -90,7 +97,7 @@ public class DialogueManager : MonoBehaviour
             Time.timeScale = 1f;
         }
         SetGameplayUI(true);
-        
+
     }
 
     private void SetGameplayUI(bool value)
@@ -98,7 +105,7 @@ public class DialogueManager : MonoBehaviour
         if (hp) hp.SetActive(value);
         if (value)
         {
-            if(OnRestoreHealthEvent != null)
+            if (OnRestoreHealthEvent != null)
             {
                 OnRestoreHealthEvent();
             }

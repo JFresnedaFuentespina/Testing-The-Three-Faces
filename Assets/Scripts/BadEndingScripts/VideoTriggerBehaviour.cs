@@ -19,7 +19,7 @@ public class VideoTriggerBehaviour : MonoBehaviour
         }
 
         videoPlayer.source = VideoSource.Url;
-        videoPlayer.url = Application.streamingAssetsPath + "/BadEnding.mp4";
+        videoPlayer.url = Application.streamingAssetsPath + "/BadEndgame.mp4";
 
         videoPlayer.renderMode = VideoRenderMode.CameraNearPlane;
         videoPlayer.targetCamera = GameObject.Find("Camera").GetComponent<Camera>();

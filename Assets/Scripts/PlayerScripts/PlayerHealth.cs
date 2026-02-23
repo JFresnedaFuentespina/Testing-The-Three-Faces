@@ -41,6 +41,7 @@ public class PlayerHealth : MonoBehaviour
     private GameObject endgameManagerGO;
     private EndgameManager endgameManager;
     private GameObject lastHittedBy;
+    private string lastHittedByTag;
 
     void OnDestroy()
     {
@@ -152,6 +153,7 @@ public class PlayerHealth : MonoBehaviour
             )
         {
             lastHittedBy = other.gameObject;
+            lastHittedByTag = lastHittedBy.tag;
             Damage();
         }
     }
@@ -195,7 +197,7 @@ public class PlayerHealth : MonoBehaviour
         if (endgameManager != null)
         {
             PlayerInventory playerInventory = GetComponent<PlayerInventory>();
-            endgameManager.ShowEndgameDeath(lastHittedBy, playerInventory.inventory);
+            endgameManager.ShowEndgameDeath(lastHittedByTag, playerInventory.inventory);
         }
 
     }

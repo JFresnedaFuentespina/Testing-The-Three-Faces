@@ -43,11 +43,11 @@ public class EndgameManager : MonoBehaviour
     }
 
 
-    public void ShowEndgameDeath(GameObject enemy, Inventory inventory)
+    public void ShowEndgameDeath(string enemyTag, Inventory inventory)
     {
         float enemyKilledCount = GameObject.Find("EnemiesDeathCounterGO").GetComponent<EnemiesDeathCounter>().counter;
-        string enemyName = enemy.name;
-        switch (enemy.tag)
+        string enemyName = "";
+        switch (enemyTag)
         {
             case "Enemy_Zombie":
                 enemyName = "Zombie";

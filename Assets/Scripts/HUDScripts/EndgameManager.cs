@@ -16,14 +16,14 @@ public class EndgameManager : MonoBehaviour
     public GameObject inventoryPanelDeath;
     public GameObject endgameDeathPanel;
 
-    [Header("WinCondition")]
-    public GameObject timerGO;
-    public TextMeshProUGUI timerTxt;
-    public TextMeshProUGUI enemiesKilledTxtWin;
-    public Button exitButtonWin;
-    public Button restartButtonWin;
-    public GameObject inventoryPanelWin;
-    public GameObject endgameWinPanel;
+    // [Header("WinCondition")]
+    // public GameObject timerGO;
+    // public TextMeshProUGUI timerTxt;
+    // public TextMeshProUGUI enemiesKilledTxtWin;
+    // public Button exitButtonWin;
+    // public Button restartButtonWin;
+    // public GameObject inventoryPanelWin;
+    // public GameObject endgameWinPanel;
 
     [Header("PauseMenuManager")]
     public GameObject pauseMenuManager;
@@ -35,8 +35,8 @@ public class EndgameManager : MonoBehaviour
         exitButtonDeath.onClick.AddListener(ExitGame);
         restartButtonDeath.onClick.AddListener(RestartGame);
 
-        exitButtonWin.onClick.AddListener(ExitGame);
-        restartButtonWin.onClick.AddListener(RestartGame);
+        // exitButtonWin.onClick.AddListener(ExitGame);
+        // restartButtonWin.onClick.AddListener(RestartGame);
     }
 
 
@@ -100,7 +100,8 @@ public class EndgameManager : MonoBehaviour
 
     public void ShowInventory(Inventory inventory, bool isWin)
     {
-        GameObject inventoryPanel = isWin ? inventoryPanelWin : inventoryPanelDeath;
+        // GameObject inventoryPanel = isWin ? inventoryPanelWin : inventoryPanelDeath;
+        GameObject inventoryPanel = inventoryPanelDeath;
 
         foreach (Transform child in inventoryPanel.transform)
             Destroy(child.gameObject);

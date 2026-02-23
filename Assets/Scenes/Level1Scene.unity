@@ -857,7 +857,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 261188802}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b2a5f281fd612664ba5056024b505e25, type: 3}
   m_Name: 
@@ -1100,6 +1100,7 @@ MonoBehaviour:
   portraitFantasma: {fileID: 21300000, guid: 9f878f8183abee3439d1d3008ae44012, type: 3}
   portraitEsqueleto: {fileID: 21300000, guid: aa77bfd0a3ff24747a154d9629af58f3, type: 3}
   portraitBoss: {fileID: 0}
+  portraitPlayerGE: {fileID: 0}
   portraitImage: {fileID: 157425746}
   message: {fileID: 674481557}
   nameText: {fileID: 1913805388}
@@ -1343,6 +1344,7 @@ MonoBehaviour:
   portraitFantasma: {fileID: 0}
   portraitEsqueleto: {fileID: 0}
   portraitBoss: {fileID: 21300000, guid: c4a3063902bf17148bdf55d9f42aaa3b, type: 3}
+  portraitPlayerGE: {fileID: 0}
   portraitImage: {fileID: 22307931}
   message: {fileID: 1208106994}
   nameText: {fileID: 1957656820}
@@ -2034,6 +2036,7 @@ MonoBehaviour:
   portraitFantasma: {fileID: 0}
   portraitEsqueleto: {fileID: 0}
   portraitBoss: {fileID: 21300000, guid: c4a3063902bf17148bdf55d9f42aaa3b, type: 3}
+  portraitPlayerGE: {fileID: 0}
   portraitImage: {fileID: 67611965}
   message: {fileID: 1067661306}
   nameText: {fileID: 236211164}
@@ -3465,6 +3468,7 @@ MonoBehaviour:
   portraitFantasma: {fileID: 21300000, guid: aa77bfd0a3ff24747a154d9629af58f3, type: 3}
   portraitEsqueleto: {fileID: 21300000, guid: 9f878f8183abee3439d1d3008ae44012, type: 3}
   portraitBoss: {fileID: 0}
+  portraitPlayerGE: {fileID: 0}
   portraitImage: {fileID: 1792704868}
   message: {fileID: 985153466}
   nameText: {fileID: 788559429}
@@ -4083,6 +4087,7 @@ MonoBehaviour:
   portraitFantasma: {fileID: 21300000, guid: 9f878f8183abee3439d1d3008ae44012, type: 3}
   portraitEsqueleto: {fileID: 21300000, guid: aa77bfd0a3ff24747a154d9629af58f3, type: 3}
   portraitBoss: {fileID: 0}
+  portraitPlayerGE: {fileID: 0}
   portraitImage: {fileID: 380516981}
   message: {fileID: 1943649513}
   nameText: {fileID: 281501555}

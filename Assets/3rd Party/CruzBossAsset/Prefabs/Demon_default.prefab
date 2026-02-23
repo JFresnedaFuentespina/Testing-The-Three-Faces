@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3383421779063375692}
   - component: {fileID: 8785932582204096324}
   - component: {fileID: 8394536434697709217}
+  - component: {fileID: 3397094119995629051}
   m_Layer: 9
   m_Name: Demon_default
   m_TagString: BossCruz
@@ -106,6 +107,7 @@ MonoBehaviour:
   spawnDelay: 2.5
   attackDistance: 3
   attackCooldown: 2
+  cruzBallAttack: {fileID: 3397094119995629051}
 --- !u!114 &3383421779063375692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,6 +163,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c9829253e57f8a49a6ffaf74a67e7cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: PlayerHealthAssembly::CruzDialogManager
+--- !u!114 &3397094119995629051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6334826068141619221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc00291cfead4ae429d4ac18d398ad10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PlayerHealthAssembly::CruzBallAttack
+  fireballPrefab: {fileID: 5712219488875869251, guid: 533679cca1de17d4c8d33b0d8030e1fc, type: 3}
+  active: 0
+  spawnPoint: {fileID: 4290820036857972241}
+  radius: 1
+  fireRate: 0.1
 --- !u!1 &7599560724871351387
 GameObject:
   m_ObjectHideFlags: 0
@@ -684,6 +703,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 823107656353169103}
   m_SourcePrefab: {fileID: 100100000, guid: c3d73ba06daaeef40b556c623d33fc02, type: 3}
+--- !u!4 &4290820036857972241 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -1412480292825225888, guid: c3d73ba06daaeef40b556c623d33fc02, type: 3}
+  m_PrefabInstance: {fileID: 6334826067477783409}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5792592034335851674 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c3d73ba06daaeef40b556c623d33fc02, type: 3}

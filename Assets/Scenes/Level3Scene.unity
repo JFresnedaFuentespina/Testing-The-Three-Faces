@@ -1117,6 +1117,7 @@ MonoBehaviour:
   portraitFantasma: {fileID: 21300000, guid: 9f878f8183abee3439d1d3008ae44012, type: 3}
   portraitEsqueleto: {fileID: 21300000, guid: aa77bfd0a3ff24747a154d9629af58f3, type: 3}
   portraitBoss: {fileID: 21300000, guid: ad3e9c98c640e56499a03cd1687ce117, type: 3}
+  portraitPlayerGE: {fileID: 0}
   portraitImage: {fileID: 1071425057}
   message: {fileID: 67949675}
   nameText: {fileID: 1738532572}
@@ -1518,6 +1519,7 @@ MonoBehaviour:
   portraitFantasma: {fileID: 21300000, guid: 9f878f8183abee3439d1d3008ae44012, type: 3}
   portraitEsqueleto: {fileID: 21300000, guid: aa77bfd0a3ff24747a154d9629af58f3, type: 3}
   portraitBoss: {fileID: 21300000, guid: ad3e9c98c640e56499a03cd1687ce117, type: 3}
+  portraitPlayerGE: {fileID: 0}
   portraitImage: {fileID: 942082607}
   message: {fileID: 1555920958}
   nameText: {fileID: 46371574}
@@ -1618,6 +1620,7 @@ MonoBehaviour:
   portraitFantasma: {fileID: 21300000, guid: 9f878f8183abee3439d1d3008ae44012, type: 3}
   portraitEsqueleto: {fileID: 21300000, guid: aa77bfd0a3ff24747a154d9629af58f3, type: 3}
   portraitBoss: {fileID: 21300000, guid: ad3e9c98c640e56499a03cd1687ce117, type: 3}
+  portraitPlayerGE: {fileID: 0}
   portraitImage: {fileID: 632141735}
   message: {fileID: 395281800}
   nameText: {fileID: 1359937109}
@@ -2472,6 +2475,7 @@ MonoBehaviour:
   portraitFantasma: {fileID: 21300000, guid: 9f878f8183abee3439d1d3008ae44012, type: 3}
   portraitEsqueleto: {fileID: 21300000, guid: aa77bfd0a3ff24747a154d9629af58f3, type: 3}
   portraitBoss: {fileID: 21300000, guid: ad3e9c98c640e56499a03cd1687ce117, type: 3}
+  portraitPlayerGE: {fileID: 0}
   portraitImage: {fileID: 512554470}
   message: {fileID: 1691816495}
   nameText: {fileID: 1284207197}
@@ -6108,6 +6112,7 @@ MonoBehaviour:
   portraitFantasma: {fileID: 21300000, guid: 9f878f8183abee3439d1d3008ae44012, type: 3}
   portraitEsqueleto: {fileID: 21300000, guid: aa77bfd0a3ff24747a154d9629af58f3, type: 3}
   portraitBoss: {fileID: 21300000, guid: ad3e9c98c640e56499a03cd1687ce117, type: 3}
+  portraitPlayerGE: {fileID: 0}
   portraitImage: {fileID: 946307686}
   message: {fileID: 1209237532}
   nameText: {fileID: 61894189}
@@ -6197,6 +6202,7 @@ MonoBehaviour:
   portraitFantasma: {fileID: 21300000, guid: 9f878f8183abee3439d1d3008ae44012, type: 3}
   portraitEsqueleto: {fileID: 21300000, guid: aa77bfd0a3ff24747a154d9629af58f3, type: 3}
   portraitBoss: {fileID: 21300000, guid: ad3e9c98c640e56499a03cd1687ce117, type: 3}
+  portraitPlayerGE: {fileID: 0}
   portraitImage: {fileID: 27675116}
   message: {fileID: 621343170}
   nameText: {fileID: 755672716}
@@ -6423,6 +6429,7 @@ MonoBehaviour:
   portraitFantasma: {fileID: 21300000, guid: 9f878f8183abee3439d1d3008ae44012, type: 3}
   portraitEsqueleto: {fileID: 21300000, guid: aa77bfd0a3ff24747a154d9629af58f3, type: 3}
   portraitBoss: {fileID: 21300000, guid: ad3e9c98c640e56499a03cd1687ce117, type: 3}
+  portraitPlayerGE: {fileID: 0}
   portraitImage: {fileID: 1507047956}
   message: {fileID: 1920343566}
   nameText: {fileID: 1709536187}
@@ -6775,7 +6782,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1520116356}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b2a5f281fd612664ba5056024b505e25, type: 3}
   m_Name: 
@@ -6881,6 +6888,7 @@ MonoBehaviour:
   portraitFantasma: {fileID: 21300000, guid: 9f878f8183abee3439d1d3008ae44012, type: 3}
   portraitEsqueleto: {fileID: 21300000, guid: aa77bfd0a3ff24747a154d9629af58f3, type: 3}
   portraitBoss: {fileID: 21300000, guid: ad3e9c98c640e56499a03cd1687ce117, type: 3}
+  portraitPlayerGE: {fileID: 0}
   portraitImage: {fileID: 1734690367}
   message: {fileID: 923009702}
   nameText: {fileID: 2082606275}
@@ -8234,6 +8242,7 @@ MonoBehaviour:
   portraitFantasma: {fileID: 21300000, guid: 9f878f8183abee3439d1d3008ae44012, type: 3}
   portraitEsqueleto: {fileID: 21300000, guid: aa77bfd0a3ff24747a154d9629af58f3, type: 3}
   portraitBoss: {fileID: 21300000, guid: ad3e9c98c640e56499a03cd1687ce117, type: 3}
+  portraitPlayerGE: {fileID: 0}
   portraitImage: {fileID: 725173778}
   message: {fileID: 2075837686}
   nameText: {fileID: 1656930932}
@@ -8323,6 +8332,7 @@ MonoBehaviour:
   portraitFantasma: {fileID: 21300000, guid: 9f878f8183abee3439d1d3008ae44012, type: 3}
   portraitEsqueleto: {fileID: 21300000, guid: aa77bfd0a3ff24747a154d9629af58f3, type: 3}
   portraitBoss: {fileID: 21300000, guid: ad3e9c98c640e56499a03cd1687ce117, type: 3}
+  portraitPlayerGE: {fileID: 0}
   portraitImage: {fileID: 1124328630}
   message: {fileID: 1883758112}
   nameText: {fileID: 1900508300}
@@ -8686,6 +8696,7 @@ MonoBehaviour:
   portraitFantasma: {fileID: 21300000, guid: 9f878f8183abee3439d1d3008ae44012, type: 3}
   portraitEsqueleto: {fileID: 21300000, guid: aa77bfd0a3ff24747a154d9629af58f3, type: 3}
   portraitBoss: {fileID: 21300000, guid: ad3e9c98c640e56499a03cd1687ce117, type: 3}
+  portraitPlayerGE: {fileID: 0}
   portraitImage: {fileID: 1450081411}
   message: {fileID: 2088549480}
   nameText: {fileID: 818542020}
@@ -9124,6 +9135,7 @@ MonoBehaviour:
   portraitFantasma: {fileID: 21300000, guid: 9f878f8183abee3439d1d3008ae44012, type: 3}
   portraitEsqueleto: {fileID: 21300000, guid: aa77bfd0a3ff24747a154d9629af58f3, type: 3}
   portraitBoss: {fileID: 21300000, guid: ad3e9c98c640e56499a03cd1687ce117, type: 3}
+  portraitPlayerGE: {fileID: 0}
   portraitImage: {fileID: 2062513266}
   message: {fileID: 2029894279}
   nameText: {fileID: 1684734999}
@@ -9460,6 +9472,7 @@ MonoBehaviour:
   portraitFantasma: {fileID: 21300000, guid: 9f878f8183abee3439d1d3008ae44012, type: 3}
   portraitEsqueleto: {fileID: 21300000, guid: aa77bfd0a3ff24747a154d9629af58f3, type: 3}
   portraitBoss: {fileID: 21300000, guid: ad3e9c98c640e56499a03cd1687ce117, type: 3}
+  portraitPlayerGE: {fileID: 0}
   portraitImage: {fileID: 1618367193}
   message: {fileID: 1181861716}
   nameText: {fileID: 1190328743}

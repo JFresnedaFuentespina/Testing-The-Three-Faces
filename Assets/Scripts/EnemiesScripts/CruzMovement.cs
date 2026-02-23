@@ -1,4 +1,5 @@
 using System.Collections;
+using Codice.Client.BaseCommands;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -27,6 +28,7 @@ public class CruzMovement : MonoBehaviour
 
     private enum AttackType { None, Punch2, Punch3, Throw }
     private AttackType currentAttack = AttackType.None;
+    public CruzBallAttack cruzBallAttack;
 
     void Start()
     {
@@ -45,7 +47,10 @@ public class CruzMovement : MonoBehaviour
     {
         if (player == null) return;
 
-        transform.LookAt(player.transform);
+        if (currentAttack != AttackType.Throw)
+        {
+            transform.LookAt(player.transform);
+        }
 
         spawnTimer += Time.deltaTime;
         attackTimer += Time.deltaTime;
@@ -113,8 +118,11 @@ public class CruzMovement : MonoBehaviour
 
             case 2: // Throw
                 currentAttack = AttackType.Throw;
-                agent.speed = 0f;
+                agent.ResetPath();
+                agent.isStopped = true;
+                agent.velocity = Vector3.zero;
                 cruzAI.SetThrow();
+                cruzBallAttack.active = true;
                 StartCoroutine(WaitForAttack(animator.GetCurrentAnimatorStateInfo(0).length));
                 break;
         }
@@ -161,11 +169,19 @@ public class CruzMovement : MonoBehaviour
     {
         if (!isFinishingAttack) return;
 
+        AttackType finishedAttack = currentAttack;
+
         isAttacking = false;
         currentAttack = AttackType.None;
+
         agent.speed = moveSpeed;
         agent.isStopped = false;
 
+        if (finishedAttack == AttackType.Throw)
+        {
+            cruzBallAttack.active = false;
+            Debug.Log("CRUZ BALL ATTACK ACTIVE? " + cruzBallAttack.active);
+        }
         StartWalking();
     }
 

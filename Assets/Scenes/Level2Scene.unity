@@ -1038,6 +1038,7 @@ MonoBehaviour:
   portraitFantasma: {fileID: 21300000, guid: 9f878f8183abee3439d1d3008ae44012, type: 3}
   portraitEsqueleto: {fileID: 21300000, guid: aa77bfd0a3ff24747a154d9629af58f3, type: 3}
   portraitBoss: {fileID: 0}
+  portraitPlayerGE: {fileID: 0}
   portraitImage: {fileID: 399785365}
   message: {fileID: 2062487499}
   nameText: {fileID: 432338131}
@@ -3707,6 +3708,7 @@ MonoBehaviour:
   portraitFantasma: {fileID: 21300000, guid: 9f878f8183abee3439d1d3008ae44012, type: 3}
   portraitEsqueleto: {fileID: 21300000, guid: aa77bfd0a3ff24747a154d9629af58f3, type: 3}
   portraitBoss: {fileID: 0}
+  portraitPlayerGE: {fileID: 0}
   portraitImage: {fileID: 1239513850}
   message: {fileID: 19076752}
   nameText: {fileID: 990925710}
@@ -4210,7 +4212,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1280783112}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b2a5f281fd612664ba5056024b505e25, type: 3}
   m_Name: 
@@ -4754,6 +4756,7 @@ MonoBehaviour:
   portraitFantasma: {fileID: 21300000, guid: 9f878f8183abee3439d1d3008ae44012, type: 3}
   portraitEsqueleto: {fileID: 21300000, guid: aa77bfd0a3ff24747a154d9629af58f3, type: 3}
   portraitBoss: {fileID: 0}
+  portraitPlayerGE: {fileID: 0}
   portraitImage: {fileID: 410513457}
   message: {fileID: 1043270191}
   nameText: {fileID: 1834247874}
@@ -5533,6 +5536,7 @@ MonoBehaviour:
   portraitFantasma: {fileID: 0}
   portraitEsqueleto: {fileID: 0}
   portraitBoss: {fileID: 21300000, guid: 971d63ba76ae53a4cbdc30f64c6cb130, type: 3}
+  portraitPlayerGE: {fileID: 0}
   portraitImage: {fileID: 679181407}
   message: {fileID: 1293646612}
   nameText: {fileID: 1654742822}
@@ -5547,7 +5551,7 @@ MonoBehaviour:
   minimap: {fileID: 779359651}
   Timer: {fileID: 850513364}
   keyToContinue: 32
-  pararTiempo: 0
+  pararTiempo: 1
 --- !u!114 &1867687075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5649,6 +5653,7 @@ MonoBehaviour:
   portraitFantasma: {fileID: 21300000, guid: 9f878f8183abee3439d1d3008ae44012, type: 3}
   portraitEsqueleto: {fileID: 21300000, guid: aa77bfd0a3ff24747a154d9629af58f3, type: 3}
   portraitBoss: {fileID: 0}
+  portraitPlayerGE: {fileID: 0}
   portraitImage: {fileID: 800271558}
   message: {fileID: 370844059}
   nameText: {fileID: 855043759}
@@ -5950,6 +5955,7 @@ MonoBehaviour:
   portraitFantasma: {fileID: 0}
   portraitEsqueleto: {fileID: 0}
   portraitBoss: {fileID: 21300000, guid: 971d63ba76ae53a4cbdc30f64c6cb130, type: 3}
+  portraitPlayerGE: {fileID: 0}
   portraitImage: {fileID: 1802490612}
   message: {fileID: 1070820156}
   nameText: {fileID: 2103793656}

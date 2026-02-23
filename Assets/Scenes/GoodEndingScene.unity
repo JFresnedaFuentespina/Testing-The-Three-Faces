@@ -19523,9 +19523,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 646651457446580642, guid: 8c2d3588d63061d41b5142b95e5bc969, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1036103342}
-    - targetCorrespondingSourceObject: {fileID: 646651457446580642, guid: 8c2d3588d63061d41b5142b95e5bc969, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1036103345}
   m_SourcePrefab: {fileID: 100100000, guid: 8c2d3588d63061d41b5142b95e5bc969, type: 3}
 --- !u!1 &1036103340 stripped
 GameObject:
@@ -19580,28 +19577,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.25895354, y: 1.0248027, z: 0.25985128}
   m_Center: {x: -0.009840867, y: 0.5145614, z: 0.04316113}
---- !u!95 &1036103344 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 7239979551046584319, guid: 8c2d3588d63061d41b5142b95e5bc969, type: 3}
-  m_PrefabInstance: {fileID: 1036103339}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1036103345
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1036103340}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52f85008b4cea1e449a98906ca8a3730, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: PlayerHealthAssembly::PlayerBehaviour3rdPersonCameraWithMouse
-  movementSpeed: 2
-  mouseSensitivity: 2
-  cameraTransform: {fileID: 1916484171}
-  verticalRotation: 0
-  animatorEsqueleto: {fileID: 1036103344}
 --- !u!1001 &1044369069
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34874,6 +34849,7 @@ GameObject:
   - component: {fileID: 1916484175}
   - component: {fileID: 1916484176}
   - component: {fileID: 1916484177}
+  - component: {fileID: 1916484178}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -35062,6 +35038,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: PlayerHealthAssembly::PlayVideoInstant
   videoPlayer: {fileID: 1916484176}
+--- !u!114 &1916484178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1916484170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bf4b72f64e595140881a22d2f15b4e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PlayerHealthAssembly::ScoreGenerator
+  baseScore: 1000
+  enemiesDeathCounter: 0
+  time: 0
+  mins: 0
+  secs: 0
+  score: 0
 --- !u!1001 &1921401859
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ public class ScoreGenerator : MonoBehaviour
     public float mins;
     public float secs;
     public float score;
+    public bool isWin = true;
 
     void Start()
     {
@@ -45,6 +46,7 @@ public class ScoreGenerator : MonoBehaviour
 
     public void CalculateScore()
     {
+        float auxBase = 0;
         mins = Mathf.FloorToInt(time / 60f);
         float modifier;
         if (mins < 3f)
@@ -59,7 +61,11 @@ public class ScoreGenerator : MonoBehaviour
         {
             modifier = 0.7f;
         }
-        score = (baseScore + enemiesDeathCounter) * modifier;
+        if (isWin)
+        {
+            auxBase = baseScore;
+        }
+        score = (auxBase + enemiesDeathCounter) * modifier;
 
         string json = JsonConvert.SerializeObject(new ScoreDTO { score = score });
         string path = Application.persistentDataPath + "/score.json";

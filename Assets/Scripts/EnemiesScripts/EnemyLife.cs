@@ -148,7 +148,6 @@ public class EnemyLife : MonoBehaviour
         {
             gameObject.GetComponent<CantoDeathBehaviour>().NotifyVictory();
         }
-        Debug.Log("ENEMY LIFE: " + gameObject.name + " has died.");
         Destroy(gameObject, deathDelay);
     }
 }

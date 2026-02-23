@@ -11,13 +11,14 @@ public class LoadNextLevel : MonoBehaviour
 {
     public GameObject loadingPanel;
     public Image fadeImage;
-
     public GameObject timer;
-
     public float fadeDuration = 1f;
+
+    private ScoreGenerator scoreGenerator;
 
     void Start()
     {
+        scoreGenerator = GameObject.FindAnyObjectByType<ScoreGenerator>();
         // Buscar el canvas de carga
         GameObject loadingCanvas = GameObject.Find("LoadingCanvas");
         if (loadingCanvas != null)
@@ -114,7 +115,7 @@ public class LoadNextLevel : MonoBehaviour
     }
 
     private IEnumerator LoadSceneWithFade(string sceneName)
-    {  
+    {
         Debug.Log("Cargando escena: " + sceneName);
         AsyncOperation op = SceneManager.LoadSceneAsync(sceneName);
         op.allowSceneActivation = false;
@@ -180,6 +181,8 @@ public class LoadNextLevel : MonoBehaviour
 
         string json = JsonConvert.SerializeObject(data);
         string path = Application.persistentDataPath + "/player.json";
+
+        scoreGenerator.CalculateScore();
         File.WriteAllText(path, json);
 
     }

@@ -15,6 +15,9 @@ public class EndgameManager : MonoBehaviour
     public Button restartButtonDeath;
     public GameObject inventoryPanelDeath;
     public GameObject endgameDeathPanel;
+    public TextMeshProUGUI scoreTxt;
+    public ScoreGenerator scoreGenerator;
+    public PostScore postScore;
 
     // [Header("WinCondition")]
     // public GameObject timerGO;
@@ -70,6 +73,14 @@ public class EndgameManager : MonoBehaviour
         killedByTxt.text += " " + enemyName;
         enemiesKilledTxtDeath.text = "Mataste a " + enemyKilledCount + " enemigos!";
         ShowInventory(inventory, false);
+
+        scoreGenerator.isWin = false;
+        scoreGenerator.enemiesDeathCounter = enemyKilledCount;
+        scoreGenerator.CalculateScore();
+
+        scoreTxt.text += scoreGenerator.score;
+
+        postScore.PostScoreToAPI();
     }
 
     public void ExitGame()

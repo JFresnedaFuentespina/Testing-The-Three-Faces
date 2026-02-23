@@ -40,7 +40,6 @@ public class PlayerHealth : MonoBehaviour
 
     private GameObject endgameManagerGO;
     private EndgameManager endgameManager;
-
     private GameObject lastHittedBy;
 
     void OnDestroy()
@@ -198,6 +197,7 @@ public class PlayerHealth : MonoBehaviour
             PlayerInventory playerInventory = GetComponent<PlayerInventory>();
             endgameManager.ShowEndgameDeath(lastHittedBy, playerInventory.inventory);
         }
+
     }
 
     public void BlockPlayerControl()

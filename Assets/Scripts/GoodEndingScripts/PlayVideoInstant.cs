@@ -22,6 +22,6 @@ public class PlayVideoInstant : MonoBehaviour
 
     private void OnVideoFinished(VideoPlayer vp)
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("Classifications");
     }
 }

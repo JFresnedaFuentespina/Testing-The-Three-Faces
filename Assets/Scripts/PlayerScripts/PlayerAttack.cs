@@ -16,7 +16,7 @@ public class PlayerAttack : MonoBehaviour
     public float attackRange = 2f;
     public float attackInterval = 1f;
     private float lastAttackTime = -999f;
-    private float thunderSpawnY = 5f;
+    private float thunderSpawnY = 0f;
     public float thunderLifeTime = 0.4f;
     public bool isFireball = false;
     public bool isThunder = true;

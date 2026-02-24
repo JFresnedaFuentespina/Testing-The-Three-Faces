@@ -141,13 +141,14 @@ public class PlayerAttack : MonoBehaviour
     }
     void Shoot()
     {
-        animatorFantasma.SetTrigger("Attack");
         if (isFireball)
         {
+            animatorFantasma.SetTrigger("Attack");
             ShootFire();
         }
         else if (isThunder)
         {
+            animatorFantasma.SetTrigger("AttackThunder");
             ShootThunder();
         }
     }
@@ -242,22 +243,6 @@ public class PlayerAttack : MonoBehaviour
             spawnPos,
             Quaternion.identity
         );
-
-        // Raycast hacia abajo para aplicar daño
-        if (Physics.Raycast(spawnPos, Vector3.down, out RaycastHit hitInfo, 50f))
-        {
-            if (hitInfo.collider.tag.Contains("Boss") ||
-                hitInfo.collider.CompareTag("Enemy_Zombie") ||
-                hitInfo.collider.CompareTag("Enemy_Ghost"))
-            {
-                EnemyLife enemyLife = hitInfo.collider.GetComponent<EnemyLife>();
-                if (enemyLife != null)
-                {
-                    enemyLife.Damage(attackDamage);
-                    enemyLife.UpdateIsAlive();
-                }
-            }
-        }
 
         Destroy(newThunder, thunderLifeTime);
     }

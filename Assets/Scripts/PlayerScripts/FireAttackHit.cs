@@ -27,7 +27,7 @@ public class FireAttackHit : MonoBehaviour
         float destroyDelay = 0f;
         if (gameObject.CompareTag("Thunderbolt"))
         {
-            destroyDelay = 0.5f;
+            destroyDelay = 1f;
         }
         EnemyLife enemyLife = other.GetComponent<EnemyLife>();
         if (appliesPoison && enemyLife != null)

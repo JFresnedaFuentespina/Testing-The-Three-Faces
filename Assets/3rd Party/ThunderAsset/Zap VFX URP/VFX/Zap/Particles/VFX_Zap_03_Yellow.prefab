@@ -89,7 +89,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0.2391119, y: -2.7416174, z: -13.351498, w: 1}
+  m_BoundingSphereOverride: {x: 5.14e-43, y: 3.9488e-40, z: -1.2720681e-32, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
@@ -14845,9 +14845,11 @@ GameObject:
   - component: {fileID: 8964859838461161948}
   - component: {fileID: 8538455091997576435}
   - component: {fileID: 5861850483175589971}
+  - component: {fileID: 7155146441285982492}
+  - component: {fileID: 3839877111447673178}
   m_Layer: 0
   m_Name: VFX_Zap_03_Yellow
-  m_TagString: Untagged
+  m_TagString: Thunderbolt
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16924,7 +16926,7 @@ ParticleSystem:
     m_Curve:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 0.5
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -17255,7 +17257,7 @@ ParticleSystem:
       m_Bits: 4294967295
     influenceList: []
   ClampVelocityModule:
-    enabled: 0
+    enabled: 1
     x:
       serializedVersion: 2
       minMaxState: 0
@@ -17418,7 +17420,7 @@ ParticleSystem:
     magnitude:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -19690,6 +19692,43 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
+--- !u!65 &7155146441285982492
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5627696518775099638}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.42, y: 1.42, z: 1.42}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3839877111447673178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5627696518775099638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 685a8c7f578577e488f14934593ad9e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PlayerHealthAssembly::FireAttackHit
+  attackDamage: 5
+  fireballPushForce: 1
+  appliesPoison: 0
+  playerAttack: {fileID: 0}
 --- !u!1 &6110789885532804200
 GameObject:
   m_ObjectHideFlags: 0

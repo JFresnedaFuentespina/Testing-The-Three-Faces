@@ -286,7 +286,7 @@ MonoBehaviour:
   spawnHeight: 1
   attackRange: 5
   attackInterval: 1
-  thunderLifeTime: 0.5
+  thunderLifeTime: 1
   isFireball: 0
   isThunder: 1
   swordSwingAudioClip: {fileID: 8300000, guid: 75007150f322cce46a01a6c889e3402d, type: 3}

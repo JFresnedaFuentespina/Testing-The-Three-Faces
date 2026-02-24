@@ -52,7 +52,7 @@ public class VideoTriggerBehaviour : MonoBehaviour
 
     private void OnVideoFinished(VideoPlayer vp)
     {
-        SceneManager.LoadScene("Classifications");
+        SceneManager.LoadScene("MainMenu");
     }
 
     void OnDestroy()

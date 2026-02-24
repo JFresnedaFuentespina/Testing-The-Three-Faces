@@ -62,6 +62,7 @@ public class PlayerAttack : MonoBehaviour
             isThunder = playerData.attackType == "Thunder";
             appliesPoison = playerData.appliesPoison;
         }
+        radioRayo.isThunderActive = isThunder;
         changeCharacter = GetComponent<ChangeCharacter>();
         animatorEsqueleto = FindEsqueletoAnimator(transform);
         animatorFantasma = FindGhostAnimator(transform);

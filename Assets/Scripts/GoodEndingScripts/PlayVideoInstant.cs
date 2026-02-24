@@ -9,6 +9,7 @@ public class PlayVideoInstant : MonoBehaviour
     void Awake()
     {
         videoPlayer.playOnAwake = false;
+        videoPlayer.url = Application.streamingAssetsPath + "/goodending-the3faces.mp4";
         videoPlayer.Prepare();
         videoPlayer.prepareCompleted += OnVideoPrepared;
         videoPlayer.loopPointReached += OnVideoFinished;

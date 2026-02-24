@@ -37,7 +37,7 @@ public class VideoTriggerBehaviour : MonoBehaviour
         Debug.Log("Player entered the bad ending trigger area.");
 
         other.gameObject.SetActive(false);
-        postScoreScript.PostScoreToAPI();
+        // postScoreScript.PostScoreToAPI();
         StartCoroutine(PrepareAndPlay());
     }
     private IEnumerator PrepareAndPlay()

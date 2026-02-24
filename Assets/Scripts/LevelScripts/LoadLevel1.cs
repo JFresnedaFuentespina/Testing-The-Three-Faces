@@ -65,7 +65,7 @@ public class LoadLevel1 : MonoBehaviour
     {
         DeleteFiles();
 
-        AsyncOperation op = SceneManager.LoadSceneAsync("LoginScene");
+        AsyncOperation op = SceneManager.LoadSceneAsync("Level1Scene");
         op.allowSceneActivation = false;
 
         // Pequeña espera para asegurarnos que el último frame se dibuje

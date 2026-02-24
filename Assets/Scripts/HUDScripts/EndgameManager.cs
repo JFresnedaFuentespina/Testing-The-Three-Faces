@@ -80,7 +80,7 @@ public class EndgameManager : MonoBehaviour
 
         scoreTxt.text += scoreGenerator.score;
 
-        postScore.PostScoreToAPI();
+        // postScore.PostScoreToAPI();
     }
 
     public void ExitGame()

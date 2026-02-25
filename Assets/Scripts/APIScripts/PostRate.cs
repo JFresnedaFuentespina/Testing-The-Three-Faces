@@ -22,12 +22,12 @@ public class PostRate : MonoBehaviour
         {
             string json = File.ReadAllText(ratePath);
             rate = JsonUtility.FromJson<SendRateDTO>(json);
+            StartCoroutine(TryPostRate());
         }
         else
         {
             Debug.LogWarning("Score data not found at: " + ratePath);
         }
-        StartCoroutine(TryPostRate());
     }
 
     private IEnumerator TryPostRate()

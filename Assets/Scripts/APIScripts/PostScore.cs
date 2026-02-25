@@ -57,6 +57,7 @@ public class PostScore : MonoBehaviour
             {
                 api_token = apiData.apiToken,
                 name = user.name,
+                email = user.email,
                 puntuacion = scoreData.score
             };
 

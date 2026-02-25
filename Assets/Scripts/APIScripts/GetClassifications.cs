@@ -17,6 +17,7 @@ public class GetClassifications : MonoBehaviour
     public GameObject classificationItemHeaderPrefab;
     public GameObject loadingPanel;
     private bool isLoading = true;
+    public float top = 5f;
     void Start()
     {
         apiData = new ApiDTO();
@@ -40,7 +41,7 @@ public class GetClassifications : MonoBehaviour
 
     private IEnumerator GetClassificationsFromAPI()
     {
-        string url = apiData.apiUrl + "/api/classification/" + apiData.apiToken;
+        string url = apiData.apiUrl + "/api/classification/" + apiData.apiToken + "/" + top;
 
         UnityWebRequest httpRequest = UnityWebRequest.Get(url);
         httpRequest.SetRequestHeader("Accept", "application/json");

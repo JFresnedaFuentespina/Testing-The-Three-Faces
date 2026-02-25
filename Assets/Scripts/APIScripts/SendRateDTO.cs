@@ -1,3 +1,4 @@
+[System.Serializable]
 public class SendRateDTO
 {
     public string api_token;

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using Newtonsoft.Json;
@@ -36,7 +37,7 @@ public class PostLogin : MonoBehaviour
             ApiDTO loginData = new ApiDTO();
             UnityWebRequest httpClient = new UnityWebRequest();
             httpClient.method = UnityWebRequest.kHttpVerbPOST;
-            httpClient.url = loginData.apiUrl + "/auth/login";
+            httpClient.url = loginData.apiUrl + "/api/verify";
             httpClient.SetRequestHeader("Content-Type", "application/json");
             httpClient.SetRequestHeader("Accept", "application/json");
 
@@ -62,10 +63,11 @@ public class PostLogin : MonoBehaviour
                 StartCoroutine(LoadLevel1Async());
                 yield return null;
             }
-
             string jsonResponse = httpClient.downloadHandler.text;
-            user.has_rated = JsonConvert.DeserializeObject<UserDTO>(jsonResponse).has_rated;
-            Debug.Log("Login successful. User hasRated: " + user.has_rated);
+            VerifyResponseDTO response = JsonConvert.DeserializeObject<VerifyResponseDTO>(jsonResponse);
+            user.has_rated = response.rated;
+            List<RateDTO> rateList = response.criterion;
+            SaveCriterions(rateList);
             SaveUserData();
             httpClient.Dispose();
             StartCoroutine(LoadLevel1Async());
@@ -103,5 +105,16 @@ public class PostLogin : MonoBehaviour
         {
             Debug.LogWarning("No user data found to delete at: " + path);
         }
+    }
+
+    public void SaveCriterions(List<RateDTO> criterions)
+    {
+        string path = Application.persistentDataPath + "/citerions.json";
+        if (File.Exists(path))
+        {
+            File.Delete(path);
+        }
+        string json = JsonConvert.SerializeObject(criterions, Formatting.Indented);
+        File.WriteAllText(json, path);
     }
 }

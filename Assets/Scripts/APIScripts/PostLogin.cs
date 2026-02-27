@@ -45,7 +45,7 @@ public class PostLogin : MonoBehaviour
             {
                 name = user.name,
                 email = user.email,
-                apiToken = loginData.apiToken
+                api_token = loginData.apiToken
             };
 
             Debug.Log("Attempting login with Name: " + loginBody.name + " and Email: " + loginBody.email);
@@ -67,6 +67,7 @@ public class PostLogin : MonoBehaviour
             VerifyResponseDTO response = JsonConvert.DeserializeObject<VerifyResponseDTO>(jsonResponse);
             user.has_rated = response.rated;
             List<RateDTO> rateList = response.criterion;
+            Debug.Log("LOGIN -> User: " + user.name + " " + user.email + " has rated? " + user.has_rated);
             SaveCriterions(rateList);
             SaveUserData();
             httpClient.Dispose();
@@ -115,6 +116,6 @@ public class PostLogin : MonoBehaviour
             File.Delete(path);
         }
         string json = JsonConvert.SerializeObject(criterions, Formatting.Indented);
-        File.WriteAllText(json, path);
+        File.WriteAllText(path, json);
     }
 }

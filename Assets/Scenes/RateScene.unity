@@ -393,6 +393,57 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 155132402}
   m_CullTransparentMesh: 1
+--- !u!1 &178839704
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 178839705}
+  - component: {fileID: 178839706}
+  m_Layer: 0
+  m_Name: PostRateManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &178839705
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 178839704}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 49.76769, y: 0, z: 13.45687}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &178839706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 178839704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0203d559695a5874db0eed70ece6a875, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PlayerHealthAssembly::PostRate
+  stars:
+  - {fileID: 1468745426}
+  - {fileID: 740272051}
+  - {fileID: 722861780}
+  - {fileID: 1086869793}
+  - {fileID: 356314631}
+  sendButton: {fileID: 1360006097}
 --- !u!1 &183668316
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,7 +563,7 @@ GameObject:
   - component: {fileID: 356314630}
   - component: {fileID: 356314631}
   m_Layer: 5
-  m_Name: CoherenciaEstrellas
+  m_Name: ConcordanciaEstrellas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -614,7 +665,7 @@ MonoBehaviour:
   starButton: {fileID: 3499720094427145540, guid: 29a28755431885a4382265631875ed5a, type: 3}
   numberOfStars: 5
   rate: 0
-  category: coherencia
+  category: concordancia
   starImages: []
 --- !u!1 &421118610
 GameObject:
@@ -1881,7 +1932,7 @@ GameObject:
   - component: {fileID: 1360006098}
   - component: {fileID: 1360006097}
   m_Layer: 5
-  m_Name: Button
+  m_Name: SendRateButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2990,3 +3041,4 @@ SceneRoots:
   - {fileID: 2059129150}
   - {fileID: 183668320}
   - {fileID: 1809657121}
+  - {fileID: 178839705}

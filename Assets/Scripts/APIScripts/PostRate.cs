@@ -1,32 +1,54 @@
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PostRate : MonoBehaviour
 {
     private SendRateDTO rate;
+    private UserDTO user;
     private ApiDTO api;
+    public List<StarPanelGenerator> stars;
+    public Button sendButton;
     void Start()
     {
+        string userPath = Application.persistentDataPath + "/user.json";
+        if (File.Exists(userPath))
+        {
+            string json = File.ReadAllText(userPath);
+            user = JsonUtility.FromJson<UserDTO>(json);
+            if (user.has_rated)
+            {
+                GoToMainMenu();
+            }
+        }
+        sendButton.onClick.AddListener(PostRateToAPI);
         rate = new();
         api = new();
     }
 
     public void PostRateToAPI()
     {
-        // Cargar la valoración desde rate.json
-        string ratePath = Application.persistentDataPath + "/rate.json";
-        if (File.Exists(ratePath))
+        GetStars();
+        StartCoroutine(TryPostRate());
+    }
+
+    public void GetStars()
+    {
+        foreach (StarPanelGenerator starPanel in stars)
         {
-            string json = File.ReadAllText(ratePath);
-            rate = JsonUtility.FromJson<SendRateDTO>(json);
-            StartCoroutine(TryPostRate());
-        }
-        else
-        {
-            Debug.LogWarning("Score data not found at: " + ratePath);
+            switch (starPanel.category)
+            {
+                case "general": rate.general = starPanel.rate; break;
+                case "jugabilitat": rate.jugabilitat = starPanel.rate; break;
+                case "dificultat": rate.dificultat = starPanel.rate; break;
+                case "grafics": rate.grafics = starPanel.rate; break;
+                case "concordancia": rate.concordancia = starPanel.rate; break;
+            }
         }
     }
 
@@ -35,6 +57,8 @@ public class PostRate : MonoBehaviour
         if (rate != null)
         {
             rate.api_token = api.apiToken;
+            rate.name = user.name;
+            rate.email = user.email;
             UnityWebRequest httpClient = new UnityWebRequest();
             httpClient.method = UnityWebRequest.kHttpVerbPOST;
             httpClient.url = api.apiUrl + "/api/rateGame";
@@ -59,5 +83,10 @@ public class PostRate : MonoBehaviour
             httpClient.Dispose();
         }
         yield return null;
+    }
+
+    private void GoToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }

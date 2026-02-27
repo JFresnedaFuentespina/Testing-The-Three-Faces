@@ -21,10 +21,10 @@ public class PostRate : MonoBehaviour
         {
             string json = File.ReadAllText(userPath);
             user = JsonUtility.FromJson<UserDTO>(json);
-            if (user.has_rated)
-            {
-                GoToMainMenu();
-            }
+            // if (user.has_rated)
+            // {
+            //     GoToMainMenu();
+            // }
         }
         sendButton.onClick.AddListener(PostRateToAPI);
         rate = new();
@@ -81,6 +81,7 @@ public class PostRate : MonoBehaviour
                 Debug.Log(httpClient.downloadHandler.text);
             }
             httpClient.Dispose();
+            GoToMainMenu();
         }
         yield return null;
     }

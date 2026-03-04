@@ -5383,9 +5383,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5209484865355184499, guid: 048330b6bb4d2b243a7a55308e02d8dd, type: 3}
+      propertyPath: iconToShow
+      value: 
+      objectReference: {fileID: 2110191091140840752, guid: ffc64621d66ec364594fc1ca0dbaafc7, type: 3}
+    - target: {fileID: 5209484865355184499, guid: 048330b6bb4d2b243a7a55308e02d8dd, type: 3}
       propertyPath: minimapPanel
       value: 
       objectReference: {fileID: 2010680792}
+    - target: {fileID: 5209484865355184499, guid: 048330b6bb4d2b243a7a55308e02d8dd, type: 3}
+      propertyPath: playerIconGhost
+      value: 
+      objectReference: {fileID: 21300000, guid: 9f878f8183abee3439d1d3008ae44012, type: 3}
+    - target: {fileID: 5209484865355184499, guid: 048330b6bb4d2b243a7a55308e02d8dd, type: 3}
+      propertyPath: playerIconEsqueleto
+      value: 
+      objectReference: {fileID: 21300000, guid: aa77bfd0a3ff24747a154d9629af58f3, type: 3}
     - target: {fileID: 7507056594978238939, guid: 048330b6bb4d2b243a7a55308e02d8dd, type: 3}
       propertyPath: character
       value: 

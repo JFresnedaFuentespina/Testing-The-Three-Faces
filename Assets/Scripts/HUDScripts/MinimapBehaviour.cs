@@ -1,12 +1,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MinimapBehaviour : MonoBehaviour
 {
     public GameObject minimapPanel;
     public GameObject roomIconPrefab;
-    public GameObject playerIconPrefab;
+    public GameObject iconToShow;
+    public Sprite playerIconGhost;
+    public Sprite playerIconEsqueleto;
+    public bool showingGhost = false;
 
     public Dictionary<string, Vector3> roomsDictionary = new Dictionary<string, Vector3>();
     private Dictionary<string, GameObject> minimapIcons = new Dictionary<string, GameObject>();
@@ -15,6 +19,34 @@ public class MinimapBehaviour : MonoBehaviour
     private GameObject characterRef;
 
     private float mapScale = 1.5f;
+
+    void OnEnable()
+    {
+        ChangeCharacter.OnChangePlayerIconEvent += ChangeIcon;
+    }
+    void OnDisable()
+    {
+        ChangeCharacter.OnChangePlayerIconEvent -= ChangeIcon;
+    }
+    void Start()
+    {
+        iconToShow.GetComponent<Image>().sprite = playerIconEsqueleto;
+    }
+
+    public void ChangeIcon()
+    {
+        showingGhost = !showingGhost;
+
+        if (playerIcon != null)
+        {
+            Image img = playerIcon.GetComponent<Image>();
+
+            if (showingGhost)
+                img.sprite = playerIconGhost;
+            else
+                img.sprite = playerIconEsqueleto;
+        }
+    }
 
     public void initMinimap(Dictionary<string, Vector3> levelRoomsDictionary, GameObject character)
     {
@@ -27,14 +59,11 @@ public class MinimapBehaviour : MonoBehaviour
 
     private void GeneratePlayerIcon(GameObject character)
     {
-        if (playerIconPrefab == null)
-        {
-            Debug.LogError("PlayerIconPrefab no asignado en el inspector");
-            return;
-        }
-
-        playerIcon = Instantiate(playerIconPrefab, minimapPanel.transform);
+        playerIcon = Instantiate(iconToShow, minimapPanel.transform);
         playerIcon.name = "PlayerIcon";
+
+        Image img = playerIcon.GetComponent<Image>();
+        img.sprite = playerIconEsqueleto;
     }
 
     public void MovePlayerToRoom(string roomName)

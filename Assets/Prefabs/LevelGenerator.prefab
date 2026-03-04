@@ -85,7 +85,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MinimapBehaviour
   minimapPanel: {fileID: 0}
   roomIconPrefab: {fileID: 7997599683320553934, guid: 04c3d498cda197a43b475c91595f6ca2, type: 3}
-  playerIconPrefab: {fileID: 2110191091140840752, guid: ffc64621d66ec364594fc1ca0dbaafc7, type: 3}
+  iconToShow: {fileID: 0}
+  playerIconGhostPrefab: {fileID: 2110191091140840752, guid: 09d55f64763e4234abe745dc74206ee7, type: 3}
+  playerIconEsqueletoPrefab: {fileID: 2110191091140840752, guid: ffc64621d66ec364594fc1ca0dbaafc7, type: 3}
+  showingGhost: 0
 --- !u!114 &7665564490782863917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,3 +103,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpawnKeyInRoom
   keyPrefab: {fileID: 2253393103804301607, guid: e360d8d16d87ca544b56a603ea831f2f, type: 3}
   suelo: {fileID: 0}
+  spawned: 0

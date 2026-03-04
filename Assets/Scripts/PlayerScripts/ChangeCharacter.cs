@@ -17,9 +17,12 @@ public class ChangeCharacter : MonoBehaviour
     private GameObject cursorManagerGO;
     private CursorManager cursorManager;
 
-
     public float switchCooldown = 2f;
     private float lastSwitchTime = -Mathf.Infinity;
+
+
+    public delegate void OnChangePlayerIcon();
+    public static event OnChangePlayerIcon OnChangePlayerIconEvent;
 
     void OnDestroy()
     {
@@ -72,6 +75,10 @@ public class ChangeCharacter : MonoBehaviour
 
     void SwitchCharacter()
     {
+        if (OnChangePlayerIconEvent != null)
+        {
+            OnChangePlayerIconEvent();
+        }
         showingGhost = !showingGhost;
 
         if (actions.Contains("Hourglass"))

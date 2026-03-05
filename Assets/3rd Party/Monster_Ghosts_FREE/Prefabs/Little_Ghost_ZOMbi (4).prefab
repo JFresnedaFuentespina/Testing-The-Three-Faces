@@ -111,6 +111,7 @@ SkinnedMeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -201,6 +202,7 @@ GameObject:
   - component: {fileID: -4271306756934098052}
   - component: {fileID: 1874212437731704862}
   - component: {fileID: -6140032131781465206}
+  - component: {fileID: 4628853937966621364}
   m_Layer: 9
   m_Name: Little_Ghost_ZOMbi (4)
   m_TagString: Enemy_Ghost
@@ -294,6 +296,8 @@ MonoBehaviour:
   deathAudioClip: {fileID: 8300000, guid: bd73f8a16867abb44af13bdc6b69aa8b, type: 3}
   audioSource: {fileID: 1874212437731704862}
   poisoned: 0
+  enemiesDeathCounterGO: {fileID: 0}
+  enemiesDeathCounter: {fileID: 0}
 --- !u!114 &-2447555229499151269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -455,6 +459,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VanishGhost
   fadeDuration: 2
+--- !u!114 &4628853937966621364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8747757470087523455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34a2d0875e9caa148981e9c937d98add, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PlayerHealthAssembly::BasicEnemyAI
+  animatorManager: {fileID: 0}
+  enemyLife: {fileID: -1540332247879240402}
+  visDist: 10
+  attackDist: 5
+  moveSpeed: 2
+  attackAndMove: 1
+  state: 0
 --- !u!1 &8747757470159160704
 GameObject:
   m_ObjectHideFlags: 0

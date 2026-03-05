@@ -6,7 +6,7 @@ public class ZombieAnimatorManager : MonoBehaviour
     public Animator animator;
     void Start()
     {
-        if(animator == null)
+        if (animator == null)
         {
             animator = GetComponent<Animator>();
             if (animator == null)
@@ -20,6 +20,14 @@ public class ZombieAnimatorManager : MonoBehaviour
         if (animator != null)
         {
             animator.SetTrigger("Attack");
+        }
+    }
+
+    public void SetSpeed(float speed)
+    {
+        if (animator != null)
+        {
+            animator.SetFloat("MoveSpeed", speed);
         }
     }
 

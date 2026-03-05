@@ -90,6 +90,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &8497208654450407144
 BoxCollider:
@@ -124,7 +125,7 @@ NavMeshObstacle:
   m_Shape: 1
   m_Extents: {x: 0.50100005, y: 0.37800002, z: 0.381}
   m_MoveThreshold: 0.1
-  m_Carve: 0
+  m_Carve: 1
   m_CarveOnlyStationary: 1
   m_Center: {x: 0.049000002, y: 0.347, z: -0.026}
   m_TimeToStationary: 0.5

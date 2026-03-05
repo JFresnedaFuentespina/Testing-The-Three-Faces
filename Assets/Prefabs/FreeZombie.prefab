@@ -412,6 +412,9 @@ MonoBehaviour:
   defaultAudioClip: {fileID: 8300000, guid: ac7e816a3db514fe1ab3b114c251e20c, type: 3}
   deathAudioClip: {fileID: 8300000, guid: f27787834365caf469549598127d00de, type: 3}
   audioSource: {fileID: -8376059993149555085}
+  poisoned: 0
+  enemiesDeathCounterGO: {fileID: 0}
+  enemiesDeathCounter: {fileID: 0}
 --- !u!114 &-8470592053476769817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -419,7 +422,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6930373436760084395}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0be3eb5b88937944a8941b892ac90dc, type: 3}
   m_Name: 
@@ -573,6 +576,10 @@ MonoBehaviour:
   enemyLife: {fileID: -1744487903351431802}
   minAttackInterval: 2
   maxAttackInterval: 5
+  visDist: 10
+  visAngle: 45
+  attackDist: 1
+  state: 0
 --- !u!4 &6930373436760183755 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400056, guid: 8c53cffd52097cf4582f0a090c9a833e, type: 3}

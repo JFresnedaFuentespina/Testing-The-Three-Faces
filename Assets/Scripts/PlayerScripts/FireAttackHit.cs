@@ -51,6 +51,7 @@ public class FireAttackHit : MonoBehaviour
         }
         else if (other.CompareTag("BossCruz"))
         {
+            Debug.Log("CRUZ BOSS HIT!!! <----------");
             CruzAnimatorController cruzAI = other.GetComponent<CruzAnimatorController>();
             if (cruzAI != null)
             {

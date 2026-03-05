@@ -787,6 +787,7 @@ GameObject:
   - component: {fileID: 2160824029858161427}
   - component: {fileID: 1309259542819171598}
   - component: {fileID: 4128499256433890775}
+  - component: {fileID: 8446699259834373977}
   m_Layer: 9
   m_Name: Base_mesh_Skin1
   m_TagString: BossCanto
@@ -942,6 +943,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 639df13a8bd3369458758824a45e2706, type: 3}
   m_Name: 
   m_EditorClassIdentifier: PlayerHealthAssembly::CantoDialogueManager
+--- !u!54 &8446699259834373977
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2369049315509284897}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1 &2399109204944608482
 GameObject:
   m_ObjectHideFlags: 0

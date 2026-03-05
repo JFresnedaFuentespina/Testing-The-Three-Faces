@@ -11,11 +11,12 @@ public class EnemiesGenerator : MonoBehaviour
     public GameObject bossCaraPrefab;
     public GameObject bossCruzPrefab;
     public GameObject bossCantoPrefab;
-    public int maxEnemies = 3;
+    public int maxEnemies;
     public float spawnAreaX = 2f;
     public float spawnAreaZ = 2f;
 
     private CameraDialogueManager cameraDialogueManager;
+    private LevelGenerator level;
 
     private bool enemiesSpawned = false;
     private List<EnemyLife> spawnedEnemies = new List<EnemyLife>();
@@ -29,6 +30,13 @@ public class EnemiesGenerator : MonoBehaviour
         if (cameraDialogueManager == null)
         {
             Debug.LogWarning("CAMERA DIALOGUE MANAGER NOT FOUND");
+        }
+        level = FindAnyObjectByType<LevelGenerator>();
+        switch (level.levelId)
+        {
+            case 1: maxEnemies = 3; break;
+            case 2: maxEnemies = 4; break;
+            case 3: maxEnemies = 5; break;
         }
     }
 
@@ -106,7 +114,7 @@ public class EnemiesGenerator : MonoBehaviour
         // Revisar si ya existe un BossCara en la escena
         bool bossExists = FindObjectsOfType<EnemyLife>()
             .Any(e => e != null && e.gameObject.CompareTag("BossCara"));
-
+        maxEnemies = 1;
         if (bossExists)
         {
             Debug.Log("Ya existe un BossCara en escena, no se genera otro");

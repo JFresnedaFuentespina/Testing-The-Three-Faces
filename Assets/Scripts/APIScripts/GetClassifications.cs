@@ -55,6 +55,13 @@ public class GetClassifications : MonoBehaviour
         }
 
         ClassificationResponse response = JsonConvert.DeserializeObject<ClassificationResponse>(httpRequest.downloadHandler.text);
+
+        if (response?.data == null)
+        {
+            Debug.LogError("La API no devolvió datos válidos: " + httpRequest.downloadHandler.text);
+            yield break;
+        }
+
         classifications = response.data;
 
         foreach (ScoreResponse score in classifications)

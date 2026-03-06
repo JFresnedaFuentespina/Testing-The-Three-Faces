@@ -3,5 +3,5 @@
 public class ScoreResponse
 {
     public string name;
-    public int puntuacion;
+    public float puntuacion;
 }

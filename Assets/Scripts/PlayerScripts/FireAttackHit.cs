@@ -93,10 +93,14 @@ public class FireAttackHit : MonoBehaviour
         if (gameObject.CompareTag("Fireball"))
         {
             BasicEnemyAI basicEnemyAI = other.GetComponent<BasicEnemyAI>();
+            Vector3 pushDirection = other.transform.position - transform.position;
             if (basicEnemyAI != null)
             {
-                Vector3 pushDirection = other.transform.position - transform.position;
                 basicEnemyAI.GetPushed(pushDirection, fireballPushForce, 0.2f);
+            }
+            if (other.GetComponent<EnemyMoveNavmesh>())
+            {
+                other.GetComponent<EnemyMoveNavmesh>().GetPushed(pushDirection, fireballPushForce, 0.2f);
             }
         }
     }

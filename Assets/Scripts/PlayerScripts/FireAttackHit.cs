@@ -8,7 +8,7 @@ public class FireAttackHit : MonoBehaviour
 {
     public float attackDamage = 5;
 
-    public float fireballPushForce = 1f;
+    public float fireballPushForce = 6f;
     public bool appliesPoison = false;
     public PlayerAttack playerAttack;
 

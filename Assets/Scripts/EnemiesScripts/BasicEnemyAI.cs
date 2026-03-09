@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.AI;
+using UnityEditorInternal;
 
 public class BasicEnemyAI : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class BasicEnemyAI : MonoBehaviour
     private float stunnedSpeed = 0f;
     public enum STATE
     {
-        IDLE, PURSUE, ATTACK
+        IDLE, PURSUE, ATTACK, PUSHED
     }
 
     public STATE state;
@@ -56,6 +57,7 @@ public class BasicEnemyAI : MonoBehaviour
                 case STATE.IDLE: Idle(); break;
                 case STATE.PURSUE: Pursue(); break;
                 case STATE.ATTACK: Attack(); break;
+                case STATE.PUSHED: Pushed(); break;
             }
         }
     }
@@ -148,8 +150,35 @@ public class BasicEnemyAI : MonoBehaviour
         }
     }
 
+    public void Pushed()
+    {
+        pushElapsed += Time.deltaTime;
+
+        // Movimiento manual durante el empuje
+        transform.position += pushDirection * pushForce * Time.deltaTime;
+
+        // Cuando termina el empuje
+        if (pushElapsed >= pushDuration)
+        {
+            isPushed = false;
+
+            if (agent != null)
+            {
+                // Sincronizar posición con el NavMeshAgent
+                agent.Warp(transform.position);
+                agent.updatePosition = true;
+                agent.isStopped = false;
+            }
+
+            // Volver al comportamiento normal
+            state = STATE.PURSUE;
+        }
+    }
+
     public void GetPushed(Vector3 direction, float force, float duration)
     {
+        Debug.Log("BASIC ENEMY AI: PUSH!!");
+        state = STATE.PUSHED;
         pushDirection = direction.normalized;
         pushForce = force;
         pushDuration = duration;

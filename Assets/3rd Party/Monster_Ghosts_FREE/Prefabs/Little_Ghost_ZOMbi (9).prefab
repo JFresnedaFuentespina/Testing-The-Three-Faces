@@ -474,7 +474,6 @@ GameObject:
   - component: {fileID: 4528888763381533392}
   - component: {fileID: 4528888763381533393}
   - component: {fileID: 1778085294526824437}
-  - component: {fileID: 7067312341057376346}
   - component: {fileID: -6837521047868456013}
   - component: {fileID: 3249083232797695650}
   - component: {fileID: -8624258404176700510}
@@ -575,19 +574,6 @@ MonoBehaviour:
   poisoned: 0
   enemiesDeathCounterGO: {fileID: 0}
   enemiesDeathCounter: {fileID: 0}
---- !u!114 &7067312341057376346
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4528888763381533394}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0be3eb5b88937944a8941b892ac90dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyMoveNavmesh
-  velocity: 3
 --- !u!195 &-6837521047868456013
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -67,7 +67,7 @@ public class MeleeAttackHit : MonoBehaviour
             // Empujar enemigos al ser golpeados por ataque cuerpo a cuerpo
             if (other.GetComponent<NavMeshAgent>() != null)
             {
-                other.GetComponent<EnemyMoveNavmesh>().SetStunned(2f);
+                other.GetComponent<BasicEnemyAI>().SetStunned(2f);
             }
         }
     }

@@ -574,11 +574,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ZombieAI
   animatorManager: {fileID: 4173287916669831026}
   enemyLife: {fileID: -1744487903351431802}
-  minAttackInterval: 2
-  maxAttackInterval: 5
   visDist: 10
-  visAngle: 45
   attackDist: 1
+  moveSpeed: 1
+  attackAndMove: 0
   state: 0
 --- !u!4 &6930373436760183755 stripped
 Transform:

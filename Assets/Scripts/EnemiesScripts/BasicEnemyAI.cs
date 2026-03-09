@@ -12,7 +12,13 @@ public class BasicEnemyAI : MonoBehaviour
     private NavMeshAgent agent;
     private Transform player;
     public bool attackAndMove = false;
-
+    // Empuje
+    private bool isPushed = false;
+    private Vector3 pushDirection;
+    private float pushForce;
+    private float pushDuration;
+    private float pushElapsed;
+    private float stunnedSpeed = 0f;
     public enum STATE
     {
         IDLE, PURSUE, ATTACK
@@ -140,5 +146,29 @@ public class BasicEnemyAI : MonoBehaviour
             agent.isStopped = false;
             state = STATE.PURSUE;
         }
+    }
+
+    public void GetPushed(Vector3 direction, float force, float duration)
+    {
+        pushDirection = direction.normalized;
+        pushForce = force;
+        pushDuration = duration;
+        pushElapsed = 0f;
+
+        isPushed = true;
+        agent.isStopped = true;
+    }
+
+    public void SetStunned(float duration)
+    {
+        StartCoroutine(StunCoroutine(duration));
+    }
+
+    IEnumerator StunCoroutine(float duration)
+    {
+        float originalSpeed = agent.speed;
+        agent.speed = stunnedSpeed;
+        yield return new WaitForSeconds(duration);
+        agent.speed = originalSpeed;
     }
 }

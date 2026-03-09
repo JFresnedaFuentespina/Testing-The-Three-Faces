@@ -37,33 +37,33 @@ public class EnemyMoveNavmesh : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        if (!enemyLife.GetIsAlive())
-        {
-            agent.isStopped = true;
-            return;
-        }
-        if (isPushed)
-        {
-            // Aplicar empuje con física
-            transform.position += pushDirection * pushForce * Time.deltaTime;
-            pushElapsed += Time.deltaTime;
-            if (pushElapsed >= pushDuration)
-            {
-                isPushed = false;
-                agent.isStopped = false; // Reanudar navegación
-            }
-            return; // No hacemos navegación mientras es empujado
-        }
+    // void Update()
+    // {
+    //     if (!enemyLife.GetIsAlive())
+    //     {
+    //         agent.isStopped = true;
+    //         return;
+    //     }
+    //     if (isPushed)
+    //     {
+    //         // Aplicar empuje con física
+    //         transform.position += pushDirection * pushForce * Time.deltaTime;
+    //         pushElapsed += Time.deltaTime;
+    //         if (pushElapsed >= pushDuration)
+    //         {
+    //             isPushed = false;
+    //             agent.isStopped = false; // Reanudar navegación
+    //         }
+    //         return; // No hacemos navegación mientras es empujado
+    //     }
 
-        if (mainCharacter == null) return;
-        // Solo actualizamos destino si el jugador se ha movido lo suficiente
-        if (Vector3.Distance(agent.destination, mainCharacter.transform.position) > 0.5f)
-        {
-            agent.SetDestination(mainCharacter.transform.position);
-        }
-    }
+    //     if (mainCharacter == null) return;
+    //     // Solo actualizamos destino si el jugador se ha movido lo suficiente
+    //     if (Vector3.Distance(agent.destination, mainCharacter.transform.position) > 0.5f)
+    //     {
+    //         agent.SetDestination(mainCharacter.transform.position);
+    //     }
+    // }
 
     public void GetPushed(Vector3 direction, float force, float duration)
     {

@@ -92,11 +92,11 @@ public class FireAttackHit : MonoBehaviour
         // Empujar enemigos al ser golpeados por una bola de fuego
         if (gameObject.CompareTag("Fireball"))
         {
-            EnemyMoveNavmesh enemyMove = other.GetComponent<EnemyMoveNavmesh>();
-            if (enemyMove != null)
+            BasicEnemyAI basicEnemyAI = other.GetComponent<BasicEnemyAI>();
+            if (basicEnemyAI != null)
             {
                 Vector3 pushDirection = other.transform.position - transform.position;
-                enemyMove.GetPushed(pushDirection, fireballPushForce, 0.2f);
+                basicEnemyAI.GetPushed(pushDirection, fireballPushForce, 0.2f);
             }
         }
     }

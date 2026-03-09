@@ -20,6 +20,8 @@ public class EnemyLife : MonoBehaviour
     public GameObject enemiesDeathCounterGO;
     public EnemiesDeathCounter enemiesDeathCounter;
 
+    private Renderer rend;
+    private Color originalColor;
     void Start()
     {
         enemiesDeathCounterGO = GameObject.Find("EnemiesDeathCounterGO");
@@ -38,6 +40,8 @@ public class EnemyLife : MonoBehaviour
             if (fillTransform != null)
                 fillImage = fillTransform.GetComponent<Image>();
         }
+        rend = GetComponentInChildren<Renderer>();
+        originalColor = rend.material.color;
     }
 
     public void Damage(float hit)
@@ -54,13 +58,27 @@ public class EnemyLife : MonoBehaviour
         currentHp = Mathf.Clamp(currentHp, 0f, totalHp);
         UpdateHealthBar();
         UpdateIsAlive();
-
+        StartCoroutine(Flash());
         Debug.Log("ENEMY LIFE: " + gameObject.name + " took " + hit + " damage. Current HP: " + currentHp);
 
         if (poisoned)
         {
             StartCoroutine(PoisonDamage(hit * 0.2f));
             poisoned = false;
+        }
+    }
+
+    IEnumerator Flash()
+    {
+        Renderer r = GetComponentInChildren<Renderer>();
+
+        for (int i = 0; i < 3; i++)
+        {
+            r.enabled = false;
+            yield return new WaitForSeconds(0.1f);
+
+            r.enabled = true;
+            yield return new WaitForSeconds(0.1f);
         }
     }
 
@@ -101,6 +119,7 @@ public class EnemyLife : MonoBehaviour
 
             UpdateHealthBar();
             UpdateIsAlive();
+            StartCoroutine(Flash());
         }
         poisoned = true;
     }

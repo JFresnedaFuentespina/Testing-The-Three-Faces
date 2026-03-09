@@ -1,16 +1,15 @@
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InitGame : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    LevelGenerator levelGenerator;
     private float timer = 0f;
     private float timeLimit = 5f;
 
     void Start()
     {
-        levelGenerator = GetComponent<LevelGenerator>();
     }
 
     // Update is called once per frame
@@ -19,7 +18,7 @@ public class InitGame : MonoBehaviour
         timer += Time.deltaTime;
         if (timer >= timeLimit)
         {
-            levelGenerator.NextLevel(0);
+            SceneManager.LoadScene("MainMenu");
         }
     }
 }

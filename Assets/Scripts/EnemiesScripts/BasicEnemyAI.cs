@@ -13,6 +13,7 @@ public class BasicEnemyAI : MonoBehaviour
     private NavMeshAgent agent;
     private Transform player;
     public bool attackAndMove = false;
+    public bool isFrozen = false;
     // Empuje
     private bool isPushed = false;
     private Vector3 pushDirection;
@@ -111,6 +112,8 @@ public class BasicEnemyAI : MonoBehaviour
 
     public void Pursue()
     {
+        if (isFrozen) return;
+
         agent.isStopped = false;
         agent.speed = moveSpeed;
         agent.SetDestination(player.position);
@@ -195,9 +198,30 @@ public class BasicEnemyAI : MonoBehaviour
 
     IEnumerator StunCoroutine(float duration)
     {
-        float originalSpeed = agent.speed;
-        agent.speed = stunnedSpeed;
+        isFrozen = true;
         yield return new WaitForSeconds(duration);
-        agent.speed = originalSpeed;
+        isFrozen = false;
+    }
+
+    public void StopAgent()
+    {
+        isFrozen = true;
+        agent.isStopped = true;
+        agent.speed = 0f;
+        if (animatorManager)
+        {
+            animatorManager.animator.speed = 0f;
+        }
+    }
+
+    public void ResetAgent()
+    {
+        isFrozen = false;
+        agent.isStopped = false;
+        agent.speed = moveSpeed;
+        if (animatorManager)
+        {
+            animatorManager.animator.speed = 1f;
+        }
     }
 }

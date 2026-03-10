@@ -17,13 +17,14 @@ public class CruzMovement : MonoBehaviour
     private GameObject player;
     private NavMeshAgent agent;
     private CruzAnimatorController cruzAI;
-    private Animator animator;
+    public Animator animator;
     private CruzDialogManager dialogManager;
     private EnemyLife enemyLife;
 
     private bool isWalking = false;
     private bool isAttacking = false;
     private bool isFinishingAttack = false;
+    private bool isFrozen = false;
 
     private enum AttackType { None, Punch2, Punch3, Throw }
     private AttackType currentAttack = AttackType.None;
@@ -45,6 +46,8 @@ public class CruzMovement : MonoBehaviour
     void Update()
     {
         if (player == null) return;
+
+        if (isFrozen) return;
 
         if (currentAttack != AttackType.Throw)
         {
@@ -196,5 +199,19 @@ public class CruzMovement : MonoBehaviour
     private void BuscarJugador()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    public void Freeze()
+    {
+        isFrozen = true;
+        animator.speed = 0f;
+        agent.isStopped = true;
+    }
+    public void UnFreeze()
+    {
+        isFrozen = false;
+        animator.speed = 1f;
+        agent.isStopped = false;
+
     }
 }

@@ -24,6 +24,7 @@ public class CantoMovement : MonoBehaviour
     private bool isAttacking = false;
     private bool isFinishingAttack = false;
     private bool magicAttackCasted = false;
+    private bool isFrozen = false;
 
     private enum AttackType { None, Attack1, Attack2, Attack3, Attack4 }
     private AttackType currentAttack = AttackType.None;
@@ -44,6 +45,7 @@ public class CantoMovement : MonoBehaviour
     {
         if (player == null) return;
         if (enemyLife.GetIsAlive() == false) return;
+        if (isFrozen) return;
 
         transform.LookAt(player.transform);
 
@@ -231,5 +233,19 @@ public class CantoMovement : MonoBehaviour
     private void BuscarJugador()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    public void Freeze()
+    {
+        isFrozen = true;
+        animator.speed = 0f;
+        agent.isStopped = true;
+    }
+    public void UnFreeze()
+    {
+        isFrozen = false;
+        animator.speed = 1f;
+        agent.isStopped = false;
+
     }
 }

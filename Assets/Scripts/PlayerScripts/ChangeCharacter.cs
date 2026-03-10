@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class ChangeCharacter : MonoBehaviour
 {
@@ -84,6 +85,8 @@ public class ChangeCharacter : MonoBehaviour
         if (actions.Contains("Hourglass"))
         {
             Debug.Log("FREEZE TIME!");
+            FreezeEnemies();
+
         }
         if (actions.Contains("Bomb"))
         {
@@ -127,5 +130,116 @@ public class ChangeCharacter : MonoBehaviour
     public List<string> GetUnlockedActions()
     {
         return actions;
+    }
+
+    private void FreezeEnemies()
+    {
+        StartCoroutine(FreezeEnemyMoves());
+        StartCoroutine(FreezeBasicEnemyAI());
+        StartCoroutine(FreezeBossCruz());
+        StartCoroutine(FreezeBossCanto());
+    }
+
+    IEnumerator FreezeEnemyMoves()
+    {
+        // Obtener todos los enemigos usando el wrapper que tienes
+        EnemyMove[] enemiesArray = FindObjectsByType<EnemyMove>(FindObjectsSortMode.None);
+        List<EnemyMove> enemies = new List<EnemyMove>(enemiesArray);
+
+        if (enemies.Count == 0)
+        {
+            yield return null;
+        }
+
+        Dictionary<EnemyMove, float> originalSpeeds = new Dictionary<EnemyMove, float>();
+        foreach (var enemy in enemies)
+        {
+            originalSpeeds[enemy] = enemy.velocity;
+            enemy.velocity = 0f;
+            Animator anim = enemy.GetComponent<Animator>();
+            if (anim != null)
+                anim.speed = 0f;
+        }
+
+        yield return new WaitForSecondsRealtime(2f);
+
+        foreach (var enemy in enemies)
+        {
+            enemy.velocity = originalSpeeds[enemy];
+            Animator anim = enemy.GetComponent<Animator>();
+            if (anim != null)
+                anim.speed = 1f;
+        }
+    }
+
+    IEnumerator FreezeBasicEnemyAI()
+    {
+        // Obtener todos los enemigos usando el wrapper que tienes
+        BasicEnemyAI[] enemiesArray = FindObjectsByType<BasicEnemyAI>(FindObjectsSortMode.None);
+        List<BasicEnemyAI> enemies = new List<BasicEnemyAI>(enemiesArray);
+
+        if (enemies.Count == 0)
+        {
+            yield return null;
+        }
+
+        foreach (var enemy in enemies)
+        {
+            enemy.StopAgent();
+        }
+
+        yield return new WaitForSecondsRealtime(2f);
+
+        foreach (var enemy in enemies)
+        {
+            enemy.ResetAgent();
+        }
+    }
+
+    IEnumerator FreezeBossCruz()
+    {
+        // Obtener todos los enemigos usando el wrapper que tienes
+        CruzMovement[] enemiesArray = FindObjectsByType<CruzMovement>(FindObjectsSortMode.None);
+        List<CruzMovement> enemies = new List<CruzMovement>(enemiesArray);
+
+        if (enemies.Count == 0)
+        {
+            yield return null;
+        }
+
+        foreach (var enemy in enemies)
+        {
+            enemy.Freeze();
+        }
+
+        yield return new WaitForSecondsRealtime(2f);
+
+        foreach (var enemy in enemies)
+        {
+            enemy.UnFreeze();
+        }
+    }
+
+    IEnumerator FreezeBossCanto()
+    {
+        CantoMovement[] enemiesArray = FindObjectsByType<CantoMovement>(FindObjectsSortMode.None);
+        List<CantoMovement> enemies = new List<CantoMovement>(enemiesArray);
+
+        if (enemies.Count == 0)
+        {
+            yield return null;
+        }
+
+        foreach (var enemy in enemies)
+        {
+            enemy.Freeze();
+        }
+
+        yield return new WaitForSecondsRealtime(2f);
+
+        foreach (var enemy in enemies)
+        {
+            enemy.UnFreeze();
+        }
     }
 }

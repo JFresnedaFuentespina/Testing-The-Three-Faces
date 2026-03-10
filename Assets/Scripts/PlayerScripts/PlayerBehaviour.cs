@@ -8,6 +8,7 @@ public class PlayerBehaviour : MonoBehaviour
 {
     public float velocity = 5.0f;
     public float currentSpeed;
+    public bool hasShield = true;
     private Rigidbody rb;
 
     private Animator animatorEsqueleto;
@@ -21,6 +22,7 @@ public class PlayerBehaviour : MonoBehaviour
     public delegate void OnSpeedStatsRequested();
     public static event OnSpeedStatsRequested OnSpeedStatsRequestedEvent;
 
+
     void OnEnable()
     {
         OnSpeedStatsRequestedEvent += SendCurrentStats;
@@ -28,6 +30,9 @@ public class PlayerBehaviour : MonoBehaviour
     void OnDestroy()
     {
         OnSpeedStatsRequestedEvent -= SendCurrentStats;
+        IncreaseSpeedItemPickupBehaviour.OnPlayerSpeedEvent -= UpdateSpeed;
+        StarItemPickupBehaviour.OnPlayerSpeedEvent -= UpdateSpeed;
+        ShieldItemPickupBehaviour.OnAddShieldEvent -= AddShield;
     }
 
     void Start()
@@ -86,6 +91,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         IncreaseSpeedItemPickupBehaviour.OnPlayerSpeedEvent += UpdateSpeed;
         StarItemPickupBehaviour.OnPlayerSpeedEvent += UpdateSpeed;
+        ShieldItemPickupBehaviour.OnAddShieldEvent += AddShield;
     }
 
     public void UpdateSpeed(float amount)
@@ -123,11 +129,17 @@ public class PlayerBehaviour : MonoBehaviour
         if (!changeCharacter.showingGhost)
         {
             animatorEsqueleto.SetFloat("Speed", currentSpeed);
+            animatorEsqueleto.SetBool("HasShield", hasShield);
         }
         else
         {
             animatorFantasma.SetFloat("Speed", currentSpeed);
         }
+    }
+
+    public void AddShield()
+    {
+        hasShield = true;
     }
 
 

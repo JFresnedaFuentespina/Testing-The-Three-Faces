@@ -2340,6 +2340,7 @@ MonoBehaviour:
   poisoned: 0
   enemiesDeathCounterGO: {fileID: 0}
   enemiesDeathCounter: {fileID: 0}
+  blinkOnDamage: 0
 --- !u!114 &6048098707049303764
 MonoBehaviour:
   m_ObjectHideFlags: 0

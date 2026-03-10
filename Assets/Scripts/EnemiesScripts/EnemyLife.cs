@@ -19,6 +19,7 @@ public class EnemyLife : MonoBehaviour
     public bool poisoned = false;
     public GameObject enemiesDeathCounterGO;
     public EnemiesDeathCounter enemiesDeathCounter;
+    public bool blinkOnDamage = true;
 
     private Renderer rend;
     private Color originalColor;
@@ -58,8 +59,11 @@ public class EnemyLife : MonoBehaviour
         currentHp = Mathf.Clamp(currentHp, 0f, totalHp);
         UpdateHealthBar();
         UpdateIsAlive();
-        StartCoroutine(Flash());
-        Debug.Log("ENEMY LIFE: " + gameObject.name + " took " + hit + " damage. Current HP: " + currentHp);
+
+        if (blinkOnDamage)
+        {
+            StartCoroutine(Flash());
+        }
 
         if (poisoned)
         {
@@ -119,7 +123,11 @@ public class EnemyLife : MonoBehaviour
 
             UpdateHealthBar();
             UpdateIsAlive();
-            StartCoroutine(Flash());
+
+            if (blinkOnDamage)
+            {
+                StartCoroutine(Flash());
+            }
         }
         poisoned = true;
     }

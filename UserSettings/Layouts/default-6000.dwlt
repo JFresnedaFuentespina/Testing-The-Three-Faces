@@ -1369,7 +1369,7 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: -0.06216829, y: 0.82666343, z: -0.09313132, w: -0.551443}
   m_Size:
-    m_Target: 2.342505
+    m_Target: 2.9191873
     speed: 2
     m_Value: 2.342505
   m_Ortho:
@@ -1841,6 +1841,8 @@ MonoBehaviour:
       m_Data: 330620
     m_ExpandedIDs:
     - m_Data: 0
+    - m_Data: 65964
+    - m_Data: 65966
     - m_Data: 65968
     - m_Data: 65970
     - m_Data: 65972
@@ -1940,8 +1942,6 @@ MonoBehaviour:
     - m_Data: 66160
     - m_Data: 66162
     - m_Data: 66164
-    - m_Data: 66166
-    - m_Data: 66168
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1974,6 +1974,8 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
+    - m_Data: 65964
+    - m_Data: 65966
     - m_Data: 65968
     - m_Data: 65970
     - m_Data: 65972
@@ -2073,8 +2075,6 @@ MonoBehaviour:
     - m_Data: 66160
     - m_Data: 66162
     - m_Data: 66164
-    - m_Data: 66166
-    - m_Data: 66168
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

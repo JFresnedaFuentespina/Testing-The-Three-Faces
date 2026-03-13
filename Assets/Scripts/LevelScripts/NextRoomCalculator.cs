@@ -66,9 +66,11 @@ public class NextRoomCalculator : MonoBehaviour
                 return;
             }
             audioManager?.PlayBossMusic();
-
-            CameraFollowPlayer cameraFollowPlayer = FindAnyObjectByType<CameraFollowPlayer>();
-            cameraFollowPlayer.enabled = true;
+            Camera camera = Camera.main;
+            if (camera.orthographic)
+            {
+                camera.orthographicSize = 7f;
+            }
         }
 
         // Desactivar puertas de la habitación de destino temporalmente

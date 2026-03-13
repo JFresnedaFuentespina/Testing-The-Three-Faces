@@ -115,12 +115,24 @@ public class PlayerBehaviour : MonoBehaviour
         float inputH = Input.GetAxis("Horizontal");
         float inputV = Input.GetAxis("Vertical");
 
-        Vector3 inputDir = new Vector3(inputH, 0f, inputV);
+        Camera cam = Camera.main;
 
-        if (inputDir.magnitude > 1f)
-            inputDir.Normalize();
+        Vector3 camForward = cam.transform.forward;
+        Vector3 camRight = cam.transform.right;
 
-        Vector3 movement = inputDir * velocity * Time.fixedDeltaTime;
+        camForward.y = 0;
+        camRight.y = 0;
+
+        camForward.Normalize();
+        camRight.Normalize();
+
+        Vector3 moveDir = camForward * inputV + camRight * inputH;
+
+        if (moveDir.magnitude > 1f)
+            moveDir.Normalize();
+
+        Vector3 movement = moveDir * velocity * Time.fixedDeltaTime;
+
         rb.MovePosition(rb.position + movement);
 
         currentSpeed = (rb.position - lastPosition).magnitude / Time.fixedDeltaTime;

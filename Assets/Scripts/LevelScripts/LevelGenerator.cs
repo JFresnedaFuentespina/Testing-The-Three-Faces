@@ -66,67 +66,110 @@ public class LevelGenerator : MonoBehaviour
     public int SpawnRooms()
     {
         minimapBehaviour = GetComponent<MinimapBehaviour>();
-        int generatedRooms = 0;
-        List<GameObject> roomList = new List<GameObject>();
+        List<GameObject> roomList = GenerateRooms();
+        Vector3? treasurePos = SpawnTreasureRoom();
+        EnsureBossRoom();
+        SetupAllRoomDoors(roomList, treasurePos);
+        InitMinimap();
+        return roomList.Count;
+    }
 
-        // Primero generamos todas las habitaciones normales y el boss si toca
+    private List<GameObject> GenerateRooms()
+    {
+        List<GameObject> roomList = new List<GameObject>();
+        Vector2Int currentGrid = Vector2Int.zero;
         for (int i = 0; i < levelMap.Count; i++)
         {
-            if (levelMap[i])
-            {
-                Vector3 position = new Vector3(i * offsetW, levelBaseY, 0);
+            if (!levelMap[i]) continue;
 
-                GameObject room = Instantiate(roomPrefab, position, Quaternion.identity, transform);
-                room.name = $"Room_{i}";
-                roomList.Add(room);
-
-                if (fogEnabled)
-                {
-                    Transform fog = room.gameObject.transform.Find("Smoke");
-                    if (fog != null)
-                    {
-                        fog.gameObject.SetActive(true);
-                    }
-                }
-
-                if (i == 0 && character != null)
-                {
-                    character = Instantiate(characterPrefab, position, Quaternion.identity);
-                    Camera cameraPlayer = character.transform.Find("PlayerCamera").GetComponent<Camera>();
-                    if (cameraDialogueManager != null)
-                        cameraDialogueManager.RegisterPlayerCamera(cameraPlayer);
-                }
-
-                roomsDictionary.Add($"Room_{i}", position);
-                generatedRooms++;
-
-                TrySpawnBossRoom(i, position);
-            }
+            Vector3 position = GridToWorld(currentGrid);
+            GameObject room = Instantiate(roomPrefab, position, Quaternion.identity, transform);
+            room.name = $"Room_{i}";
+            roomList.Add(room);
+            ApplyRoomFog(room);
+            SpawnPlayerIfFirstRoom(i, position);
+            roomsDictionary2[currentGrid] = room;
+            TrySpawnBossRoom(i, position);
+            currentGrid = GetNextFreeGrid(currentGrid);
         }
 
-        //  Generar la sala del tesoro ANTES de configurar las puertas
-        Vector3? treasurePos = SpawnTreasureRoom();
+        return roomList;
+    }
 
-        //  Si no se generó bossRoom, forzarla
-        if (!bossRoomSpawned && forcedBossRoomPos.HasValue)
+    private Vector3 GridToWorld(Vector2Int grid)
+    {
+        return new Vector3(
+            grid.x * offsetW,
+            levelBaseY,
+            grid.y * offsetH
+        );
+    }
+    private Vector2Int GetNextFreeGrid(Vector2Int currentGrid)
+    {
+        List<Vector2Int> shuffled = directions.OrderBy(x => Random.value).ToList();
+
+        foreach (Vector2Int dir in shuffled)
         {
-            GameObject bossPrefabToUse = bossRoomPrefab;
-            if (levelId == 3f)
-            {
-                bossPrefabToUse = finalBossRoomPrefab;
-            }
-            Instantiate(bossPrefabToUse, forcedBossRoomPos.Value, Quaternion.identity, transform);
-            roomsDictionary.Add("Boss_Forced", forcedBossRoomPos.Value);
-            bossRoomSpawned = true;
+            Vector2Int next = currentGrid + dir;
+
+            if (!roomsDictionary2.ContainsKey(next))
+                return next;
         }
-        // Ahora configuramos las puertas correctamente para cada habitación instanciada
+
+        Debug.Log("No hay direcciones libres para continuar el dungeon");
+        return currentGrid;
+    }
+    private void ApplyRoomFog(GameObject room)
+    {
+        if (!fogEnabled) return;
+
+        Transform fog = room.transform.Find("Smoke");
+
+        if (fog != null)
+            fog.gameObject.SetActive(true);
+    }
+
+    private void SpawnPlayerIfFirstRoom(int index, Vector3 position)
+    {
+        if (index != 0 || character == null) return;
+
+        character = Instantiate(characterPrefab, position, Quaternion.identity);
+
+        Camera cameraPlayer = character.transform
+            .Find("PlayerCamera")
+            .GetComponent<Camera>();
+
+        if (cameraDialogueManager != null)
+            cameraDialogueManager.RegisterPlayerCamera(cameraPlayer);
+    }
+    private void EnsureBossRoom()
+    {
+        if (bossRoomSpawned || !forcedBossRoomPos.HasValue)
+            return;
+
+        GameObject bossPrefabToUse = bossRoomPrefab;
+
+        if (levelId == 3f)
+            bossPrefabToUse = finalBossRoomPrefab;
+
+        Instantiate(bossPrefabToUse, forcedBossRoomPos.Value, Quaternion.identity, transform);
+
+        roomsDictionary.Add("Boss_Forced", forcedBossRoomPos.Value);
+
+        bossRoomSpawned = true;
+    }
+
+    private void SetupAllRoomDoors(List<GameObject> roomList, Vector3? treasurePos)
+    {
         for (int i = 0; i < roomList.Count; i++)
         {
             SetupRoomDoors(roomList[i], i, treasurePos);
         }
-        minimapBehaviour.initMinimap(this.roomsDictionary, character);
+    }
+    private void InitMinimap()
+    {
+        minimapBehaviour.initMinimap(this.roomsDictionary2, character);
         minimapBehaviour.MovePlayerToRoom("Room_0");
-        return generatedRooms;
     }
 
     public void TrySpawnBossRoom(int i, Vector3 position)

@@ -20,6 +20,7 @@ public class LevelGenerator : MonoBehaviour
     public int levelId;
     public float levelBaseY = 0f;
     public float offsetW = 50f;
+    public float offsetH = 50f;
     public int maxEnemiesPerRoom = 3;
 
     [Header("Generation Settings")]
@@ -30,11 +31,18 @@ public class LevelGenerator : MonoBehaviour
     public GameObject character;
 
     public Dictionary<string, Vector3> roomsDictionary = new Dictionary<string, Vector3>();
+    public Dictionary<Vector2Int, GameObject> roomsDictionary2 = new Dictionary<Vector2Int, GameObject>();
 
     private MinimapBehaviour minimapBehaviour;
 
     private CameraDialogueManager cameraDialogueManager;
     public bool fogEnabled = false;
+    List<Vector2Int> directions = new List<Vector2Int>()
+{
+    Vector2Int.right,
+    Vector2Int.left,
+    Vector2Int.down
+};
 
     public void GenerateLevel(int width, int minRooms, int levelId)
     {

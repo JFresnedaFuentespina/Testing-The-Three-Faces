@@ -111,6 +111,8 @@ public class NextRoomCalculator : MonoBehaviour
             return currentRoomPos + new Vector3(level.offsetW, 0, 0);
         if (doorName.EndsWith("Front", System.StringComparison.OrdinalIgnoreCase))
             return currentRoomPos + new Vector3(0, 0, level.offsetW);
+        if (doorName.EndsWith("Back", System.StringComparison.OrdinalIgnoreCase))
+            return currentRoomPos + new Vector3(0, 0, -level.offsetW);
 
         Debug.LogWarning($"Dirección no reconocida para la puerta {doorName}");
         return currentRoomPos;
@@ -146,6 +148,8 @@ public class NextRoomCalculator : MonoBehaviour
         else if (currentDoorName.EndsWith("Right", System.StringComparison.OrdinalIgnoreCase))
             oppositeDoorName = "Door_Prefab_Closed_Left";
         else if (currentDoorName.EndsWith("Front", System.StringComparison.OrdinalIgnoreCase))
+            oppositeDoorName = "Door_Prefab_Closed_Back";
+        else if (currentDoorName.EndsWith("Back", System.StringComparison.OrdinalIgnoreCase))
             oppositeDoorName = "Door_Prefab_Closed_Front";
 
         if (string.IsNullOrEmpty(oppositeDoorName)) return null;
@@ -166,6 +170,8 @@ public class NextRoomCalculator : MonoBehaviour
             dir = Vector3.left;
         else if (oppositeDoor.name.EndsWith("Front", System.StringComparison.OrdinalIgnoreCase))
             dir = Vector3.back;
+        else if (oppositeDoor.name.EndsWith("Front", System.StringComparison.OrdinalIgnoreCase))
+            dir = Vector3.forward;
 
         Vector3 spawnPos = oppositeDoor.position + dir * 2f;
         spawnPos.y = 0f;
@@ -181,6 +187,7 @@ public class NextRoomCalculator : MonoBehaviour
             "ParedIzquierda/Door_Prefab_Closed_Left",
             "ParedDerecha/Door_Prefab_Closed_Right",
             "ParedFrontal/Door_Prefab_Closed_Front",
+            "ParedFrontal/Door_Prefab_Closed_Back",
             "ParedFrontal/Door_Prefab_Closed_Front (Bad)",
             "ParedFrontal/Door_Prefab_Closed_Front (Good)"
         };
@@ -229,16 +236,9 @@ public class NextRoomCalculator : MonoBehaviour
 
         if (camera1 != null)
         {
-            camera1.transform.position = new Vector3(roomPos.x - 1.5f, camera1.transform.position.y, roomPos.z - 11.5f);
-            camera1.transform.rotation = Quaternion.Euler(40f, 0f, 0f);
+            camera1.transform.position = new Vector3(roomPos.x - 8f, roomPos.y + 10, roomPos.z - 11.5f);
+            camera1.transform.rotation = Quaternion.Euler(35f, 45f, 0f);
         }
-
-        // if (cameraCenital != null)
-        // {
-        //     cameraCenital.transform.position = new Vector3(roomPos.x - 1.5f, cameraCenital.transform.position.y, roomPos.z - 3.95f);
-        //     cameraCenital.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
-        //     Debug.Log("NextRoomCalculator - Moving Cenital Camera to new room position. New position: " + cameraCenital.transform.position);
-        // }
 
         GameObject roomObj = FindRoomObject(roomPos);
         if (roomObj != null)
@@ -268,8 +268,6 @@ public class NextRoomCalculator : MonoBehaviour
         {
             if (cam.name == "Main Camera")
                 camera1 = cam.gameObject;
-            // else if (cam.name == "CamaraCenital")
-            //     cameraCenital = cam.gameObject;
         }
     }
 

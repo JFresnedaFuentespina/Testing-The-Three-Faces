@@ -44,6 +44,7 @@ public class DoorsEnabler : MonoBehaviour
         "ParedIzquierda/Door_Prefab_Closed_Left",
         "ParedDerecha/Door_Prefab_Closed_Right",
         "ParedFrontal/Door_Prefab_Closed_Front",
+        "ParedFrontal/Door_Prefab_Closed_Back",
         "ParedFrontal/Door_Prefab_Closed_Front (Bad)",
         "ParedFrontal/Door_Prefab_Closed_Front (Good)"
     };

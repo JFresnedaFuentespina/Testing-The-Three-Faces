@@ -1,3 +1,4 @@
+using System.Collections;
 using System.IO;
 using Newtonsoft.Json;
 using TMPro;
@@ -23,11 +24,12 @@ public class ShowPauseMenu : MonoBehaviour
     public Button continueButton;
     public bool showingOptions = false;
     private bool usingMouseKeyboard = true;
-
     private GameObject player;
+    private bool initialized = false;
     void Awake()
     {
         GameObject hud = GameObject.Find("HUD");
+
         if (pauseMenu == null)
             pauseMenu = hud.transform.Find("Pause")?.gameObject;
 
@@ -35,7 +37,14 @@ public class ShowPauseMenu : MonoBehaviour
             optionsMenu = pauseMenu.transform.Find("OptionsMenu")?.gameObject;
 
         if (optionsButton == null)
-            optionsButton = pauseMenu.transform.Find("OptionsButton").GetComponent<Button>();
+            optionsButton = pauseMenu.transform.Find("OptionsButton")?.GetComponent<Button>();
+
+        // Inicializamos los textos de control si existen
+        if (controllersConfig != null)
+        {
+            tecladoRatonText = controllersConfig.transform.Find("TecladoRatonTexto")?.GetComponent<TextMeshProUGUI>();
+            mandoText = controllersConfig.transform.Find("MandoTexto")?.GetComponent<TextMeshProUGUI>();
+        }
 
         if (optionsButton != null)
             optionsButton.onClick.AddListener(() => ShowOptions());
@@ -43,7 +52,35 @@ public class ShowPauseMenu : MonoBehaviour
 
     void Start()
     {
-        //Listeners de los botones
+        AddButtonsListeners();
+
+        // tecladoRatonText = controllersConfig.transform.Find("TecladoRatonTexto").GetComponent<TextMeshProUGUI>();
+        // mandoText = controllersConfig.transform.Find("MandoTexto").GetComponent<TextMeshProUGUI>();
+
+        // player = GameObject.FindWithTag("Player");
+        // usingMouseKeyboard = player.GetComponent<RotateCharacterToMouse>().enabled;
+        // string path = Application.persistentDataPath + "/controllersData.json";
+        // if (File.Exists(path))
+        // {
+        //     string json = File.ReadAllText(path);
+        //     ControllersData controllersData = JsonConvert.DeserializeObject<ControllersData>(json);
+        //     usingMouseKeyboard = controllersData.usingMouseKeyboard;
+        //     player.GetComponent<RotateCharacterToMouse>().enabled = usingMouseKeyboard;
+        //     player.GetComponent<RotateCharacterWithJoystick>().enabled = !usingMouseKeyboard;
+        // }
+
+        // if (optionsButton == null)
+        // {
+        //     Debug.LogError("No se encontró el botón de opciones en el menú de pausa.");
+        // }
+        // tecladoRatonText.gameObject.SetActive(usingMouseKeyboard);
+        // mandoText.gameObject.SetActive(!usingMouseKeyboard);
+
+        StartCoroutine(WaitForPlayer());
+    }
+
+    public void AddButtonsListeners()
+    {//Listeners de los botones
         resumeButton.onClick.AddListener(() =>
         {
             ShowMenu(false);
@@ -78,28 +115,34 @@ public class ShowPauseMenu : MonoBehaviour
         {
             CloseConfirmExitMenu();
         });
+    }
 
-        tecladoRatonText = controllersConfig.transform.Find("TecladoRatonTexto").GetComponent<TextMeshProUGUI>();
-        mandoText = controllersConfig.transform.Find("MandoTexto").GetComponent<TextMeshProUGUI>();
+    private IEnumerator WaitForPlayer()
+    {
+        // Esperamos hasta que el jugador sea instanciado
+        while (player == null)
+        {
+            player = GameObject.FindWithTag("Player");
+            yield return null; // espera un frame
+        }
 
-        player = GameObject.FindWithTag("Player");
+        // Ahora sí podemos inicializar los controles
         usingMouseKeyboard = player.GetComponent<RotateCharacterToMouse>().enabled;
+
         string path = Application.persistentDataPath + "/controllersData.json";
         if (File.Exists(path))
         {
-            string json = File.ReadAllText(path);
-            ControllersData controllersData = JsonConvert.DeserializeObject<ControllersData>(json);
+            string json = System.IO.File.ReadAllText(path);
+            ControllersData controllersData = Newtonsoft.Json.JsonConvert.DeserializeObject<ControllersData>(json);
             usingMouseKeyboard = controllersData.usingMouseKeyboard;
             player.GetComponent<RotateCharacterToMouse>().enabled = usingMouseKeyboard;
             player.GetComponent<RotateCharacterWithJoystick>().enabled = !usingMouseKeyboard;
         }
 
-        if (optionsButton == null)
-        {
-            Debug.LogError("No se encontró el botón de opciones en el menú de pausa.");
-        }
         tecladoRatonText.gameObject.SetActive(usingMouseKeyboard);
         mandoText.gameObject.SetActive(!usingMouseKeyboard);
+
+        initialized = true;
     }
 
     // Update is called once per frame

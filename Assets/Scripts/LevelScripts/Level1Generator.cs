@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Level1Generator : MonoBehaviour
 {
-    private int levelWidth = 5;
+    public int levelWidth = 5;
 
     void Start()
     {

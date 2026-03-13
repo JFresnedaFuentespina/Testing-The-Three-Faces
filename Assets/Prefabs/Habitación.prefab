@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 3151105535327309648}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -1.5, y: 5, z: -8.7}
+  m_LocalPosition: {x: -1.5, y: 5, z: -9.88}
   m_LocalScale: {x: 2.42505, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -729,7 +729,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpawnRandomKeyInLevel
   keyPrefab: {fileID: 2253393103804301607, guid: e360d8d16d87ca544b56a603ea831f2f, type: 3}
-  suelo: {fileID: 0}
   spawned: 0
 --- !u!1 &3171065194170000403
 GameObject:

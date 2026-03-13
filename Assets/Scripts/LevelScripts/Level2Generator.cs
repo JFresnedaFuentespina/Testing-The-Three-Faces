@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Level2Generator : MonoBehaviour
 {
-    private int levelWidth = 7;
+    public int levelWidth = 7;
 
     void Start()
     {

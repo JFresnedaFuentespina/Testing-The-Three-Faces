@@ -5,7 +5,7 @@ using UnityEngine;
 public class Level3Generator : MonoBehaviour
 {
     // Start is called before the first frame update
-    private int levelWidth = 10;
+    public int levelWidth = 10;
 
     void Start()
     {

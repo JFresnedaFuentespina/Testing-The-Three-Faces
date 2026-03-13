@@ -42,14 +42,16 @@ public class NextRoomCalculator : MonoBehaviour
 
         Vector3 targetPos = CalculateTargetRoomPosition(gameObject.name, transform.parent.parent.position);
 
-        // Encontrar la siguiente habitación válida
-        GameObject nextRoomObj = FindRoomObject(FindNextRoom(targetPos).Value);
-        if (nextRoomObj == null)
+        // Encontrar la siguiente habitación válida usando grid
+        Vector2Int? nextRoomGrid = FindNextRoomGrid(targetPos);
+        if (!nextRoomGrid.HasValue)
         {
             Debug.LogWarning("No se encontró la habitación válida. Se mantiene la posición actual del jugador.");
             StartCoroutine(ReenableCollisionBetween(doorCollider, other, 0.5f));
             return;
         }
+
+        GameObject nextRoomObj = FindRoomObject(nextRoomGrid.Value);
 
         if (nextRoomObj.GetComponent<BossRoom>() != null)
         {
@@ -118,24 +120,28 @@ public class NextRoomCalculator : MonoBehaviour
         return currentRoomPos;
     }
 
-    KeyValuePair<string, Vector3> FindNextRoom(Vector3 targetPos)
+    Vector2Int? FindNextRoomGrid(Vector3 targetPos)
     {
-        if (level.roomsDictionary.Count == 0)
-            return default;
+        if (level.roomsDictionary.Count == 0) return null;
 
-        return level.roomsDictionary
-            .Where(r => r.Key.Contains("Room") || r.Key.Contains("Boss") || r.Key.Contains("Treasure"))
-            .OrderBy(r => Vector3.Distance(r.Value, targetPos))
-            .FirstOrDefault();
+        // Convertimos targetPos a grid aproximado
+        int gridX = Mathf.RoundToInt(targetPos.x / level.offsetW);
+        int gridY = Mathf.RoundToInt(targetPos.z / level.offsetH);
+        Vector2Int targetGrid = new Vector2Int(gridX, gridY);
+
+        // Encontrar la habitación más cercana en la cuadrícula
+        Vector2Int closest = level.roomsDictionary2.Keys
+            .OrderBy(k => Vector2Int.Distance(k, targetGrid))
+            .First();
+
+        return closest;
     }
 
-    GameObject FindRoomObject(Vector3 position)
+    GameObject FindRoomObject(Vector2Int gridPos)
     {
-        return FindObjectsOfType<Transform>()
-            .Select(t => t.gameObject)
-            .FirstOrDefault(go =>
-                go.GetComponent<EnemiesGenerator>() != null &&
-                Vector3.Distance(go.transform.position, position) < 0.5f);
+        if (level.roomsDictionary2.TryGetValue(gridPos, out GameObject room))
+            return room;
+        return null;
     }
 
     Transform FindOppositeDoor(GameObject targetRoomObj, string currentDoorName)
@@ -239,8 +245,16 @@ public class NextRoomCalculator : MonoBehaviour
             camera1.transform.position = new Vector3(roomPos.x - 8f, roomPos.y + 10, roomPos.z - 11.5f);
             camera1.transform.rotation = Quaternion.Euler(35f, 45f, 0f);
         }
+        // Convertir posición a grid
+        int gridX = Mathf.RoundToInt(roomPos.x / level.offsetW);
+        int gridY = Mathf.RoundToInt(roomPos.z / level.offsetH);
+        Vector2Int roomGrid = new Vector2Int(gridX, gridY);
 
-        GameObject roomObj = FindRoomObject(roomPos);
+        // Buscar habitación por grid
+        GameObject roomObj = null;
+        if (level.roomsDictionary2.TryGetValue(roomGrid, out GameObject foundRoom))
+            roomObj = foundRoom;
+
         if (roomObj != null)
         {
             var minimap = FindAnyObjectByType<MinimapBehaviour>();

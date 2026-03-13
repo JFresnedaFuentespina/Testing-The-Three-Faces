@@ -155,8 +155,8 @@ public class MinimapBehaviour : MonoBehaviour
         float dungeonHeight = dungeonMax.z - dungeonMin.z;
 
         float iconSize = 60f; // tamaño del icono
-        float padding = 10f;  // margen interno del panel
-        float maxSpacing = 70f; // máximo espaciado entre habitaciones
+        float padding = 20f;  // margen interno del panel
+        float maxSpacing = 60f; // máximo espaciado entre habitaciones
 
         // Escala según tamaño del panel
         float scaleX = (panelWidth - iconSize - padding) / (dungeonWidth > 0 ? dungeonWidth : 1);

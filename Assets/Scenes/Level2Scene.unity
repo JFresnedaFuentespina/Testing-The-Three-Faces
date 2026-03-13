@@ -1890,8 +1890,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 680675830932843298, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 680675830932843298, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 680675830932843298, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1554156140463105345, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: m_Color.a
@@ -1954,8 +1962,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 863311341}
     - target: {fileID: 3353626603144326042, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3353626603144326042, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3353626603144326042, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3910886895333099084, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: m_IsActive
@@ -1974,8 +1990,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 863311341}
     - target: {fileID: 4654720437741284105, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4654720437741284105, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4842354467680373937, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: m_IsActive
@@ -2322,8 +2342,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8571109509753157046, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8571109509753157046, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8617171257819549741, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: mainCamera
@@ -2379,6 +2403,103 @@ PrefabInstance:
 --- !u!1 &779359651 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7972434616341513535, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+  m_PrefabInstance: {fileID: 779359650}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &779359652 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 233580523763100842, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+  m_PrefabInstance: {fileID: 779359650}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!114 &779359653 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6297715086787746925, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+  m_PrefabInstance: {fileID: 779359650}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!1 &779359654 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2355468460083792588, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+  m_PrefabInstance: {fileID: 779359650}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &779359655 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7361696394582937865, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+  m_PrefabInstance: {fileID: 779359650}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!114 &779359656 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8352749500773666589, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+  m_PrefabInstance: {fileID: 779359650}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!1 &779359657 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1717400204512855577, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+  m_PrefabInstance: {fileID: 779359650}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &779359658 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3910886895333099084, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+  m_PrefabInstance: {fileID: 779359650}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &779359659 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4783482992638389572, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+  m_PrefabInstance: {fileID: 779359650}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!114 &779359660 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6051642047277082017, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+  m_PrefabInstance: {fileID: 779359650}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!114 &779359661 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6537028176881725380, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+  m_PrefabInstance: {fileID: 779359650}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!1 &779359662 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 597103750582987071, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
   m_PrefabInstance: {fileID: 779359650}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &800271556
@@ -2780,6 +2901,54 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 7046162987399674369, guid: 651dc996a679e43418f2fce0f6a20f82, type: 3}
+      propertyPath: pauseMenu
+      value: 
+      objectReference: {fileID: 779359662}
+    - target: {fileID: 7046162987399674369, guid: 651dc996a679e43418f2fce0f6a20f82, type: 3}
+      propertyPath: quitButton
+      value: 
+      objectReference: {fileID: 779359659}
+    - target: {fileID: 7046162987399674369, guid: 651dc996a679e43418f2fce0f6a20f82, type: 3}
+      propertyPath: optionsMenu
+      value: 
+      objectReference: {fileID: 779359658}
+    - target: {fileID: 7046162987399674369, guid: 651dc996a679e43418f2fce0f6a20f82, type: 3}
+      propertyPath: resumeButton
+      value: 
+      objectReference: {fileID: 779359660}
+    - target: {fileID: 7046162987399674369, guid: 651dc996a679e43418f2fce0f6a20f82, type: 3}
+      propertyPath: optionsButton
+      value: 
+      objectReference: {fileID: 779359661}
+    - target: {fileID: 7046162987399674369, guid: 651dc996a679e43418f2fce0f6a20f82, type: 3}
+      propertyPath: continueButton
+      value: 
+      objectReference: {fileID: 779359652}
+    - target: {fileID: 7046162987399674369, guid: 651dc996a679e43418f2fce0f6a20f82, type: 3}
+      propertyPath: confirmQuitButton
+      value: 
+      objectReference: {fileID: 779359653}
+    - target: {fileID: 7046162987399674369, guid: 651dc996a679e43418f2fce0f6a20f82, type: 3}
+      propertyPath: controllersConfig
+      value: 
+      objectReference: {fileID: 779359657}
+    - target: {fileID: 7046162987399674369, guid: 651dc996a679e43418f2fce0f6a20f82, type: 3}
+      propertyPath: exitOptionsButton
+      value: 
+      objectReference: {fileID: 779359659}
+    - target: {fileID: 7046162987399674369, guid: 651dc996a679e43418f2fce0f6a20f82, type: 3}
+      propertyPath: applyChangesButton
+      value: 
+      objectReference: {fileID: 779359655}
+    - target: {fileID: 7046162987399674369, guid: 651dc996a679e43418f2fce0f6a20f82, type: 3}
+      propertyPath: exitConfirmationMenu
+      value: 
+      objectReference: {fileID: 779359654}
+    - target: {fileID: 7046162987399674369, guid: 651dc996a679e43418f2fce0f6a20f82, type: 3}
+      propertyPath: changeControllersButton
+      value: 
+      objectReference: {fileID: 779359656}
     - target: {fileID: 7628867410140996963, guid: 651dc996a679e43418f2fce0f6a20f82, type: 3}
       propertyPath: currentLevel
       value: 2
@@ -3954,6 +4123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c73362cd62b8a444a523ac9ba1ad6fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Level2Generator
+  levelWidth: 7
 --- !u!114 &1196621986 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7507056594978238939, guid: 048330b6bb4d2b243a7a55308e02d8dd, type: 3}

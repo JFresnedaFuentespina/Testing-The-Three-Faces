@@ -122,7 +122,7 @@ public class NextRoomCalculator : MonoBehaviour
 
     Vector2Int? FindNextRoomGrid(Vector3 targetPos)
     {
-        if (level.roomsDictionary.Count == 0) return null;
+        if (level.roomsDictionary2.Count == 0) return null;
 
         // Convertimos targetPos a grid aproximado
         int gridX = Mathf.RoundToInt(targetPos.x / level.offsetW);

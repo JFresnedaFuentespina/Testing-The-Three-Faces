@@ -30,7 +30,7 @@ public class LevelGenerator : MonoBehaviour
     private Vector3? forcedBossRoomPos = null;
     public GameObject character;
 
-    public Dictionary<string, Vector3> roomsDictionary = new Dictionary<string, Vector3>();
+    // public Dictionary<string, Vector3> roomsDictionary = new Dictionary<string, Vector3>();
     public Dictionary<Vector2Int, GameObject> roomsDictionary2 = new Dictionary<Vector2Int, GameObject>();
 
     private MinimapBehaviour minimapBehaviour;
@@ -49,7 +49,7 @@ public class LevelGenerator : MonoBehaviour
         levelWidth = width;
         this.levelId = levelId;
         levelMap.Clear();
-        roomsDictionary.Clear();
+        roomsDictionary2.Clear();
 
         cameraDialogueManager = GameObject.FindAnyObjectByType<CameraDialogueManager>();
 
@@ -89,7 +89,7 @@ public class LevelGenerator : MonoBehaviour
             ApplyRoomFog(room);
             SpawnPlayerIfFirstRoom(i, position);
             roomsDictionary2[currentGrid] = room;
-            TrySpawnBossRoom(i, position);
+            // TrySpawnBossRoom(i, position);
             currentGrid = GetNextFreeGrid(currentGrid);
         }
 
@@ -144,26 +144,35 @@ public class LevelGenerator : MonoBehaviour
     }
     private void EnsureBossRoom()
     {
-        if (bossRoomSpawned || !forcedBossRoomPos.HasValue)
-            return;
+        if (bossRoomSpawned) return;
 
-        GameObject bossPrefabToUse = bossRoomPrefab;
+        // Tomamos la última habitación generada como base
+        Vector2Int lastRoomGrid = roomsDictionary2.Keys.Last();
+        Vector2Int bossGrid = lastRoomGrid + Vector2Int.up; // intención: encima de la última
 
-        if (levelId == 3f)
-            bossPrefabToUse = finalBossRoomPrefab;
+        // Buscar un lugar libre, subiendo si ya hay algo
+        while (roomsDictionary2.ContainsKey(bossGrid))
+        {
+            bossGrid += Vector2Int.up;
+        }
 
-        Instantiate(bossPrefabToUse, forcedBossRoomPos.Value, Quaternion.identity, transform);
+        Vector3 bossPos = GridToWorld(bossGrid);
+        GameObject bossPrefabToUse = (levelId == 3f) ? finalBossRoomPrefab : bossRoomPrefab;
+        GameObject bossRoom = Instantiate(bossPrefabToUse, bossPos, Quaternion.identity, transform);
+        bossRoom.name = "Boss_Forced";
 
-        roomsDictionary.Add("Boss_Forced", forcedBossRoomPos.Value);
-
+        roomsDictionary2[bossGrid] = bossRoom;
         bossRoomSpawned = true;
+
+        // Configurar puertas
+        SetupRoomDoors(bossRoom);
     }
 
     private void SetupAllRoomDoors(List<GameObject> roomList, Vector3? treasurePos)
     {
         for (int i = 0; i < roomList.Count; i++)
         {
-            SetupRoomDoors(roomList[i], i, treasurePos);
+            SetupRoomDoors(roomList[i]);
         }
     }
     private void InitMinimap()
@@ -172,125 +181,77 @@ public class LevelGenerator : MonoBehaviour
         minimapBehaviour.MovePlayerToRoom("Room_0");
     }
 
-    public void TrySpawnBossRoom(int i, Vector3 position)
-    {
-        if (bossRoomSpawned) return;
+    // public void TrySpawnBossRoom(int i, Vector3 position)
+    // {
+    //     if (bossRoomSpawned) return;
 
-        GameObject bossPrefabToUse = bossRoomPrefab;
-        if (levelId == 3f)
-        {
-            bossPrefabToUse = finalBossRoomPrefab;
-        }
+    //     GameObject bossPrefabToUse = bossRoomPrefab;
+    //     if (levelId == 3f)
+    //     {
+    //         bossPrefabToUse = finalBossRoomPrefab;
+    //     }
 
-        if (Random.value < 0.3f)
-        {
-            Vector3 bossPos = position + new Vector3(0, 0, offsetW);
-            Instantiate(bossPrefabToUse, bossPos, Quaternion.identity, transform);
-            roomsDictionary.Add("Boss", bossPos);
-            bossRoomSpawned = true;
-            bossRoomIndex = i;
-        }
-        else if (!forcedBossRoomPos.HasValue)
-        {
-            forcedBossRoomPos = position + new Vector3(0, 0, offsetW);
-        }
-    }
+    //     if (Random.value < 0.3f)
+    //     {
+    //         Vector3 bossPos = position + new Vector3(0, 0, offsetW);
+    //         Instantiate(bossPrefabToUse, bossPos, Quaternion.identity, transform);
+    //         roomsDictionary.Add("Boss", bossPos);
+    //         bossRoomSpawned = true;
+    //         bossRoomIndex = i;
+    //     }
+    //     else if (!forcedBossRoomPos.HasValue)
+    //     {
+    //         forcedBossRoomPos = position + new Vector3(0, 0, offsetW);
+    //     }
+    // }
 
-    public void SetupRoomDoors(GameObject room, int x, Vector3? treasurePos = null)
+    public void SetupRoomDoors(GameObject room)
     {
         Transform leftDoor = room.transform.Find("ParedIzquierda/Door_Prefab_Closed_Left");
         Transform rightDoor = room.transform.Find("ParedDerecha/Door_Prefab_Closed_Right");
         Transform frontDoor = room.transform.Find("ParedFrontal/Door_Prefab_Closed_Front");
+        Transform backDoor = room.transform.Find("ParedFrontal/Door_Prefab_Closed_Back");
 
-        Vector3 currentPos = room.transform.position;
+        // Obtener la posición en grid
+        Vector2Int roomGrid = roomsDictionary2.FirstOrDefault(r => r.Value == room).Key;
 
-        bool hasLeft = (x > 0 && levelMap[x - 1]);
-        bool hasRight = (x < levelMap.Count - 1 && levelMap[x + 1]);
-        bool hasFront = false;
+        bool hasLeft = roomsDictionary2.ContainsKey(roomGrid + Vector2Int.left);
+        bool hasRight = roomsDictionary2.ContainsKey(roomGrid + Vector2Int.right);
+        bool hasFront = roomsDictionary2.ContainsKey(roomGrid + Vector2Int.up);
+        bool hasBack = roomsDictionary2.ContainsKey(roomGrid + Vector2Int.down);
 
-        // --- BOSS ---
-        var bossEntry = roomsDictionary.FirstOrDefault(r =>
-            r.Key.StartsWith("Boss") || r.Key.StartsWith("Boss_Forced"));
-
-        if (!bossEntry.Equals(default(KeyValuePair<string, Vector3>)))
-        {
-            if (Vector3.Distance(bossEntry.Value, currentPos + new Vector3(0, 0, offsetW)) < 1f)
-                hasFront = true;
-        }
-
-        // --- TREASURE ---
-        bool connectsToTreasureLeft = false;
-        bool connectsToTreasureRight = false;
-
-        if (treasurePos.HasValue)
-        {
-            if (Vector3.Distance(treasurePos.Value, currentPos + new Vector3(-offsetW, 0, 0)) < 1f)
-            {
-                hasLeft = true;
-                connectsToTreasureLeft = true;
-            }
-
-            if (Vector3.Distance(treasurePos.Value, currentPos + new Vector3(offsetW, 0, 0)) < 1f)
-            {
-                hasRight = true;
-                connectsToTreasureRight = true;
-            }
-        }
-
-        // Activar puertas normales
         if (leftDoor != null) leftDoor.gameObject.SetActive(hasLeft);
         if (rightDoor != null) rightDoor.gameObject.SetActive(hasRight);
         if (frontDoor != null) frontDoor.gameObject.SetActive(hasFront);
-
-        // --- ACTIVAR CHEST SI CONECTA CON TESORO ---
-
-        if (connectsToTreasureLeft && leftDoor != null)
-        {
-            Transform chest = leftDoor.Find("Chest");
-            if (chest != null)
-                chest.gameObject.SetActive(true);
-        }
-
-        if (connectsToTreasureRight && rightDoor != null)
-        {
-            Transform chest = rightDoor.Find("Chest");
-            if (chest != null)
-                chest.gameObject.SetActive(true);
-        }
+        if (backDoor != null) backDoor.gameObject.SetActive(hasBack);
     }
 
 
 
     public Vector3? SpawnTreasureRoom()
     {
-        List<int> edgeIndices = new List<int>();
-        if (levelMap[0]) edgeIndices.Add(0);
-        if (levelMap[levelMap.Count - 1]) edgeIndices.Add(levelMap.Count - 1);
-        if (edgeIndices.Count == 0) return null;
+        // Elegimos la habitación de borde más a la izquierda
+        Vector2Int baseGrid = roomsDictionary2.Keys.OrderBy(g => g.x).First();
 
-        int chosen = edgeIndices[Random.Range(0, edgeIndices.Count)];
-        Vector3 pos = new Vector3(chosen * offsetW, levelBaseY, 0);
-        Vector3 treasurePos = chosen == 0
-            ? pos + new Vector3(-offsetW, 0, 0)   // a la izquierda
-            : pos + new Vector3(offsetW, 0, 0);   // a la derecha
+        Vector2Int treasureGrid = (baseGrid.x == 0) ? baseGrid + Vector2Int.left : baseGrid + Vector2Int.right;
 
+        // Buscar un lugar libre, desplazando si ya hay habitación
+        int offset = 0;
+        while (roomsDictionary2.ContainsKey(treasureGrid))
+        {
+            offset++;
+            treasureGrid += (baseGrid.x == 0) ? Vector2Int.left : Vector2Int.right;
+        }
+
+        Vector3 treasurePos = GridToWorld(treasureGrid);
         GameObject treasureRoom = Instantiate(treasureRoomPrefab, treasurePos, Quaternion.identity, transform);
         treasureRoom.name = "TreasureRoom";
-        roomsDictionary.Add(treasureRoom.name, treasurePos);
 
-        Transform leftDoor = treasureRoom.transform.Find("ParedIzquierda/Door_Prefab_Closed_Left");
-        Transform rightDoor = treasureRoom.transform.Find("ParedDerecha/Door_Prefab_Closed_Right");
+        roomsDictionary2[treasureGrid] = treasureRoom;
 
-        if (chosen == 0) // tesoro a la izquierda del todo
-        {
-            if (leftDoor != null) leftDoor.gameObject.SetActive(false);  // izquierda sin salida
-            if (rightDoor != null) rightDoor.gameObject.SetActive(true); // salida hacia la derecha
-        }
-        else // tesoro a la derecha del todo
-        {
-            if (leftDoor != null) leftDoor.gameObject.SetActive(true);  // salida hacia la izquierda
-            if (rightDoor != null) rightDoor.gameObject.SetActive(false); // derecha sin salida
-        }
+        // Configurar puertas según vecinos
+        SetupRoomDoors(treasureRoom);
+
         return treasurePos;
     }
 

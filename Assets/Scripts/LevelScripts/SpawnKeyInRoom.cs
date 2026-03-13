@@ -4,89 +4,96 @@ using UnityEngine;
 
 public class SpawnKeyInRoom : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     public GameObject keyPrefab;
     private LevelGenerator levelGenerator;
-    private Dictionary<string, Vector3> roomsDictionary;
-    private Vector3 selectedRoomPos;
-    public GameObject suelo;
+    private Dictionary<Vector2Int, GameObject> roomsDictionary2;
+    private Vector2Int selectedRoomGrid;
     public bool spawned = false;
+
     void Start()
     {
         levelGenerator = GetComponent<LevelGenerator>();
-        roomsDictionary = levelGenerator.roomsDictionary;
-        suelo = GameObject.Find("Suelo");
+        roomsDictionary2 = levelGenerator.roomsDictionary2;
+        selectedRoomGrid = new Vector2Int(-999, -999); // indicador de "no seleccionado"
     }
+
     public IEnumerator WaitAndChooseRandomRoom()
     {
         // Esperar hasta que el diccionario esté listo
-        while (roomsDictionary == null || roomsDictionary.Count == 0)
-        {
-            yield return null; // esperar 1 frame
-        }
+        while (roomsDictionary2 == null || roomsDictionary2.Count == 0)
+            yield return null;
 
         ChooseRandomRoom();
     }
+
     public void ChooseRandomRoom()
     {
-        if (roomsDictionary == null || roomsDictionary.Count == 0)
+        if (roomsDictionary2 == null || roomsDictionary2.Count == 0)
         {
             Debug.LogWarning("No hay habitaciones en el diccionario.");
             return;
         }
 
-        if (selectedRoomPos != Vector3.zero)
+        if (selectedRoomGrid.x != -999)
         {
-            Debug.Log("Ya se ha seleccionado una habitación para la llave: " + selectedRoomPos);
+            Debug.Log("Ya se ha seleccionado una habitación para la llave: " + roomsDictionary2[selectedRoomGrid].name);
             return;
         }
-        // Filtrar habitaciones
-        List<Vector3> validRooms = new List<Vector3>();
-        foreach (var kvp in roomsDictionary)
+
+        // Filtrar habitaciones válidas (excluir Boss y Treasure)
+        List<Vector2Int> validGrids = new List<Vector2Int>();
+        foreach (var kvp in roomsDictionary2)
         {
-            if (!kvp.Key.Contains("Boss") && kvp.Value != Vector3.zero)
+            string roomName = kvp.Value.name;
+            if (!roomName.Contains("Boss") && !roomName.Contains("Treasure"))
             {
-                validRooms.Add(kvp.Value);
+                validGrids.Add(kvp.Key);
             }
         }
 
-        if (validRooms.Count == 0)
+        if (validGrids.Count == 0)
         {
-            Debug.LogWarning("No hay habitaciones válidas para la llave (todas son Boss).");
+            Debug.LogWarning("No hay habitaciones válidas para la llave (todas son Boss o Treasure).");
             return;
         }
 
-        // Elegir una posición aleatoria
-        selectedRoomPos = validRooms[Random.Range(0, validRooms.Count)];
-
-        Debug.Log("Habitación seleccionada para la llave: " + selectedRoomPos);
+        // Elegir una cuadrícula aleatoria
+        selectedRoomGrid = validGrids[Random.Range(0, validGrids.Count)];
+        Debug.Log("Habitación seleccionada para la llave: " + roomsDictionary2[selectedRoomGrid].name);
     }
-
-
 
     public void GenerateKey(Vector3 roomPos)
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        PlayerInventory inventory = player.GetComponent<PlayerInventory>();
-        if (inventory.hasKey || spawned)
+        if (spawned)
         {
-            Debug.Log("El jugador ya tiene la llave o ya fue generada.");
+            Debug.Log("La llave ya fue generada.");
             return;
         }
-        Debug.Log("Intentando generar llave en habitación: " + roomPos);
-        // Solo generar si es la habitación seleccionada
-        if (roomPos != selectedRoomPos)
+
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        PlayerInventory inventory = player.GetComponent<PlayerInventory>();
+        if (inventory.hasKey)
+        {
+            Debug.Log("El jugador ya tiene la llave.");
             return;
+        }
+
+        if (!roomsDictionary2.ContainsKey(selectedRoomGrid))
+        {
+            Debug.LogWarning("La habitación seleccionada ya no existe.");
+            return;
+        }
+
+        GameObject selectedRoom = roomsDictionary2[selectedRoomGrid];
+        if (roomPos != selectedRoom.transform.position)
+            return; // solo generar en la habitación seleccionada
 
         // Offset para que la llave no aparezca clavada en el suelo
         Vector3 spawnOffset = new Vector3(0f, 0.5f, 0f);
 
-        Instantiate(
-            keyPrefab,
-            roomPos + spawnOffset,
-            Quaternion.identity
-        );
+        Instantiate(keyPrefab, selectedRoom.transform.position + spawnOffset, Quaternion.identity);
         spawned = true;
-    }
 
+        Debug.Log("Llave generada en habitación: " + selectedRoom.name);
+    }
 }

@@ -17,6 +17,9 @@ public class MinimapBehaviour : MonoBehaviour
 
     private GameObject playerIcon;
     private GameObject characterRef;
+    private Vector2 dungeonSize;
+    private Vector3 dungeonMin;
+    private Vector3 dungeonMax;
 
     private float mapScale = 1f;
 
@@ -54,6 +57,9 @@ public class MinimapBehaviour : MonoBehaviour
     {
         roomsDictionary = levelRoomsDictionary;
         characterRef = character;
+
+        CalculateDungeonBounds();
+        SetMapScale();
 
         GenerateMinimapIcons();
         GeneratePlayerIcon(character);
@@ -106,15 +112,66 @@ public class MinimapBehaviour : MonoBehaviour
 
     private Vector2 WorldToMinimap(Vector3 worldPos)
     {
-        // Encontrar el primer cuarto para referencia
-        Vector3 firstRoom = roomsDictionary[Vector2Int.zero].transform.position;
-        Vector3 offset = worldPos - firstRoom;
+        RectTransform panelRect = minimapPanel.GetComponent<RectTransform>();
 
-        // En lugar de usar las posiciones reales del mundo, usamos spacing fijo
-        float posX = offset.x / 50f * minimapSpacing; // si tu offsetW en el mundo es 50
-        float posY = offset.z / 50f * minimapSpacing; // si tu offsetH en el mundo es 50
+        float panelWidth = panelRect.rect.width;
+        float panelHeight = panelRect.rect.height;
 
-        return new Vector2(posX, posY);
+        // Offset relativo al dungeon mínimo
+        float offsetX = (worldPos.x - dungeonMin.x) * mapScale;
+        float offsetY = (worldPos.z - dungeonMin.z) * mapScale;
+
+        // Centramos el dungeon dentro del panel
+        float centeredX = offsetX - ((dungeonMax.x - dungeonMin.x) * mapScale) / 2f;
+        float centeredY = offsetY - ((dungeonMax.z - dungeonMin.z) * mapScale) / 2f;
+
+        return new Vector2(centeredX, centeredY);
+    }
+
+    private void CalculateDungeonBounds()
+    {
+        if (roomsDictionary.Count == 0) return;
+
+        dungeonMin = new Vector3(
+            roomsDictionary.Values.Min(r => r.transform.position.x),
+            0,
+            roomsDictionary.Values.Min(r => r.transform.position.z)
+        );
+
+        dungeonMax = new Vector3(
+            roomsDictionary.Values.Max(r => r.transform.position.x),
+            0,
+            roomsDictionary.Values.Max(r => r.transform.position.z)
+        );
+    }
+    private void SetMapScale()
+    {
+        RectTransform panelRect = minimapPanel.GetComponent<RectTransform>();
+
+        float panelWidth = panelRect.rect.width;
+        float panelHeight = panelRect.rect.height;
+
+        float dungeonWidth = dungeonMax.x - dungeonMin.x;
+        float dungeonHeight = dungeonMax.z - dungeonMin.z;
+
+        float iconSize = 60f; // tamaño del icono
+        float padding = 10f;  // margen interno del panel
+        float maxSpacing = 70f; // máximo espaciado entre habitaciones
+
+        // Escala según tamaño del panel
+        float scaleX = (panelWidth - iconSize - padding) / (dungeonWidth > 0 ? dungeonWidth : 1);
+        float scaleY = (panelHeight - iconSize - padding) / (dungeonHeight > 0 ? dungeonHeight : 1);
+
+        float calculatedScale = Mathf.Min(scaleX, scaleY);
+
+        // Limitamos la escala para que el espaciado no supere maxSpacing
+        float worldOffsetX = dungeonWidth > 0 ? dungeonWidth / (roomsDictionary.Count - 1) : 1f;
+        float worldOffsetZ = dungeonHeight > 0 ? dungeonHeight / (roomsDictionary.Count - 1) : 1f;
+
+        float scaleLimitX = maxSpacing / worldOffsetX;
+        float scaleLimitZ = maxSpacing / worldOffsetZ;
+
+        mapScale = Mathf.Min(calculatedScale, scaleLimitX, scaleLimitZ);
     }
 
     private Vector2 GridToMinimap(Vector2Int gridPos)

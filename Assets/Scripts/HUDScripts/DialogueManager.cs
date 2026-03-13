@@ -110,7 +110,7 @@ public class DialogueManager : MonoBehaviour
                 OnRestoreHealthEvent();
             }
         }
-        if (minimap) minimap.SetActive(value);
+        // if (minimap) minimap.SetActive(value);
         if (Timer) Timer.SetActive(value);
     }
 

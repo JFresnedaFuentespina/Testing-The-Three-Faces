@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7507056594978238939}
   - component: {fileID: 5209484865355184499}
   - component: {fileID: 7665564490782863917}
+  - component: {fileID: 8397701960003751575}
   m_Layer: 0
   m_Name: LevelGenerator
   m_TagString: Untagged
@@ -68,8 +69,9 @@ MonoBehaviour:
   levelId: 0
   levelBaseY: 0
   offsetW: 50
+  offsetH: 50
   maxEnemiesPerRoom: 3
-  character: {fileID: 0}
+  character: {fileID: 7930126595310468033, guid: e94499e9e8effe247ace11156ea23664, type: 3}
   fogEnabled: 0
 --- !u!114 &5209484865355184499
 MonoBehaviour:
@@ -89,6 +91,7 @@ MonoBehaviour:
   playerIconGhost: {fileID: 21300000, guid: 9f878f8183abee3439d1d3008ae44012, type: 3}
   playerIconEsqueleto: {fileID: 21300000, guid: aa77bfd0a3ff24747a154d9629af58f3, type: 3}
   showingGhost: 0
+  minimapSpacing: 100
 --- !u!114 &7665564490782863917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,5 +105,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpawnKeyInRoom
   keyPrefab: {fileID: 2253393103804301607, guid: e360d8d16d87ca544b56a603ea831f2f, type: 3}
-  suelo: {fileID: 0}
   spawned: 0
+--- !u!114 &8397701960003751575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2944726118942081857}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75c903132d2fc8e49a17c8e4ef3f0397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HideLoadingOnStart

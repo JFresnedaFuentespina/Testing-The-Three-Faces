@@ -67,9 +67,9 @@ public class LevelGenerator : MonoBehaviour
     {
         minimapBehaviour = GetComponent<MinimapBehaviour>();
         List<GameObject> roomList = GenerateRooms();
-        Vector3? treasurePos = SpawnTreasureRoom();
+        GameObject treasureRoom = SpawnTreasureRoom();
         EnsureBossRoom();
-        SetupAllRoomDoors(roomList, treasurePos);
+        SetupAllRoomDoors(roomList, treasureRoom);
         InitMinimap();
         return roomList.Count;
     }
@@ -165,20 +165,21 @@ public class LevelGenerator : MonoBehaviour
         bossRoomSpawned = true;
 
         // Configurar puertas
-        SetupRoomDoors(bossRoom);
+        // SetupRoomDoors(bossRoom);
     }
 
-    private void SetupAllRoomDoors(List<GameObject> roomList, Vector3? treasurePos)
+    private void InitMinimap()
+    {
+        minimapBehaviour.initMinimap(this.roomsDictionary2, character);
+        minimapBehaviour.MovePlayerToRoom("Room_0");
+    }
+    private void SetupAllRoomDoors(List<GameObject> roomList, GameObject treasureRoom)
     {
         for (int i = 0; i < roomList.Count; i++)
         {
             SetupRoomDoors(roomList[i]);
         }
-    }
-    private void InitMinimap()
-    {
-        minimapBehaviour.initMinimap(this.roomsDictionary2, character);
-        minimapBehaviour.MovePlayerToRoom("Room_0");
+        SetupRoomDoors(treasureRoom);
     }
 
     public void SetupRoomDoors(GameObject room)
@@ -196,13 +197,35 @@ public class LevelGenerator : MonoBehaviour
         bool hasFront = roomsDictionary2.ContainsKey(roomGrid + Vector2Int.up);
         bool hasBack = roomsDictionary2.ContainsKey(roomGrid + Vector2Int.down);
 
+        // Activar puertas según vecinos
         if (leftDoor != null) leftDoor.gameObject.SetActive(hasLeft);
         if (rightDoor != null) rightDoor.gameObject.SetActive(hasRight);
         if (frontDoor != null) frontDoor.gameObject.SetActive(hasFront);
         if (backDoor != null) backDoor.gameObject.SetActive(hasBack);
+
+        // --- Activar "Chest" en la puerta que da al tesoro ---
+        foreach (var dir in new Dictionary<Vector2Int, Transform> {
+        { Vector2Int.left, leftDoor },
+        { Vector2Int.right, rightDoor },
+        { Vector2Int.up, frontDoor },
+        { Vector2Int.down, backDoor }
+    })
+        {
+            Vector2Int neighborPos = roomGrid + dir.Key;
+
+            if (roomsDictionary2.TryGetValue(neighborPos, out GameObject neighborRoom))
+            {
+                if (neighborRoom.name == "TreasureRoom" && dir.Value != null)
+                {
+                    Transform chest = dir.Value.Find("Chest");
+                    if (chest != null)
+                        chest.gameObject.SetActive(true);
+                }
+            }
+        }
     }
 
-    public Vector3? SpawnTreasureRoom()
+    public GameObject SpawnTreasureRoom()
     {
         // Elegimos la habitación de borde más a la izquierda
         Vector2Int baseGrid = roomsDictionary2.Keys.OrderBy(g => g.x).First();
@@ -226,7 +249,7 @@ public class LevelGenerator : MonoBehaviour
         // Configurar puertas según vecinos
         SetupRoomDoors(treasureRoom);
 
-        return treasurePos;
+        return treasureRoom;
     }
 
     public void NextLevel(int actualLevel)

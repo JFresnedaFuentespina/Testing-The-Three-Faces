@@ -62,9 +62,13 @@ public class NextRoomCalculator : MonoBehaviour
                 // Rehabilitar colisión y salir
                 StartCoroutine(ReenableCollisionBetween(doorCollider, other, 0.1f));
                 enabledTemporarily = false;
+
                 return;
             }
             audioManager?.PlayBossMusic();
+
+            CameraFollowPlayer cameraFollowPlayer = FindAnyObjectByType<CameraFollowPlayer>();
+            cameraFollowPlayer.enabled = true;
         }
 
         // Desactivar puertas de la habitación de destino temporalmente
@@ -72,8 +76,15 @@ public class NextRoomCalculator : MonoBehaviour
 
         // Calcular spawn seguro del jugador
         Transform oppositeDoor = FindOppositeDoor(nextRoomObj, gameObject.name);
-        Vector3 spawnPos = (oppositeDoor != null) ? CalculateSpawnPosition(oppositeDoor) : other.transform.position;
 
+        Vector3 spawnPos;
+        if (oppositeDoor != null)
+            spawnPos = CalculateSpawnPosition(oppositeDoor);
+        else
+        {
+            // fallback: centro de la habitación destino
+            spawnPos = nextRoomObj.transform.position;
+        }
         other.transform.root.position = spawnPos;
 
         MoveCamera(targetPos);
@@ -124,14 +135,17 @@ public class NextRoomCalculator : MonoBehaviour
     {
         if (level.roomsDictionary2.Count == 0) return null;
 
-        // Convertimos targetPos a grid aproximado
         int gridX = Mathf.RoundToInt(targetPos.x / level.offsetW);
         int gridY = Mathf.RoundToInt(targetPos.z / level.offsetH);
         Vector2Int targetGrid = new Vector2Int(gridX, gridY);
 
-        // Encontrar la habitación más cercana en la cuadrícula
+        // Verificar que el grid exista exactamente
+        if (level.roomsDictionary2.ContainsKey(targetGrid))
+            return targetGrid;
+
+        // Si no existe, buscar el más cercano (opcional, pero cuidado con boss)
         Vector2Int closest = level.roomsDictionary2.Keys
-            .OrderBy(k => Vector2Int.Distance(k, targetGrid))
+            .OrderBy(k => (k - targetGrid).sqrMagnitude) // usando sqrMagnitude es más eficiente
             .First();
 
         return closest;
@@ -158,10 +172,10 @@ public class NextRoomCalculator : MonoBehaviour
         else if (currentDoorName.EndsWith("Back", System.StringComparison.OrdinalIgnoreCase))
             oppositeDoorName = "Door_Prefab_Closed_Front";
 
-        if (string.IsNullOrEmpty(oppositeDoorName)) return null;
-
-        return targetRoomObj.GetComponentsInChildren<Transform>(true)
+        Transform door = targetRoomObj.GetComponentsInChildren<Transform>(true)
             .FirstOrDefault(t => t.name.Equals(oppositeDoorName, System.StringComparison.OrdinalIgnoreCase));
+
+        return door;
     }
 
     Vector3 CalculateSpawnPosition(Transform oppositeDoor)
@@ -176,11 +190,11 @@ public class NextRoomCalculator : MonoBehaviour
             dir = Vector3.left;
         else if (oppositeDoor.name.EndsWith("Front", System.StringComparison.OrdinalIgnoreCase))
             dir = Vector3.back;
-        else if (oppositeDoor.name.EndsWith("Front", System.StringComparison.OrdinalIgnoreCase))
+        else if (oppositeDoor.name.EndsWith("Back", System.StringComparison.OrdinalIgnoreCase))
             dir = Vector3.forward;
 
         Vector3 spawnPos = oppositeDoor.position + dir * 2f;
-        spawnPos.y = 0f;
+        spawnPos.y = oppositeDoor.position.y; // Mantener la altura de la habitación
         return spawnPos;
     }
 

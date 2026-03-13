@@ -181,36 +181,12 @@ public class LevelGenerator : MonoBehaviour
         minimapBehaviour.MovePlayerToRoom("Room_0");
     }
 
-    // public void TrySpawnBossRoom(int i, Vector3 position)
-    // {
-    //     if (bossRoomSpawned) return;
-
-    //     GameObject bossPrefabToUse = bossRoomPrefab;
-    //     if (levelId == 3f)
-    //     {
-    //         bossPrefabToUse = finalBossRoomPrefab;
-    //     }
-
-    //     if (Random.value < 0.3f)
-    //     {
-    //         Vector3 bossPos = position + new Vector3(0, 0, offsetW);
-    //         Instantiate(bossPrefabToUse, bossPos, Quaternion.identity, transform);
-    //         roomsDictionary.Add("Boss", bossPos);
-    //         bossRoomSpawned = true;
-    //         bossRoomIndex = i;
-    //     }
-    //     else if (!forcedBossRoomPos.HasValue)
-    //     {
-    //         forcedBossRoomPos = position + new Vector3(0, 0, offsetW);
-    //     }
-    // }
-
     public void SetupRoomDoors(GameObject room)
     {
         Transform leftDoor = room.transform.Find("ParedIzquierda/Door_Prefab_Closed_Left");
         Transform rightDoor = room.transform.Find("ParedDerecha/Door_Prefab_Closed_Right");
         Transform frontDoor = room.transform.Find("ParedFrontal/Door_Prefab_Closed_Front");
-        Transform backDoor = room.transform.Find("ParedFrontal/Door_Prefab_Closed_Back");
+        Transform backDoor = room.transform.Find("CuartaPared/Door_Prefab_Closed_Back");
 
         // Obtener la posición en grid
         Vector2Int roomGrid = roomsDictionary2.FirstOrDefault(r => r.Value == room).Key;
@@ -225,8 +201,6 @@ public class LevelGenerator : MonoBehaviour
         if (frontDoor != null) frontDoor.gameObject.SetActive(hasFront);
         if (backDoor != null) backDoor.gameObject.SetActive(hasBack);
     }
-
-
 
     public Vector3? SpawnTreasureRoom()
     {

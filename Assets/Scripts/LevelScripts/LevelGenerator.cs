@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using Unity.VisualScripting;
+using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -62,6 +64,32 @@ public class LevelGenerator : MonoBehaviour
             levelMap.Add(false);
     }
 
+    public string GetLevelLayoutLog()
+    {
+        LevelLayoutLog log = new LevelLayoutLog();
+        log.levelId = levelId;
+        foreach (var room in roomsDictionary2)
+        {
+            RoomLog r = new RoomLog();
+            r.x = room.Key.x;
+            r.y = room.Key.y;
+            r.type = room.Value.name;
+
+            log.rooms.Add(r);
+        }
+
+        string json = JsonUtility.ToJson(log);
+        return json;
+    }
+
+    public void SaveLevelLog()
+    {
+        string json = GetLevelLayoutLog();
+        string path = Application.persistentDataPath + "/levelLogs_" + levelId + ".json";
+        File.AppendAllText(path, json + "\n");
+
+        Debug.Log("LEVEL GENERATOR: Nivel: " + levelId + " guardado en el log: " + json);
+    }
 
     public int SpawnRooms()
     {

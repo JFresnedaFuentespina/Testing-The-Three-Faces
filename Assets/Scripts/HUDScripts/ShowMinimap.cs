@@ -10,7 +10,12 @@ public class ShowMinimap : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            showMinimap = !showMinimap;
+            showMinimap = true;
+            minimap.SetActive(showMinimap);
+        }
+        else if (Input.GetKeyUp(KeyCode.Tab))
+        {
+            showMinimap = false;
             minimap.SetActive(showMinimap);
         }
     }

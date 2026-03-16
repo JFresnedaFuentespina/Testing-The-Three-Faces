@@ -26,6 +26,7 @@ public class ShowPauseMenu : MonoBehaviour
     private bool usingMouseKeyboard = true;
     private GameObject player;
     private bool initialized = false;
+    public static bool blockPlayerInput = false;
     void Awake()
     {
         GameObject hud = GameObject.Find("HUD");
@@ -53,29 +54,6 @@ public class ShowPauseMenu : MonoBehaviour
     void Start()
     {
         AddButtonsListeners();
-
-        // tecladoRatonText = controllersConfig.transform.Find("TecladoRatonTexto").GetComponent<TextMeshProUGUI>();
-        // mandoText = controllersConfig.transform.Find("MandoTexto").GetComponent<TextMeshProUGUI>();
-
-        // player = GameObject.FindWithTag("Player");
-        // usingMouseKeyboard = player.GetComponent<RotateCharacterToMouse>().enabled;
-        // string path = Application.persistentDataPath + "/controllersData.json";
-        // if (File.Exists(path))
-        // {
-        //     string json = File.ReadAllText(path);
-        //     ControllersData controllersData = JsonConvert.DeserializeObject<ControllersData>(json);
-        //     usingMouseKeyboard = controllersData.usingMouseKeyboard;
-        //     player.GetComponent<RotateCharacterToMouse>().enabled = usingMouseKeyboard;
-        //     player.GetComponent<RotateCharacterWithJoystick>().enabled = !usingMouseKeyboard;
-        // }
-
-        // if (optionsButton == null)
-        // {
-        //     Debug.LogError("No se encontró el botón de opciones en el menú de pausa.");
-        // }
-        // tecladoRatonText.gameObject.SetActive(usingMouseKeyboard);
-        // mandoText.gameObject.SetActive(!usingMouseKeyboard);
-
         StartCoroutine(WaitForPlayer());
     }
 
@@ -83,7 +61,7 @@ public class ShowPauseMenu : MonoBehaviour
     {//Listeners de los botones
         resumeButton.onClick.AddListener(() =>
         {
-            ShowMenu(false);
+            StartCoroutine(ResumeNextFrame());
         });
 
         optionsButton.onClick.AddListener(() =>
@@ -115,6 +93,11 @@ public class ShowPauseMenu : MonoBehaviour
         {
             CloseConfirmExitMenu();
         });
+    }
+    IEnumerator ResumeNextFrame()
+    {
+        yield return null;
+        ShowMenu(false);
     }
 
     private IEnumerator WaitForPlayer()
@@ -171,12 +154,23 @@ public class ShowPauseMenu : MonoBehaviour
         {
             pauseMenu.SetActive(show);
         }
-        if (!show)
-            Time.timeScale = 1f;
-        else
-            Time.timeScale = 0f;
-    }
 
+        if (!show)
+        {
+            Time.timeScale = 1f;
+            StartCoroutine(BlockInputMomentarily());
+        }
+        else
+        {
+            Time.timeScale = 0f;
+        }
+    }
+    IEnumerator BlockInputMomentarily()
+    {
+        blockPlayerInput = true;
+        yield return new WaitForSeconds(0.15f);
+        blockPlayerInput = false;
+    }
     public void ShowOptions(bool show = true)
     {
         optionsMenu.SetActive(show);

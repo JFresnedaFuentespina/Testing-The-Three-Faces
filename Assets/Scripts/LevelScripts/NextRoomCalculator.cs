@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class NextRoomCalculator : MonoBehaviour
@@ -12,10 +13,13 @@ public class NextRoomCalculator : MonoBehaviour
     public AudioManager audioManager;
     public GameObject camera1;
     public GameObject cameraCenital;
-
+    private GameObject hud;
+    private TextMeshProUGUI noKeyText;
+    private Coroutine messageRoutine;
     void Start()
     {
-
+        hud = GameObject.Find("HUD");
+        noKeyText = hud.transform.Find("NoKeyText").GetComponent<TextMeshProUGUI>();
         level = FindAnyObjectByType<LevelGenerator>();
         audioManagerGO = GameObject.Find("Music");
         audioManager = audioManagerGO.GetComponent<AudioManager>();
@@ -58,13 +62,16 @@ public class NextRoomCalculator : MonoBehaviour
             if (!PlayerHasKey())
             {
                 Debug.Log("No tienes la llave para entrar a la Boss Room");
+                ShowMessage("Necesitas la llave para luchar contra el jefe!");
 
-                // Rehabilitar colisión y salir
-                StartCoroutine(ReenableCollisionBetween(doorCollider, other, 0.1f));
+                // Empujar ligeramente al jugador hacia atrás
+                // Vector3 pushDir = (other.transform.position - transform.position).normalized;
+                // other.transform.root.position += pushDir * 1.5f;
+                // StartCoroutine(ReenableCollisionBetween(doorCollider, other, 0.1f));
                 enabledTemporarily = false;
-
                 return;
             }
+
             audioManager?.PlayBossMusic();
             Camera camera = Camera.main;
             if (camera.orthographic)
@@ -92,6 +99,46 @@ public class NextRoomCalculator : MonoBehaviour
         MoveCamera(targetPos);
 
         StartCoroutine(ReenableCollisionBetween(doorCollider, other, 0.5f));
+    }
+    private void ShowMessage(string message)
+    {
+        noKeyText.gameObject.SetActive(true);
+        noKeyText.text = message;
+
+        if (messageRoutine != null)
+            StopCoroutine(messageRoutine);
+
+        messageRoutine = StartCoroutine(FadeMessage());
+    }
+    private IEnumerator FadeMessage()
+    {
+        // Primero poner el texto totalmente visible
+        Color c = noKeyText.color;
+        c.a = 1f;
+        noKeyText.color = c;
+
+        // Mantener el mensaje un momento
+        yield return new WaitForSeconds(2f);
+
+        // Tiempo total del fade
+        float duration = 1.5f;
+        float t = 0f;
+
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            float alpha = Mathf.Lerp(1f, 0f, t / duration);
+
+            c.a = alpha;
+            noKeyText.color = c;
+
+            yield return null;
+        }
+
+        // Asegurar que desaparece del todo
+        c.a = 0f;
+        noKeyText.color = c;
+        noKeyText.gameObject.SetActive(false);
     }
 
     private bool PlayerHasKey()

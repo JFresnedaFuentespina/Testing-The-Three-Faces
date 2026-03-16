@@ -5,10 +5,11 @@ using UnityEngine;
 public class Level2Generator : MonoBehaviour
 {
     public int levelWidth = 7;
+    LevelGenerator levelGenerator;
 
     void Start()
     {
-        LevelGenerator levelGenerator = GetComponent<LevelGenerator>();
+        levelGenerator = GetComponent<LevelGenerator>();
         SpawnKeyInRoom keySpawner = GetComponent<SpawnKeyInRoom>();
 
         if (levelGenerator == null)
@@ -21,6 +22,14 @@ public class Level2Generator : MonoBehaviour
         levelGenerator.GenerateLevel(levelWidth, 5, 2); // Genera el mapa lógico
         int totalRooms = levelGenerator.SpawnRooms(); // Genera las habitaciones físicas
         StartCoroutine(keySpawner.WaitAndChooseRandomRoom());
+        StartCoroutine(WaitAndSaveLog());
+    }
+
+    IEnumerator WaitAndSaveLog()
+    {
+        while (GameObject.FindAnyObjectByType<ItemIcon>() == null)
+            yield return null;
+
         levelGenerator.SaveLevelLog();
     }
 }

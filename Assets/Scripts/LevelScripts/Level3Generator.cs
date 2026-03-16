@@ -6,10 +6,11 @@ public class Level3Generator : MonoBehaviour
 {
     // Start is called before the first frame update
     public int levelWidth = 10;
+    LevelGenerator levelGenerator;
 
     void Start()
     {
-        LevelGenerator levelGenerator = GetComponent<LevelGenerator>();
+        levelGenerator = GetComponent<LevelGenerator>();
         SpawnKeyInRoom keySpawner = GetComponent<SpawnKeyInRoom>();
 
         if (levelGenerator == null)
@@ -21,7 +22,14 @@ public class Level3Generator : MonoBehaviour
         levelGenerator.GenerateLevel(levelWidth, 7, 3); // Genera el mapa lógico
         int totalRooms = levelGenerator.SpawnRooms(); // Genera las habitaciones físicas
         StartCoroutine(keySpawner.WaitAndChooseRandomRoom());
+        StartCoroutine(WaitAndSaveLog());
+    }
+
+    IEnumerator WaitAndSaveLog()
+    {
+        while (GameObject.FindAnyObjectByType<ItemIcon>() == null)
+            yield return null;
+
         levelGenerator.SaveLevelLog();
-        
     }
 }

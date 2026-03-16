@@ -68,12 +68,27 @@ public class LevelGenerator : MonoBehaviour
     {
         LevelLayoutLog log = new LevelLayoutLog();
         log.levelId = levelId;
+
+        SpawnKeyInRoom keySpawner = GetComponent<SpawnKeyInRoom>();
+        Vector2Int keyRoom = keySpawner.GetKeyRoomGrid();
+
         foreach (var room in roomsDictionary2)
         {
             RoomLog r = new RoomLog();
             r.x = room.Key.x;
             r.y = room.Key.y;
             r.type = room.Value.name;
+
+            r.hasKey = (room.Key == keyRoom);
+            // item solo si es la treasure room
+            r.item = null;
+
+            if (room.Value.name.Contains("Treasure"))
+            {
+                ItemIcon item = FindAnyObjectByType<ItemIcon>();
+                if (item != null)
+                    r.item = item.itemID;
+            }
 
             log.rooms.Add(r);
         }

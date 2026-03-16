@@ -62,6 +62,11 @@ public class SpawnKeyInRoom : MonoBehaviour
         Debug.Log("Habitación seleccionada para la llave: " + roomsDictionary2[selectedRoomGrid].name);
     }
 
+    public Vector2Int GetKeyRoomGrid()
+    {
+        return selectedRoomGrid;
+    }
+
     public void GenerateKey(Vector3 roomPos)
     {
         if (spawned)

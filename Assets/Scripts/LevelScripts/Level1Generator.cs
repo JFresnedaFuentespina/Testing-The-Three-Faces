@@ -19,14 +19,6 @@ public class Level1Generator : MonoBehaviour
         levelGenerator.GenerateLevel(levelWidth, 2, 1); // Genera el mapa
         int totalRooms = levelGenerator.SpawnRooms(); // Genera las habitaciones físicas
         StartCoroutine(keySpawner.WaitAndChooseRandomRoom());
-        StartCoroutine(WaitAndSaveLog());
-    }
-
-    IEnumerator WaitAndSaveLog()
-    {
-        while (GameObject.FindAnyObjectByType<ItemIcon>() == null)
-            yield return null;
-
-        levelGenerator.SaveLevelLog();
+        levelGenerator.InitializeRoomLogs();
     }
 }

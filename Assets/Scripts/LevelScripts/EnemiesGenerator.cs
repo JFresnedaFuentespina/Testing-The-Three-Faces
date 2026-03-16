@@ -43,6 +43,7 @@ public class EnemiesGenerator : MonoBehaviour
 
     public void GenerateEnemiesInRoom(Vector3 roomPos)
     {
+        Vector2Int roomGrid = GetRoomGrid();
         if (enemiesDefeated)
         {
             return;
@@ -80,9 +81,11 @@ public class EnemiesGenerator : MonoBehaviour
                     if (prefab != null)
                     {
                         GameObject enemy = Instantiate(prefab, spawnPos, Quaternion.identity);
+                        level.RegisterEnemy(roomGrid, prefab.tag);
                         EnemyLife life = enemy.GetComponent<EnemyLife>();
                         if (life != null) spawnedEnemies.Add(life);
                     }
+
                 }
             }
         }
@@ -139,6 +142,16 @@ public class EnemiesGenerator : MonoBehaviour
             cameraDialogueManager.RefreshCamera();
 
         }
+    }
+    public Vector2Int GetRoomGrid()
+    {
+        foreach (var room in level.roomsDictionary2)
+        {
+            if (room.Value == gameObject)
+                return room.Key;
+        }
+
+        return new Vector2Int(-999, -999);
     }
 
     public int GetAliveEnemiesCount()

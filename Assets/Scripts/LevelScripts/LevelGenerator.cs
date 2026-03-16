@@ -34,6 +34,7 @@ public class LevelGenerator : MonoBehaviour
 
     // public Dictionary<string, Vector3> roomsDictionary = new Dictionary<string, Vector3>();
     public Dictionary<Vector2Int, GameObject> roomsDictionary2 = new Dictionary<Vector2Int, GameObject>();
+    public Dictionary<Vector2Int, RoomLog> roomLogs = new Dictionary<Vector2Int, RoomLog>();
 
     private MinimapBehaviour minimapBehaviour;
 
@@ -69,32 +70,33 @@ public class LevelGenerator : MonoBehaviour
         LevelLayoutLog log = new LevelLayoutLog();
         log.levelId = levelId;
 
-        SpawnKeyInRoom keySpawner = GetComponent<SpawnKeyInRoom>();
-        Vector2Int keyRoom = keySpawner.GetKeyRoomGrid();
+        foreach (var r in roomLogs.Values)
+            log.rooms.Add(r);
 
-        foreach (var room in roomsDictionary2)
+        return JsonUtility.ToJson(log);
+    }
+    public void InitializeRoomLogs()
+    {
+        roomLogs.Clear();
+        foreach (var kvp in roomsDictionary2)
         {
             RoomLog r = new RoomLog();
-            r.x = room.Key.x;
-            r.y = room.Key.y;
-            r.type = room.Value.name;
+            r.x = kvp.Key.x;
+            r.y = kvp.Key.y;
+            r.type = kvp.Value.name;
+            r.hasKey = false;
+            r.item = "";
+            r.enemies = new List<string>();
 
-            r.hasKey = (room.Key == keyRoom);
-            // item solo si es la treasure room
-            r.item = null;
-
-            if (room.Value.name.Contains("Treasure"))
-            {
-                ItemIcon item = FindAnyObjectByType<ItemIcon>();
-                if (item != null)
-                    r.item = item.itemID;
-            }
-
-            log.rooms.Add(r);
+            roomLogs[kvp.Key] = r;
         }
+    }
+    public void RegisterEnemy(Vector2Int roomGrid, string enemyType)
+    {
+        if (!roomLogs.ContainsKey(roomGrid))
+            return;
 
-        string json = JsonUtility.ToJson(log);
-        return json;
+        roomLogs[roomGrid].enemies.Add(enemyType);
     }
 
     public void SaveLevelLog()

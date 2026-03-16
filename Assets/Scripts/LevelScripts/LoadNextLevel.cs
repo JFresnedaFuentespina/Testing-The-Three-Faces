@@ -184,7 +184,8 @@ public class LoadNextLevel : MonoBehaviour
 
         scoreGenerator.CalculateScore();
         File.WriteAllText(path, json);
-
+        LevelGenerator levelGenerator = FindAnyObjectByType<LevelGenerator>();
+        levelGenerator.SaveLevelLog();
     }
 
 }

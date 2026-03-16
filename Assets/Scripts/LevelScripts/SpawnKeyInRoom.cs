@@ -45,7 +45,7 @@ public class SpawnKeyInRoom : MonoBehaviour
         foreach (var kvp in roomsDictionary2)
         {
             string roomName = kvp.Value.name;
-            if (!roomName.Contains("Boss") && !roomName.Contains("Treasure"))
+            if (!roomName.Contains("Boss") && !roomName.Contains("Treasure") && !roomName.Contains("Room_0"))
             {
                 validGrids.Add(kvp.Key);
             }

@@ -108,6 +108,7 @@ MonoBehaviour:
   spawnDelay: 2.5
   attackDistance: 3
   attackCooldown: 2
+  animator: {fileID: 0}
   cruzBallAttack: {fileID: 3397094119995629051}
 --- !u!114 &3383421779063375692
 MonoBehaviour:
@@ -302,7 +303,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7599560724871351387}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!114 &6865829618344520508
 MonoBehaviour:
   m_ObjectHideFlags: 0

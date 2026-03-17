@@ -7,9 +7,11 @@ using UnityEngine.Video;
 public class PlayVideoInstant : MonoBehaviour
 {
     public VideoPlayer videoPlayer;
+    public GameLog gameLog;
 
     void Awake()
     {
+        gameLog = new GameLog();
         videoPlayer.playOnAwake = false;
         videoPlayer.url = Application.streamingAssetsPath + "/goodending-the3faces.mp4";
         videoPlayer.Prepare();
@@ -30,9 +32,22 @@ public class PlayVideoInstant : MonoBehaviour
 
     public void SaveGame()
     {
-        GameLog gameLog = new GameLog();
         GameLog.id++;
         gameLog.date = System.DateTime.Now.ToString();
+        ReadLevels();
+        gameLog.isGoodEnding = true;
+        ReadScore();
+        ReadTimer();
+
+        string gameJson = JsonUtility.ToJson(gameLog);
+        string gamePath = Application.persistentDataPath + "/gameLogs.json";
+        File.AppendAllText(gamePath, gameJson + "\n");
+
+        Debug.Log("GOOD ENDING GAME SAVED: " + gameJson);
+    }
+
+    public void ReadLevels()
+    {
         for (int i = 1; i < 4; i++)
         {
             string path = Application.persistentDataPath + "/levelLogs_" + i + ".json";
@@ -62,13 +77,31 @@ public class PlayVideoInstant : MonoBehaviour
                 }
             }
         }
+    }
 
-        gameLog.isGoodEnding = true;
+    public void ReadScore()
+    {
+        string scorePath = Application.persistentDataPath + "/score.json";
+        if (File.Exists(scorePath))
+        {
+            string json = File.ReadAllText(scorePath);
+            ScoreDTO scoreDTO = JsonUtility.FromJson<ScoreDTO>(json);
+            gameLog.score = scoreDTO.score;
+        }
+    }
 
-        string gameJson = JsonUtility.ToJson(gameLog);
-        string gamePath = Application.persistentDataPath + "/gameLogs.json";
-        File.AppendAllText(gamePath, gameJson + "\n");
-
-        Debug.Log("GOOD ENDING GAME SAVED: " + gameJson);
+    public void ReadTimer()
+    {
+        string timerPath = Application.persistentDataPath + "/timer.json";
+        if (File.Exists(timerPath))
+        {
+            string json = File.ReadAllText(timerPath);
+            TimerData timerData = JsonUtility.FromJson<TimerData>(json);
+            gameLog.time = timerData.time;
+        }
+        else
+        {
+            gameLog.time = 0f;
+        }
     }
 }

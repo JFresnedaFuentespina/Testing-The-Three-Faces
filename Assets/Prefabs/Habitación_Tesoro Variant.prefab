@@ -137,7 +137,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 891082112030366602, guid: a614cea1740fa47298da9ea87f4a2809, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.4
+      value: -0.7
       objectReference: {fileID: 0}
     - target: {fileID: 891082112030366602, guid: a614cea1740fa47298da9ea87f4a2809, type: 3}
       propertyPath: m_LocalPosition.y
@@ -145,7 +145,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 891082112030366602, guid: a614cea1740fa47298da9ea87f4a2809, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.53
+      value: -4.5
       objectReference: {fileID: 0}
     - target: {fileID: 891082112030366602, guid: a614cea1740fa47298da9ea87f4a2809, type: 3}
       propertyPath: m_LocalRotation.w
@@ -232,6 +232,7 @@ MonoBehaviour:
   - {fileID: 5225455176718880169, guid: 59fd80584945fc7448940995b97dab30, type: 3}
   - {fileID: 8864624805005668522, guid: 05c1bb08d5c7e3b40a87536483a89f10, type: 3}
   - {fileID: 3452915741271081163, guid: 3f2245bee0a16594fa5461000f35ddc4, type: 3}
+  level: {fileID: 0}
 --- !u!208 &3949221108492358625
 NavMeshObstacle:
   m_ObjectHideFlags: 0

@@ -22,5 +22,6 @@ public class Level3Generator : MonoBehaviour
         levelGenerator.GenerateLevel(levelWidth, 7, 3); // Genera el mapa lógico
         int totalRooms = levelGenerator.SpawnRooms(); // Genera las habitaciones físicas
         StartCoroutine(keySpawner.WaitAndChooseRandomRoom());
+        levelGenerator.InitializeRoomLogs();
     }
 }

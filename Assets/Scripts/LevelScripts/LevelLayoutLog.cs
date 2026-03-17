@@ -5,5 +5,6 @@ using System.Collections.Generic;
 public class LevelLayoutLog
 {
     public int levelId;
+    public string date;
     public List<RoomLog> rooms = new List<RoomLog>();
 }

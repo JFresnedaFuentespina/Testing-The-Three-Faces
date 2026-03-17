@@ -8,5 +8,6 @@ public class RoomLog
     public string type;
     public bool hasKey;
     public string item;
+    public bool playerDied = false;
     public List<string> enemies = new List<string>();
 }

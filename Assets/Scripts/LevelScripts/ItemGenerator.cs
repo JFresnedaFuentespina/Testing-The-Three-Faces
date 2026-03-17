@@ -6,9 +6,11 @@ using UnityEngine;
 public class ItemGenerator : MonoBehaviour
 {
     public List<GameObject> items;
+    public LevelGenerator level;
 
     void Start()
     {
+        level = FindAnyObjectByType<LevelGenerator>();
         string path = Application.persistentDataPath + "/generatedItems.json";
         GeneratedItemsData data;
 
@@ -49,6 +51,8 @@ public class ItemGenerator : MonoBehaviour
         // Instanciar
         Vector3 spawnPoint = transform.position + Vector3.up;
         GameObject spawned = Instantiate(items[chosenIndex], spawnPoint, Quaternion.identity);
+        ItemIcon itemIcon = spawned.GetComponent<ItemIcon>();
+        level.RegisterItem(itemIcon.itemID);
         spawned.transform.SetParent(transform);
     }
 }

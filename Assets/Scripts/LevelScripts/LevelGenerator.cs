@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using Newtonsoft.Json;
 using Unity.VisualScripting;
 using UnityEditor.UI;
 using UnityEngine;
@@ -70,10 +71,14 @@ public class LevelGenerator : MonoBehaviour
         LevelLayoutLog log = new LevelLayoutLog();
         log.levelId = levelId;
 
-        foreach (var r in roomLogs.Values)
+        foreach (RoomLog r in roomLogs.Values)
+        {
             log.rooms.Add(r);
+        }
 
-        return JsonUtility.ToJson(log);
+
+        log.date = System.DateTime.Now.ToString();
+        return JsonConvert.SerializeObject(log, Formatting.None);
     }
     public void InitializeRoomLogs()
     {
@@ -97,6 +102,18 @@ public class LevelGenerator : MonoBehaviour
             return;
 
         roomLogs[roomGrid].enemies.Add(enemyType);
+    }
+
+    public void RegisterItem(string item)
+    {
+        foreach (RoomLog r in roomLogs.Values)
+        {
+            if (r.type == "TreasureRoom")
+            {
+                Debug.Log("Item registred!" + item);
+                r.item = item;
+            }
+        }
     }
 
     public void SaveLevelLog()

@@ -71,7 +71,6 @@ public class SpawnKeyInRoom : MonoBehaviour
     {
         if (spawned)
         {
-            Debug.Log("La llave ya fue generada.");
             return;
         }
 

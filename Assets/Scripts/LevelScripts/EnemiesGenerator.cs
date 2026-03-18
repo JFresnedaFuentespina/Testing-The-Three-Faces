@@ -94,15 +94,15 @@ public class EnemiesGenerator : MonoBehaviour
         {
             if (SceneManager.GetActiveScene().name == "Level1Scene")
             {
-                GenerateBoss(bossCaraPrefab, bounds, roomPos);
+                GenerateBoss(bossCaraPrefab);
             }
             else if (SceneManager.GetActiveScene().name == "Level2Scene")
             {
-                GenerateBoss(bossCruzPrefab, bounds, roomPos);
+                GenerateBoss(bossCruzPrefab);
             }
             else if (SceneManager.GetActiveScene().name == "Level3Scene")
             {
-                GenerateBoss(bossCantoPrefab, bounds, roomPos);
+                GenerateBoss(bossCantoPrefab);
             }
         }
 
@@ -111,9 +111,10 @@ public class EnemiesGenerator : MonoBehaviour
         enemiesSpawned = true;
     }
 
-    private void GenerateBoss(GameObject bossPrefab, Bounds bounds, Vector3 roomPos)
+    private void GenerateBoss(GameObject bossPrefab)
     {
         GameObject boss = bossPrefab;
+        Vector3 spawnPos = GameObject.Find("BossSpawn").transform.position;
         // Revisar si ya existe un BossCara en la escena
         bool bossExists = FindObjectsOfType<EnemyLife>()
             .Any(e => e != null && e.gameObject.CompareTag("BossCara"));
@@ -124,8 +125,7 @@ public class EnemiesGenerator : MonoBehaviour
         }
         else if (boss != null)
         {
-            Vector3 bossSpawn = new Vector3(bounds.center.x, roomPos.y, bounds.center.z);
-            GameObject newBoss = Instantiate(boss, bossSpawn, Quaternion.identity);
+            GameObject newBoss = Instantiate(boss, spawnPos, Quaternion.identity);
             EnemyLife bossLife = newBoss.GetComponent<EnemyLife>();
             if (bossLife != null) spawnedEnemies.Add(bossLife);
             Camera cameraBoss = newBoss.GetComponentInChildren<Camera>(true);

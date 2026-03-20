@@ -11,7 +11,7 @@ public class VideoManagerFinal : MonoBehaviour
     void Start()
     {
         videoPlayer.source = VideoSource.Url;
-        videoPlayer.url = Application.streamingAssetsPath + "/Tutorial.mp4";
+        videoPlayer.url = Application.streamingAssetsPath + "/tutorial_t3f.mp4";
         playButton.onClick.AddListener(PlayVideo);
     }
     public void PlayVideo()

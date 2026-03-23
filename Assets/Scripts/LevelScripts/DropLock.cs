@@ -23,7 +23,7 @@ public class DropLock : MonoBehaviour
 
         if (!other.CompareTag("Player")) return;
 
-        if (other.gameObject.GetComponent<PlayerInventory>().hasKey)
+        if (FindAnyObjectByType<PlayerInventory>().hasKey)
         {
             isDestroying = true;
             StartCoroutine(DestroyLock());

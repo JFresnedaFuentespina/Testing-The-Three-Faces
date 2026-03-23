@@ -107,6 +107,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7022059923402208222, guid: e94499e9e8effe247ace11156ea23664, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 40dc935891368ee4ca2500bbdeed171f, type: 2}
     - target: {fileID: 7930126595310468033, guid: e94499e9e8effe247ace11156ea23664, type: 3}
       propertyPath: m_Name
       value: Character3rdPersonCamera Variant

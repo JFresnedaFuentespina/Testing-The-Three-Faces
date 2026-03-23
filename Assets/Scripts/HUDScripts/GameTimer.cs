@@ -61,7 +61,7 @@ public class GameTimer : MonoBehaviour
     {
         while (isRunning)
         {
-            elapsedTime += Time.deltaTime;
+            elapsedTime += Time.unscaledDeltaTime;
             UpdateTimerText();
             yield return null; // espera un frame
         }

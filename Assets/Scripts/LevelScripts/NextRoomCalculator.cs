@@ -32,11 +32,15 @@ public class NextRoomCalculator : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("Player"))
-            return;
+        if (!other.CompareTag("Player")) return;
 
+        StartCoroutine(HandleDoorTransition(other));
+    }
+
+    private IEnumerator HandleDoorTransition(Collider other)
+    {
         if (enabledTemporarily)
-            return;
+            yield break;
 
         enabledTemporarily = true;
 
@@ -46,60 +50,55 @@ public class NextRoomCalculator : MonoBehaviour
 
         Vector3 targetPos = CalculateTargetRoomPosition(gameObject.name, transform.parent.parent.position);
 
-        // Encontrar la siguiente habitación válida usando grid
         Vector2Int? nextRoomGrid = FindNextRoomGrid(targetPos);
         if (!nextRoomGrid.HasValue)
         {
-            Debug.LogWarning("No se encontró la habitación válida. Se mantiene la posición actual del jugador.");
+            Debug.LogWarning("No se encontró la habitación válida.");
             StartCoroutine(ReenableCollisionBetween(doorCollider, other, 0.5f));
-            return;
+            yield break;
         }
 
         GameObject nextRoomObj = FindRoomObject(nextRoomGrid.Value);
 
-        if (nextRoomObj.GetComponent<BossRoom>() != null)
+        bool isBossRoom = nextRoomObj.GetComponent<BossRoom>() != null;
+
+        if (isBossRoom)
         {
             if (!PlayerHasKey())
             {
-                Debug.Log("No tienes la llave para entrar a la Boss Room");
                 ShowMessage("Necesitas la llave para luchar contra el jefe!");
-
-                // Empujar ligeramente al jugador hacia atrás
-                // Vector3 pushDir = (other.transform.position - transform.position).normalized;
-                // other.transform.root.position += pushDir * 1.5f;
-                // StartCoroutine(ReenableCollisionBetween(doorCollider, other, 0.1f));
                 enabledTemporarily = false;
-                return;
+                yield break;
             }
 
+            // ⬇️ ESPERA AQUÍ
+            yield return new WaitForSeconds(0.2f);
+
             audioManager?.PlayBossMusic();
+
             Camera camera = Camera.main;
             if (camera.orthographic)
             {
                 camera.orthographicSize = 7f;
             }
+
         }
 
-        // Desactivar puertas de la habitación de destino temporalmente
         DisableDoorsInRoom(nextRoomObj);
 
-        // Calcular spawn seguro del jugador
         Transform oppositeDoor = FindOppositeDoor(nextRoomObj, gameObject.name);
 
-        Vector3 spawnPos;
-        if (oppositeDoor != null)
-            spawnPos = CalculateSpawnPosition(oppositeDoor);
-        else
-        {
-            // fallback: centro de la habitación destino
-            spawnPos = nextRoomObj.transform.position;
-        }
+        Vector3 spawnPos = (oppositeDoor != null)
+            ? CalculateSpawnPosition(oppositeDoor)
+            : nextRoomObj.transform.position;
+
         other.transform.root.position = spawnPos;
 
         MoveCamera(targetPos);
 
         StartCoroutine(ReenableCollisionBetween(doorCollider, other, 0.5f));
     }
+
     private void ShowMessage(string message)
     {
         noKeyText.gameObject.SetActive(true);
@@ -256,7 +255,7 @@ public class NextRoomCalculator : MonoBehaviour
             "ParedIzquierda/Door_Prefab_Closed_Left",
             "ParedDerecha/Door_Prefab_Closed_Right",
             "ParedFrontal/Door_Prefab_Closed_Front",
-            "ParedFrontal/Door_Prefab_Closed_Back",
+            "CuartaPared/Door_Prefab_Closed_Back",
             "ParedFrontal/Door_Prefab_Closed_Front (Bad)",
             "ParedFrontal/Door_Prefab_Closed_Front (Good)"
         };
@@ -279,9 +278,11 @@ public class NextRoomCalculator : MonoBehaviour
         Transform torchLeft = room.transform.Find("ParedIzquierda/TorchLeft");
         Transform torchRight = room.transform.Find("ParedDerecha/TorchRight");
         Transform torchFront = room.transform.Find("ParedFrontal/TorchFront");
+        Transform torchDown = room.transform.Find("CuartaPared/TorchDown");
         SetTorchState(torchLeft);
         SetTorchState(torchRight);
         SetTorchState(torchFront);
+        SetTorchState(torchDown);
     }
 
     private void SetTorchState(Transform torch)

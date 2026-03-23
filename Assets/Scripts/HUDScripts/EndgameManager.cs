@@ -68,7 +68,7 @@ public class EndgameManager : MonoBehaviour
                 enemyName = "Canto";
                 break;
         }
-        pauseMenuManager.GetComponent<ShowPauseMenu>().enabled = false;
+        // pauseMenuManager.GetComponent<ShowPauseMenu>().enabled = false;
         endgameDeathPanel.SetActive(true);
         killedByTxt.text += " " + enemyName;
         enemiesKilledTxtDeath.text = "Mataste a " + enemyKilledCount + " enemigos!";

@@ -44,7 +44,7 @@ public class DoorsEnabler : MonoBehaviour
         "ParedIzquierda/Door_Prefab_Closed_Left",
         "ParedDerecha/Door_Prefab_Closed_Right",
         "ParedFrontal/Door_Prefab_Closed_Front",
-        "ParedFrontal/Door_Prefab_Closed_Back",
+        "CuartaPared/Door_Prefab_Closed_Back",
         "ParedFrontal/Door_Prefab_Closed_Front (Bad)",
         "ParedFrontal/Door_Prefab_Closed_Front (Good)"
     };
@@ -87,6 +87,8 @@ public class DoorsEnabler : MonoBehaviour
                 torches.Add(transform.Find("ParedDerecha/TorchRight").gameObject);
             if (transform.Find("ParedFrontal/TorchFront") != null)
                 torches.Add(transform.Find("ParedFrontal/TorchFront").gameObject);
+            if (transform.Find("CuartaPared/TorchDown") != null)
+                torches.Add(transform.Find("CuartaPared/TorchDown").gameObject);
         }
         
         foreach (GameObject torch in torches)
@@ -97,11 +99,11 @@ public class DoorsEnabler : MonoBehaviour
             Transform green = torch.transform.Find("FireGreen");
 
             // Torch frontal requiere llave
-            bool isFrontTorch = torch.name.Contains("TorchFront");
-            bool canTurnGreen = !isFrontTorch || (inventory != null && inventory.hasKey);
+            // bool isFrontTorch = torch.name.Contains("TorchFront");
+            // bool canTurnGreen = (inventory != null && inventory.hasKey);
 
-            if (red != null) red.gameObject.SetActive(!canTurnGreen);
-            if (green != null) green.gameObject.SetActive(canTurnGreen);
+            if (red != null) red.gameObject.SetActive(false);
+            if (green != null) green.gameObject.SetActive(true);
         }
     }
 }

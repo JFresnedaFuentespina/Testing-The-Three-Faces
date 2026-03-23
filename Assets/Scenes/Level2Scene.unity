@@ -753,6 +753,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 370844057}
   m_CullTransparentMesh: 0
+--- !u!1 &383209253 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8092397225664160277, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+  m_PrefabInstance: {fileID: 779359650}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &399785363
 GameObject:
   m_ObjectHideFlags: 0
@@ -973,7 +978,7 @@ MonoBehaviour:
   nextDialogue: {fileID: 1550098782}
   hp: {fileID: 10717360}
   minimap: {fileID: 779359651}
-  Timer: {fileID: 850513364}
+  Timer: {fileID: 383209253}
   keyToContinue: 32
   pararTiempo: 1
 --- !u!114 &428690541
@@ -2054,6 +2059,10 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 863311341}
+    - target: {fileID: 2601653285864100401, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: Timer
+      value: 
+      objectReference: {fileID: 383209253}
     - target: {fileID: 3353626603144326042, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -2066,6 +2075,10 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3838505079619623149, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: Timer
+      value: 
+      objectReference: {fileID: 383209253}
     - target: {fileID: 3910886895333099084, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -2074,6 +2087,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4062125532254717929, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: Timer
+      value: 
+      objectReference: {fileID: 383209253}
+    - target: {fileID: 4331221527426232145, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: Timer
+      value: 
+      objectReference: {fileID: 383209253}
     - target: {fileID: 4458383154401370381, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -2101,7 +2122,7 @@ PrefabInstance:
     - target: {fileID: 4918913797124257592, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: Timer
       value: 
-      objectReference: {fileID: 850513364}
+      objectReference: {fileID: 383209253}
     - target: {fileID: 4918913797124257592, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: minimap
       value: 
@@ -2394,6 +2415,10 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 863311341}
+    - target: {fileID: 7078565917210297727, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: Timer
+      value: 
+      objectReference: {fileID: 383209253}
     - target: {fileID: 7422651476104465262, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -3839,7 +3864,7 @@ MonoBehaviour:
   nextDialogue: {fileID: 0}
   hp: {fileID: 10717360}
   minimap: {fileID: 779359651}
-  Timer: {fileID: 850513364}
+  Timer: {fileID: 383209253}
   keyToContinue: 32
   pararTiempo: 0
 --- !u!114 &1060385612
@@ -4647,7 +4672,7 @@ MonoBehaviour:
   nextDialogue: {fileID: 0}
   hp: {fileID: 10717360}
   minimap: {fileID: 779359651}
-  Timer: {fileID: 850513364}
+  Timer: {fileID: 383209253}
   keyToContinue: 32
   pararTiempo: 1
 --- !u!114 &1550098785
@@ -5298,7 +5323,7 @@ MonoBehaviour:
   nextDialogue: {fileID: 428690538}
   hp: {fileID: 10717360}
   minimap: {fileID: 779359651}
-  Timer: {fileID: 850513364}
+  Timer: {fileID: 383209253}
   keyToContinue: 32
   pararTiempo: 1
 --- !u!114 &1867687075
@@ -5393,7 +5418,7 @@ MonoBehaviour:
   nextDialogue: {fileID: 0}
   hp: {fileID: 10717360}
   minimap: {fileID: 779359651}
-  Timer: {fileID: 850513364}
+  Timer: {fileID: 383209253}
   keyToContinue: 32
   pararTiempo: 1
 --- !u!114 &1983496190
@@ -5695,7 +5720,7 @@ MonoBehaviour:
   nextDialogue: {fileID: 1867687072}
   hp: {fileID: 10717360}
   minimap: {fileID: 779359651}
-  Timer: {fileID: 850513364}
+  Timer: {fileID: 383209253}
   keyToContinue: 32
   pararTiempo: 1
 --- !u!114 &2067470486

@@ -27,7 +27,6 @@ public class DialogueManager : MonoBehaviour
     private Coroutine typingCoroutine;
     public GameObject nextDialogue;
     public GameObject hp;
-    public GameObject minimap;
     public GameObject Timer;
     public KeyCode keyToContinue;
     public bool pararTiempo = true;
@@ -110,8 +109,10 @@ public class DialogueManager : MonoBehaviour
                 OnRestoreHealthEvent();
             }
         }
-        // if (minimap) minimap.SetActive(value);
-        if (Timer) Timer.SetActive(value);
+        if (Timer)
+        {
+            Timer.SetActive(value);
+        }
     }
 
 

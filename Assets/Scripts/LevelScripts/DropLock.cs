@@ -32,7 +32,7 @@ public class DropLock : MonoBehaviour
 
     private IEnumerator DestroyLock()
     {
-        Debug.Log("Destroy LOCK!");
+        Time.timeScale = 0f;
         float duration = 0.5f;
         float time = 0f;
 
@@ -45,13 +45,13 @@ public class DropLock : MonoBehaviour
             // Reducir escala progresivamente
             transform.localScale = Vector3.Lerp(initialScale, Vector3.zero, t);
 
-            time += Time.deltaTime;
+            time += Time.unscaledDeltaTime;
             yield return null;
         }
 
         // Asegurar escala final
         transform.localScale = Vector3.zero;
-
+        Time.timeScale = 1f;
         Destroy(gameObject);
     }
 }

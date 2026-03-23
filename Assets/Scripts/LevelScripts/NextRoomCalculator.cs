@@ -72,7 +72,7 @@ public class NextRoomCalculator : MonoBehaviour
             }
 
             // ⬇️ ESPERA AQUÍ
-            yield return new WaitForSeconds(0.6f);
+            yield return new WaitForSeconds(0.2f);
 
             audioManager?.PlayBossMusic();
 

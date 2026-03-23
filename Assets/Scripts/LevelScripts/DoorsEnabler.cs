@@ -44,7 +44,7 @@ public class DoorsEnabler : MonoBehaviour
         "ParedIzquierda/Door_Prefab_Closed_Left",
         "ParedDerecha/Door_Prefab_Closed_Right",
         "ParedFrontal/Door_Prefab_Closed_Front",
-        "ParedFrontal/Door_Prefab_Closed_Back",
+        "CuartaPared/Door_Prefab_Closed_Back",
         "ParedFrontal/Door_Prefab_Closed_Front (Bad)",
         "ParedFrontal/Door_Prefab_Closed_Front (Good)"
     };
@@ -100,10 +100,10 @@ public class DoorsEnabler : MonoBehaviour
 
             // Torch frontal requiere llave
             // bool isFrontTorch = torch.name.Contains("TorchFront");
-            bool canTurnGreen = (inventory != null && inventory.hasKey);
+            // bool canTurnGreen = (inventory != null && inventory.hasKey);
 
-            if (red != null) red.gameObject.SetActive(!canTurnGreen);
-            if (green != null) green.gameObject.SetActive(canTurnGreen);
+            if (red != null) red.gameObject.SetActive(false);
+            if (green != null) green.gameObject.SetActive(true);
         }
     }
 }

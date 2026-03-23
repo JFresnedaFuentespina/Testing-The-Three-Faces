@@ -285,6 +285,26 @@ public class LevelGenerator : MonoBehaviour
                 }
             }
         }
+        // --- Activar "Lock" en la puerta que da al boss ---
+        foreach (var dir in new Dictionary<Vector2Int, Transform> {
+        { Vector2Int.left, leftDoor },
+        { Vector2Int.right, rightDoor },
+        { Vector2Int.up, frontDoor },
+        { Vector2Int.down, backDoor }
+    })
+        {
+            Vector2Int neighborPos = roomGrid + dir.Key;
+
+            if (roomsDictionary2.TryGetValue(neighborPos, out GameObject neighborRoom))
+            {
+                if (neighborRoom.name.Contains("Boss") && dir.Value != null)
+                {
+                    Transform lockItem = dir.Value.Find("Lock");
+                    if (lockItem != null)
+                        lockItem.gameObject.SetActive(true);
+                }
+            }
+        }
     }
 
     public GameObject SpawnTreasureRoom()

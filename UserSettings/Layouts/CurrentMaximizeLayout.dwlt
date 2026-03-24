@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 112}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 423
+  controlID: 809
   draggingID: 0
 --- !u!114 &2
 MonoBehaviour:
@@ -153,7 +153,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 112}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 424
+  controlID: 810
   draggingID: 0
 --- !u!114 &4
 MonoBehaviour:
@@ -180,7 +180,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 56}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 425
+  controlID: 811
   draggingID: 0
 --- !u!114 &5
 MonoBehaviour:
@@ -249,10 +249,12 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: []
+      m_SelectedIDs:
+      - m_Data: -385450
       m_LastClickedID:
         m_Data: 0
       m_ExpandedIDs:
+      - m_Data: -403542
       - m_Data: -3252
       - m_Data: -3164
       m_RenameOverlay:
@@ -804,9 +806,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 279.95154, y: 256.97607, z: -76.60718}
+    m_Target: {x: 101.67433, y: -20.351025, z: 31.664818}
     speed: 2
-    m_Value: {x: 279.95154, y: 256.97607, z: -76.60718}
+    m_Value: {x: 101.67433, y: -20.351025, z: 31.664818}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -856,9 +858,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: -0.10891139, y: -0.42239335, z: 0.05113126, w: -0.8983918}
   m_Size:
-    m_Target: 624.6438
+    m_Target: 187.15381
     speed: 2
-    m_Value: 624.6438
+    m_Value: 187.15381
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1357,7 +1359,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Prefabs
+    - Assets/Scripts/LevelScripts
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1367,7 +1369,7 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 63
   m_LastFolders:
-  - Assets/Prefabs
+  - Assets/Scripts/LevelScripts
   m_LastFoldersGridSize: 63
   m_LastProjectPath: C:\Users\EVRV\Desktop\UnityProjects\The Three Faces Testing\Test-The-Three-Faces
   m_LockTracker:
@@ -1376,9 +1378,9 @@ MonoBehaviour:
   m_FolderTreeState:
     scrollPos: {x: 0, y: 1134}
     m_SelectedIDs:
-    - m_Data: 66086
+    - m_Data: 66106
     m_LastClickedID:
-      m_Data: 66086
+      m_Data: 66106
     m_ExpandedIDs:
     - m_Data: 0
     - m_Data: 65624
@@ -1643,8 +1645,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: []
-    m_LastClickedInstanceID: 0
+    m_SelectedInstanceIDs:
+    - m_Data: -385450
+    m_LastClickedInstanceID: -385450
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs:
     - m_Data: 335368

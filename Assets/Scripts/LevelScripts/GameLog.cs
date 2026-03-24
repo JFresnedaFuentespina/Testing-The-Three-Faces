@@ -6,7 +6,8 @@ public class GameLog
     public LevelLayoutLog level1;
     public LevelLayoutLog level2;
     public LevelLayoutLog level3;
-    public bool isGoodEnding;
+    public bool isGoodEnding = false;
+    public bool isDeathEnding = false;
     public float score;
     public float time;
 }

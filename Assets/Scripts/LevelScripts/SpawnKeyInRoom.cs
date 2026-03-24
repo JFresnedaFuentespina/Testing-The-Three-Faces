@@ -60,6 +60,7 @@ public class SpawnKeyInRoom : MonoBehaviour
         // Elegir una cuadrícula aleatoria
         selectedRoomGrid = validGrids[Random.Range(0, validGrids.Count)];
         Debug.Log("Habitación seleccionada para la llave: " + roomsDictionary2[selectedRoomGrid].name);
+        levelGenerator.RegisterKeyRoom(selectedRoomGrid);
     }
 
     public Vector2Int GetKeyRoomGrid()

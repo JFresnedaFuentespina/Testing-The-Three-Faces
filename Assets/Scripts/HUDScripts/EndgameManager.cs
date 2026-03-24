@@ -1,4 +1,6 @@
 using System.IO;
+using System.Linq;
+using Newtonsoft.Json;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -35,7 +37,7 @@ public class EndgameManager : MonoBehaviour
 
     [Header("Level Generator")]
     public LevelGenerator level;
-
+    public GameLog gameLog;
     void Start()
     {
         exitButtonDeath.onClick.AddListener(ExitGame);
@@ -162,6 +164,91 @@ public class EndgameManager : MonoBehaviour
         GameObject room = FindClosestRoomToPlayer(playerPosition);
         level.MarkPlayerDeathRoom(room);
         level.SaveLevelLog();
+        SaveGame();
+    }
+
+    public void SaveGame()
+    {
+        GameLog.id++;
+        gameLog.date = System.DateTime.Now.ToString();
+        ReadLevels();
+        gameLog.isGoodEnding = false;
+        gameLog.isDeathEnding = true;
+        ReadScore();
+        ReadTimer();
+
+        string gameJson = JsonUtility.ToJson(gameLog);
+        string gamePath = Application.persistentDataPath + "/gameLogs.json";
+        File.AppendAllText(gamePath, gameJson + "\n");
+
+        Debug.Log("GOOD ENDING GAME SAVED: " + gameJson);
+    }
+
+    public void ReadLevels()
+    {
+        for (int i = 1; i < 4; i++)
+        {
+            string path = Application.persistentDataPath + "/levelLogs_" + i + ".json";
+            if (!File.Exists(path))
+                break;
+
+            string fileContent = File.ReadAllText(path);
+
+            string[] jsons = fileContent.Split(new[] { "\n{" }, System.StringSplitOptions.RemoveEmptyEntries);
+
+            if (jsons.Length == 0)
+                break;
+
+            string lastJson = jsons[jsons.Length - 1];
+
+            if (!lastJson.StartsWith("{"))
+                lastJson = "{" + lastJson;
+
+            LevelLayoutLog level = JsonConvert.DeserializeObject<LevelLayoutLog>(lastJson);
+
+            // Guardar nivel
+            switch (i)
+            {
+                case 1: gameLog.level1 = level; break;
+                case 2: gameLog.level2 = level; break;
+                case 3: gameLog.level3 = level; break;
+            }
+
+            // Comprobar muerte del jugador
+            bool playerDiedInLevel = level.rooms.Any(r => r.playerDied);
+
+            if (playerDiedInLevel)
+            {
+                Debug.Log($"Jugador murió en nivel {i}, no se leen más niveles.");
+                break;
+            }
+        }
+    }
+
+    public void ReadScore()
+    {
+        string scorePath = Application.persistentDataPath + "/score.json";
+        if (File.Exists(scorePath))
+        {
+            string json = File.ReadAllText(scorePath);
+            ScoreDTO scoreDTO = JsonUtility.FromJson<ScoreDTO>(json);
+            gameLog.score = scoreDTO.score;
+        }
+    }
+
+    public void ReadTimer()
+    {
+        string timerPath = Application.persistentDataPath + "/timer.json";
+        if (File.Exists(timerPath))
+        {
+            string json = File.ReadAllText(timerPath);
+            TimerData timerData = JsonUtility.FromJson<TimerData>(json);
+            gameLog.time = timerData.time;
+        }
+        else
+        {
+            gameLog.time = 0f;
+        }
     }
 
     private GameObject FindClosestRoomToPlayer(Vector3 playerPosition)

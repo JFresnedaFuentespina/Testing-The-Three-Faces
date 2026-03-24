@@ -1085,7 +1085,6 @@ MonoBehaviour:
   inputMessage: Pulsa "Espacio" para avanzar
   nextDialogue: {fileID: 0}
   hp: {fileID: 355301824}
-  minimap: {fileID: 2067796229}
   Timer: {fileID: 2067796230}
   keyToContinue: 32
   pararTiempo: 1
@@ -1586,7 +1585,6 @@ MonoBehaviour:
   inputMessage: Pulsa "Espacio" para avanzar
   nextDialogue: {fileID: 342017179}
   hp: {fileID: 355301824}
-  minimap: {fileID: 2067796229}
   Timer: {fileID: 2067796230}
   keyToContinue: 32
   pararTiempo: 1
@@ -1687,7 +1685,6 @@ MonoBehaviour:
   inputMessage: Pulsa "Espacio" para avanzar
   nextDialogue: {fileID: 414908639}
   hp: {fileID: 355301824}
-  minimap: {fileID: 2067796229}
   Timer: {fileID: 2067796230}
   keyToContinue: 32
   pararTiempo: 1
@@ -1973,13 +1970,25 @@ PrefabInstance:
       value: EndgameManagerGO
       objectReference: {fileID: 0}
     - target: {fileID: 8269909501135449399, guid: 149a16642a3221045b23d37a3e79609e, type: 3}
+      propertyPath: level
+      value: 
+      objectReference: {fileID: 1097191325}
+    - target: {fileID: 8269909501135449399, guid: 149a16642a3221045b23d37a3e79609e, type: 3}
       propertyPath: timerGO
       value: 
       objectReference: {fileID: 1681170303}
     - target: {fileID: 8269909501135449399, guid: 149a16642a3221045b23d37a3e79609e, type: 3}
+      propertyPath: scoreTxt
+      value: 
+      objectReference: {fileID: 2067796231}
+    - target: {fileID: 8269909501135449399, guid: 149a16642a3221045b23d37a3e79609e, type: 3}
       propertyPath: timerTxt
       value: 
       objectReference: {fileID: 185113622}
+    - target: {fileID: 8269909501135449399, guid: 149a16642a3221045b23d37a3e79609e, type: 3}
+      propertyPath: postScore
+      value: 
+      objectReference: {fileID: 1434923942}
     - target: {fileID: 8269909501135449399, guid: 149a16642a3221045b23d37a3e79609e, type: 3}
       propertyPath: exitButton
       value: 
@@ -2001,6 +2010,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1039360728}
     - target: {fileID: 8269909501135449399, guid: 149a16642a3221045b23d37a3e79609e, type: 3}
+      propertyPath: scoreGenerator
+      value: 
+      objectReference: {fileID: 1434923943}
+    - target: {fileID: 8269909501135449399, guid: 149a16642a3221045b23d37a3e79609e, type: 3}
       propertyPath: endgameWinPanel
       value: 
       objectReference: {fileID: 1067321270}
@@ -2015,7 +2028,7 @@ PrefabInstance:
     - target: {fileID: 8269909501135449399, guid: 149a16642a3221045b23d37a3e79609e, type: 3}
       propertyPath: pauseMenuManager
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1894185865}
     - target: {fileID: 8269909501135449399, guid: 149a16642a3221045b23d37a3e79609e, type: 3}
       propertyPath: restartButtonWin
       value: 
@@ -2542,7 +2555,6 @@ MonoBehaviour:
   inputMessage: Pulsa "Espacio" para avanzar
   nextDialogue: {fileID: 1438931031}
   hp: {fileID: 355301824}
-  minimap: {fileID: 2067796229}
   Timer: {fileID: 2067796230}
   keyToContinue: 32
   pararTiempo: 1
@@ -5862,7 +5874,6 @@ MonoBehaviour:
   inputMessage: Pulsa "Espacio" para avanzar
   nextDialogue: {fileID: 1974065321}
   hp: {fileID: 355301824}
-  minimap: {fileID: 2067796229}
   Timer: {fileID: 2067796230}
   keyToContinue: 32
   pararTiempo: 1
@@ -5940,6 +5951,28 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3809fba094336fb4593437866df1ef33, type: 3}
+--- !u!114 &1434923942 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8212401899017741393, guid: 3809fba094336fb4593437866df1ef33, type: 3}
+  m_PrefabInstance: {fileID: 1434923941}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c12bfac00cfd3fa409b9927d5cd8e3a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PlayerHealthAssembly::PostScore
+--- !u!114 &1434923943 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7668230298282453517, guid: 3809fba094336fb4593437866df1ef33, type: 3}
+  m_PrefabInstance: {fileID: 1434923941}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bf4b72f64e595140881a22d2f15b4e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PlayerHealthAssembly::ScoreGenerator
 --- !u!1 &1436763689
 GameObject:
   m_ObjectHideFlags: 0
@@ -6009,7 +6042,6 @@ MonoBehaviour:
   inputMessage: Pulsa "Espacio" para avanzar
   nextDialogue: {fileID: 0}
   hp: {fileID: 355301824}
-  minimap: {fileID: 2067796229}
   Timer: {fileID: 2067796230}
   keyToContinue: 32
   pararTiempo: 0
@@ -6236,7 +6268,6 @@ MonoBehaviour:
   inputMessage: Pulsa "Espacio" para avanzar
   nextDialogue: {fileID: 477368280}
   hp: {fileID: 355301824}
-  minimap: {fileID: 2067796229}
   Timer: {fileID: 2067796230}
   keyToContinue: 32
   pararTiempo: 1
@@ -6481,7 +6512,6 @@ MonoBehaviour:
   inputMessage: Pulsa "Espacio" para avanzar
   nextDialogue: {fileID: 679086718}
   hp: {fileID: 355301824}
-  minimap: {fileID: 2067796229}
   Timer: {fileID: 2067796230}
   keyToContinue: 32
   pararTiempo: 1
@@ -7857,7 +7887,6 @@ MonoBehaviour:
   inputMessage: Pulsa "Espacio" para avanzar
   nextDialogue: {fileID: 2019961488}
   hp: {fileID: 355301824}
-  minimap: {fileID: 2067796229}
   Timer: {fileID: 2067796230}
   keyToContinue: 32
   pararTiempo: 1
@@ -7947,7 +7976,6 @@ MonoBehaviour:
   inputMessage: Pulsa "Espacio" para avanzar
   nextDialogue: {fileID: 0}
   hp: {fileID: 355301824}
-  minimap: {fileID: 2067796229}
   Timer: {fileID: 2067796230}
   keyToContinue: 32
   pararTiempo: 1
@@ -8399,6 +8427,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 651dc996a679e43418f2fce0f6a20f82, type: 3}
+--- !u!1 &1894185865 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4044024290306650910, guid: 651dc996a679e43418f2fce0f6a20f82, type: 3}
+  m_PrefabInstance: {fileID: 1894185864}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1900154076
 GameObject:
   m_ObjectHideFlags: 0
@@ -8468,7 +8501,6 @@ MonoBehaviour:
   inputMessage: Pulsa "Espacio" para avanzar
   nextDialogue: {fileID: 1773268500}
   hp: {fileID: 355301824}
-  minimap: {fileID: 2067796229}
   Timer: {fileID: 2067796230}
   keyToContinue: 32
   pararTiempo: 1
@@ -8907,7 +8939,6 @@ MonoBehaviour:
   inputMessage: Pulsa "Espacio" para avanzar
   nextDialogue: {fileID: 1856902798}
   hp: {fileID: 355301824}
-  minimap: {fileID: 2067796229}
   Timer: {fileID: 2067796230}
   keyToContinue: 32
   pararTiempo: 1
@@ -9244,7 +9275,6 @@ MonoBehaviour:
   inputMessage: Pulsa "Espacio" para avanzar
   nextDialogue: {fileID: 1414208671}
   hp: {fileID: 355301824}
-  minimap: {fileID: 2067796229}
   Timer: {fileID: 2067796230}
   keyToContinue: 32
   pararTiempo: 1
@@ -10035,6 +10065,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8092397225664160277, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
   m_PrefabInstance: {fileID: 2067796228}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2067796231 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1908470086043710750, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+  m_PrefabInstance: {fileID: 2067796228}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &2075837684
 GameObject:
   m_ObjectHideFlags: 0

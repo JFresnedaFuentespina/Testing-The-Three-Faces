@@ -30,8 +30,11 @@ public class EndgameManager : MonoBehaviour
 
     [Header("PauseMenuManager")]
     public GameObject pauseMenuManager;
-
     public static event System.Action OnResetGameData;
+
+
+    [Header("Level Generator")]
+    public LevelGenerator level;
 
     void Start()
     {
@@ -152,5 +155,31 @@ public class EndgameManager : MonoBehaviour
             img.sprite = item.icon;
             img.preserveAspect = true;
         }
+    }
+
+    public void SaveDeathLog(Vector3 playerPosition)
+    {
+        GameObject room = FindClosestRoomToPlayer(playerPosition);
+        level.MarkPlayerDeathRoom(room);
+        level.SaveLevelLog();
+    }
+
+    private GameObject FindClosestRoomToPlayer(Vector3 playerPosition)
+    {
+
+        GameObject closestRoom = null;
+        float minDistance = float.MaxValue;
+
+        foreach (var kvp in level.roomsDictionary2)
+        {
+            GameObject room = kvp.Value;
+            float distance = Vector3.Distance(playerPosition, room.transform.position);
+            if (distance < minDistance)
+            {
+                minDistance = distance;
+                closestRoom = room;
+            }
+        }
+        return closestRoom;
     }
 }

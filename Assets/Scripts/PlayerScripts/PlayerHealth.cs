@@ -198,6 +198,7 @@ public class PlayerHealth : MonoBehaviour
         {
             PlayerInventory playerInventory = GetComponent<PlayerInventory>();
             endgameManager.ShowEndgameDeath(lastHittedByTag, playerInventory.inventory);
+            endgameManager.SaveDeathLog(gameObject.transform.position);
         }
 
     }

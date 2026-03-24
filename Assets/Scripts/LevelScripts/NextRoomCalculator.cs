@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,6 +44,8 @@ public class NextRoomCalculator : MonoBehaviour
             yield break;
 
         enabledTemporarily = true;
+
+        Vector2Int currentGrid = GetCurrentRoomGrid(other.transform.position);
 
         Collider doorCollider = GetComponent<Collider>() ?? GetComponentInChildren<Collider>();
         if (doorCollider != null)
@@ -93,6 +96,10 @@ public class NextRoomCalculator : MonoBehaviour
             : nextRoomObj.transform.position;
 
         other.transform.root.position = spawnPos;
+
+        Vector2Int nextGrid = nextRoomGrid.Value;
+
+        level.AddPathToRoute(new Paths(currentGrid, nextGrid));
 
         MoveCamera(targetPos);
 
@@ -177,6 +184,33 @@ public class NextRoomCalculator : MonoBehaviour
 
         Debug.LogWarning($"Dirección no reconocida para la puerta {doorName}");
         return currentRoomPos;
+    }
+
+    Vector2Int GetCurrentRoomGrid(Vector3 playerPos)
+    {
+        if (level == null)
+            level = FindAnyObjectByType<LevelGenerator>();
+
+        if (level == null)
+        {
+            Debug.LogError("LevelGenerator no encontrado");
+            return Vector2Int.zero;
+        }
+
+        int gridX = Mathf.RoundToInt(playerPos.x / level.offsetW);
+        int gridY = Mathf.RoundToInt(playerPos.z / level.offsetH);
+        Debug.Log("PREV ROOM: " + gridX  + " , " + gridY);
+        return new Vector2Int(gridX, gridY);
+    }
+
+    GameObject GetCurrentRoom(Vector3 playerPos)
+    {
+        Vector2Int grid = GetCurrentRoomGrid(playerPos);
+
+        if (level.roomsDictionary2.TryGetValue(grid, out GameObject room))
+            return room;
+
+        return null;
     }
 
     Vector2Int? FindNextRoomGrid(Vector3 targetPos)

@@ -36,6 +36,7 @@ public class LevelGenerator : MonoBehaviour
     // public Dictionary<string, Vector3> roomsDictionary = new Dictionary<string, Vector3>();
     public Dictionary<Vector2Int, GameObject> roomsDictionary2 = new Dictionary<Vector2Int, GameObject>();
     public Dictionary<Vector2Int, RoomLog> roomLogs = new Dictionary<Vector2Int, RoomLog>();
+    public LevelLayoutLog log;
 
     private MinimapBehaviour minimapBehaviour;
 
@@ -68,8 +69,7 @@ public class LevelGenerator : MonoBehaviour
 
     public string GetLevelLayoutLog()
     {
-        LevelLayoutLog log = new LevelLayoutLog();
-        log.levelId = levelId;
+        log.rooms.Clear();
 
         foreach (RoomLog r in roomLogs.Values)
         {
@@ -79,6 +79,12 @@ public class LevelGenerator : MonoBehaviour
 
         log.date = System.DateTime.Now.ToString();
         return JsonConvert.SerializeObject(log, Formatting.None);
+    }
+    public void InitializeLevelLog()
+    {
+        log = new LevelLayoutLog();
+        log.levelId = levelId;
+        log.date = System.DateTime.Now.ToString();
     }
     public void InitializeRoomLogs()
     {
@@ -114,6 +120,27 @@ public class LevelGenerator : MonoBehaviour
                 r.item = item;
             }
         }
+    }
+
+    public void MarkPlayerDeathRoom(GameObject room)
+    {
+        if (room == null) return;
+        foreach (var kvp in roomsDictionary2)
+        {
+            if (kvp.Value == room)
+            {
+                if (roomLogs.ContainsKey(kvp.Key))
+                {
+                    roomLogs[kvp.Key].playerDied = true;
+                }
+                return;
+            }
+        }
+    }
+
+    public void AddPathToRoute(Paths path)
+    {
+        log.paths.Add(path);
     }
 
     public void SaveLevelLog()

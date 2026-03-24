@@ -1289,6 +1289,10 @@ PrefabInstance:
       value: EndgameManagerGO
       objectReference: {fileID: 0}
     - target: {fileID: 8269909501135449399, guid: 149a16642a3221045b23d37a3e79609e, type: 3}
+      propertyPath: level
+      value: 
+      objectReference: {fileID: 1391195160}
+    - target: {fileID: 8269909501135449399, guid: 149a16642a3221045b23d37a3e79609e, type: 3}
       propertyPath: timerGO
       value: 
       objectReference: {fileID: 1398573763}

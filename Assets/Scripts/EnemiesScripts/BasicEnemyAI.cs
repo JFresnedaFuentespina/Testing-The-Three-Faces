@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.AI;
-using UnityEditorInternal;
 
 public class BasicEnemyAI : MonoBehaviour
 {

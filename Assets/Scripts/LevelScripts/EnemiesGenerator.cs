@@ -49,7 +49,7 @@ public class EnemiesGenerator : MonoBehaviour
             return;
         }
 
-        Transform suelo = transform.Find("Suelo");
+        Transform suelo = transform.Find("SueloSpawn");
         if (suelo == null)
         {
             Debug.LogWarning("No se encontró el objeto 'Suelo'. Se usará posición relativa.");

@@ -139,11 +139,11 @@ public class LevelGenerator : MonoBehaviour
     }
     public void RegisterKeyRoom(Vector2Int grid)
     {
+        Debug.Log("Habitación: " + roomLogs[grid].hasKey);
         if (!roomLogs.ContainsKey(grid))
             return;
 
         roomLogs[grid].hasKey = true;
-        Debug.Log("Habitación: " + roomLogs[grid].hasKey);
     }
 
     public void AddPathToRoute(Paths path)

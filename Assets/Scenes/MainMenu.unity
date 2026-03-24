@@ -1219,6 +1219,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LoadLevel1
   videoPlayer: {fileID: 322482522}
   playButton: {fileID: 352647610}
+  activeAPI: 0
 --- !u!4 &1075016141
 Transform:
   m_ObjectHideFlags: 0

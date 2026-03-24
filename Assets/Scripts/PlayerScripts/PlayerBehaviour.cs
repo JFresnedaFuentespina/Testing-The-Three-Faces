@@ -133,19 +133,24 @@ public class PlayerBehaviour : MonoBehaviour
 
         Vector3 movement = moveDir * velocity * Time.fixedDeltaTime;
 
-        rb.MovePosition(rb.position + movement);
+        Vector3 targetVelocity = moveDir * velocity;
 
-        currentSpeed = (rb.position - lastPosition).magnitude / Time.fixedDeltaTime;
-        lastPosition = rb.position;
+        // Mantener la velocidad en Y por si hay gravedad
+        targetVelocity.y = rb.linearVelocity.y;
+
+        rb.linearVelocity = targetVelocity;
+
+        // Para calcular la Speed del Animator, usa la magnitud de la velocidad
+        float horizontalSpeed = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z).magnitude;
 
         if (!changeCharacter.showingGhost)
         {
-            animatorEsqueleto.SetFloat("Speed", currentSpeed);
+            animatorEsqueleto.SetFloat("Speed", horizontalSpeed);
             animatorEsqueleto.SetBool("HasShield", hasShield);
         }
         else
         {
-            animatorFantasma.SetFloat("Speed", currentSpeed);
+            animatorFantasma.SetFloat("Speed", horizontalSpeed);
         }
     }
 

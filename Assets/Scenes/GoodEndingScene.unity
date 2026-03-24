@@ -34846,7 +34846,6 @@ GameObject:
   - component: {fileID: 1916484174}
   - component: {fileID: 1916484173}
   - component: {fileID: 1916484172}
-  - component: {fileID: 1916484175}
   - component: {fileID: 1916484176}
   - component: {fileID: 1916484177}
   - component: {fileID: 1916484178}
@@ -34975,20 +34974,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!114 &1916484175
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1916484170}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9938681176362b34ba7d0e7b8973912b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: PlayerHealthAssembly::MoveCameraAfterDialogue
-  moveDistance: 10
-  moveDuration: 5
 --- !u!328 &1916484176
 VideoPlayer:
   m_ObjectHideFlags: 0
@@ -35038,6 +35023,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: PlayerHealthAssembly::PlayVideoInstant
   videoPlayer: {fileID: 1916484176}
+  gameLog:
+    date: 
+    level1:
+      levelId: 0
+      date: 
+      rooms: []
+      paths: []
+    level2:
+      levelId: 0
+      date: 
+      rooms: []
+      paths: []
+    level3:
+      levelId: 0
+      date: 
+      rooms: []
+      paths: []
+    isGoodEnding: 0
+    isDeathEnding: 0
+    score: 0
+    time: 0
+  activeAPI: 0
 --- !u!114 &1916484178
 MonoBehaviour:
   m_ObjectHideFlags: 0

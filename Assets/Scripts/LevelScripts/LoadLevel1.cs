@@ -10,6 +10,7 @@ public class LoadLevel1 : MonoBehaviour
     public VideoPlayer videoPlayer;
     public Button playButton;
     private bool isLoading = false;
+    public bool activeAPI = false;
 
     void Start()
     {
@@ -64,8 +65,10 @@ public class LoadLevel1 : MonoBehaviour
     private IEnumerator LoadLogin()
     {
         DeleteFiles();
+        string nextScene = "Level1Scene";
+        if (activeAPI) nextScene = "LoginScene";
 
-        AsyncOperation op = SceneManager.LoadSceneAsync("Level1Scene");
+        AsyncOperation op = SceneManager.LoadSceneAsync(nextScene);
         op.allowSceneActivation = false;
 
         // Pequeña espera para asegurarnos que el último frame se dibuje

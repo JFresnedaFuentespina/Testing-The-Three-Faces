@@ -10,6 +10,7 @@ public class VideoTriggerBehaviour : MonoBehaviour
     private VideoPlayer videoPlayer;
     public PostScore postScoreScript;
     public GameLog gameLog;
+    public bool activeAPI = false;
 
 
     void Start()
@@ -58,7 +59,9 @@ public class VideoTriggerBehaviour : MonoBehaviour
     private void OnVideoFinished(VideoPlayer vp)
     {
         SaveGame();
-        SceneManager.LoadScene("Classifications");
+        string nextScene = "Classifications";
+        if (!activeAPI) nextScene = "MainMenu";
+        SceneManager.LoadScene(nextScene);
     }
 
     void OnDestroy()

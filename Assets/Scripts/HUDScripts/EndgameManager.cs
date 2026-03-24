@@ -33,6 +33,7 @@ public class EndgameManager : MonoBehaviour
     [Header("PauseMenuManager")]
     public GameObject pauseMenuManager;
     public static event System.Action OnResetGameData;
+    public bool activeAPI = false;
 
 
     [Header("Level Generator")]
@@ -85,7 +86,7 @@ public class EndgameManager : MonoBehaviour
 
         scoreTxt.text += scoreGenerator.score;
 
-        postScore.PostScoreToAPI();
+        if (activeAPI) postScore.PostScoreToAPI();
     }
 
     public void ExitGame()

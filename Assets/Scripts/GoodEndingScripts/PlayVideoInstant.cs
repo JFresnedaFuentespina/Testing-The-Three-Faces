@@ -8,6 +8,7 @@ public class PlayVideoInstant : MonoBehaviour
 {
     public VideoPlayer videoPlayer;
     public GameLog gameLog;
+    public bool activeAPI = false;
 
     void Awake()
     {
@@ -27,7 +28,9 @@ public class PlayVideoInstant : MonoBehaviour
     private void OnVideoFinished(VideoPlayer vp)
     {
         SaveGame();
-        SceneManager.LoadScene("Classifications");
+        string nextScene = "Classifications";
+        if (!activeAPI) nextScene = "MainMenu";
+        SceneManager.LoadScene(nextScene);
     }
 
     public void SaveGame()

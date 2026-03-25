@@ -8419,6 +8419,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8545559143982245474, guid: 651dc996a679e43418f2fce0f6a20f82, type: 3}
+      propertyPath: message
+      value: 
+      objectReference: {fileID: 2067796232}
+    - target: {fileID: 8545559143982245474, guid: 651dc996a679e43418f2fce0f6a20f82, type: 3}
       propertyPath: minimap
       value: 
       objectReference: {fileID: 2067796229}
@@ -9569,7 +9573,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1878606772249265038, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 140
+      value: 211
       objectReference: {fileID: 0}
     - target: {fileID: 2150596612669963365, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: mainCamera
@@ -10076,6 +10080,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!1 &2067796232 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3687797981514050686, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+  m_PrefabInstance: {fileID: 2067796228}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2075837684
 GameObject:
   m_ObjectHideFlags: 0

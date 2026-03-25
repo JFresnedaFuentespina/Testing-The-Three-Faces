@@ -2001,6 +2001,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 679181405}
   m_CullTransparentMesh: 0
+--- !u!1 &702460744 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3687797981514050686, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+  m_PrefabInstance: {fileID: 779359650}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &779359650
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2079,7 +2084,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1878606772249265038, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 140
+      value: 211
       objectReference: {fileID: 0}
     - target: {fileID: 2150596612669963365, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: mainCamera
@@ -3055,6 +3060,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8545559143982245474, guid: 651dc996a679e43418f2fce0f6a20f82, type: 3}
+      propertyPath: message
+      value: 
+      objectReference: {fileID: 702460744}
     - target: {fileID: 8545559143982245474, guid: 651dc996a679e43418f2fce0f6a20f82, type: 3}
       propertyPath: minimap
       value: 

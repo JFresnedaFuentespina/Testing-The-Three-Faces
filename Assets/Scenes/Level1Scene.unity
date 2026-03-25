@@ -338,6 +338,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8092397225664160277, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
   m_PrefabInstance: {fileID: 2010680791}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &870729953 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3687797981514050686, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+  m_PrefabInstance: {fileID: 2010680791}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &911072702 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4783482992638389572, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
@@ -1545,6 +1550,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8545559143982245474, guid: 651dc996a679e43418f2fce0f6a20f82, type: 3}
+      propertyPath: message
+      value: 
+      objectReference: {fileID: 870729953}
     - target: {fileID: 8545559143982245474, guid: 651dc996a679e43418f2fce0f6a20f82, type: 3}
       propertyPath: minimap
       value: 

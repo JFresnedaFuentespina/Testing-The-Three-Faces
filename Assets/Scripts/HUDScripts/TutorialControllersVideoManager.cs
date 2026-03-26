@@ -13,9 +13,11 @@ public class VideoManagerFinal : MonoBehaviour
         videoPlayer.source = VideoSource.Url;
         videoPlayer.url = Application.streamingAssetsPath + "/tutorial_t3f.mp4";
         playButton.onClick.AddListener(PlayVideo);
+        videoPlayer.loopPointReached += OnVideoEnd;
     }
     public void PlayVideo()
     {
+        Cursor.visible = false;
         StartCoroutine(PrepareAndPlay());
     }
 
@@ -28,5 +30,11 @@ public class VideoManagerFinal : MonoBehaviour
         }
 
         videoPlayer.Play();
+    }
+
+    void OnVideoEnd(VideoPlayer vp)
+    {
+        Cursor.visible = true;
+        vp.Stop();
     }
 }

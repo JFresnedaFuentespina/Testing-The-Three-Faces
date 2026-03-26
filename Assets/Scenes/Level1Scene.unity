@@ -1467,6 +1467,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2010680801}
     - target: {fileID: 7628867410140996963, guid: 651dc996a679e43418f2fce0f6a20f82, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7628867410140996963, guid: 651dc996a679e43418f2fce0f6a20f82, type: 3}
       propertyPath: levelGenerator
       value: 
       objectReference: {fileID: 1391195160}

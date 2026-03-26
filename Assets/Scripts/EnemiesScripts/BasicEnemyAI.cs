@@ -9,8 +9,8 @@ public class BasicEnemyAI : MonoBehaviour
     public float visDist = 10f;
     public float attackDist = 0.5f;
     public float moveSpeed = 1f;
-    private NavMeshAgent agent;
-    private Transform player;
+    public NavMeshAgent agent;
+    public Transform player;
     public bool attackAndMove = false;
     public bool isFrozen = false;
     // Empuje
@@ -21,15 +21,20 @@ public class BasicEnemyAI : MonoBehaviour
     private float pushElapsed;
     public enum STATE
     {
-        IDLE, PURSUE, ATTACK, PUSHED
+        IDLE, PURSUE, ATTACK, PUSHED, JUMP_ATTACK,
     }
 
     public STATE state;
 
-    void Start()
+    public void Start()
+    {
+        animatorManager = GetComponent<ZombieAnimatorManager>();
+        InitComponents();
+    }
+
+    protected virtual void InitComponents()
     {
         state = STATE.IDLE;
-        animatorManager = GetComponent<ZombieAnimatorManager>();
         enemyLife = GetComponent<EnemyLife>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
@@ -38,12 +43,12 @@ public class BasicEnemyAI : MonoBehaviour
         agent.isStopped = true;
     }
 
-    void Update()
+    public void Update()
     {
         Process();
     }
 
-    void Process()
+    protected virtual void Process()
     {
         if (!enemyLife.GetIsAlive())
         {
@@ -85,7 +90,7 @@ public class BasicEnemyAI : MonoBehaviour
         return false;
     }
 
-    public void Death()
+    protected virtual void Death()
     {
         agent.isStopped = true;
         agent.speed = 0f;
@@ -95,7 +100,7 @@ public class BasicEnemyAI : MonoBehaviour
         }
     }
 
-    public void Idle()
+    protected virtual void Idle()
     {
         agent.isStopped = true;
         if (animatorManager != null)
@@ -108,7 +113,7 @@ public class BasicEnemyAI : MonoBehaviour
         }
     }
 
-    public void Pursue()
+    protected virtual void Pursue()
     {
         if (isFrozen) return;
 
@@ -133,7 +138,7 @@ public class BasicEnemyAI : MonoBehaviour
         }
     }
 
-    public void Attack()
+    protected virtual void Attack()
     {
         if (!attackAndMove)
         {
@@ -155,7 +160,7 @@ public class BasicEnemyAI : MonoBehaviour
         }
     }
 
-    public void Pushed()
+    protected virtual void Pushed()
     {
         pushElapsed += Time.deltaTime;
 

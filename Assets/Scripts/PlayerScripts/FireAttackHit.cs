@@ -36,16 +36,12 @@ public class FireAttackHit : MonoBehaviour
         }
         if (other.CompareTag("BossCara"))
         {
-            CaraAnimatorController caraAi = other.GetComponent<CaraAnimatorController>();
-            if (caraAi != null)
+            CaraFSM caraFSM = other.GetComponent<CaraFSM>();
+            if (caraFSM != null)
             {
                 enemyLife.Damage(attackDamage);
-                caraAi.ReactToHit();
+                caraFSM.Hit();
                 enemyLife.UpdateIsAlive();
-                if (!enemyLife.GetIsAlive())
-                {
-                    caraAi.ReactToDeath();
-                }
             }
             Destroy(gameObject, destroyDelay);
         }

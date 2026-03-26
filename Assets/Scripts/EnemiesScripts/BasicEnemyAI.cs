@@ -19,7 +19,6 @@ public class BasicEnemyAI : MonoBehaviour
     private float pushForce;
     private float pushDuration;
     private float pushElapsed;
-    private float stunnedSpeed = 0f;
     public enum STATE
     {
         IDLE, PURSUE, ATTACK, PUSHED
@@ -149,6 +148,10 @@ public class BasicEnemyAI : MonoBehaviour
         {
             agent.isStopped = false;
             state = STATE.PURSUE;
+        }
+        if (!CanSeePlayer())
+        {
+            state = STATE.IDLE;
         }
     }
 

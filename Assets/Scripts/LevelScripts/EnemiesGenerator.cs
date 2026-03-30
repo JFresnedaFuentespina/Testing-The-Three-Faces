@@ -145,7 +145,7 @@ public class EnemiesGenerator : MonoBehaviour
     }
     public Vector2Int GetRoomGrid()
     {
-        foreach (var room in level.roomsDictionary2)
+        foreach (var room in level.roomsDictionary)
         {
             if (room.Value == gameObject)
                 return room.Key;

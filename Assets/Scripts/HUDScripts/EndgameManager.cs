@@ -258,7 +258,7 @@ public class EndgameManager : MonoBehaviour
         GameObject closestRoom = null;
         float minDistance = float.MaxValue;
 
-        foreach (var kvp in level.roomsDictionary2)
+        foreach (var kvp in level.roomsDictionary)
         {
             GameObject room = kvp.Value;
             float distance = Vector3.Distance(playerPosition, room.transform.position);

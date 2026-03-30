@@ -207,7 +207,7 @@ public class NextRoomCalculator : MonoBehaviour
     {
         Vector2Int grid = GetCurrentRoomGrid(playerPos);
 
-        if (level.roomsDictionary2.TryGetValue(grid, out GameObject room))
+        if (level.roomsDictionary.TryGetValue(grid, out GameObject room))
             return room;
 
         return null;
@@ -215,18 +215,18 @@ public class NextRoomCalculator : MonoBehaviour
 
     Vector2Int? FindNextRoomGrid(Vector3 targetPos)
     {
-        if (level.roomsDictionary2.Count == 0) return null;
+        if (level.roomsDictionary.Count == 0) return null;
 
         int gridX = Mathf.RoundToInt(targetPos.x / level.offsetW);
         int gridY = Mathf.RoundToInt(targetPos.z / level.offsetH);
         Vector2Int targetGrid = new Vector2Int(gridX, gridY);
 
         // Verificar que el grid exista exactamente
-        if (level.roomsDictionary2.ContainsKey(targetGrid))
+        if (level.roomsDictionary.ContainsKey(targetGrid))
             return targetGrid;
 
         // Si no existe, buscar el más cercano (opcional, pero cuidado con boss)
-        Vector2Int closest = level.roomsDictionary2.Keys
+        Vector2Int closest = level.roomsDictionary.Keys
             .OrderBy(k => (k - targetGrid).sqrMagnitude) // usando sqrMagnitude es más eficiente
             .First();
 
@@ -235,7 +235,7 @@ public class NextRoomCalculator : MonoBehaviour
 
     GameObject FindRoomObject(Vector2Int gridPos)
     {
-        if (level.roomsDictionary2.TryGetValue(gridPos, out GameObject room))
+        if (level.roomsDictionary.TryGetValue(gridPos, out GameObject room))
             return room;
         return null;
     }
@@ -350,7 +350,7 @@ public class NextRoomCalculator : MonoBehaviour
 
         // Buscar habitación por grid
         GameObject roomObj = null;
-        if (level.roomsDictionary2.TryGetValue(roomGrid, out GameObject foundRoom))
+        if (level.roomsDictionary.TryGetValue(roomGrid, out GameObject foundRoom))
             roomObj = foundRoom;
 
         if (roomObj != null)

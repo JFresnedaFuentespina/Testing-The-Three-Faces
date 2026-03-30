@@ -32,8 +32,7 @@ public class LevelGenerator : MonoBehaviour
     private Vector3? forcedBossRoomPos = null;
     public GameObject character;
 
-    // public Dictionary<string, Vector3> roomsDictionary = new Dictionary<string, Vector3>();
-    public Dictionary<Vector2Int, GameObject> roomsDictionary2 = new Dictionary<Vector2Int, GameObject>();
+    public Dictionary<Vector2Int, GameObject> roomsDictionary = new Dictionary<Vector2Int, GameObject>();
     public Dictionary<Vector2Int, RoomLog> roomLogs = new Dictionary<Vector2Int, RoomLog>();
     public LevelLayoutLog log;
 
@@ -53,7 +52,7 @@ public class LevelGenerator : MonoBehaviour
         levelWidth = width;
         this.levelId = levelId;
         levelMap.Clear();
-        roomsDictionary2.Clear();
+        roomsDictionary.Clear();
 
         cameraDialogueManager = GameObject.FindAnyObjectByType<CameraDialogueManager>();
 
@@ -88,7 +87,7 @@ public class LevelGenerator : MonoBehaviour
     public void InitializeRoomLogs()
     {
         roomLogs.Clear();
-        foreach (var kvp in roomsDictionary2)
+        foreach (var kvp in roomsDictionary)
         {
             RoomLog r = new RoomLog();
             r.x = kvp.Key.x;
@@ -124,7 +123,7 @@ public class LevelGenerator : MonoBehaviour
     public void MarkPlayerDeathRoom(GameObject room)
     {
         if (room == null) return;
-        foreach (var kvp in roomsDictionary2)
+        foreach (var kvp in roomsDictionary)
         {
             if (kvp.Value == room)
             {
@@ -184,7 +183,7 @@ public class LevelGenerator : MonoBehaviour
             roomList.Add(room);
             ApplyRoomFog(room);
             SpawnPlayerIfFirstRoom(i, position);
-            roomsDictionary2[currentGrid] = room;
+            roomsDictionary[currentGrid] = room;
             // TrySpawnBossRoom(i, position);
             currentGrid = GetNextFreeGrid(currentGrid);
         }
@@ -208,7 +207,7 @@ public class LevelGenerator : MonoBehaviour
         {
             Vector2Int next = currentGrid + dir;
 
-            if (!roomsDictionary2.ContainsKey(next))
+            if (!roomsDictionary.ContainsKey(next))
                 return next;
         }
 
@@ -243,11 +242,11 @@ public class LevelGenerator : MonoBehaviour
         if (bossRoomSpawned) return;
 
         // Tomamos la última habitación generada como base
-        Vector2Int lastRoomGrid = roomsDictionary2.Keys.Last();
+        Vector2Int lastRoomGrid = roomsDictionary.Keys.Last();
         Vector2Int bossGrid = lastRoomGrid + Vector2Int.up; // intención: encima de la última
 
         // Buscar un lugar libre, subiendo si ya hay algo
-        while (roomsDictionary2.ContainsKey(bossGrid))
+        while (roomsDictionary.ContainsKey(bossGrid))
         {
             bossGrid += Vector2Int.up;
         }
@@ -257,7 +256,7 @@ public class LevelGenerator : MonoBehaviour
         GameObject bossRoom = Instantiate(bossPrefabToUse, bossPos, Quaternion.identity, transform);
         bossRoom.name = "Boss_Forced";
 
-        roomsDictionary2[bossGrid] = bossRoom;
+        roomsDictionary[bossGrid] = bossRoom;
         bossRoomSpawned = true;
 
         // Configurar puertas
@@ -266,7 +265,7 @@ public class LevelGenerator : MonoBehaviour
 
     private void InitMinimap()
     {
-        minimapBehaviour.initMinimap(this.roomsDictionary2, character);
+        minimapBehaviour.initMinimap(this.roomsDictionary, character);
         minimapBehaviour.MovePlayerToRoom("Room_0");
     }
     private void SetupAllRoomDoors(List<GameObject> roomList, GameObject treasureRoom)
@@ -286,12 +285,12 @@ public class LevelGenerator : MonoBehaviour
         Transform backDoor = room.transform.Find("CuartaPared/Door_Prefab_Closed_Back");
 
         // Obtener la posición en grid
-        Vector2Int roomGrid = roomsDictionary2.FirstOrDefault(r => r.Value == room).Key;
+        Vector2Int roomGrid = roomsDictionary.FirstOrDefault(r => r.Value == room).Key;
 
-        bool hasLeft = roomsDictionary2.ContainsKey(roomGrid + Vector2Int.left);
-        bool hasRight = roomsDictionary2.ContainsKey(roomGrid + Vector2Int.right);
-        bool hasFront = roomsDictionary2.ContainsKey(roomGrid + Vector2Int.up);
-        bool hasBack = roomsDictionary2.ContainsKey(roomGrid + Vector2Int.down);
+        bool hasLeft = roomsDictionary.ContainsKey(roomGrid + Vector2Int.left);
+        bool hasRight = roomsDictionary.ContainsKey(roomGrid + Vector2Int.right);
+        bool hasFront = roomsDictionary.ContainsKey(roomGrid + Vector2Int.up);
+        bool hasBack = roomsDictionary.ContainsKey(roomGrid + Vector2Int.down);
 
         // Activar puertas según vecinos
         if (leftDoor != null) leftDoor.gameObject.SetActive(hasLeft);
@@ -309,7 +308,7 @@ public class LevelGenerator : MonoBehaviour
         {
             Vector2Int neighborPos = roomGrid + dir.Key;
 
-            if (roomsDictionary2.TryGetValue(neighborPos, out GameObject neighborRoom))
+            if (roomsDictionary.TryGetValue(neighborPos, out GameObject neighborRoom))
             {
                 if (neighborRoom.name == "TreasureRoom" && dir.Value != null)
                 {
@@ -329,7 +328,7 @@ public class LevelGenerator : MonoBehaviour
         {
             Vector2Int neighborPos = roomGrid + dir.Key;
 
-            if (roomsDictionary2.TryGetValue(neighborPos, out GameObject neighborRoom))
+            if (roomsDictionary.TryGetValue(neighborPos, out GameObject neighborRoom))
             {
                 if (neighborRoom.name.Contains("Boss") && dir.Value != null)
                 {
@@ -344,13 +343,13 @@ public class LevelGenerator : MonoBehaviour
     public GameObject SpawnTreasureRoom()
     {
         // Elegimos la habitación de borde más a la izquierda
-        Vector2Int baseGrid = roomsDictionary2.Keys.OrderBy(g => g.x).First();
+        Vector2Int baseGrid = roomsDictionary.Keys.OrderBy(g => g.x).First();
 
         Vector2Int treasureGrid = (baseGrid.x == 0) ? baseGrid + Vector2Int.left : baseGrid + Vector2Int.right;
 
         // Buscar un lugar libre, desplazando si ya hay habitación
         int offset = 0;
-        while (roomsDictionary2.ContainsKey(treasureGrid))
+        while (roomsDictionary.ContainsKey(treasureGrid))
         {
             offset++;
             treasureGrid += (baseGrid.x == 0) ? Vector2Int.left : Vector2Int.right;
@@ -360,7 +359,7 @@ public class LevelGenerator : MonoBehaviour
         GameObject treasureRoom = Instantiate(treasureRoomPrefab, treasurePos, Quaternion.identity, transform);
         treasureRoom.name = "TreasureRoom";
 
-        roomsDictionary2[treasureGrid] = treasureRoom;
+        roomsDictionary[treasureGrid] = treasureRoom;
 
         // Configurar puertas según vecinos
         SetupRoomDoors(treasureRoom);

@@ -13,7 +13,7 @@ public class SpawnKeyInRoom : MonoBehaviour
     void Start()
     {
         levelGenerator = GetComponent<LevelGenerator>();
-        roomsDictionary2 = levelGenerator.roomsDictionary2;
+        roomsDictionary2 = levelGenerator.roomsDictionary;
         selectedRoomGrid = new Vector2Int(-999, -999); // indicador de "no seleccionado"
     }
 

@@ -4,6 +4,7 @@ using UnityEngine.AI;
 
 public class CantoMovement : MonoBehaviour
 {
+    //! REHACER USANDO COMO PADRE LA CLASE BasicEnemyAI, PARA REUTILIZAR CODIGO Y SIMPLIFICAR ESTE SCRIPT
     public float moveSpeed = 3f;
     public float spawnDelay = 2.5f;
     public float attackDistance = 3f;

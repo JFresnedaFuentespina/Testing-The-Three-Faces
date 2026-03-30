@@ -4,6 +4,7 @@ using UnityEngine.AI;
 
 public class BasicEnemyAI : MonoBehaviour
 {
+    //! SEPARAR EL ZOMBIEANIMATORMANAGER EN UN SCRIPT HIJO QUE HEREDE DE ESTA CLASE
     public ZombieAnimatorManager animatorManager;
     public EnemyLife enemyLife;
     public float visDist = 10f;

@@ -4,6 +4,7 @@ using UnityEngine.AI;
 
 public class CruzMovement : MonoBehaviour
 {
+    //! REHACER USANDO COMO PADRE LA CLASE BasicEnemyAI, PARA REUTILIZAR CODIGO Y SIMPLIFICAR ESTE SCRIPT
     public float moveSpeed = 3f;
     public float punch3MoveSpeed = 6f;
     public float spawnDelay = 2.5f;

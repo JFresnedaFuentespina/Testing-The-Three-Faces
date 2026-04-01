@@ -175,8 +175,8 @@ public class ChangeCharacter : MonoBehaviour
     IEnumerator FreezeBasicEnemyAI()
     {
         // Obtener todos los enemigos usando el wrapper que tienes
-        BasicEnemyAI[] enemiesArray = FindObjectsByType<BasicEnemyAI>(FindObjectsSortMode.None);
-        List<BasicEnemyAI> enemies = new List<BasicEnemyAI>(enemiesArray);
+        ZombieFSM[] enemiesArray = FindObjectsByType<ZombieFSM>(FindObjectsSortMode.None);
+        List<ZombieFSM> enemies = new List<ZombieFSM>(enemiesArray);
 
         if (enemies.Count == 0)
         {

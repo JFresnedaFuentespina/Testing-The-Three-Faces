@@ -2387,17 +2387,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63e720a1f82f7c14b9ab207bc8c522cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: PlayerHealthAssembly::CaraFSM
-  animatorManager: {fileID: 0}
-  enemyLife: {fileID: 0}
+  enemyLife: {fileID: 3096043836870015538}
   visDist: 20
   attackDist: 2
   moveSpeed: 3
-  agent: {fileID: 0}
+  agent: {fileID: 3316389659019996837}
   player: {fileID: 0}
   attackAndMove: 0
   isFrozen: 0
   state: 0
-  caraAnimator: {fileID: 0}
+  caraAnimator: {fileID: 5791129443608646107}
   caraDialogueManager: {fileID: 8497710860642748129}
   isJumping: 0
   isAttacking: 0
@@ -2438,7 +2437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88110a81aabe46c48871f3e421a85f3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: PlayerHealthAssembly::CaraAnimatorController1
-  animator: {fileID: 0}
+  animator: {fileID: 2550935751187727211}
 --- !u!1001 &2890924121744548270
 PrefabInstance:
   m_ObjectHideFlags: 0

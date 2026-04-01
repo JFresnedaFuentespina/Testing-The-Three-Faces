@@ -2,9 +2,8 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.AI;
 
-public class BasicEnemyAI : MonoBehaviour
+public class ZombieFSM : BasicEnemyInterface
 {
-    //! SEPARAR EL ZOMBIEANIMATORMANAGER EN UN SCRIPT HIJO QUE HEREDE DE ESTA CLASE
     public ZombieAnimatorManager animatorManager;
     public EnemyLife enemyLife;
     public float visDist = 10f;
@@ -33,7 +32,7 @@ public class BasicEnemyAI : MonoBehaviour
         InitComponents();
     }
 
-    protected virtual void InitComponents()
+    protected override void InitComponents()
     {
         state = STATE.IDLE;
         enemyLife = GetComponent<EnemyLife>();
@@ -49,7 +48,7 @@ public class BasicEnemyAI : MonoBehaviour
         Process();
     }
 
-    protected virtual void Process()
+    protected override void Process()
     {
         if (!enemyLife.GetIsAlive())
         {
@@ -91,7 +90,7 @@ public class BasicEnemyAI : MonoBehaviour
         return false;
     }
 
-    protected virtual void Death()
+    protected override void Death()
     {
         agent.isStopped = true;
         agent.speed = 0f;
@@ -101,7 +100,7 @@ public class BasicEnemyAI : MonoBehaviour
         }
     }
 
-    protected virtual void Idle()
+    protected override void Idle()
     {
         agent.isStopped = true;
         if (animatorManager != null)
@@ -114,7 +113,7 @@ public class BasicEnemyAI : MonoBehaviour
         }
     }
 
-    protected virtual void Pursue()
+    protected override void Pursue()
     {
         if (isFrozen) return;
 
@@ -139,7 +138,7 @@ public class BasicEnemyAI : MonoBehaviour
         }
     }
 
-    protected virtual void Attack()
+    protected override void Attack()
     {
         if (!attackAndMove)
         {

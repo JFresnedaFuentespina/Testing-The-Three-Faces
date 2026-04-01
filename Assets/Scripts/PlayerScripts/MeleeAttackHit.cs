@@ -71,7 +71,7 @@ public class MeleeAttackHit : MonoBehaviour
                 {
                     other.GetComponent<EnemyMoveNavmesh>().SetStunned(2f);
                 }
-                other.GetComponent<BasicEnemyAI>().SetStunned(2f);
+                other.GetComponent<ZombieFSM>().SetStunned(2f);
             }
         }
     }

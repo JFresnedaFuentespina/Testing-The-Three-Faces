@@ -88,7 +88,7 @@ public class FireAttackHit : MonoBehaviour
         // Empujar enemigos al ser golpeados por una bola de fuego
         if (gameObject.CompareTag("Fireball"))
         {
-            BasicEnemyAI basicEnemyAI = other.GetComponent<BasicEnemyAI>();
+            ZombieFSM basicEnemyAI = other.GetComponent<ZombieFSM>();
             Vector3 pushDirection = other.transform.position - transform.position;
             if (basicEnemyAI != null)
             {

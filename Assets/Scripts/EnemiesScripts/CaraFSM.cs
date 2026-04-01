@@ -3,9 +3,31 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class CaraFSM : BasicEnemyAI
+public class CaraFSM : BasicEnemyInterface
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    public EnemyLife enemyLife;
+    public float visDist = 10f;
+    public float attackDist = 0.5f;
+    public float moveSpeed = 1f;
+    public NavMeshAgent agent;
+    public Transform player;
+    public bool attackAndMove = false;
+    public bool isFrozen = false;
+    // Empuje
+    private bool isPushed = false;
+    private Vector3 pushDirection;
+    private float pushForce;
+    private float pushDuration;
+    private float pushElapsed;
+    public enum STATE
+    {
+        IDLE, PURSUE, ATTACK, PUSHED, JUMP_ATTACK,
+    }
+
+    public STATE state;
+    
     [Header("Cara properties")]
     public CaraAnimatorController1 caraAnimator;
     public CaraDialogueManager caraDialogueManager;
@@ -30,7 +52,14 @@ public class CaraFSM : BasicEnemyAI
     protected override void InitComponents()
     {
         caraAnimator = GetComponent<CaraAnimatorController1>();
-        base.InitComponents();
+        
+        state = STATE.IDLE;
+        enemyLife = GetComponent<EnemyLife>();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = true;
+        agent.speed = moveSpeed;
+        agent.isStopped = true;
     }
 
     protected override void Process()
@@ -97,7 +126,7 @@ public class CaraFSM : BasicEnemyAI
             state = STATE.PURSUE;
         }
     }
-    protected virtual void Pursue()
+    protected override void Pursue()
     {
         if (isBusy() || isFrozen) return;
 

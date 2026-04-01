@@ -212,6 +212,7 @@ public class CruzFSM : BasicEnemyInterface
         float duration = cruzAnimator.animator.GetCurrentAnimatorStateInfo(0).length;
 
         yield return new WaitForSecondsRealtime(duration);
+        yield return null;
 
         FinishAttack();
     }

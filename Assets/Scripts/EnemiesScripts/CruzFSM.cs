@@ -161,6 +161,10 @@ public class CruzFSM : BasicEnemyInterface
     protected override void Attack()
     {
         if (isAttacking) return;
+        if (currentAttack != ATTACK_TYPE.NONE)
+        {
+            return;
+        }
         isAttacking = true;
         isWalking = false;
         attackTimer = 0f;
@@ -210,7 +214,6 @@ public class CruzFSM : BasicEnemyInterface
         yield return new WaitForSecondsRealtime(duration);
 
         FinishAttack();
-        isFinishingAttack = false;
     }
     public void Hit()
     {
@@ -278,6 +281,7 @@ public class CruzFSM : BasicEnemyInterface
         }
         state = STATE.PURSUE;
         currentAttack = ATTACK_TYPE.NONE;
+        isFinishingAttack = false;
     }
 
     protected override void Pushed()

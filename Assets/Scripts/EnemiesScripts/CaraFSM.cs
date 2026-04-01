@@ -294,6 +294,18 @@ public class CaraFSM : BasicEnemyInterface
         return false;
     }
 
+    public void Freeze()
+    {
+        isFrozen = true;
+        caraAnimator.animator.speed = 0f;
+        agent.isStopped = true;
+    }
+    public void UnFreeze()
+    {
+        isFrozen = false;
+        caraAnimator.animator.speed = 1f;
+        agent.isStopped = false;
 
+    }
 
 }

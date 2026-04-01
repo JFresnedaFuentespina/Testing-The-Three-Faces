@@ -134,43 +134,44 @@ public class ChangeCharacter : MonoBehaviour
 
     private void FreezeEnemies()
     {
-        StartCoroutine(FreezeEnemyMoves());
+        // StartCoroutine(FreezeEnemyMoves());
         StartCoroutine(FreezeBasicEnemyAI());
+        StartCoroutine(FreezeBossCara());
         StartCoroutine(FreezeBossCruz());
         StartCoroutine(FreezeBossCanto());
     }
 
-    IEnumerator FreezeEnemyMoves()
-    {
-        // Obtener todos los enemigos usando el wrapper que tienes
-        EnemyMove[] enemiesArray = FindObjectsByType<EnemyMove>(FindObjectsSortMode.None);
-        List<EnemyMove> enemies = new List<EnemyMove>(enemiesArray);
+    // IEnumerator FreezeEnemyMoves()
+    // {
+    //     // Obtener todos los enemigos usando el wrapper que tienes
+    //     EnemyMove[] enemiesArray = FindObjectsByType<EnemyMove>(FindObjectsSortMode.None);
+    //     List<EnemyMove> enemies = new List<EnemyMove>(enemiesArray);
 
-        if (enemies.Count == 0)
-        {
-            yield return null;
-        }
+    //     if (enemies.Count == 0)
+    //     {
+    //         yield return null;
+    //     }
 
-        Dictionary<EnemyMove, float> originalSpeeds = new Dictionary<EnemyMove, float>();
-        foreach (var enemy in enemies)
-        {
-            originalSpeeds[enemy] = enemy.velocity;
-            enemy.velocity = 0f;
-            Animator anim = enemy.GetComponent<Animator>();
-            if (anim != null)
-                anim.speed = 0f;
-        }
+    //     Dictionary<EnemyMove, float> originalSpeeds = new Dictionary<EnemyMove, float>();
+    //     foreach (var enemy in enemies)
+    //     {
+    //         originalSpeeds[enemy] = enemy.velocity;
+    //         enemy.velocity = 0f;
+    //         Animator anim = enemy.GetComponent<Animator>();
+    //         if (anim != null)
+    //             anim.speed = 0f;
+    //     }
 
-        yield return new WaitForSecondsRealtime(2f);
+    //     yield return new WaitForSecondsRealtime(2f);
 
-        foreach (var enemy in enemies)
-        {
-            enemy.velocity = originalSpeeds[enemy];
-            Animator anim = enemy.GetComponent<Animator>();
-            if (anim != null)
-                anim.speed = 1f;
-        }
-    }
+    //     foreach (var enemy in enemies)
+    //     {
+    //         enemy.velocity = originalSpeeds[enemy];
+    //         Animator anim = enemy.GetComponent<Animator>();
+    //         if (anim != null)
+    //             anim.speed = 1f;
+    //     }
+    // }
 
     IEnumerator FreezeBasicEnemyAI()
     {
@@ -192,15 +193,42 @@ public class ChangeCharacter : MonoBehaviour
 
         foreach (var enemy in enemies)
         {
-            enemy.ResetAgent();
+            if (enemy != null)
+            {
+                enemy.ResetAgent();
+            }
+        }
+    }
+
+    IEnumerator FreezeBossCara()
+    {
+        // Obtener todos los enemigos usando el wrapper que tienes
+        CaraFSM[] enemiesArray = FindObjectsByType<CaraFSM>(FindObjectsSortMode.None);
+        List<CaraFSM> enemies = new List<CaraFSM>(enemiesArray);
+
+        if (enemies.Count == 0)
+        {
+            yield return null;
+        }
+
+        foreach (var enemy in enemies)
+        {
+            enemy.Freeze();
+        }
+
+        yield return new WaitForSecondsRealtime(2f);
+
+        foreach (var enemy in enemies)
+        {
+            enemy.UnFreeze();
         }
     }
 
     IEnumerator FreezeBossCruz()
     {
         // Obtener todos los enemigos usando el wrapper que tienes
-        CruzMovement[] enemiesArray = FindObjectsByType<CruzMovement>(FindObjectsSortMode.None);
-        List<CruzMovement> enemies = new List<CruzMovement>(enemiesArray);
+        CruzFSM[] enemiesArray = FindObjectsByType<CruzFSM>(FindObjectsSortMode.None);
+        List<CruzFSM> enemies = new List<CruzFSM>(enemiesArray);
 
         if (enemies.Count == 0)
         {
@@ -222,8 +250,8 @@ public class ChangeCharacter : MonoBehaviour
 
     IEnumerator FreezeBossCanto()
     {
-        CantoMovement[] enemiesArray = FindObjectsByType<CantoMovement>(FindObjectsSortMode.None);
-        List<CantoMovement> enemies = new List<CantoMovement>(enemiesArray);
+        CantoFSM[] enemiesArray = FindObjectsByType<CantoFSM>(FindObjectsSortMode.None);
+        List<CantoFSM> enemies = new List<CantoFSM>(enemiesArray);
 
         if (enemies.Count == 0)
         {

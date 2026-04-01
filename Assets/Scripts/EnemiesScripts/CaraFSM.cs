@@ -10,7 +10,7 @@ public class CaraFSM : BasicEnemyInterface
     public EnemyLife enemyLife;
     public float visDist = 10f;
     public float attackDist = 0.5f;
-    public float moveSpeed = 1f;
+    public float moveSpeed = 5f;
     public NavMeshAgent agent;
     public Transform player;
     public bool attackAndMove = false;
@@ -23,11 +23,11 @@ public class CaraFSM : BasicEnemyInterface
     private float pushElapsed;
     public enum STATE
     {
-        IDLE, PURSUE, ATTACK, PUSHED, JUMP_ATTACK,
+        IDLE, PURSUE, ATTACK, PUSHED, JUMP_ATTACK, END
     }
 
     public STATE state;
-    
+
     [Header("Cara properties")]
     public CaraAnimatorController1 caraAnimator;
     public CaraDialogueManager caraDialogueManager;
@@ -37,6 +37,7 @@ public class CaraFSM : BasicEnemyInterface
     public float jumpAttackDist = 5f;
     private bool canJumpAttack = true;
     public float jumpCooldown = 10f;
+    private bool wasPaused = false;
 
     void Start()
     {
@@ -52,7 +53,6 @@ public class CaraFSM : BasicEnemyInterface
     protected override void InitComponents()
     {
         caraAnimator = GetComponent<CaraAnimatorController1>();
-        
         state = STATE.IDLE;
         enemyLife = GetComponent<EnemyLife>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -60,10 +60,31 @@ public class CaraFSM : BasicEnemyInterface
         agent.updateRotation = true;
         agent.speed = moveSpeed;
         agent.isStopped = true;
+        if (!agent.isOnNavMesh)
+        {
+            Debug.LogError("AGENT NOT ON NAVMESH");
+        }
     }
 
     protected override void Process()
     {
+        // Detectar pausa
+        if (Time.timeScale == 0f)
+        {
+            wasPaused = true;
+            agent.isStopped = true;
+            return;
+        }
+
+        // Si venimos de pausa → reactivar correctamente
+        if (wasPaused)
+        {
+            wasPaused = false;
+
+            agent.isStopped = false;
+            agent.ResetPath(); // 🔥 MUY IMPORTANTE
+        }
+
         if (!enemyLife.GetIsAlive())
         {
             Death();
@@ -77,6 +98,7 @@ public class CaraFSM : BasicEnemyInterface
                 case STATE.ATTACK: Attack(); break;
                 case STATE.JUMP_ATTACK: JumpAttack(); break;
                 case STATE.PUSHED: Pushed(); break;
+                default: break;
             }
         }
     }
@@ -90,6 +112,8 @@ public class CaraFSM : BasicEnemyInterface
         {
             caraAnimator.SetDeathTrigger();
         }
+        state = STATE.END;
+
     }
     public void Hit()
     {
@@ -106,7 +130,7 @@ public class CaraFSM : BasicEnemyInterface
 
         // espera a que la animación termine
         float duration = caraAnimator.animator.GetCurrentAnimatorStateInfo(0).length;
-        yield return new WaitForSeconds(duration);
+        yield return new WaitForSecondsRealtime(duration);
 
         agent.isStopped = false;
         isHit = false;
@@ -133,6 +157,9 @@ public class CaraFSM : BasicEnemyInterface
         agent.isStopped = false;
         agent.speed = moveSpeed;
         agent.SetDestination(player.position);
+        Debug.Log("isOnNavMesh: " + agent.isOnNavMesh);
+        Debug.Log("pathStatus: " + agent.pathStatus);
+        Debug.Log("remainingDistance: " + agent.remainingDistance);
         if (caraAnimator != null)
         {
             caraAnimator.SetSpeed(agent.speed);
@@ -148,6 +175,29 @@ public class CaraFSM : BasicEnemyInterface
                 caraAnimator.animator.ResetTrigger("MoveSpeed");
                 state = STATE.IDLE;
             }
+        }
+    }
+
+    protected override bool CanAttackPlayer()
+    {
+        Vector3 direction = player.position - gameObject.transform.position;
+        if (direction.magnitude < attackDist)
+        {
+            return true;
+        }
+        return false;
+    }
+    protected override bool CanSeePlayer()
+    {
+        Vector3 direction = player.position - gameObject.transform.position;
+
+        if (direction.magnitude < visDist)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 
@@ -173,7 +223,7 @@ public class CaraFSM : BasicEnemyInterface
 
         float duration = caraAnimator.animator.GetCurrentAnimatorStateInfo(0).length;
 
-        yield return new WaitForSeconds(duration);
+        yield return new WaitForSecondsRealtime(duration);
 
         isAttacking = false;
         state = STATE.PURSUE;
@@ -224,13 +274,13 @@ public class CaraFSM : BasicEnemyInterface
 
         agent.Warp(transform.position);
 
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSecondsRealtime(0.8f);
         agent.isStopped = false;
 
         isJumping = false;
         state = STATE.PURSUE;
 
-        yield return new WaitForSeconds(jumpCooldown);
+        yield return new WaitForSecondsRealtime(jumpCooldown);
         canJumpAttack = true;
     }
 

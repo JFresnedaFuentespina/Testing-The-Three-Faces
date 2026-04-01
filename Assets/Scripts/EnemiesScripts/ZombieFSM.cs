@@ -66,7 +66,7 @@ public class ZombieFSM : BasicEnemyInterface
         }
     }
 
-    public bool CanSeePlayer()
+    protected override bool CanSeePlayer()
     {
         Vector3 direction = player.position - gameObject.transform.position;
 
@@ -80,7 +80,7 @@ public class ZombieFSM : BasicEnemyInterface
         }
     }
 
-    public bool CanAttackPlayer()
+    protected override bool CanAttackPlayer()
     {
         Vector3 direction = player.position - gameObject.transform.position;
         if (direction.magnitude < attackDist)

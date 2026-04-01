@@ -9,9 +9,9 @@ public abstract class BasicEnemyInterface : MonoBehaviour
 
     protected virtual void Process() { }
 
-    public bool CanSeePlayer() { return true; }
+    protected virtual bool CanSeePlayer() { return true; }
 
-    public bool CanAttackPlayer() { return true; }
+    protected virtual bool CanAttackPlayer() { return true; }
 
     protected virtual void Death() { }
 

@@ -75,7 +75,7 @@ public class NextRoomCalculator : MonoBehaviour
             }
 
             // ⬇️ ESPERA AQUÍ
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSecondsRealtime(0.2f);
 
             audioManager?.PlayBossMusic();
 
@@ -157,7 +157,7 @@ public class NextRoomCalculator : MonoBehaviour
 
     private IEnumerator ReenableCollisionBetween(Collider a, Collider b, float delay)
     {
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSecondsRealtime(delay);
 
         if (a == null || b == null) yield break;
 
@@ -199,7 +199,7 @@ public class NextRoomCalculator : MonoBehaviour
 
         int gridX = Mathf.RoundToInt(playerPos.x / level.offsetW);
         int gridY = Mathf.RoundToInt(playerPos.z / level.offsetH);
-        Debug.Log("PREV ROOM: " + gridX  + " , " + gridY);
+        Debug.Log("PREV ROOM: " + gridX + " , " + gridY);
         return new Vector2Int(gridX, gridY);
     }
 

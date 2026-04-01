@@ -47,7 +47,6 @@ public class FireAttackHit : MonoBehaviour
         }
         else if (other.CompareTag("BossCruz"))
         {
-            Debug.Log("CRUZ BOSS HIT!!! <----------");
             CruzFSM cruzAI = other.GetComponent<CruzFSM>();
             if (cruzAI != null)
             {
@@ -60,17 +59,13 @@ public class FireAttackHit : MonoBehaviour
         }
         else if (other.CompareTag("BossCanto"))
         {
-            CantoAnimatorController cantoAI = other.GetComponent<CantoAnimatorController>();
-            CantoMovement cantoMovement = other.GetComponent<CantoMovement>();
-            if (cantoAI != null && cantoMovement != null)
+            CantoFSM cantoFSM = other.GetComponent<CantoFSM>();
+            if (cantoFSM != null)
             {
                 enemyLife.Damage(attackDamage);
-                cantoMovement.ReactToHit();
                 enemyLife.UpdateIsAlive();
-                if (!enemyLife.GetIsAlive())
-                {
-                    cantoMovement.ReactToDeath();
-                }
+                cantoFSM.SetStunned(2f);
+                cantoFSM.Hit();
             }
             Destroy(gameObject, destroyDelay);
         }

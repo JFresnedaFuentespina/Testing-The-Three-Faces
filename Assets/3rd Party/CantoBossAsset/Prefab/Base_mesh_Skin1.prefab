@@ -783,11 +783,11 @@ GameObject:
   - component: {fileID: 3180073626204433794}
   - component: {fileID: 1666200045124129912}
   - component: {fileID: 6903710297839786695}
-  - component: {fileID: 2761546271504325663}
   - component: {fileID: 2160824029858161427}
   - component: {fileID: 1309259542819171598}
   - component: {fileID: 4128499256433890775}
   - component: {fileID: 8446699259834373977}
+  - component: {fileID: 1453391854704292000}
   m_Layer: 9
   m_Name: Base_mesh_Skin1
   m_TagString: BossCanto
@@ -873,22 +873,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CantoAI
   animator: {fileID: 3180073626204433794}
---- !u!114 &2761546271504325663
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2369049315509284897}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b92a144f7652ec148a32f6007a2b4c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CantoMovement
-  moveSpeed: 3
-  spawnDelay: 2.5
-  attackDistance: 3
-  attackCooldown: 2
 --- !u!65 &2160824029858161427
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -971,6 +955,38 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &1453391854704292000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2369049315509284897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec91152f257ee3a4eb6f11322663207c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PlayerHealthAssembly::CantoFSM
+  enemyLife: {fileID: 0}
+  visDist: 10
+  moveSpeed: 5
+  agent: {fileID: 1309259542819171598}
+  player: {fileID: 0}
+  attackAndMove: 0
+  isFrozen: 0
+  state: 0
+  currentAttack: 0
+  cantoAnimator: {fileID: 6903710297839786695}
+  cantoDialogueManager: {fileID: 4128499256433890775}
+  isAttacking: 0
+  isHit: 0
+  punch3MoveSpeed: 6
+  spawnDelay: 2.5
+  attackDistance: 3
+  attackCooldown: 2
+  isWalking: 0
+  isFinishingAttack: 0
+  magicAttackCasted: 0
 --- !u!1 &2399109204944608482
 GameObject:
   m_ObjectHideFlags: 0

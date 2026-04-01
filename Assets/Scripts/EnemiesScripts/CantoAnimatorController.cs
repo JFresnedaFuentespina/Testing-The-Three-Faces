@@ -56,5 +56,13 @@ public class CantoAnimatorController : MonoBehaviour
         animator.ResetTrigger("Hit");
         animator.ResetTrigger("Death");
     }
+    public void ResetAttackTriggers()
+    {
+        animator.ResetTrigger("Attack1");
+        animator.ResetTrigger("Attack2");
+        animator.ResetTrigger("Attack3");
+        animator.ResetTrigger("Attack4");
+        animator.ResetTrigger("CastMagicAttack");
+    }
 
 }

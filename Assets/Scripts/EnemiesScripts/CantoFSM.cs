@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class CruzFSM : BasicEnemyInterface
+public class CantoFSM : BasicEnemyInterface
 {
     public EnemyLife enemyLife;
     public float visDist = 10f;
@@ -24,17 +24,15 @@ public class CruzFSM : BasicEnemyInterface
 
     public enum ATTACK_TYPE
     {
-        NONE, PUNCH2, PUNCH3, THROW
+        NONE, ATTACK1, ATTACK2, ATTACK3, ATTACK4, CAST_MAGIC_ATTACK
     }
 
     public STATE state;
     public ATTACK_TYPE currentAttack;
 
-    [Header("Cruz properties")]
-    public CruzAnimatorController cruzAnimator;
-    public CruzDialogManager cruzDialogueManager;
-    public CruzBallAttack cruzBallAttack;
-    public bool isJumping = false;
+    [Header("Canto properties")]
+    public CantoAnimatorController cantoAnimator;
+    public CantoDialogueManager cantoDialogueManager;
     public bool isAttacking = false;
     public bool isHit = false;
     private bool hasSpawned = false;
@@ -46,6 +44,7 @@ public class CruzFSM : BasicEnemyInterface
     public float attackCooldown = 2f;
     public bool isWalking = false;
     public bool isFinishingAttack = false;
+    public bool magicAttackCasted = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -60,8 +59,7 @@ public class CruzFSM : BasicEnemyInterface
 
     protected override void InitComponents()
     {
-        cruzAnimator = GetComponent<CruzAnimatorController>();
-        cruzBallAttack = GetComponent<CruzBallAttack>();
+        cantoAnimator = GetComponent<CantoAnimatorController>();
         enemyLife = GetComponent<EnemyLife>();
         state = STATE.IDLE;
         currentAttack = ATTACK_TYPE.NONE;
@@ -81,10 +79,6 @@ public class CruzFSM : BasicEnemyInterface
         if (player == null) return;
         if (isFrozen) return;
         if (isHit) return;
-        if (currentAttack != ATTACK_TYPE.THROW)
-        {
-            transform.LookAt(player.transform);
-        }
 
         spawnTimer += Time.deltaTime;
         attackTimer += Time.deltaTime;
@@ -113,7 +107,7 @@ public class CruzFSM : BasicEnemyInterface
     protected override void Idle()
     {
         agent.isStopped = true;
-        cruzAnimator.SetWalking(false);
+        cantoAnimator.SetWalking(false);
         if (CanSeePlayer())
         {
             state = STATE.PURSUE;
@@ -127,13 +121,29 @@ public class CruzFSM : BasicEnemyInterface
         isWalking = true;
         agent.isStopped = false;
         agent.SetDestination(player.position);
-        cruzAnimator.SetWalking(true);
+        cantoAnimator.SetWalking(true);
 
         if (CanAttackPlayer())
         {
             state = STATE.ATTACK;
         }
+
+        if (CanCastmagicAttack())
+        {
+            state = STATE.ATTACK;
+            currentAttack = ATTACK_TYPE.CAST_MAGIC_ATTACK;
+        }
     }
+    protected bool CanCastmagicAttack()
+    {
+        if (isAttacking) return false;
+        if (enemyLife != null && enemyLife.currentHp <= enemyLife.totalHp * 0.5f && !magicAttackCasted)
+        {
+            return true;
+        }
+        return false;
+    }
+
     protected override bool CanSeePlayer()
     {
         Vector3 direction = player.position - gameObject.transform.position;
@@ -168,33 +178,42 @@ public class CruzFSM : BasicEnemyInterface
         agent.ResetPath();
         agent.isStopped = false;
 
-        cruzAnimator.SetWalking(false);
-        cruzAnimator.ResetAttackTriggers();
+        cantoAnimator.SetWalking(false);
 
-        int randomAttack = Random.Range(0, 3);
+        int randomAttack = Random.Range(1, 5);
+
+        if (currentAttack == ATTACK_TYPE.CAST_MAGIC_ATTACK)
+        {
+            randomAttack = 5;
+        }
 
         switch (randomAttack)
         {
-            case 0: // Punch2
-                currentAttack = ATTACK_TYPE.PUNCH2;
-                agent.speed = 0f;
-                cruzAnimator.SetPunch2();
+            case 1:
+                currentAttack = ATTACK_TYPE.ATTACK1;
+                break;
+            case 2: // Punch3
+                currentAttack = ATTACK_TYPE.ATTACK2;
                 break;
 
-            case 1: // Punch3
-                currentAttack = ATTACK_TYPE.PUNCH3;
-                agent.speed = punch3MoveSpeed;
-                cruzAnimator.SetPunch3();
+            case 3: // Throw
+                currentAttack = ATTACK_TYPE.ATTACK3;
+                break;
+            case 4: // Magic Attack
+                currentAttack = ATTACK_TYPE.ATTACK4;
                 break;
 
-            case 2: // Throw
-                currentAttack = ATTACK_TYPE.THROW;
-                agent.ResetPath();
-                agent.isStopped = true;
-                agent.velocity = Vector3.zero;
-                cruzAnimator.SetThrow();
-                cruzBallAttack.active = true;
-                break;
+        }
+        if (randomAttack != 5)
+        {
+            agent.speed = 0f;
+            cantoAnimator.SetAttack(randomAttack);
+        }
+        else
+        {
+            magicAttackCasted = true;
+            agent.speed = 0f;
+            cantoAnimator.SetCastMagicAttack();
         }
         StartCoroutine(WaitForAttack());
     }
@@ -205,7 +224,7 @@ public class CruzFSM : BasicEnemyInterface
 
         yield return null;
 
-        float duration = cruzAnimator.animator.GetCurrentAnimatorStateInfo(0).length;
+        float duration = cantoAnimator.animator.GetCurrentAnimatorStateInfo(0).length;
 
         yield return new WaitForSecondsRealtime(duration);
 
@@ -222,7 +241,7 @@ public class CruzFSM : BasicEnemyInterface
         agent.ResetPath();
         agent.isStopped = true;
 
-        cruzAnimator.ResetAttackTriggers();
+        cantoAnimator.ResetAttackTriggers();
 
         state = STATE.PUSHED;
 
@@ -234,23 +253,23 @@ public class CruzFSM : BasicEnemyInterface
         isHit = true;
         agent.isStopped = true;
 
-        cruzAnimator.SetHurt();
+        cantoAnimator.SetHit();
 
         // Esperar a que el Animator cambie de estado
         yield return null;
 
-        AnimatorStateInfo stateInfo = cruzAnimator.animator.GetCurrentAnimatorStateInfo(0);
+        AnimatorStateInfo stateInfo = cantoAnimator.animator.GetCurrentAnimatorStateInfo(0);
 
         float duration = stateInfo.length;
 
         yield return new WaitForSecondsRealtime(duration);
 
         // Congelar animación
-        cruzAnimator.animator.speed = 0f;
+        cantoAnimator.animator.speed = 0f;
 
         yield return new WaitForSecondsRealtime(0.05f);
 
-        cruzAnimator.animator.speed = 1f;
+        cantoAnimator.animator.speed = 1f;
 
         agent.isStopped = false;
         isHit = false;
@@ -271,11 +290,6 @@ public class CruzFSM : BasicEnemyInterface
         agent.speed = moveSpeed;
         agent.isStopped = false;
 
-        if (finishedAttack == ATTACK_TYPE.THROW)
-        {
-            cruzBallAttack.active = false;
-            Debug.Log("CRUZ BALL ATTACK ACTIVE? " + cruzBallAttack.active);
-        }
         state = STATE.PURSUE;
         currentAttack = ATTACK_TYPE.NONE;
     }
@@ -287,13 +301,13 @@ public class CruzFSM : BasicEnemyInterface
     public void Freeze()
     {
         isFrozen = true;
-        cruzAnimator.animator.speed = 0f;
+        cantoAnimator.animator.speed = 0f;
         agent.isStopped = true;
     }
     public void UnFreeze()
     {
         isFrozen = false;
-        cruzAnimator.animator.speed = 1f;
+        cantoAnimator.animator.speed = 1f;
         agent.isStopped = false;
 
     }
@@ -302,13 +316,13 @@ public class CruzFSM : BasicEnemyInterface
     {
         agent.isStopped = true;
         agent.speed = 0f;
-        if (cruzDialogueManager != null)
+        if (cantoDialogueManager != null)
         {
-            cruzDialogueManager.ShowDeathDialog();
+            cantoDialogueManager.ShowDeathDialog();
         }
-        if (cruzAnimator != null)
+        if (cantoAnimator != null)
         {
-            cruzAnimator.SetDeath();
+            cantoAnimator.SetDeath();
 
         }
     }

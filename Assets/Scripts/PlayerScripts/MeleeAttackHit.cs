@@ -29,11 +29,13 @@ public class MeleeAttackHit : MonoBehaviour
         }
         if (other.CompareTag("BossCara"))
         {
-            CaraAnimatorController caraAi = other.GetComponent<CaraAnimatorController>();
-            if (caraAi != null)
+            CaraFSM caraFSM = other.GetComponent<CaraFSM>();
+            if (caraFSM != null)
             {
                 enemyLife.Damage(attackDamage);
                 enemyLife.UpdateIsAlive();
+                caraFSM.SetStunned(2f);
+                caraFSM.Hit();
             }
         }
         else if (other.CompareTag("BossCruz"))
@@ -43,6 +45,17 @@ public class MeleeAttackHit : MonoBehaviour
             {
                 enemyLife.Damage(attackDamage);
                 enemyLife.UpdateIsAlive();
+            }
+            else
+            {
+                CruzFSM cruzFSM = other.GetComponent<CruzFSM>();
+                if (cruzFSM != null)
+                {
+                    enemyLife.Damage(attackDamage);
+                    enemyLife.UpdateIsAlive();
+                    cruzFSM.SetStunned(2f);
+                    cruzFSM.Hit();
+                }
             }
         }
         else if (other.CompareTag("BossCanto"))
@@ -65,6 +78,7 @@ public class MeleeAttackHit : MonoBehaviour
         if (other.CompareTag("BossCara") || other.CompareTag("BossCruz") || other.CompareTag("BossCanto") || other.CompareTag("Enemy_Zombie") || other.CompareTag("Enemy_Ghost"))
         {
             // Empujar enemigos al ser golpeados por ataque cuerpo a cuerpo
+            //! FIX
             if (other.GetComponent<NavMeshAgent>() != null)
             {
                 if (other.GetComponent<EnemyMoveNavmesh>())

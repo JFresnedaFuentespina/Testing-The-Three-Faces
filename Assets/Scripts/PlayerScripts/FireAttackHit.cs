@@ -48,11 +48,13 @@ public class FireAttackHit : MonoBehaviour
         else if (other.CompareTag("BossCruz"))
         {
             Debug.Log("CRUZ BOSS HIT!!! <----------");
-            CruzAnimatorController cruzAI = other.GetComponent<CruzAnimatorController>();
+            CruzFSM cruzAI = other.GetComponent<CruzFSM>();
             if (cruzAI != null)
             {
                 enemyLife.Damage(attackDamage);
                 enemyLife.UpdateIsAlive();
+                cruzAI.SetStunned(2f);
+                cruzAI.Hit();
             }
             Destroy(gameObject, destroyDelay);
         }
@@ -93,10 +95,6 @@ public class FireAttackHit : MonoBehaviour
             if (basicEnemyAI != null)
             {
                 basicEnemyAI.GetPushed(pushDirection, fireballPushForce, 0.2f);
-            }
-            if (other.GetComponent<EnemyMoveNavmesh>())
-            {
-                other.GetComponent<EnemyMoveNavmesh>().GetPushed(pushDirection, fireballPushForce, 0.2f);
             }
         }
     }

@@ -10,14 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 6334826068141619242}
   - component: {fileID: 7008817298785167161}
-  - component: {fileID: 1348619228268095000}
   - component: {fileID: 2787438273741956055}
-  - component: {fileID: 233475109936759351}
   - component: {fileID: 3383421779063375692}
   - component: {fileID: 8785932582204096324}
   - component: {fileID: 8394536434697709217}
   - component: {fileID: 3397094119995629051}
   - component: {fileID: -5520411461636987218}
+  - component: {fileID: 114057317202503505}
   m_Layer: 9
   m_Name: Demon_default
   m_TagString: BossCruz
@@ -65,19 +64,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1348619228268095000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6334826068141619221}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0be3eb5b88937944a8941b892ac90dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyMoveNavmesh
-  velocity: 2
 --- !u!114 &2787438273741956055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,26 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14d9cc898aca23f43923fdbb46b9b968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CruzAI
-  animator: {fileID: 0}
---- !u!114 &233475109936759351
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6334826068141619221}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf4c1886de0342e4a9337a3b76cb025f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CruzMovement
-  moveSpeed: 2
-  punch3MoveSpeed: 6
-  spawnDelay: 2.5
-  attackDistance: 3
-  attackCooldown: 2
-  animator: {fileID: 0}
-  cruzBallAttack: {fileID: 3397094119995629051}
+  animator: {fileID: 6334826067895158095}
 --- !u!114 &3383421779063375692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,6 +178,39 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &114057317202503505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6334826068141619221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1411faeafbdfd42b5bbe508b067eee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PlayerHealthAssembly::CruzFSM
+  enemyLife: {fileID: 3383421779063375692}
+  visDist: 10
+  moveSpeed: 5
+  agent: {fileID: 7008817298785167161}
+  player: {fileID: 0}
+  attackAndMove: 0
+  isFrozen: 0
+  state: 0
+  currentAttack: 0
+  cruzAnimator: {fileID: 2787438273741956055}
+  cruzDialogueManager: {fileID: 8394536434697709217}
+  cruzBallAttack: {fileID: 3397094119995629051}
+  isJumping: 0
+  isAttacking: 0
+  isHit: 0
+  punch3MoveSpeed: 6
+  spawnDelay: 2.5
+  attackDistance: 3
+  attackCooldown: 2
+  isWalking: 0
+  isFinishingAttack: 0
 --- !u!1 &7599560724871351387
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,7 +229,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4585052251437090810
 Transform:
   m_ObjectHideFlags: 0

@@ -166,15 +166,8 @@ public class EnemyLife : MonoBehaviour
         {
             deathDelay = 5f;
         }
-        else
-        {
-            gameObject.GetComponent<Collider>().enabled = false;
-        }
+        gameObject.GetComponent<Collider>().enabled = false;
         enemiesDeathCounter.counter++;
-        if (gameObject.GetComponent<CantoDeathBehaviour>() != null)
-        {
-            gameObject.GetComponent<CantoDeathBehaviour>().NotifyVictory();
-        }
         Destroy(gameObject, deathDelay);
     }
 }

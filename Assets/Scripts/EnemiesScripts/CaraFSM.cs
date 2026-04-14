@@ -38,6 +38,7 @@ public class CaraFSM : BasicEnemyInterface
     private bool canJumpAttack = true;
     public float jumpCooldown = 10f;
     private bool wasPaused = false;
+    private bool deathHappened = false;
 
     void Start()
     {
@@ -105,6 +106,9 @@ public class CaraFSM : BasicEnemyInterface
 
     protected override void Death()
     {
+        if (deathHappened) return;
+        
+        deathHappened = true;
         agent.isStopped = true;
         agent.speed = 0f;
         caraDialogueManager.ShowDeathDialog();

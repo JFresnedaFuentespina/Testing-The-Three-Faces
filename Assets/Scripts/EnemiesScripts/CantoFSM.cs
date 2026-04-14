@@ -45,6 +45,7 @@ public class CantoFSM : BasicEnemyInterface
     public bool isWalking = false;
     public bool isFinishingAttack = false;
     public bool magicAttackCasted = false;
+    public bool deathHappened = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -314,6 +315,8 @@ public class CantoFSM : BasicEnemyInterface
 
     protected override void Death()
     {
+        if (deathHappened) return;
+        deathHappened = true;
         agent.isStopped = true;
         agent.speed = 0f;
         if (cantoDialogueManager != null)

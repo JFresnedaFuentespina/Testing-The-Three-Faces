@@ -43,6 +43,22 @@ public class NextRoomCalculator : MonoBehaviour
         if (enabledTemporarily)
             yield break;
 
+        // 👾 Enemigos
+        DoorsEnabler doorsEnabler = transform.root.GetComponent<DoorsEnabler>();
+        if (doorsEnabler != null && !doorsEnabler.AreDoorsReenabled())
+        {
+            ShowMessage("Debes derrotar a todos los enemigos");
+            yield break;
+        }
+
+        // 🔒 Candado
+        DropLock lockObj = GetComponentInChildren<DropLock>();
+        if (lockObj != null && lockObj.isLocked)
+        {
+            ShowMessage("La puerta está cerrada con llave");
+            yield break;
+        }
+
         enabledTemporarily = true;
 
         Vector2Int currentGrid = GetCurrentRoomGrid(other.transform.position);
@@ -58,33 +74,19 @@ public class NextRoomCalculator : MonoBehaviour
         {
             Debug.LogWarning("No se encontró la habitación válida.");
             StartCoroutine(ReenableCollisionBetween(doorCollider, other, 0.5f));
+            enabledTemporarily = false;
             yield break;
         }
 
         GameObject nextRoomObj = FindRoomObject(nextRoomGrid.Value);
-
         bool isBossRoom = nextRoomObj.GetComponent<BossRoom>() != null;
 
-        if (isBossRoom)
+        // 🔑 Boss check ANTES de mover
+        if (isBossRoom && !PlayerHasKey())
         {
-            if (!PlayerHasKey())
-            {
-                ShowMessage("Necesitas la llave para luchar contra el jefe!");
-                enabledTemporarily = false;
-                yield break;
-            }
-
-            // ⬇️ ESPERA AQUÍ
-            yield return new WaitForSecondsRealtime(0.2f);
-
-            audioManager?.PlayBossMusic();
-
-            Camera camera = Camera.main;
-            if (camera.orthographic)
-            {
-                camera.orthographicSize = 7f;
-            }
-
+            ShowMessage("Necesitas la llave para luchar contra el jefe!");
+            enabledTemporarily = false;
+            yield break;
         }
 
         DisableDoorsInRoom(nextRoomObj);
@@ -95,13 +97,38 @@ public class NextRoomCalculator : MonoBehaviour
             ? CalculateSpawnPosition(oppositeDoor)
             : nextRoomObj.transform.position;
 
-        other.transform.root.position = spawnPos;
+        // 🚀 TELEPORT ROBUSTO (evita bugs de físicas)
+        CharacterController cc = other.GetComponentInParent<CharacterController>();
+        if (cc != null)
+        {
+            cc.enabled = false;
+            other.transform.root.position = spawnPos;
+            cc.enabled = true;
+        }
+        else
+        {
+            other.transform.root.position = spawnPos;
+        }
 
         Vector2Int nextGrid = nextRoomGrid.Value;
-
         level.AddPathToRoute(new Paths(currentGrid, nextGrid));
 
         MoveCamera(targetPos);
+
+        // 🔥 MUY IMPORTANTE: dejar 1 frame antes de lógica boss
+        yield return null;
+
+        // 👑 Boss logic DESPUÉS del teleport
+        if (isBossRoom)
+        {
+            audioManager?.PlayBossMusic();
+
+            Camera camera = Camera.main;
+            if (camera != null && camera.orthographic)
+            {
+                camera.orthographicSize = 7f;
+            }
+        }
 
         StartCoroutine(ReenableCollisionBetween(doorCollider, other, 0.5f));
     }

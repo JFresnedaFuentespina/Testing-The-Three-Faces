@@ -4,6 +4,7 @@ using UnityEngine;
 public class DropLock : MonoBehaviour
 {
     private bool isDestroying = false;
+    public bool isLocked = true;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -52,6 +53,7 @@ public class DropLock : MonoBehaviour
         // Asegurar escala final
         transform.localScale = Vector3.zero;
         Time.timeScale = 1f;
+        isLocked = false;
         Destroy(gameObject);
     }
 }

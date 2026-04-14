@@ -106,4 +106,9 @@ public class DoorsEnabler : MonoBehaviour
             if (green != null) green.gameObject.SetActive(true);
         }
     }
+
+    public bool AreDoorsReenabled()
+    {
+        return doorsReenabled;
+    }
 }

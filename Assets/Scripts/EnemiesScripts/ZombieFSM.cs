@@ -160,7 +160,7 @@ public class ZombieFSM : BasicEnemyInterface
         }
     }
 
-    protected virtual void Pushed()
+    protected override void Pushed()
     {
         pushElapsed += Time.deltaTime;
 
@@ -185,7 +185,7 @@ public class ZombieFSM : BasicEnemyInterface
         }
     }
 
-    public void GetPushed(Vector3 direction, float force, float duration)
+    public override void GetPushed(Vector3 direction, float force, float duration)
     {
         Debug.Log("BASIC ENEMY AI: PUSH!!");
         state = STATE.PUSHED;
@@ -198,7 +198,7 @@ public class ZombieFSM : BasicEnemyInterface
         agent.isStopped = true;
     }
 
-    public void SetStunned(float duration)
+    public override void SetStunned(float duration)
     {
         StartCoroutine(StunCoroutine(duration));
     }
@@ -210,7 +210,7 @@ public class ZombieFSM : BasicEnemyInterface
         isFrozen = false;
     }
 
-    public void StopAgent()
+    public override void StopAgent()
     {
         isFrozen = true;
         agent.isStopped = true;
@@ -221,7 +221,7 @@ public class ZombieFSM : BasicEnemyInterface
         }
     }
 
-    public void ResetAgent()
+    public override void ResetAgent()
     {
         isFrozen = false;
         agent.isStopped = false;

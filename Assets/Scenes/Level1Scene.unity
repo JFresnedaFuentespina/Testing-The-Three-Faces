@@ -1086,6 +1086,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2048283886}
   m_CullTransparentMesh: 1
+--- !u!114 &2110983359 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9176356315319284586, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+  m_PrefabInstance: {fileID: 2010680791}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1 &2125774811 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4458383154401370381, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
@@ -1329,6 +1340,10 @@ PrefabInstance:
       propertyPath: exitButtonWin
       value: 
       objectReference: {fileID: 492550904}
+    - target: {fileID: 8269909501135449399, guid: 149a16642a3221045b23d37a3e79609e, type: 3}
+      propertyPath: puntuarButton
+      value: 
+      objectReference: {fileID: 2110983359}
     - target: {fileID: 8269909501135449399, guid: 149a16642a3221045b23d37a3e79609e, type: 3}
       propertyPath: restartButton
       value: 

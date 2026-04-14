@@ -15,6 +15,7 @@ public class EndgameManager : MonoBehaviour
     public TextMeshProUGUI enemiesKilledTxtDeath;
     public Button exitButtonDeath;
     public Button restartButtonDeath;
+    public Button puntuarButton;
     public GameObject inventoryPanelDeath;
     public GameObject endgameDeathPanel;
     public TextMeshProUGUI scoreTxt;
@@ -43,6 +44,10 @@ public class EndgameManager : MonoBehaviour
     {
         exitButtonDeath.onClick.AddListener(ExitGame);
         restartButtonDeath.onClick.AddListener(RestartGame);
+        puntuarButton.onClick.AddListener(() =>
+        {
+            if (activeAPI) SceneManager.LoadScene("RateScene");
+        });
 
         // exitButtonWin.onClick.AddListener(ExitGame);
         // restartButtonWin.onClick.AddListener(RestartGame);

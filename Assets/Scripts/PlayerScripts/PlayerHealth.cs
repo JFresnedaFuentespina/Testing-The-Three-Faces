@@ -42,6 +42,7 @@ public class PlayerHealth : MonoBehaviour
     private EndgameManager endgameManager;
     private GameObject lastHittedBy;
     private string lastHittedByTag;
+    public bool canGetHit = true;
 
     void OnDestroy()
     {
@@ -152,6 +153,8 @@ public class PlayerHealth : MonoBehaviour
             || other.gameObject.CompareTag("EnemyProjectile")
             )
         {
+            if (!canGetHit) return;
+
             lastHittedBy = other.gameObject;
             lastHittedByTag = lastHittedBy.tag;
             Damage();
@@ -327,6 +330,14 @@ public class PlayerHealth : MonoBehaviour
         }
         UpdateHUD();
         BlinkBloodFrame();
+        StartCoroutine(WaitForNextHit());
+    }
+
+    private IEnumerator WaitForNextHit()
+    {
+        canGetHit = false;
+        yield return new WaitForSeconds(1f);
+        canGetHit = true;
     }
 
     public void BlinkBloodFrame()

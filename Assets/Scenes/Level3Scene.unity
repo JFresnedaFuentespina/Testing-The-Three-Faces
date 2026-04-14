@@ -1986,6 +1986,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 185113622}
     - target: {fileID: 8269909501135449399, guid: 149a16642a3221045b23d37a3e79609e, type: 3}
+      propertyPath: activeAPI
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8269909501135449399, guid: 149a16642a3221045b23d37a3e79609e, type: 3}
       propertyPath: postScore
       value: 
       objectReference: {fileID: 1434923942}
@@ -2001,6 +2005,10 @@ PrefabInstance:
       propertyPath: exitButtonWin
       value: 
       objectReference: {fileID: 1067321273}
+    - target: {fileID: 8269909501135449399, guid: 149a16642a3221045b23d37a3e79609e, type: 3}
+      propertyPath: puntuarButton
+      value: 
+      objectReference: {fileID: 2067796233}
     - target: {fileID: 8269909501135449399, guid: 149a16642a3221045b23d37a3e79609e, type: 3}
       propertyPath: restartButton
       value: 
@@ -10085,6 +10093,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3687797981514050686, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
   m_PrefabInstance: {fileID: 2067796228}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2067796233 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9176356315319284586, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+  m_PrefabInstance: {fileID: 2067796228}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1 &2075837684
 GameObject:
   m_ObjectHideFlags: 0

@@ -22,14 +22,6 @@ public class EndgameManager : MonoBehaviour
     public ScoreGenerator scoreGenerator;
     public PostScore postScore;
 
-    // [Header("WinCondition")]
-    // public GameObject timerGO;
-    // public TextMeshProUGUI timerTxt;
-    // public TextMeshProUGUI enemiesKilledTxtWin;
-    // public Button exitButtonWin;
-    // public Button restartButtonWin;
-    // public GameObject inventoryPanelWin;
-    // public GameObject endgameWinPanel;
 
     [Header("PauseMenuManager")]
     public GameObject pauseMenuManager;
@@ -48,9 +40,6 @@ public class EndgameManager : MonoBehaviour
         {
             if (activeAPI) SceneManager.LoadScene("RateScene");
         });
-
-        // exitButtonWin.onClick.AddListener(ExitGame);
-        // restartButtonWin.onClick.AddListener(RestartGame);
     }
 
 
@@ -79,7 +68,6 @@ public class EndgameManager : MonoBehaviour
                 enemyName = "Canto";
                 break;
         }
-        // pauseMenuManager.GetComponent<ShowPauseMenu>().enabled = false;
         endgameDeathPanel.SetActive(true);
         killedByTxt.text += " " + enemyName;
         enemiesKilledTxtDeath.text = "Mataste a " + enemyKilledCount + " enemigos!";
@@ -122,7 +110,6 @@ public class EndgameManager : MonoBehaviour
 
     public void ShowInventory(Inventory inventory, bool isWin)
     {
-        // GameObject inventoryPanel = isWin ? inventoryPanelWin : inventoryPanelDeath;
         GameObject inventoryPanel = inventoryPanelDeath;
 
         foreach (Transform child in inventoryPanel.transform)

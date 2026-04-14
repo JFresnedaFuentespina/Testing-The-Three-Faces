@@ -21,7 +21,7 @@ public class ZombieFSM : BasicEnemyInterface
     private float pushElapsed;
     public enum STATE
     {
-        IDLE, PURSUE, ATTACK, PUSHED, JUMP_ATTACK,
+        IDLE, PURSUE, ATTACK, PUSHED
     }
 
     public STATE state;

@@ -86,6 +86,11 @@ public class CruzFSM : BasicEnemyInterface
         {
             transform.LookAt(player.transform);
         }
+        if(isAttacking && currentAttack == ATTACK_TYPE.PUNCH3)
+        {
+            agent.isStopped = false;
+            agent.SetDestination(player.position);
+        }
 
         spawnTimer += Time.deltaTime;
         attackTimer += Time.deltaTime;

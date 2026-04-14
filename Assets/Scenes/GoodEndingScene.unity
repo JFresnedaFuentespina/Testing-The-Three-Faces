@@ -35044,7 +35044,7 @@ MonoBehaviour:
     isDeathEnding: 0
     score: 0
     time: 0
-  activeAPI: 0
+  activeAPI: 1
 --- !u!114 &1916484178
 MonoBehaviour:
   m_ObjectHideFlags: 0

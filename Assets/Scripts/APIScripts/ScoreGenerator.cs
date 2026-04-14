@@ -65,7 +65,7 @@ public class ScoreGenerator : MonoBehaviour
         {
             auxBase = baseScore;
         }
-        score = (auxBase + enemiesDeathCounter) * modifier;
+        score = (auxBase + enemiesDeathCounter) * modifier * 10f;
 
         string json = JsonConvert.SerializeObject(new ScoreDTO { score = score });
         string path = Application.persistentDataPath + "/score.json";

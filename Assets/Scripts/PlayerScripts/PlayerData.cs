@@ -17,6 +17,7 @@ public class PlayerData
     public List<string> actions;
     public float enemiesDeathCounter;
     public bool appliesPoison;
+    public bool hasShield;
 
     public string PlayerDataStr()
     {

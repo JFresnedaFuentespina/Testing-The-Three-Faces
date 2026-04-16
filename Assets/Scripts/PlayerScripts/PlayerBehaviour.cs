@@ -16,6 +16,7 @@ public class PlayerBehaviour : MonoBehaviour
     private ChangeCharacter changeCharacter;
 
     private Vector3 lastPosition;
+    public GameObject shield;
 
     public delegate void OnSpeedStatsChanged(float speed);
     public static event OnSpeedStatsChanged OnSpeedStatsChangedEvent;
@@ -78,6 +79,8 @@ public class PlayerBehaviour : MonoBehaviour
             string json = File.ReadAllText(path);
             PlayerData playerData = JsonConvert.DeserializeObject<PlayerData>(json);
             velocity = playerData.velocity;
+            hasShield = playerData.hasShield;
+            shield.SetActive(hasShield);
         }
 
         rb = GetComponent<Rigidbody>();
@@ -157,6 +160,7 @@ public class PlayerBehaviour : MonoBehaviour
     public void AddShield()
     {
         hasShield = true;
+        shield.SetActive(true);
     }
 
 

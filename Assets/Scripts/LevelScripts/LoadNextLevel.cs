@@ -178,6 +178,7 @@ public class LoadNextLevel : MonoBehaviour
         data.actions = changeCharacter.GetUnlockedActions();
         data.enemiesDeathCounter = enemiesDeathCounterFloat;
         data.appliesPoison = atk.appliesPoison;
+        data.hasShield = bh.hasShield;
 
         string json = JsonConvert.SerializeObject(data);
         string path = Application.persistentDataPath + "/player.json";

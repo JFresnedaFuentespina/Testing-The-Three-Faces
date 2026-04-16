@@ -134,44 +134,11 @@ public class ChangeCharacter : MonoBehaviour
 
     private void FreezeEnemies()
     {
-        // StartCoroutine(FreezeEnemyMoves());
         StartCoroutine(FreezeBasicEnemyAI());
         StartCoroutine(FreezeBossCara());
         StartCoroutine(FreezeBossCruz());
         StartCoroutine(FreezeBossCanto());
     }
-
-    // IEnumerator FreezeEnemyMoves()
-    // {
-    //     // Obtener todos los enemigos usando el wrapper que tienes
-    //     EnemyMove[] enemiesArray = FindObjectsByType<EnemyMove>(FindObjectsSortMode.None);
-    //     List<EnemyMove> enemies = new List<EnemyMove>(enemiesArray);
-
-    //     if (enemies.Count == 0)
-    //     {
-    //         yield return null;
-    //     }
-
-    //     Dictionary<EnemyMove, float> originalSpeeds = new Dictionary<EnemyMove, float>();
-    //     foreach (var enemy in enemies)
-    //     {
-    //         originalSpeeds[enemy] = enemy.velocity;
-    //         enemy.velocity = 0f;
-    //         Animator anim = enemy.GetComponent<Animator>();
-    //         if (anim != null)
-    //             anim.speed = 0f;
-    //     }
-
-    //     yield return new WaitForSecondsRealtime(2f);
-
-    //     foreach (var enemy in enemies)
-    //     {
-    //         enemy.velocity = originalSpeeds[enemy];
-    //         Animator anim = enemy.GetComponent<Animator>();
-    //         if (anim != null)
-    //             anim.speed = 1f;
-    //     }
-    // }
 
     IEnumerator FreezeBasicEnemyAI()
     {

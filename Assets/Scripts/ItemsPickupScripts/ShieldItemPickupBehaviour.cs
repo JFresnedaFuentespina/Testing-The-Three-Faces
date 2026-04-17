@@ -10,6 +10,6 @@ public class ShieldItemPickupBehaviour : MonoBehaviour, ItemPickupBehaviour
         {
             OnAddShieldEvent();
         }
-        return "Shield";
+        return "¡Escudo obtenido!\n¡Pulsa clic derecho para defenderte!";
     }
 }

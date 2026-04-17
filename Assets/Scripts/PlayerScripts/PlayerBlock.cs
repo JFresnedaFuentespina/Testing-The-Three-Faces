@@ -60,7 +60,7 @@ public class PlayerBlock : MonoBehaviour
         audioSource.Play();
         shieldFlash.Flash();
 
-        yield return new WaitForSeconds(animatorEsqueleto.GetCurrentAnimatorStateInfo(0).length);
+        yield return new WaitForSecondsRealtime(0.8f);
 
         playerHealth.canGetHit = true;
         isBlocking = false;

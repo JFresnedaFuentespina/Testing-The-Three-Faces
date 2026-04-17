@@ -7,10 +7,14 @@ public class PlayerBlock : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public ChangeCharacter changeCharacter;
     public Animator animatorEsqueleto;
+    public AudioClip shieldSFX;
+    public AudioSource audioSource;
     public GameObject shield;
+    public PlayerHealth playerHealth;
+    public ShieldFlash shieldFlash;
     public InputActionAsset InputActions;
     public InputAction m_shieldBlockAction;
-
+    public bool isBlocking = false;
 
     void OnEnable()
     {
@@ -33,16 +37,12 @@ public class PlayerBlock : MonoBehaviour
     {
         m_shieldBlockAction = InputActions.FindAction("ShieldBlock");
         m_shieldBlockAction.performed += OnBlockPerformed;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        audioSource.clip = shieldSFX;
     }
 
     void OnBlockPerformed(InputAction.CallbackContext context)
     {
+        if (isBlocking) return;
         if (!changeCharacter.showingGhost)
         {
             StartCoroutine(BlockDuration());
@@ -51,18 +51,18 @@ public class PlayerBlock : MonoBehaviour
 
     IEnumerator BlockDuration()
     {
+        isBlocking = true;
         if (animatorEsqueleto == null || shield == null)
             yield break;
 
+        playerHealth.canGetHit = false;
         animatorEsqueleto.SetTrigger("Block");
-
-        var col = shield.GetComponent<Collider>();
-        if (col != null)
-            col.enabled = true;
+        audioSource.Play();
+        shieldFlash.Flash();
 
         yield return new WaitForSeconds(animatorEsqueleto.GetCurrentAnimatorStateInfo(0).length);
 
-        if (col != null)
-            col.enabled = false;
+        playerHealth.canGetHit = true;
+        isBlocking = false;
     }
 }

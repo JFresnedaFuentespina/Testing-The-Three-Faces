@@ -8,8 +8,8 @@ public class ClockItemPickupBehaviour : MonoBehaviour, ItemPickupBehaviour
     {
         if (OnNewChangeCharacterActionEvent != null)
         {
-            OnNewChangeCharacterActionEvent("Bomb");
+            OnNewChangeCharacterActionEvent("Clock");
         }
-        return "¡Bomba recogida!";
+        return "Reloj recogido!";
     }
 }

@@ -430,20 +430,27 @@ public class PlayerHealth : MonoBehaviour
         RefreshExtraHearts();
     }
 
-    public void HealOneHeart()
+    public bool HealOneHeart()
     {
         float amountToHeal = 0f;
-        if (maxHealth - healthPoints >= 0.5f)
-        {
-            amountToHeal = 0.5f;
-        }
-        else if (maxHealth - healthPoints >= 1f)
+
+        if (maxHealth - healthPoints >= 1f)
         {
             amountToHeal = 1f;
         }
+        else if (maxHealth - healthPoints >= 0.5f)
+        {
+            amountToHeal = 0.5f;
+        }
+
+        if (amountToHeal <= 0f)
+            return false;
+
         healthPoints += amountToHeal;
         healthPoints = Mathf.Clamp(healthPoints, 0f, maxHealth);
         RefreshHearts();
+
+        return true;
     }
 
 }

@@ -121,23 +121,33 @@ public class PickupItem : MonoBehaviour
 
         // Aplicar efectos
         ApplyItemEffects(itemToPickup);
-
-        Destroy(itemToPickup);
     }
 
 
     private void ApplyItemEffects(GameObject item)
     {
+        bool destroyItem = true;
+        string message = "";
         ItemPickupBehaviour pickup = item.GetComponent<ItemPickupBehaviour>();
         if (pickup != null)
         {
-            if (pickup.ApplyItemEffects() != "")
-                ShowMessage(pickup.ApplyItemEffects());
+            message = pickup.ApplyItemEffects();
+            if (message != "No se pudo curar")
+                ShowMessage(message);
         }
         else
         {
             Debug.LogWarning("ItemPickupBehaviour NOT FOUND");
         }
+
+        if (item.CompareTag("HeartDropped"))
+        {
+            if (message == "No se pudo curar")
+                destroyItem = false;
+        }
+    
+        if (destroyItem)
+            Destroy(item);
     }
 
     private void AddItemToHUD(Sprite icon, string itemID)

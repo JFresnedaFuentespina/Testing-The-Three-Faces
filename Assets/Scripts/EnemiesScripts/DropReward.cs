@@ -20,9 +20,10 @@ public class DropReward : MonoBehaviour
     public void Drop()
     {
         float randomValue = Random.Range(0f, 1f);
+        Vector3 dropPosition = transform.position + new Vector3(0, 1f, 0);
         if (randomValue <= dropChance)
         {
-            Instantiate(rewardPrefab, transform.position, Quaternion.identity);
+            Instantiate(rewardPrefab, dropPosition, Quaternion.identity);
         }
     }
 }

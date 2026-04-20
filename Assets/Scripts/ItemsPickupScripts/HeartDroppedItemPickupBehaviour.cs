@@ -2,14 +2,18 @@ using UnityEngine;
 
 public class HeartDroppedItemPickupBehaviour : MonoBehaviour, ItemPickupBehaviour
 {
-    public delegate void OnHealOneHeart();
+    public delegate bool OnHealOneHeart();
     public static event OnHealOneHeart OnHealOneHeartEvent;
+
     public string ApplyItemEffects()
     {
-        if(OnHealOneHeartEvent != null)
+        bool healed = false;
+
+        if (OnHealOneHeartEvent != null)
         {
-            OnHealOneHeartEvent();
+            healed = OnHealOneHeartEvent();
         }
-        return "";
+
+        return healed ? "Corazón curado" : "No se pudo curar";
     }
 }

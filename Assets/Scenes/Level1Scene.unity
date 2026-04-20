@@ -273,6 +273,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!1 &560290673 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1878606772249265042, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+  m_PrefabInstance: {fileID: 2010680791}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &560290679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560290673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3814d5e979b37dd41bb7945a3ec3fba5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PlayerHealthAssembly::DialogueGlobalManager
 --- !u!1 &618155711 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4224620647578174189, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
@@ -764,6 +781,10 @@ PrefabInstance:
       propertyPath: pararTiempo
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4918913797124257592, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: firstDialogue
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6050398862407550414, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: mainCamera
       value: 
@@ -882,7 +903,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6531257099954128286, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       insertIndex: 7
       addedObject: {fileID: 2048283887}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1878606772249265042, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 560290679}
   m_SourcePrefab: {fileID: 100100000, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
 --- !u!1 &2010680792 stripped
 GameObject:

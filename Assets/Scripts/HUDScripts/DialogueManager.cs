@@ -20,7 +20,7 @@ public class DialogueManager : MonoBehaviour
     private bool isTyping = false;
     private bool dialogueFinished = false;
     public bool showingEsqueleto = true;
-
+    public bool firstDialogue = false;
     public float letterSpeed = 0.05f;
     public string fullMessage;
     public string inputMessage;
@@ -69,6 +69,11 @@ public class DialogueManager : MonoBehaviour
         SetGameplayUI(false);
 
         gameObject.SetActive(true);
+        if (firstDialogue)
+        {
+            DialogueGlobalManager.Instance.StartDialogue();
+        }
+
         typingCoroutine = StartCoroutine(TypeMessage());
     }
 
@@ -171,6 +176,10 @@ public class DialogueManager : MonoBehaviour
                     {
                         nextDialogue.SetActive(true);
                     }
+                    else
+                    {
+                        DialogueGlobalManager.Instance.EndDialogue();
+                    }
                 }
             }
         }
@@ -198,6 +207,7 @@ public class DialogueManager : MonoBehaviour
         if (nextDialogue != null)
         {
             nextDialogue.SetActive(true);
+            DialogueGlobalManager.Instance.StartDialogue();
         }
         showingEsqueleto = false;
     }

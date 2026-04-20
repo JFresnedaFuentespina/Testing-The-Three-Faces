@@ -1080,6 +1080,7 @@ MonoBehaviour:
   inputText: {fileID: 904891055}
   bossName: Canto
   showingEsqueleto: 1
+  firstDialogue: 0
   letterSpeed: 0.05
   fullMessage: Solo caos.
   inputMessage: Pulsa "Espacio" para avanzar
@@ -1580,6 +1581,7 @@ MonoBehaviour:
   inputText: {fileID: 908344450}
   bossName: Canto
   showingEsqueleto: 1
+  firstDialogue: 0
   letterSpeed: 0.05
   fullMessage: "Aqu\xED no hay elecci\xF3n correcta."
   inputMessage: Pulsa "Espacio" para avanzar
@@ -1680,6 +1682,7 @@ MonoBehaviour:
   inputText: {fileID: 935116781}
   bossName: Canto
   showingEsqueleto: 1
+  firstDialogue: 0
   letterSpeed: 0.05
   fullMessage: "No. Empez\xF3 cuando intentaron decidirlo todo."
   inputMessage: Pulsa "Espacio" para avanzar
@@ -2558,6 +2561,7 @@ MonoBehaviour:
   inputText: {fileID: 1858111706}
   bossName: Canto
   showingEsqueleto: 1
+  firstDialogue: 0
   letterSpeed: 0.05
   fullMessage: "Aqu\xED las tienes."
   inputMessage: Pulsa "Espacio" para avanzar
@@ -5877,6 +5881,7 @@ MonoBehaviour:
   inputText: {fileID: 1239294375}
   bossName: 
   showingEsqueleto: 1
+  firstDialogue: 0
   letterSpeed: 0.05
   fullMessage: "\xBFY cruz?"
   inputMessage: Pulsa "Espacio" para avanzar
@@ -6045,6 +6050,7 @@ MonoBehaviour:
   inputText: {fileID: 1247772953}
   bossName: 
   showingEsqueleto: 0
+  firstDialogue: 0
   letterSpeed: 0.05
   fullMessage: Ni idea, pero pronto lo descubriremos.
   inputMessage: Pulsa "Espacio" para avanzar
@@ -6271,6 +6277,7 @@ MonoBehaviour:
   inputText: {fileID: 984516197}
   bossName: 
   showingEsqueleto: 1
+  firstDialogue: 0
   letterSpeed: 0.05
   fullMessage: "Todo esto empez\xF3 cuando desapareciste."
   inputMessage: Pulsa "Espacio" para avanzar
@@ -6515,6 +6522,7 @@ MonoBehaviour:
   inputText: {fileID: 1750616861}
   bossName: Canto
   showingEsqueleto: 1
+  firstDialogue: 0
   letterSpeed: 0.05
   fullMessage: "\xBFEsperabas respuestas?"
   inputMessage: Pulsa "Espacio" para avanzar
@@ -7890,6 +7898,7 @@ MonoBehaviour:
   inputText: {fileID: 688446442}
   bossName: Canto
   showingEsqueleto: 1
+  firstDialogue: 0
   letterSpeed: 0.05
   fullMessage: Cara para restaurar el equilibrio.
   inputMessage: Pulsa "Espacio" para avanzar
@@ -7979,6 +7988,7 @@ MonoBehaviour:
   inputText: {fileID: 1438044210}
   bossName: Canto
   showingEsqueleto: 1
+  firstDialogue: 0
   letterSpeed: 0.05
   fullMessage: "T\xFA eliges..."
   inputMessage: Pulsa "Espacio" para avanzar
@@ -8339,6 +8349,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 465096364}
     - target: {fileID: 7628867410140996963, guid: 651dc996a679e43418f2fce0f6a20f82, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7628867410140996963, guid: 651dc996a679e43418f2fce0f6a20f82, type: 3}
       propertyPath: currentLevel
       value: 3
       objectReference: {fileID: 0}
@@ -8508,6 +8522,7 @@ MonoBehaviour:
   inputText: {fileID: 496267268}
   bossName: Canto
   showingEsqueleto: 1
+  firstDialogue: 0
   letterSpeed: 0.05
   fullMessage: "Ahora solo os queda un \xFAltimo lanzamiento."
   inputMessage: Pulsa "Espacio" para avanzar
@@ -8946,6 +8961,7 @@ MonoBehaviour:
   inputText: {fileID: 604490999}
   bossName: Canto
   showingEsqueleto: 1
+  firstDialogue: 0
   letterSpeed: 0.05
   fullMessage: "Cruz demostrar\xE1 que sois capaces de triunfar donde yo fracas\xE9."
   inputMessage: Pulsa "Espacio" para avanzar
@@ -9282,6 +9298,7 @@ MonoBehaviour:
   inputText: {fileID: 317216111}
   bossName: Canto
   showingEsqueleto: 1
+  firstDialogue: 0
   letterSpeed: 0.05
   fullMessage: Y que todo sea como antes.
   inputMessage: Pulsa "Espacio" para avanzar
@@ -9683,6 +9700,10 @@ PrefabInstance:
       propertyPath: nextDialogue
       value: 
       objectReference: {fileID: 1436763689}
+    - target: {fileID: 4918913797124257592, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: firstDialogue
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4918913797124257592, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: portraitFantasma
       value: 

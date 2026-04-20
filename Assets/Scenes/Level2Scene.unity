@@ -983,6 +983,7 @@ MonoBehaviour:
   inputText: {fileID: 474091664}
   bossName: 
   showingEsqueleto: 0
+  firstDialogue: 0
   letterSpeed: 0.05
   fullMessage: "Vuestra guerra nos conden\xF3."
   inputMessage: Pulsa "Espacio" para avanzar
@@ -2185,6 +2186,10 @@ PrefabInstance:
     - target: {fileID: 4918913797124257592, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: showingGhost
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4918913797124257592, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: firstDialogue
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4918913797124257592, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: portraitFantasma
@@ -3932,6 +3937,7 @@ MonoBehaviour:
   inputText: {fileID: 670632357}
   bossName: 
   showingEsqueleto: 0
+  firstDialogue: 0
   letterSpeed: 0.05
   fullMessage: Este sitio... Me resulta familiar.
   inputMessage: Pulsa "Espacio" para avanzar
@@ -4750,6 +4756,7 @@ MonoBehaviour:
   inputText: {fileID: 1313442849}
   bossName: 
   showingEsqueleto: 1
+  firstDialogue: 0
   letterSpeed: 0.05
   fullMessage: Pero le pondremos fin.
   inputMessage: Pulsa "Espacio" para avanzar
@@ -5400,6 +5407,7 @@ MonoBehaviour:
   inputText: {fileID: 1612068718}
   bossName: Cruz
   showingEsqueleto: 0
+  firstDialogue: 0
   letterSpeed: 0.05
   fullMessage: No eres como el resto.
   inputMessage: Pulsa "Espacio" para avanzar
@@ -5494,6 +5502,7 @@ MonoBehaviour:
   inputText: {fileID: 470866624}
   bossName: 
   showingEsqueleto: 0
+  firstDialogue: 0
   letterSpeed: 0.05
   fullMessage: Pal lobby tontito.
   inputMessage: Pulsa "Espacio" para avanzar
@@ -5795,6 +5804,7 @@ MonoBehaviour:
   inputText: {fileID: 919622622}
   bossName: Cruz
   showingEsqueleto: 0
+  firstDialogue: 0
   letterSpeed: 0.05
   fullMessage: "Te siento\u2026 a medias. Ni vivo, ni muerto."
   inputMessage: Pulsa "Espacio" para avanzar

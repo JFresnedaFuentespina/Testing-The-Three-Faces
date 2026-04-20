@@ -111,6 +111,7 @@ public class PlayerBehaviour : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if (DialogueGlobalManager.Instance != null && DialogueGlobalManager.Instance.isDialogueActive) return;
         if (animatorEsqueleto == null || rb == null) return;
 
         animatorEsqueleto.applyRootMotion = false;

@@ -52,6 +52,7 @@ public class PlayerHealth : MonoBehaviour
         HeartItemPickupBehaviour.OnFullyHealedEvent -= FullHeal;
         BluePillItemPickupBehaviour.OnSoulHeartEvent -= AddExtraHeart;
         DialogueManager.OnRestoreHealthEvent -= RefreshHearts;
+        HeartDroppedItemPickupBehaviour.OnHealOneHeartEvent -= HealOneHeart;
     }
 
     void Start()
@@ -141,6 +142,7 @@ public class PlayerHealth : MonoBehaviour
         HeartItemPickupBehaviour.OnFullyHealedEvent += FullHeal;
         BluePillItemPickupBehaviour.OnSoulHeartEvent += AddExtraHeart;
         DialogueManager.OnRestoreHealthEvent += RefreshHearts;
+        HeartDroppedItemPickupBehaviour.OnHealOneHeartEvent += HealOneHeart;
     }
 
     void EnableDeath() => canDie = true;
@@ -426,6 +428,22 @@ public class PlayerHealth : MonoBehaviour
         }
 
         RefreshExtraHearts();
+    }
+
+    public void HealOneHeart()
+    {
+        float amountToHeal = 0f;
+        if (maxHealth - healthPoints >= 0.5f)
+        {
+            amountToHeal = 0.5f;
+        }
+        else if (maxHealth - healthPoints >= 1f)
+        {
+            amountToHeal = 1f;
+        }
+        healthPoints += amountToHeal;
+        healthPoints = Mathf.Clamp(healthPoints, 0f, maxHealth);
+        RefreshHearts();
     }
 
 }

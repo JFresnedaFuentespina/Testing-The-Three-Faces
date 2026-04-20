@@ -452,6 +452,7 @@ GameObject:
   - component: {fileID: 401235095335098150}
   - component: {fileID: 2108194427095873937}
   - component: {fileID: -228466652567904132}
+  - component: {fileID: 3891677897860073764}
   m_Layer: 9
   m_Name: Little_Ghost_ZOMbi (3)
   m_TagString: Enemy_Ghost
@@ -547,6 +548,8 @@ MonoBehaviour:
   poisoned: 0
   enemiesDeathCounterGO: {fileID: 0}
   enemiesDeathCounter: {fileID: 0}
+  blinkOnDamage: 1
+  dropRewardScript: {fileID: 3891677897860073764}
 --- !u!195 &2800648137728115797
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -712,8 +715,24 @@ MonoBehaviour:
   visDist: 10
   attackDist: 5
   moveSpeed: 2
+  agent: {fileID: 0}
+  player: {fileID: 0}
   attackAndMove: 1
+  isFrozen: 0
   state: 0
+--- !u!114 &3891677897860073764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8954800359469898617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47e7a389e943de44587bbdaea3d4282a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PlayerHealthAssembly::DropReward
+  rewardPrefab: {fileID: 621584630249350254, guid: fb7f067f5a5751a47b509110bc53b90e, type: 3}
 --- !u!1001 &2875789090538703940
 PrefabInstance:
   m_ObjectHideFlags: 0

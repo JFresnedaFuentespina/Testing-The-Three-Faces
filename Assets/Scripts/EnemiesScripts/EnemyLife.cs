@@ -20,8 +20,8 @@ public class EnemyLife : MonoBehaviour
     public GameObject enemiesDeathCounterGO;
     public EnemiesDeathCounter enemiesDeathCounter;
     public bool blinkOnDamage = true;
-
     private Renderer rend;
+    public DropReward dropRewardScript;
     private Color originalColor;
     void Start()
     {
@@ -160,6 +160,11 @@ public class EnemyLife : MonoBehaviour
         if (audioSource != null && deathAudioClip != null)
         {
             audioSource.PlayOneShot(deathAudioClip);
+        }
+
+        if (dropRewardScript != null)
+        {
+            dropRewardScript.Drop();
         }
 
         if (gameObject.tag.Contains("Boss"))

@@ -81,14 +81,21 @@ public class PickupItem : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("Colision con: " + collision.gameObject.name);
         if (!collision.gameObject.CompareTag("Pedestal") &&
-            !collision.gameObject.CompareTag("Key"))
+            !collision.gameObject.CompareTag("Key") &&
+            !collision.gameObject.CompareTag("HeartDropped"))
             return;
 
         GameObject itemToPickup;
 
         // Caso Key
         if (collision.gameObject.CompareTag("Key"))
+        {
+            itemToPickup = collision.gameObject;
+        }
+        // Caso HeartDropped
+        else if (collision.gameObject.CompareTag("HeartDropped"))
         {
             itemToPickup = collision.gameObject;
         }
@@ -124,7 +131,8 @@ public class PickupItem : MonoBehaviour
         ItemPickupBehaviour pickup = item.GetComponent<ItemPickupBehaviour>();
         if (pickup != null)
         {
-            ShowMessage(pickup.ApplyItemEffects());
+            if (pickup.ApplyItemEffects() != "")
+                ShowMessage(pickup.ApplyItemEffects());
         }
         else
         {

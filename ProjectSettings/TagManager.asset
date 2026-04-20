@@ -37,6 +37,7 @@ TagManager:
   - BossCruz
   - BossCanto
   - Fireball
+  - HeartDropped
   layers:
   - Default
   - TransparentFX

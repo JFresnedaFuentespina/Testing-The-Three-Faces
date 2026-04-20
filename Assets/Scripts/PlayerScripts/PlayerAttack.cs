@@ -24,6 +24,7 @@ public class PlayerAttack : MonoBehaviour
     private bool isAttacking = false;
     public AudioClip swordSwingAudioClip;
     public AudioClip fireballAudioClip;
+    public AudioClip thunderAudioClip;
     private AudioSource audioSource;
     private Animator animatorEsqueleto;
     private Animator animatorFantasma;
@@ -208,6 +209,7 @@ public class PlayerAttack : MonoBehaviour
 
     void ShootThunder()
     {
+        audioSource.PlayOneShot(thunderAudioClip);
         isFireball = false;
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

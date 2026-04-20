@@ -155,9 +155,9 @@ GameObject:
   - component: {fileID: 7930126595310468040}
   - component: {fileID: 5973908844157556360}
   - component: {fileID: 5796004613305379900}
+  - component: {fileID: 7882462874895623761}
   - component: {fileID: -5288870614308572272}
   - component: {fileID: 9124251553776601157}
-  - component: {fileID: 7882462874895623761}
   m_Layer: 0
   m_Name: Character
   m_TagString: Player
@@ -294,6 +294,7 @@ MonoBehaviour:
   isThunder: 0
   swordSwingAudioClip: {fileID: 8300000, guid: 75007150f322cce46a01a6c889e3402d, type: 3}
   fireballAudioClip: {fileID: 8300000, guid: d8c9f6964b00f354ea48560606339ed6, type: 3}
+  thunderAudioClip: {fileID: 8300000, guid: a9449fecf89446045bed0884d893b12f, type: 3}
   swordGO: {fileID: 0}
   appliesPoison: 0
 --- !u!114 &7930126595310468040
@@ -350,6 +351,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInventory
   inventory: {fileID: 11400000, guid: f93eacae8af88b54f87e8df66807e46e, type: 2}
+--- !u!114 &7882462874895623761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7930126595310468033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a9bed33886f7584fa70731333291e7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  changeCharacter: {fileID: 7930126595310468036}
+  animatorEsqueleto: {fileID: 7022059923402208222}
+  shieldSFX: {fileID: 8300000, guid: 6ae47f98e9eaf844cb198dad4140cb39, type: 3}
+  audioSource: {fileID: 6567400163285677877}
+  shield: {fileID: 1290216189923147219}
+  playerHealth: {fileID: 7930126595310468040}
+  shieldFlash: {fileID: 2648867881395783693}
+  InputActions: {fileID: -944628639613478452, guid: 3e13b77cc903df945b50d8a94280533f, type: 3}
+  m_shieldBlockAction:
+    m_Name: Shield Block
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 228f5dee-ffb1-4e74-9c0a-123daeade729
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  isBlocking: 0
 --- !u!114 &-5288870614308572272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -477,36 +508,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &7882462874895623761
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7930126595310468033}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a9bed33886f7584fa70731333291e7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  changeCharacter: {fileID: 7930126595310468036}
-  animatorEsqueleto: {fileID: 7022059923402208222}
-  shieldSFX: {fileID: 8300000, guid: 6ae47f98e9eaf844cb198dad4140cb39, type: 3}
-  audioSource: {fileID: 6567400163285677877}
-  shield: {fileID: 1290216189923147219}
-  playerHealth: {fileID: 7930126595310468040}
-  shieldFlash: {fileID: 2648867881395783693}
-  InputActions: {fileID: -944628639613478452, guid: 3e13b77cc903df945b50d8a94280533f, type: 3}
-  m_shieldBlockAction:
-    m_Name: Shield Block
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 228f5dee-ffb1-4e74-9c0a-123daeade729
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  isBlocking: 0
 --- !u!1001 &3216293214172275279
 PrefabInstance:
   m_ObjectHideFlags: 0

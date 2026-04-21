@@ -30,7 +30,6 @@ public class TooltipUI : MonoBehaviour
 
     public void Show(string description)
     {
-        Debug.Log("TOOLTIP: Mostrando tooltip: " + description);
         if (!gameObject.activeInHierarchy) return;
 
         text.text = description;
@@ -42,7 +41,6 @@ public class TooltipUI : MonoBehaviour
 
     public void Hide()
     {
-        Debug.Log("TOOLTIP: Ocultando tooltip");
         if (!gameObject.activeInHierarchy) return;
 
         if (animRoutine != null)
@@ -54,7 +52,7 @@ public class TooltipUI : MonoBehaviour
     IEnumerator FadeOut()
     {
 
-        float duration = 0.2f;
+        float duration = 0.7f;
         float t = 0f;
 
         // pequeño efecto de escala
@@ -77,7 +75,7 @@ public class TooltipUI : MonoBehaviour
 
     IEnumerator FadeIn()
     {
-        float duration = 0.15f;
+        float duration = 0.7f;
         float t = 0f;
 
         while (t < duration)

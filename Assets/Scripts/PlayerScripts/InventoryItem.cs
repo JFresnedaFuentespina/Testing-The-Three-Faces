@@ -5,4 +5,5 @@ using UnityEngine;
     {
         public string itemID;
         public Sprite icon;
+        public string description;
     }

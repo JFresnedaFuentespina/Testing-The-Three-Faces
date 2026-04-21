@@ -139,6 +139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemIcon
   itemID: 
   icon: {fileID: 21300000, guid: cdb9e182f4aa06f468de1a59da69035c, type: 3}
+  description: Bloquea ataques con clic derecho.
 --- !u!114 &1080177500107793198
 MonoBehaviour:
   m_ObjectHideFlags: 0

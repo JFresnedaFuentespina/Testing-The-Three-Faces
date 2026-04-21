@@ -113,6 +113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemIcon
   itemID: 
   icon: {fileID: 21300000, guid: 7ded140a71acd7141a42716d57e9fc32, type: 3}
+  description: "Coraz\xF3n extra azul."
 --- !u!114 &-637338577064975301
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -41,11 +41,11 @@ public class PlayerInventory : MonoBehaviour
         OnInventoryItemsProvidedEvent?.Invoke(instance.inventory.items);
     }
 
-    public void AddItem(string id, Sprite icon)
+    public void AddItem(string id, Sprite icon, string description)
     {
         if (inventory != null)
         {
-            inventory.AddItem(id, icon);
+            inventory.AddItem(id, icon, description);
         }
     }
 

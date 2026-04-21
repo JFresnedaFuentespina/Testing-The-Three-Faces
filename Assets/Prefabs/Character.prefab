@@ -338,6 +338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fb090f8460a01d4489254b9699c716a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PickupItem
+  descriptionText: {fileID: 830161900491134597, guid: d884090b132bfee46bcdaf384f4efffe, type: 3}
 --- !u!114 &5796004613305379900
 MonoBehaviour:
   m_ObjectHideFlags: 0

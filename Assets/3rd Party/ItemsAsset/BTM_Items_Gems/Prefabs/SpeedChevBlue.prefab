@@ -139,6 +139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemIcon
   itemID: 
   icon: {fileID: 21300000, guid: 6f139ab8bcab9044e8ac9a04ae5c7f09, type: 3}
+  description: + Velocidad movimiento.
 --- !u!114 &6017553143580441208
 MonoBehaviour:
   m_ObjectHideFlags: 0

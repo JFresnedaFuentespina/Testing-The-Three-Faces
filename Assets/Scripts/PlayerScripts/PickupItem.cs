@@ -14,11 +14,12 @@ public class PickupItem : MonoBehaviour
     private TextMeshProUGUI speedText;
     private TextMeshProUGUI attackSpeedText;
     private TextMeshProUGUI showItemMessageText;
+    private TooltipUI tooltipUI;
     private Coroutine messageRoutine;
     private bool hudReady = false;
 
     // Eventos
-    public delegate void OnAddItemToInventory(string id, Sprite icon);
+    public delegate void OnAddItemToInventory(string id, Sprite icon, string description);
     public static event OnAddItemToInventory OnAddItemToInventoryEvent;
 
     void OnEnable()
@@ -61,6 +62,8 @@ public class PickupItem : MonoBehaviour
 
         hudReady = true;
 
+        tooltipUI = pause.transform.Find("TooltipPanel").GetComponent<TooltipUI>();
+
         PlayerAttack.RequestAttackStats();
         PlayerBehaviour.RequestBehaviourStats();
         PlayerInventory.RequestInventoryItems();
@@ -74,7 +77,7 @@ public class PickupItem : MonoBehaviour
         foreach (var item in items)
         {
             if (item != null && item.icon != null)
-                AddItemToHUD(item.icon, item.itemID);
+                AddItemToHUD(item.icon, item.itemID, item.description);
         }
     }
 
@@ -116,8 +119,8 @@ public class PickupItem : MonoBehaviour
         }
 
         // Añadir al inventario
-        OnAddItemToInventoryEvent?.Invoke(iconComp.itemID, iconComp.icon);
-        AddItemToHUD(iconComp.icon, iconComp.itemID);
+        OnAddItemToInventoryEvent?.Invoke(iconComp.itemID, iconComp.icon, iconComp.description);
+        AddItemToHUD(iconComp.icon, iconComp.itemID, iconComp.description);
 
         // Aplicar efectos
         ApplyItemEffects(itemToPickup);
@@ -145,12 +148,12 @@ public class PickupItem : MonoBehaviour
             if (message == "No se pudo curar")
                 destroyItem = false;
         }
-    
+
         if (destroyItem)
             Destroy(item);
     }
 
-    private void AddItemToHUD(Sprite icon, string itemID)
+    private void AddItemToHUD(Sprite icon, string itemID, string description)
     {
         if (icon == null)
         {
@@ -166,6 +169,10 @@ public class PickupItem : MonoBehaviour
 
         RectTransform rt = iconGO.GetComponent<RectTransform>();
         rt.sizeDelta = new Vector2(90, 100); // tamaño de la celda
+
+        ItemHoverUI hover = iconGO.AddComponent<ItemHoverUI>();
+        hover.description = description;
+        hover.tooltipUI = tooltipUI;
     }
 
     private void UpdateAttackStats(float damage, float interval)

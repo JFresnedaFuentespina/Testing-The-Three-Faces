@@ -139,6 +139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   itemID: 
   icon: {fileID: 21300000, guid: 12b93e70957da754face38d36eb66492, type: 3}
+  description: "Da\xF1o el\xE9ctrico, +Da\xF1o."
 --- !u!114 &9175004724251984043
 MonoBehaviour:
   m_ObjectHideFlags: 0

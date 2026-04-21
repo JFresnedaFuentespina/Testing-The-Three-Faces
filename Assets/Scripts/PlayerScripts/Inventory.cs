@@ -6,11 +6,11 @@ public class Inventory : ScriptableObject
 {
     public List<InventoryItem> items = new List<InventoryItem>();
 
-    public void AddItem(string id, Sprite sprite)
+    public void AddItem(string id, Sprite sprite, string description = "")
     {
         if (!items.Exists(i => i.itemID == id))
         {
-            items.Add(new InventoryItem { itemID = id, icon = sprite });
+            items.Add(new InventoryItem { itemID = id, icon = sprite, description = description });
         }
     }
 

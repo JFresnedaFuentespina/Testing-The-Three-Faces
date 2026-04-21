@@ -139,6 +139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemIcon
   itemID: 
   icon: {fileID: 21300000, guid: 51130b03c1ab3f740ade4f1af7e01da7, type: 3}
+  description: Detener a los enemigos temporalmente al girar la moneda.
 --- !u!114 &5064831579069575884
 MonoBehaviour:
   m_ObjectHideFlags: 0

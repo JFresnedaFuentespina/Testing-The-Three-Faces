@@ -139,6 +139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemIcon
   itemID: 
   icon: {fileID: 21300000, guid: 20d61947e3693eb42ac2e492dc3320f5, type: 3}
+  description: "+ Da\xF1o, - Vida m\xE1xima."
 --- !u!114 &4511212770282651254
 MonoBehaviour:
   m_ObjectHideFlags: 0

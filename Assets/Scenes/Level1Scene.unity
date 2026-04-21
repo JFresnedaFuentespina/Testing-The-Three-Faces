@@ -901,6 +901,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.6075471
       objectReference: {fileID: 0}
+    - target: {fileID: 7110929888650694372, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8092397225664160277, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -915,7 +919,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 867872461a956994a8a26cc6a55cb1bc, type: 2}
     - target: {fileID: 8430581474904621184, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: m_hasFontAssetChanged
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8617171257819549741, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: mainCamera

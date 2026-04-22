@@ -119,8 +119,11 @@ public class PickupItem : MonoBehaviour
         }
 
         // Añadir al inventario
-        OnAddItemToInventoryEvent?.Invoke(iconComp.itemID, iconComp.icon, iconComp.description);
-        AddItemToHUD(iconComp.icon, iconComp.itemID, iconComp.description);
+        if (!itemToPickup.CompareTag("HeartDropped"))
+        {
+            OnAddItemToInventoryEvent?.Invoke(iconComp.itemID, iconComp.icon, iconComp.description);
+            AddItemToHUD(iconComp.icon, iconComp.itemID, iconComp.description);
+        }
 
         // Aplicar efectos
         ApplyItemEffects(itemToPickup);

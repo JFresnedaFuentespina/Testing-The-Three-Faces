@@ -15,6 +15,7 @@ public class LevelGenerator : MonoBehaviour
     public GameObject treasureRoomPrefab;
     public GameObject bossRoomPrefab;
     public GameObject finalBossRoomPrefab;
+    public GameObject shopRoomPrefab;
     public GameObject characterPrefab;
 
     [Header("Level Settings")]
@@ -164,9 +165,61 @@ public class LevelGenerator : MonoBehaviour
         List<GameObject> roomList = GenerateRooms();
         GameObject treasureRoom = SpawnTreasureRoom();
         EnsureBossRoom();
-        SetupAllRoomDoors(roomList, treasureRoom);
+        GameObject shopRoom = SpawnShopRoom();
+        SetupAllRoomDoors(roomList, treasureRoom, shopRoom);
         InitMinimap();
         return roomList.Count;
+    }
+
+    private GameObject SpawnShopRoom()
+    {
+        List<Vector2Int> validPositions = new List<Vector2Int>();
+
+        foreach (var grid in roomsDictionary.Keys)
+        {
+            // No usar habitaciones especiales como origen
+            if (roomsDictionary.TryGetValue(grid, out GameObject baseRoom))
+            {
+                if (
+                    baseRoom.name.Contains("Boss") ||
+                    baseRoom.name == "TreasureRoom"
+                )
+                    continue;
+            }
+
+            foreach (var dir in directions)
+            {
+                Vector2Int candidate = grid + dir;
+
+                // Debe estar libre
+                if (roomsDictionary.ContainsKey(candidate))
+                    continue;
+
+                // No puede tener habitación arriba
+                if (roomsDictionary.ContainsKey(candidate + Vector2Int.up))
+                    continue;
+
+                validPositions.Add(candidate);
+            }
+        }
+
+        if (validPositions.Count == 0)
+        {
+            Debug.LogWarning("No se encontró posición válida para la tienda");
+            return null;
+        }
+
+        Vector2Int shopGrid = validPositions[Random.Range(0, validPositions.Count)];
+
+        Vector3 shopPos = GridToWorld(shopGrid);
+        GameObject shopRoom = Instantiate(shopRoomPrefab, shopPos, Quaternion.identity, transform);
+        shopRoom.name = "ShopRoom";
+
+        roomsDictionary[shopGrid] = shopRoom;
+
+        SetupRoomDoors(shopRoom);
+
+        return shopRoom;
     }
 
     private List<GameObject> GenerateRooms()
@@ -268,13 +321,14 @@ public class LevelGenerator : MonoBehaviour
         minimapBehaviour.initMinimap(this.roomsDictionary, character);
         minimapBehaviour.MovePlayerToRoom("Room_0");
     }
-    private void SetupAllRoomDoors(List<GameObject> roomList, GameObject treasureRoom)
+    private void SetupAllRoomDoors(List<GameObject> roomList, GameObject treasureRoom, GameObject shopRoom)
     {
         for (int i = 0; i < roomList.Count; i++)
         {
             SetupRoomDoors(roomList[i]);
         }
         SetupRoomDoors(treasureRoom);
+        SetupRoomDoors(shopRoom);
     }
 
     public void SetupRoomDoors(GameObject room)

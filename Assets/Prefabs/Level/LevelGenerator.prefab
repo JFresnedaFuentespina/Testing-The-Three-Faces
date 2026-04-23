@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3ffec93ca1fb8745b69a01ca70aff7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelWidth: 5
 --- !u!114 &7507056594978238939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,6 +65,7 @@ MonoBehaviour:
   treasureRoomPrefab: {fileID: 6255862597455320277, guid: ef7569f98cd8558468b84a214f6ce4e9, type: 3}
   bossRoomPrefab: {fileID: 8213333198550572446, guid: 371ca3a3b749625468353f60baf52fba, type: 3}
   finalBossRoomPrefab: {fileID: 8213333198550572446, guid: 668a4d954f43f44458effe7c242c8c34, type: 3}
+  shopRoomPrefab: {fileID: 6255862597455320277, guid: 95d0a7e03f96a7c4eacbe9d95e90c09e, type: 3}
   characterPrefab: {fileID: 7930126595310468033, guid: e94499e9e8effe247ace11156ea23664, type: 3}
   levelWidth: 0
   levelId: 0
@@ -72,6 +74,11 @@ MonoBehaviour:
   offsetH: 50
   maxEnemiesPerRoom: 3
   character: {fileID: 7930126595310468033, guid: e94499e9e8effe247ace11156ea23664, type: 3}
+  log:
+    levelId: 0
+    date: 
+    rooms: []
+    paths: []
   fogEnabled: 0
 --- !u!114 &5209484865355184499
 MonoBehaviour:

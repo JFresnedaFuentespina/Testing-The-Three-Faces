@@ -40,6 +40,14 @@ public class CaraFSM : BasicEnemyInterface
     private bool wasPaused = false;
     private bool deathHappened = false;
 
+    //audio
+    public AudioSource audioSource;
+    public AudioClip growl;
+    public AudioClip jumpAttackEnd;
+
+    //particles
+    public ParticleSystem dustOnJumpAttack;
+
     void Start()
     {
         InitComponents();
@@ -107,7 +115,8 @@ public class CaraFSM : BasicEnemyInterface
     protected override void Death()
     {
         if (deathHappened) return;
-        
+
+        audioSource.Stop();
         deathHappened = true;
         agent.isStopped = true;
         agent.speed = 0f;
@@ -157,6 +166,9 @@ public class CaraFSM : BasicEnemyInterface
     protected override void Pursue()
     {
         if (isBusy() || isFrozen) return;
+
+        audioSource.clip = growl;
+        audioSource.Play();
 
         agent.isStopped = false;
         agent.speed = moveSpeed;
@@ -259,6 +271,7 @@ public class CaraFSM : BasicEnemyInterface
 
         float elapsed = 0f;
         float height = 5f;
+        bool soundPlayed = false;
 
         while (elapsed < duration)
         {
@@ -273,9 +286,21 @@ public class CaraFSM : BasicEnemyInterface
 
             transform.position = pos;
 
+            // reproducir un poco antes de aterrizar
+            if (!soundPlayed && t >= 0.85f)
+            {
+                audioSource.Stop();
+                audioSource.clip = jumpAttackEnd;
+                audioSource.Play();
+                soundPlayed = true;
+            }
+
             yield return null;
         }
 
+        dustOnJumpAttack.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        dustOnJumpAttack.Play();
+        
         agent.Warp(transform.position);
 
         yield return new WaitForSecondsRealtime(0.8f);
@@ -283,7 +308,7 @@ public class CaraFSM : BasicEnemyInterface
 
         isJumping = false;
         state = STATE.PURSUE;
-
+        dustOnJumpAttack.Stop();
         yield return new WaitForSecondsRealtime(jumpCooldown);
         canJumpAttack = true;
     }

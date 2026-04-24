@@ -284,7 +284,7 @@ MonoBehaviour:
   radioRayo: {fileID: 6194893347541140970}
   fireball: {fileID: 7251879486380165639, guid: c2f6a8962aac3814aa56cb9647c93470, type: 3}
   thunderPrefab: {fileID: 5627696518775099638, guid: 6839a8d6998e86d4282063ffdacb0c15, type: 3}
-  attackDamage: 100
+  attackDamage: 5
   attackSpeed: 5
   spawnHeight: 1
   attackRange: 5
@@ -338,7 +338,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fb090f8460a01d4489254b9699c716a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PickupItem
-  descriptionText: {fileID: 830161900491134597, guid: d884090b132bfee46bcdaf384f4efffe, type: 3}
 --- !u!114 &5796004613305379900
 MonoBehaviour:
   m_ObjectHideFlags: 0

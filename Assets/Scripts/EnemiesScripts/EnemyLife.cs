@@ -23,6 +23,7 @@ public class EnemyLife : MonoBehaviour
     private Renderer rend;
     public DropReward dropRewardScript;
     private Color originalColor;
+    public List<ParticleSystem> hitEffects;
     void Start()
     {
         enemiesDeathCounterGO = GameObject.Find("EnemiesDeathCounterGO");
@@ -42,12 +43,29 @@ public class EnemyLife : MonoBehaviour
                 fillImage = fillTransform.GetComponent<Image>();
         }
         rend = GetComponentInChildren<Renderer>();
-        originalColor = rend.material.color;
+        if (rend == null)
+        {
+            blinkOnDamage = false;
+        }
+        else
+        {
+            originalColor = rend.material.color;
+        }
     }
 
     public void Damage(float hit)
     {
         if (!isAlive) return;
+
+
+        if (hitEffects != null && hitEffects.Count > 0)
+        {
+            foreach (ParticleSystem hitEffect in hitEffects)
+            {
+                hitEffect.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+                hitEffect.Play();
+            }
+        }
 
         // Reproducir audio de hit
         if (audioSource != null && hitAudioClip != null)

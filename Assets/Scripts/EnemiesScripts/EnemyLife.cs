@@ -47,10 +47,6 @@ public class EnemyLife : MonoBehaviour
         {
             blinkOnDamage = false;
         }
-        else
-        {
-            originalColor = rend.material.color;
-        }
     }
 
     public void Damage(float hit)

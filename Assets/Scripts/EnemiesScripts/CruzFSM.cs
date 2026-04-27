@@ -47,6 +47,11 @@ public class CruzFSM : BasicEnemyInterface
     public bool isWalking = false;
     public bool isFinishingAttack = false;
     public bool deathHappened = false;
+    public AudioSource audioSource;
+    public AudioClip growlSFX;
+    public AudioClip throwAttackSFX;
+    public AudioClip punch3SFX;
+    public AudioClip startPursueSFX;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -86,7 +91,7 @@ public class CruzFSM : BasicEnemyInterface
         {
             transform.LookAt(player.transform);
         }
-        if(isAttacking && currentAttack == ATTACK_TYPE.PUNCH3)
+        if (isAttacking && currentAttack == ATTACK_TYPE.PUNCH3)
         {
             agent.isStopped = false;
             agent.SetDestination(player.position);
@@ -129,7 +134,12 @@ public class CruzFSM : BasicEnemyInterface
     protected override void Pursue()
     {
         if (isAttacking) return;
-
+        if (audioSource.clip != startPursueSFX)
+        {
+            audioSource.Stop();
+            audioSource.clip = startPursueSFX;
+            audioSource.Play();
+        }
         isWalking = true;
         agent.isStopped = false;
         agent.SetDestination(player.position);
@@ -188,17 +198,20 @@ public class CruzFSM : BasicEnemyInterface
             case 0: // Punch2
                 currentAttack = ATTACK_TYPE.PUNCH2;
                 agent.speed = 0f;
+                audioSource.PlayOneShot(growlSFX);
                 cruzAnimator.SetPunch2();
                 break;
 
             case 1: // Punch3
                 currentAttack = ATTACK_TYPE.PUNCH3;
+                audioSource.PlayOneShot(punch3SFX);
                 agent.speed = punch3MoveSpeed;
                 cruzAnimator.SetPunch3();
                 break;
 
             case 2: // Throw
                 currentAttack = ATTACK_TYPE.THROW;
+                audioSource.PlayOneShot(throwAttackSFX);
                 agent.ResetPath();
                 agent.isStopped = true;
                 agent.velocity = Vector3.zero;

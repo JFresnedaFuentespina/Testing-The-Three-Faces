@@ -33,6 +33,9 @@ public class TooltipUI : MonoBehaviour
         if (!gameObject.activeInHierarchy) return;
 
         text.text = description;
+
+        SetHeight(250f);
+
         if (animRoutine != null)
             StopCoroutine(animRoutine);
 
@@ -97,5 +100,11 @@ public class TooltipUI : MonoBehaviour
         if (canvasGroup != null)
             canvasGroup.alpha = 0f;
 
+    }
+    void SetHeight(float height)
+    {
+        Vector2 size = panel.sizeDelta;
+        size.y = height;
+        panel.sizeDelta = size;
     }
 }

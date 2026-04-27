@@ -18891,6 +18891,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8061575549371505187}
     m_Modifications:
+    - target: {fileID: 4777513907503637967, guid: 861d0041913d67246b828dc89889c230, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5292748509150375382, guid: 861d0041913d67246b828dc89889c230, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.9691926
@@ -18946,6 +18950,10 @@ PrefabInstance:
     - target: {fileID: 7791607975242654719, guid: 861d0041913d67246b828dc89889c230, type: 3}
       propertyPath: m_Name
       value: RockWall
+      objectReference: {fileID: 0}
+    - target: {fileID: 7791607975242654719, guid: 861d0041913d67246b828dc89889c230, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -18965,6 +18973,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7230231976514628302}
     m_Modifications:
+    - target: {fileID: 4777513907503637967, guid: 861d0041913d67246b828dc89889c230, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5292748509150375382, guid: 861d0041913d67246b828dc89889c230, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.9691926
@@ -19020,6 +19032,10 @@ PrefabInstance:
     - target: {fileID: 7791607975242654719, guid: 861d0041913d67246b828dc89889c230, type: 3}
       propertyPath: m_Name
       value: RockWall (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7791607975242654719, guid: 861d0041913d67246b828dc89889c230, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -19039,6 +19055,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7230231976514628302}
     m_Modifications:
+    - target: {fileID: 4777513907503637967, guid: 861d0041913d67246b828dc89889c230, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5292748509150375382, guid: 861d0041913d67246b828dc89889c230, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.9691926
@@ -19094,6 +19114,10 @@ PrefabInstance:
     - target: {fileID: 7791607975242654719, guid: 861d0041913d67246b828dc89889c230, type: 3}
       propertyPath: m_Name
       value: RockWall
+      objectReference: {fileID: 0}
+    - target: {fileID: 7791607975242654719, guid: 861d0041913d67246b828dc89889c230, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -19113,6 +19137,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7230231976514628302}
     m_Modifications:
+    - target: {fileID: 4777513907503637967, guid: 861d0041913d67246b828dc89889c230, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5292748509150375382, guid: 861d0041913d67246b828dc89889c230, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.9691926
@@ -19168,6 +19196,10 @@ PrefabInstance:
     - target: {fileID: 7791607975242654719, guid: 861d0041913d67246b828dc89889c230, type: 3}
       propertyPath: m_Name
       value: RockWall (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7791607975242654719, guid: 861d0041913d67246b828dc89889c230, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -19187,6 +19219,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8061575549371505187}
     m_Modifications:
+    - target: {fileID: 4777513907503637967, guid: 861d0041913d67246b828dc89889c230, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5292748509150375382, guid: 861d0041913d67246b828dc89889c230, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.9691926
@@ -19242,6 +19278,10 @@ PrefabInstance:
     - target: {fileID: 7791607975242654719, guid: 861d0041913d67246b828dc89889c230, type: 3}
       propertyPath: m_Name
       value: RockWall (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7791607975242654719, guid: 861d0041913d67246b828dc89889c230, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -19261,6 +19301,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8614140110482430030}
     m_Modifications:
+    - target: {fileID: 4777513907503637967, guid: 861d0041913d67246b828dc89889c230, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5292748509150375382, guid: 861d0041913d67246b828dc89889c230, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.9691926
@@ -19316,6 +19360,10 @@ PrefabInstance:
     - target: {fileID: 7791607975242654719, guid: 861d0041913d67246b828dc89889c230, type: 3}
       propertyPath: m_Name
       value: RockWall (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7791607975242654719, guid: 861d0041913d67246b828dc89889c230, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -19335,6 +19383,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1314718347879957765}
     m_Modifications:
+    - target: {fileID: 4777513907503637967, guid: 861d0041913d67246b828dc89889c230, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5292748509150375382, guid: 861d0041913d67246b828dc89889c230, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.9691926
@@ -19391,6 +19443,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockWall (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7791607975242654719, guid: 861d0041913d67246b828dc89889c230, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -19409,6 +19465,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4977471118762663775}
     m_Modifications:
+    - target: {fileID: 4777513907503637967, guid: 861d0041913d67246b828dc89889c230, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5292748509150375382, guid: 861d0041913d67246b828dc89889c230, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.9691926
@@ -19464,6 +19524,10 @@ PrefabInstance:
     - target: {fileID: 7791607975242654719, guid: 861d0041913d67246b828dc89889c230, type: 3}
       propertyPath: m_Name
       value: RockWall (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7791607975242654719, guid: 861d0041913d67246b828dc89889c230, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -19483,6 +19547,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8614140110482430030}
     m_Modifications:
+    - target: {fileID: 4777513907503637967, guid: 861d0041913d67246b828dc89889c230, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5292748509150375382, guid: 861d0041913d67246b828dc89889c230, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.9691926
@@ -19539,6 +19607,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockWall (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7791607975242654719, guid: 861d0041913d67246b828dc89889c230, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -19557,6 +19629,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1314718347879957765}
     m_Modifications:
+    - target: {fileID: 4777513907503637967, guid: 861d0041913d67246b828dc89889c230, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5292748509150375382, guid: 861d0041913d67246b828dc89889c230, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.9691926
@@ -19612,6 +19688,10 @@ PrefabInstance:
     - target: {fileID: 7791607975242654719, guid: 861d0041913d67246b828dc89889c230, type: 3}
       propertyPath: m_Name
       value: RockWall
+      objectReference: {fileID: 0}
+    - target: {fileID: 7791607975242654719, guid: 861d0041913d67246b828dc89889c230, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -19631,6 +19711,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3070669113525073407}
     m_Modifications:
+    - target: {fileID: 4777513907503637967, guid: 861d0041913d67246b828dc89889c230, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5292748509150375382, guid: 861d0041913d67246b828dc89889c230, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.9691926
@@ -19686,6 +19770,10 @@ PrefabInstance:
     - target: {fileID: 7791607975242654719, guid: 861d0041913d67246b828dc89889c230, type: 3}
       propertyPath: m_Name
       value: RockWall
+      objectReference: {fileID: 0}
+    - target: {fileID: 7791607975242654719, guid: 861d0041913d67246b828dc89889c230, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -19705,6 +19793,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4977471118762663775}
     m_Modifications:
+    - target: {fileID: 4777513907503637967, guid: 861d0041913d67246b828dc89889c230, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5292748509150375382, guid: 861d0041913d67246b828dc89889c230, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.9691926
@@ -19761,6 +19853,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockWall
       objectReference: {fileID: 0}
+    - target: {fileID: 7791607975242654719, guid: 861d0041913d67246b828dc89889c230, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -19779,6 +19875,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3731785461639873013}
     m_Modifications:
+    - target: {fileID: 739773727276547183, guid: a7cf58045731a7446b9778f2bdce3634, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 853157863150669709, guid: a7cf58045731a7446b9778f2bdce3634, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5182199918533220257, guid: a7cf58045731a7446b9778f2bdce3634, type: 3}
       propertyPath: m_LocalScale.x
       value: 2
@@ -19835,13 +19939,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: TorchFront
       objectReference: {fileID: 0}
+    - target: {fileID: 5521712150349565211, guid: a7cf58045731a7446b9778f2bdce3634, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5982321082539208549, guid: a7cf58045731a7446b9778f2bdce3634, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5982321082539208549, guid: a7cf58045731a7446b9778f2bdce3634, type: 3}
+      propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6845309972967186532, guid: a7cf58045731a7446b9778f2bdce3634, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6845309972967186532, guid: a7cf58045731a7446b9778f2bdce3634, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7356706232680632147, guid: a7cf58045731a7446b9778f2bdce3634, type: 3}
       propertyPath: m_LocalScale.x
@@ -19885,6 +20001,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8614140110482430030}
     m_Modifications:
+    - target: {fileID: 4777513907503637967, guid: 861d0041913d67246b828dc89889c230, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5292748509150375382, guid: 861d0041913d67246b828dc89889c230, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.9691926
@@ -19941,6 +20061,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockWall
       objectReference: {fileID: 0}
+    - target: {fileID: 7791607975242654719, guid: 861d0041913d67246b828dc89889c230, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -19959,6 +20083,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8061575549371505187}
     m_Modifications:
+    - target: {fileID: 4777513907503637967, guid: 861d0041913d67246b828dc89889c230, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5292748509150375382, guid: 861d0041913d67246b828dc89889c230, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.9691926
@@ -20014,6 +20142,10 @@ PrefabInstance:
     - target: {fileID: 7791607975242654719, guid: 861d0041913d67246b828dc89889c230, type: 3}
       propertyPath: m_Name
       value: RockWall (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7791607975242654719, guid: 861d0041913d67246b828dc89889c230, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -20033,6 +20165,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4977471118762663775}
     m_Modifications:
+    - target: {fileID: 4777513907503637967, guid: 861d0041913d67246b828dc89889c230, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5292748509150375382, guid: 861d0041913d67246b828dc89889c230, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.9691926
@@ -20088,6 +20224,10 @@ PrefabInstance:
     - target: {fileID: 7791607975242654719, guid: 861d0041913d67246b828dc89889c230, type: 3}
       propertyPath: m_Name
       value: RockWall (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7791607975242654719, guid: 861d0041913d67246b828dc89889c230, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -20107,6 +20247,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1314718347879957765}
     m_Modifications:
+    - target: {fileID: 4777513907503637967, guid: 861d0041913d67246b828dc89889c230, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5292748509150375382, guid: 861d0041913d67246b828dc89889c230, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.9691926
@@ -20163,6 +20307,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockWall (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7791607975242654719, guid: 861d0041913d67246b828dc89889c230, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -20181,6 +20329,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3070669113525073407}
     m_Modifications:
+    - target: {fileID: 4777513907503637967, guid: 861d0041913d67246b828dc89889c230, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5292748509150375382, guid: 861d0041913d67246b828dc89889c230, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.9691926
@@ -20237,6 +20389,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockWall (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7791607975242654719, guid: 861d0041913d67246b828dc89889c230, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -20255,6 +20411,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3070669113525073407}
     m_Modifications:
+    - target: {fileID: 4777513907503637967, guid: 861d0041913d67246b828dc89889c230, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5292748509150375382, guid: 861d0041913d67246b828dc89889c230, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.9691926
@@ -20310,6 +20470,10 @@ PrefabInstance:
     - target: {fileID: 7791607975242654719, guid: 861d0041913d67246b828dc89889c230, type: 3}
       propertyPath: m_Name
       value: RockWall (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7791607975242654719, guid: 861d0041913d67246b828dc89889c230, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

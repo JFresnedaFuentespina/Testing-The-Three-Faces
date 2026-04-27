@@ -1121,7 +1121,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: PlayerHealthAssembly::CantoCastMagicAttack
   projectile: {fileID: 5627696518775099638, guid: 00dd6efc06d3d904f8c54712b85f5042, type: 3}
-  amount: 10
+  thunderClip: {fileID: 8300000, guid: 479e41a672e01504fb40657fc89c0dfb, type: 3}
+  amount: 15
   spawnAreaX: 2
   spawnAreaZ: 2
 --- !u!1 &2399109204944608482

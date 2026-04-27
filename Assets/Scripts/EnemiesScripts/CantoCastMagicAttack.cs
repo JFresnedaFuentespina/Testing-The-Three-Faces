@@ -5,6 +5,7 @@ public class CantoCastMagicAttack : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public GameObject projectile;
+    public AudioClip thunderClip;
     private Transform suelo;
     public int amount = 10;
     public float spawnAreaX = 2f;
@@ -35,6 +36,8 @@ public class CantoCastMagicAttack : MonoBehaviour
     {
         float random = Random.Range(0f, 1f);
         yield return new WaitForSecondsRealtime(random);
-        Instantiate(projectile, spawnPos, Quaternion.identity);
+        GameObject thunder = Instantiate(projectile, spawnPos, Quaternion.identity);
+        thunder.GetComponent<AudioSource>().PlayOneShot(thunderClip);
+        Destroy(thunder, 1f);
     }
 }

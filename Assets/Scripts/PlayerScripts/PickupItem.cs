@@ -87,7 +87,8 @@ public class PickupItem : MonoBehaviour
         Debug.Log("Colision con: " + collision.gameObject.name);
         if (!collision.gameObject.CompareTag("Pedestal") &&
             !collision.gameObject.CompareTag("Key") &&
-            !collision.gameObject.CompareTag("HeartDropped"))
+            !collision.gameObject.CompareTag("HeartDropped") &&
+            !collision.gameObject.CompareTag("Coin"))
             return;
 
         GameObject itemToPickup;
@@ -99,6 +100,10 @@ public class PickupItem : MonoBehaviour
         }
         // Caso HeartDropped
         else if (collision.gameObject.CompareTag("HeartDropped"))
+        {
+            itemToPickup = collision.gameObject;
+        }
+        else if (collision.gameObject.CompareTag("Coin"))
         {
             itemToPickup = collision.gameObject;
         }
@@ -119,7 +124,7 @@ public class PickupItem : MonoBehaviour
         }
 
         // Añadir al inventario
-        if (!itemToPickup.CompareTag("HeartDropped"))
+        if (!itemToPickup.CompareTag("HeartDropped") && !(itemToPickup.CompareTag("Coin")))
         {
             OnAddItemToInventoryEvent?.Invoke(iconComp.itemID, iconComp.icon, iconComp.description);
             AddItemToHUD(iconComp.icon, iconComp.itemID, iconComp.description);

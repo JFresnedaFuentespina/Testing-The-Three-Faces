@@ -130,7 +130,7 @@ public class PickupItem : MonoBehaviour
     }
 
 
-    private void ApplyItemEffects(GameObject item)
+    public void ApplyItemEffects(GameObject item)
     {
         bool destroyItem = true;
         string message = "";
@@ -156,7 +156,7 @@ public class PickupItem : MonoBehaviour
             Destroy(item);
     }
 
-    private void AddItemToHUD(Sprite icon, string itemID, string description)
+    public void AddItemToHUD(Sprite icon, string itemID, string description)
     {
         if (icon == null)
         {

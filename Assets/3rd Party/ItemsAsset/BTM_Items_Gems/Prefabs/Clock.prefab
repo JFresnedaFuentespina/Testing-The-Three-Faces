@@ -139,6 +139,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemIcon
   itemID: 
   icon: {fileID: 21300000, guid: d7e6e9c4629a42d4090fa0cd173f3083, type: 3}
+  description: 
+  price: 0
 --- !u!114 &846503356268932595
 MonoBehaviour:
   m_ObjectHideFlags: 0

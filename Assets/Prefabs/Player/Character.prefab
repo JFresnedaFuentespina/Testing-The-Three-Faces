@@ -158,6 +158,7 @@ GameObject:
   - component: {fileID: 7882462874895623761}
   - component: {fileID: -5288870614308572272}
   - component: {fileID: 9124251553776601157}
+  - component: {fileID: 8035337212567526722}
   m_Layer: 0
   m_Name: Character
   m_TagString: Player
@@ -508,6 +509,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8035337212567526722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7930126595310468033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a086a19ffcd7cc24db689883a0bba040, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PlayerHealthAssembly::PlayerMoney
+  amount: 0
 --- !u!1001 &3216293214172275279
 PrefabInstance:
   m_ObjectHideFlags: 0

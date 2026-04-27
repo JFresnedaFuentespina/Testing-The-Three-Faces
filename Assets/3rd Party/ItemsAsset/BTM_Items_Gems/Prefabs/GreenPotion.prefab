@@ -116,13 +116,13 @@ MonoBehaviour:
   rotateY: 1
   rotateZ: 0
   rotationSpeed: 85.67
-  isFloating: 1
-  useEasingForFloating: 1
+  isFloating: 0
+  useEasingForFloating: 0
   floatHeight: 1.93
   floatSpeed: 0.4
   startScale: {x: 0.7, y: 0.7, z: 0.7}
   endScale: {x: 1, y: 1, z: 1}
-  isScaling: 1
+  isScaling: 0
   useEasingForScaling: 1
   scaleLerpSpeed: 1.11
 --- !u!114 &-2270927456755848084
@@ -140,6 +140,7 @@ MonoBehaviour:
   itemID: 
   icon: {fileID: 21300000, guid: 0569765591ada904da63dbd0a5ebd00e, type: 3}
   description: Ataque envenenado.
+  price: 6
 --- !u!114 &8709921179290690545
 MonoBehaviour:
   m_ObjectHideFlags: 0

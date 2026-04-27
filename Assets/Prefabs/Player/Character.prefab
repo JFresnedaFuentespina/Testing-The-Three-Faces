@@ -285,7 +285,7 @@ MonoBehaviour:
   radioRayo: {fileID: 6194893347541140970}
   fireball: {fileID: 7251879486380165639, guid: c2f6a8962aac3814aa56cb9647c93470, type: 3}
   thunderPrefab: {fileID: 5627696518775099638, guid: 6839a8d6998e86d4282063ffdacb0c15, type: 3}
-  attackDamage: 5
+  attackDamage: 25
   attackSpeed: 5
   spawnHeight: 1
   attackRange: 5

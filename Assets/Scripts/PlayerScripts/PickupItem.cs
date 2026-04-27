@@ -87,18 +87,16 @@ public class PickupItem : MonoBehaviour
         Debug.Log("Colision con: " + collision.gameObject.name);
         if (!collision.gameObject.CompareTag("Pedestal") &&
             !collision.gameObject.CompareTag("Key") &&
-            !collision.gameObject.CompareTag("HeartDropped"))
+            !collision.gameObject.CompareTag("HeartDropped") && 
+            !collision.gameObject.CompareTag("Coin"))
             return;
 
         GameObject itemToPickup;
 
-        // Caso Key
-        if (collision.gameObject.CompareTag("Key"))
-        {
-            itemToPickup = collision.gameObject;
-        }
-        // Caso HeartDropped
-        else if (collision.gameObject.CompareTag("HeartDropped"))
+        // Caso Key, HeartDropped o Coin
+        if (collision.gameObject.CompareTag("Key")
+            || collision.gameObject.CompareTag("HeartDropped")
+            || collision.gameObject.CompareTag("Coin"))
         {
             itemToPickup = collision.gameObject;
         }

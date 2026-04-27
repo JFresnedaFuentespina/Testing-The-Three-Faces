@@ -38,6 +38,7 @@ TagManager:
   - BossCanto
   - Fireball
   - HeartDropped
+  - Coin
   layers:
   - Default
   - TransparentFX

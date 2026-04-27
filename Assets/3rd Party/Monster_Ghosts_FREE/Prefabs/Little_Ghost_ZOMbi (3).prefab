@@ -737,8 +737,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47e7a389e943de44587bbdaea3d4282a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: PlayerHealthAssembly::DropReward
-  rewardPrefab: {fileID: 621584630249350254, guid: fb7f067f5a5751a47b509110bc53b90e, type: 3}
-  dropChance: 0.4
+  heartReward: {fileID: 621584630249350254, guid: fb7f067f5a5751a47b509110bc53b90e, type: 3}
+  moneyReward: {fileID: 8148542576127889976, guid: c5c10042025ed0c44acf7665f60ac1d5, type: 3}
+  dropHeartChance: 0.4
+  dropCoinChance: 0.4
 --- !u!1001 &2875789090538703940
 PrefabInstance:
   m_ObjectHideFlags: 0

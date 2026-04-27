@@ -158,6 +158,7 @@ public class LoadNextLevel : MonoBehaviour
         var bh = player.GetComponent<PlayerBehaviour>();
         var hp = player.GetComponent<PlayerHealth>();
         var changeCharacter = player.GetComponent<ChangeCharacter>();
+        var playerMoney = player.GetComponent<PlayerMoney>();
 
         float enemiesDeathCounterFloat = 0f;
 
@@ -179,6 +180,7 @@ public class LoadNextLevel : MonoBehaviour
         data.enemiesDeathCounter = enemiesDeathCounterFloat;
         data.appliesPoison = atk.appliesPoison;
         data.hasShield = bh.hasShield;
+        data.money = playerMoney.amount;
 
         string json = JsonConvert.SerializeObject(data);
         string path = Application.persistentDataPath + "/player.json";

@@ -18,6 +18,8 @@ public class PlayerData
     public float enemiesDeathCounter;
     public bool appliesPoison;
     public bool hasShield;
+    
+    public int money;
 
     public string PlayerDataStr()
     {

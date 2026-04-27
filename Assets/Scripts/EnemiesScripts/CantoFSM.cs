@@ -49,15 +49,20 @@ public class CantoFSM : BasicEnemyInterface
     public AudioSource audioSource;
     public AudioClip growlFBX;
     public AudioClip castingFBX;
-    public AudioClip magicCastAttackFBX;
+    public AudioClip magicCastAttackSFX;
     public AudioClip attack1SFX;
     public AudioClip attack2SFX;
     public AudioClip attack3SFX;
     public AudioClip attack4SFX;
 
+    public ParticleSystem magicCastExplosion;
+    public CantoCastMagicAttack cantoCastMagicAttack;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        magicCastExplosion.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        magicCastExplosion.Clear(true);
         InitComponents();
     }
 
@@ -71,6 +76,7 @@ public class CantoFSM : BasicEnemyInterface
     {
         cantoAnimator = GetComponent<CantoAnimatorController>();
         enemyLife = GetComponent<EnemyLife>();
+        cantoCastMagicAttack = GetComponent<CantoCastMagicAttack>();
         state = STATE.IDLE;
         currentAttack = ATTACK_TYPE.NONE;
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -229,6 +235,7 @@ public class CantoFSM : BasicEnemyInterface
         else
         {
             StartCoroutine(CastMagicSequence());
+            StartCoroutine(CastMagicExplosion());
             magicAttackCasted = true;
             agent.speed = 0f;
             cantoAnimator.SetCastMagicAttack();
@@ -239,9 +246,16 @@ public class CantoFSM : BasicEnemyInterface
     {
         audioSource.PlayOneShot(castingFBX);
 
-        yield return new WaitForSeconds(0.1f); // ajustado a mano
+        yield return new WaitForSeconds(0.1f);
+        audioSource.PlayOneShot(magicCastAttackSFX);
+    }
 
-        audioSource.PlayOneShot(magicCastAttackFBX);
+    IEnumerator CastMagicExplosion()
+    {
+        yield return new WaitForSecondsRealtime(2.5f);
+        cantoCastMagicAttack.CastThunders();
+        magicCastExplosion.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        magicCastExplosion.Play();
     }
     private IEnumerator WaitForAttack()
     {

@@ -733,6 +733,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1800840597905566504, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -135
+      objectReference: {fileID: 0}
+    - target: {fileID: 1800840597905566504, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -100
+      objectReference: {fileID: 0}
     - target: {fileID: 2021428395905796855, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: m_Name
       value: CoinsText

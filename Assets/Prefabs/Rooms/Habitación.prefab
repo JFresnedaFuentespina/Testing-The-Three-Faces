@@ -1405,11 +1405,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NextRoomCalculator
   enabledTemporarily: 0
-  torches: []
+  torches:
+  - {fileID: 1726924358477222085}
+  - {fileID: 3066052285060681507}
+  - {fileID: 602746352658742553}
+  - {fileID: 1135435128059327260}
   audioManagerGO: {fileID: 0}
   audioManager: {fileID: 0}
   camera1: {fileID: 0}
   cameraCenital: {fileID: 0}
+  doorAudioSource: {fileID: 1086263825150809664}
+  shopAudioClip: {fileID: 8300000, guid: f1c177af519a55f42bc0ce9b8fc1451b, type: 3}
 --- !u!54 &5108544976470238979
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1562,6 +1568,30 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7143435724366839193, guid: 07dd0ed6acb5c5140a213008cf7b2a1d, type: 3}
+      propertyPath: doorAudioSource
+      value: 
+      objectReference: {fileID: 1086263825150809664}
+    - target: {fileID: 7143435724366839193, guid: 07dd0ed6acb5c5140a213008cf7b2a1d, type: 3}
+      propertyPath: torches.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143435724366839193, guid: 07dd0ed6acb5c5140a213008cf7b2a1d, type: 3}
+      propertyPath: 'torches.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1726924358477222085}
+    - target: {fileID: 7143435724366839193, guid: 07dd0ed6acb5c5140a213008cf7b2a1d, type: 3}
+      propertyPath: 'torches.Array.data[1]'
+      value: 
+      objectReference: {fileID: 3066052285060681507}
+    - target: {fileID: 7143435724366839193, guid: 07dd0ed6acb5c5140a213008cf7b2a1d, type: 3}
+      propertyPath: 'torches.Array.data[2]'
+      value: 
+      objectReference: {fileID: 602746352658742553}
+    - target: {fileID: 7143435724366839193, guid: 07dd0ed6acb5c5140a213008cf7b2a1d, type: 3}
+      propertyPath: 'torches.Array.data[3]'
+      value: 
+      objectReference: {fileID: 1135435128059327260}
     - target: {fileID: 8463517372868860429, guid: 07dd0ed6acb5c5140a213008cf7b2a1d, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -1727,6 +1757,26 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7143435724366839193, guid: 07dd0ed6acb5c5140a213008cf7b2a1d, type: 3}
+      propertyPath: torches.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143435724366839193, guid: 07dd0ed6acb5c5140a213008cf7b2a1d, type: 3}
+      propertyPath: 'torches.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1726924358477222085}
+    - target: {fileID: 7143435724366839193, guid: 07dd0ed6acb5c5140a213008cf7b2a1d, type: 3}
+      propertyPath: 'torches.Array.data[1]'
+      value: 
+      objectReference: {fileID: 3066052285060681507}
+    - target: {fileID: 7143435724366839193, guid: 07dd0ed6acb5c5140a213008cf7b2a1d, type: 3}
+      propertyPath: 'torches.Array.data[2]'
+      value: 
+      objectReference: {fileID: 602746352658742553}
+    - target: {fileID: 7143435724366839193, guid: 07dd0ed6acb5c5140a213008cf7b2a1d, type: 3}
+      propertyPath: 'torches.Array.data[3]'
+      value: 
+      objectReference: {fileID: 1135435128059327260}
     - target: {fileID: 8463517372868860429, guid: 07dd0ed6acb5c5140a213008cf7b2a1d, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -1739,6 +1789,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 5820206484385631358}
   m_SourcePrefab: {fileID: 100100000, guid: 07dd0ed6acb5c5140a213008cf7b2a1d, type: 3}
+--- !u!82 &1086263825150809664 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2641879033564809053, guid: 07dd0ed6acb5c5140a213008cf7b2a1d, type: 3}
+  m_PrefabInstance: {fileID: 3151105536373969181}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1541792701732870033 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4530468948701185676, guid: 07dd0ed6acb5c5140a213008cf7b2a1d, type: 3}
@@ -2147,11 +2202,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NextRoomCalculator
   enabledTemporarily: 0
-  torches: []
+  torches:
+  - {fileID: 1726924358477222085}
+  - {fileID: 3066052285060681507}
+  - {fileID: 602746352658742553}
+  - {fileID: 1135435128059327260}
   audioManagerGO: {fileID: 0}
   audioManager: {fileID: 0}
   camera1: {fileID: 0}
   cameraCenital: {fileID: 0}
+  doorAudioSource: {fileID: 1086263825150809664}
+  shopAudioClip: {fileID: 8300000, guid: f1c177af519a55f42bc0ce9b8fc1451b, type: 3}
 --- !u!54 &7527398144404604543
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2575,6 +2636,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7cf58045731a7446b9778f2bdce3634, type: 3}
+--- !u!1 &1726924358477222085 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5521712150349565211, guid: a7cf58045731a7446b9778f2bdce3634, type: 3}
+  m_PrefabInstance: {fileID: 6581530918115761630}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2070692800146524799 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5182199918533220257, guid: a7cf58045731a7446b9778f2bdce3634, type: 3}

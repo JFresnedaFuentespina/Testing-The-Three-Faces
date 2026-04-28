@@ -472,6 +472,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 3716541385979029308}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3151105536900344459, guid: ea0e997c18d44284aa5fbfb804a542f6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4519196865211066840}
     - targetCorrespondingSourceObject: {fileID: 6400431590917124717, guid: ea0e997c18d44284aa5fbfb804a542f6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4631029108479609726}
@@ -510,6 +513,31 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!1 &6255862597455320277 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3151105536900344459, guid: ea0e997c18d44284aa5fbfb804a542f6, type: 3}
+  m_PrefabInstance: {fileID: 9037510768669245022}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4519196865211066840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6255862597455320277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef1d71b71b2327c4a93734364bdd370d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PlayerHealthAssembly::NextRoomCalculator
+  enabledTemporarily: 0
+  torches: []
+  audioManagerGO: {fileID: 0}
+  audioManager: {fileID: 0}
+  camera1: {fileID: 0}
+  cameraCenital: {fileID: 0}
+  doorAudioSource: {fileID: 0}
+  shopAudioClip: {fileID: 0}
 --- !u!4 &6255862597455320278 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3151105536900344456, guid: ea0e997c18d44284aa5fbfb804a542f6, type: 3}

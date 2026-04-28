@@ -17,6 +17,8 @@ public class NextRoomCalculator : MonoBehaviour
     private GameObject hud;
     private TextMeshProUGUI noKeyText;
     private Coroutine messageRoutine;
+    public AudioSource doorAudioSource;
+    public AudioClip shopAudioClip;
     void Start()
     {
         hud = GameObject.Find("HUD");
@@ -79,9 +81,9 @@ public class NextRoomCalculator : MonoBehaviour
         }
 
         GameObject nextRoomObj = FindRoomObject(nextRoomGrid.Value);
-        bool isBossRoom = nextRoomObj.GetComponent<BossRoom>() != null;
 
-        // 🔑 Boss check ANTES de mover
+        bool isBossRoom = nextRoomObj.GetComponent<BossRoom>() != null;
+        // Boss check ANTES de mover
         if (isBossRoom && !PlayerHasKey())
         {
             ShowMessage("Necesitas la llave para luchar contra el jefe!");

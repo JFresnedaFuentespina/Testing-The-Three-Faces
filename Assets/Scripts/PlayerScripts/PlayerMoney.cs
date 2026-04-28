@@ -1,10 +1,14 @@
 using System.IO;
 using Newtonsoft.Json;
+using TMPro;
 using UnityEngine;
 
 public class PlayerMoney : MonoBehaviour
 {
     public int amount;
+    public GameObject hud;
+    public GameObject coinsPanel;
+    public TextMeshProUGUI coinsText;
     void Start()
     {
         string path = Application.persistentDataPath + "/player.json";
@@ -25,6 +29,11 @@ public class PlayerMoney : MonoBehaviour
                 Debug.LogWarning("Error cargando JSON de vida");
             }
         }
+
+        hud = GameObject.Find("HUD");
+        coinsPanel = hud.transform.Find("CoinsPanel").gameObject;
+        coinsText = coinsPanel.transform.Find("CoinsText").gameObject.GetComponent<TextMeshProUGUI>();
+        coinsText.text = "X " + amount;
     }
 
     void OnEnable()
@@ -40,5 +49,12 @@ public class PlayerMoney : MonoBehaviour
     private void AddCoin()
     {
         amount++;
+        coinsText.text = "X " + amount;
+    }
+
+    public void SubstractAmount(int amount)
+    {
+        this.amount -= amount;
+        coinsText.text = "X " + amount;
     }
 }

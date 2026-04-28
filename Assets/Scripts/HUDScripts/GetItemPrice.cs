@@ -71,7 +71,7 @@ public class GetItemPrice : MonoBehaviour
 
     public void Buy()
     {
-        playerMoney.amount -= itemGenerated.price;
+        playerMoney.SubstractAmount(itemGenerated.price);
 
         PickupItem pickupItem = FindAnyObjectByType<PickupItem>();
         pickupItem.AddItemToHUD(itemGenerated.icon, itemGenerated.itemID, itemGenerated.description);

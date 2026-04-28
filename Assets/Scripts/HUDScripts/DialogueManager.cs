@@ -28,6 +28,7 @@ public class DialogueManager : MonoBehaviour
     public GameObject nextDialogue;
     public GameObject hp;
     public GameObject Timer;
+    public GameObject money;
     public KeyCode keyToContinue;
     public bool pararTiempo = true;
 
@@ -114,9 +115,15 @@ public class DialogueManager : MonoBehaviour
                 OnRestoreHealthEvent();
             }
         }
+
         if (Timer)
         {
             Timer.SetActive(value);
+        }
+
+        if (money)
+        {
+            money.SetActive(value);
         }
     }
 

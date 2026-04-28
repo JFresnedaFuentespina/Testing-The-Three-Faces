@@ -333,6 +333,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!1 &759253634 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8484165295922670021, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+  m_PrefabInstance: {fileID: 2010680791}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &858760160 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8092397225664160277, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
@@ -740,14 +745,26 @@ PrefabInstance:
       propertyPath: Timer
       value: 
       objectReference: {fileID: 858760160}
+    - target: {fileID: 2601653285864100401, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: money
+      value: 
+      objectReference: {fileID: 759253634}
     - target: {fileID: 3838505079619623149, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: Timer
       value: 
       objectReference: {fileID: 858760160}
+    - target: {fileID: 3838505079619623149, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: money
+      value: 
+      objectReference: {fileID: 759253634}
     - target: {fileID: 4062125532254717929, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: Timer
       value: 
       objectReference: {fileID: 858760160}
+    - target: {fileID: 4062125532254717929, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: money
+      value: 
+      objectReference: {fileID: 759253634}
     - target: {fileID: 4254269856754233897, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -756,6 +773,10 @@ PrefabInstance:
       propertyPath: Timer
       value: 
       objectReference: {fileID: 858760160}
+    - target: {fileID: 4331221527426232145, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: money
+      value: 
+      objectReference: {fileID: 759253634}
     - target: {fileID: 4466202164923412907, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: mainCamera
       value: 
@@ -764,6 +785,10 @@ PrefabInstance:
       propertyPath: Timer
       value: 
       objectReference: {fileID: 858760160}
+    - target: {fileID: 4918913797124257592, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: money
+      value: 
+      objectReference: {fileID: 759253634}
     - target: {fileID: 4918913797124257592, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: pararTiempo
       value: 1
@@ -872,6 +897,10 @@ PrefabInstance:
       propertyPath: Timer
       value: 
       objectReference: {fileID: 858760160}
+    - target: {fileID: 7078565917210297727, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: money
+      value: 
+      objectReference: {fileID: 759253634}
     - target: {fileID: 7110929888650694372, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: m_Color.a
       value: 0.27450982

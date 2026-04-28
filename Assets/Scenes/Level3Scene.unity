@@ -1087,6 +1087,7 @@ MonoBehaviour:
   nextDialogue: {fileID: 0}
   hp: {fileID: 355301824}
   Timer: {fileID: 2067796230}
+  money: {fileID: 513918074}
   keyToContinue: 32
   pararTiempo: 1
 --- !u!114 &342017182
@@ -1588,6 +1589,7 @@ MonoBehaviour:
   nextDialogue: {fileID: 342017179}
   hp: {fileID: 355301824}
   Timer: {fileID: 2067796230}
+  money: {fileID: 513918074}
   keyToContinue: 32
   pararTiempo: 1
 --- !u!114 &414908642
@@ -1689,6 +1691,7 @@ MonoBehaviour:
   nextDialogue: {fileID: 414908639}
   hp: {fileID: 355301824}
   Timer: {fileID: 2067796230}
+  money: {fileID: 513918074}
   keyToContinue: 32
   pararTiempo: 1
 --- !u!114 &477368283
@@ -1920,6 +1923,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 512554468}
   m_CullTransparentMesh: 0
+--- !u!1 &513918074 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8484165295922670021, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+  m_PrefabInstance: {fileID: 2067796228}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &529853751
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2568,6 +2576,7 @@ MonoBehaviour:
   nextDialogue: {fileID: 1438931031}
   hp: {fileID: 355301824}
   Timer: {fileID: 2067796230}
+  money: {fileID: 513918074}
   keyToContinue: 32
   pararTiempo: 1
 --- !u!114 &679086721
@@ -5888,6 +5897,7 @@ MonoBehaviour:
   nextDialogue: {fileID: 1974065321}
   hp: {fileID: 355301824}
   Timer: {fileID: 2067796230}
+  money: {fileID: 513918074}
   keyToContinue: 32
   pararTiempo: 1
 --- !u!114 &1414208674
@@ -6057,6 +6067,7 @@ MonoBehaviour:
   nextDialogue: {fileID: 0}
   hp: {fileID: 355301824}
   Timer: {fileID: 2067796230}
+  money: {fileID: 513918074}
   keyToContinue: 32
   pararTiempo: 0
 --- !u!114 &1436763692
@@ -6284,6 +6295,7 @@ MonoBehaviour:
   nextDialogue: {fileID: 477368280}
   hp: {fileID: 355301824}
   Timer: {fileID: 2067796230}
+  money: {fileID: 513918074}
   keyToContinue: 32
   pararTiempo: 1
 --- !u!114 &1438931034
@@ -6529,6 +6541,7 @@ MonoBehaviour:
   nextDialogue: {fileID: 679086718}
   hp: {fileID: 355301824}
   Timer: {fileID: 2067796230}
+  money: {fileID: 513918074}
   keyToContinue: 32
   pararTiempo: 1
 --- !u!114 &1523184489
@@ -7905,6 +7918,7 @@ MonoBehaviour:
   nextDialogue: {fileID: 2019961488}
   hp: {fileID: 355301824}
   Timer: {fileID: 2067796230}
+  money: {fileID: 513918074}
   keyToContinue: 32
   pararTiempo: 1
 --- !u!114 &1773268503
@@ -7995,6 +8009,7 @@ MonoBehaviour:
   nextDialogue: {fileID: 0}
   hp: {fileID: 355301824}
   Timer: {fileID: 2067796230}
+  money: {fileID: 513918074}
   keyToContinue: 32
   pararTiempo: 1
 --- !u!114 &1856902801
@@ -8529,6 +8544,7 @@ MonoBehaviour:
   nextDialogue: {fileID: 1773268500}
   hp: {fileID: 355301824}
   Timer: {fileID: 2067796230}
+  money: {fileID: 513918074}
   keyToContinue: 32
   pararTiempo: 1
 --- !u!114 &1900154079
@@ -8968,6 +8984,7 @@ MonoBehaviour:
   nextDialogue: {fileID: 1856902798}
   hp: {fileID: 355301824}
   Timer: {fileID: 2067796230}
+  money: {fileID: 513918074}
   keyToContinue: 32
   pararTiempo: 1
 --- !u!114 &1974065324
@@ -9305,6 +9322,7 @@ MonoBehaviour:
   nextDialogue: {fileID: 1414208671}
   hp: {fileID: 355301824}
   Timer: {fileID: 2067796230}
+  money: {fileID: 513918074}
   keyToContinue: 32
   pararTiempo: 1
 --- !u!114 &2019961491
@@ -9612,6 +9630,10 @@ PrefabInstance:
       propertyPath: Timer
       value: 
       objectReference: {fileID: 2067796230}
+    - target: {fileID: 2601653285864100401, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: money
+      value: 
+      objectReference: {fileID: 513918074}
     - target: {fileID: 3353626603144326042, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -9632,6 +9654,10 @@ PrefabInstance:
       propertyPath: Timer
       value: 
       objectReference: {fileID: 2067796230}
+    - target: {fileID: 3838505079619623149, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: money
+      value: 
+      objectReference: {fileID: 513918074}
     - target: {fileID: 3910886895333099084, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -9644,6 +9670,10 @@ PrefabInstance:
       propertyPath: Timer
       value: 
       objectReference: {fileID: 2067796230}
+    - target: {fileID: 4062125532254717929, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: money
+      value: 
+      objectReference: {fileID: 513918074}
     - target: {fileID: 4254269856754233897, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -9652,6 +9682,10 @@ PrefabInstance:
       propertyPath: Timer
       value: 
       objectReference: {fileID: 2067796230}
+    - target: {fileID: 4331221527426232145, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: money
+      value: 
+      objectReference: {fileID: 513918074}
     - target: {fileID: 4458383154401370381, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -9680,6 +9714,10 @@ PrefabInstance:
       propertyPath: Timer
       value: 
       objectReference: {fileID: 2067796230}
+    - target: {fileID: 4918913797124257592, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: money
+      value: 
+      objectReference: {fileID: 513918074}
     - target: {fileID: 4918913797124257592, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: minimap
       value: 
@@ -9984,6 +10022,10 @@ PrefabInstance:
       propertyPath: Timer
       value: 
       objectReference: {fileID: 2067796230}
+    - target: {fileID: 7078565917210297727, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: money
+      value: 
+      objectReference: {fileID: 513918074}
     - target: {fileID: 7422651476104465262, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: m_IsActive
       value: 0

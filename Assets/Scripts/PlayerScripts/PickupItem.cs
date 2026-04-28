@@ -88,18 +88,16 @@ public class PickupItem : MonoBehaviour
         if (!collision.gameObject.CompareTag("Pedestal") &&
             !collision.gameObject.CompareTag("Key") &&
             !collision.gameObject.CompareTag("HeartDropped") &&
+            !collision.gameObject.CompareTag("HeartDropped") &&
             !collision.gameObject.CompareTag("Coin"))
             return;
 
         GameObject itemToPickup;
 
-        // Caso Key
-        if (collision.gameObject.CompareTag("Key"))
-        {
-            itemToPickup = collision.gameObject;
-        }
-        // Caso HeartDropped
-        else if (collision.gameObject.CompareTag("HeartDropped"))
+        // Caso Key, HeartDropped o Coin
+        if (collision.gameObject.CompareTag("Key")
+            || collision.gameObject.CompareTag("HeartDropped")
+            || collision.gameObject.CompareTag("Coin"))
         {
             itemToPickup = collision.gameObject;
         }
@@ -135,7 +133,7 @@ public class PickupItem : MonoBehaviour
     }
 
 
-    private void ApplyItemEffects(GameObject item)
+    public void ApplyItemEffects(GameObject item)
     {
         bool destroyItem = true;
         string message = "";
@@ -161,7 +159,7 @@ public class PickupItem : MonoBehaviour
             Destroy(item);
     }
 
-    private void AddItemToHUD(Sprite icon, string itemID, string description)
+    public void AddItemToHUD(Sprite icon, string itemID, string description)
     {
         if (icon == null)
         {

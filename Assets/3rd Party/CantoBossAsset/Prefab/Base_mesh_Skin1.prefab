@@ -545,6 +545,7 @@ Transform:
   - {fileID: 7837256278451012258}
   - {fileID: 1474746248323218976}
   - {fileID: 3618161893439623618}
+  - {fileID: 5374087739275374688}
   m_Father: {fileID: 3146711433171987099}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1657354938893848995
@@ -788,6 +789,8 @@ GameObject:
   - component: {fileID: 4128499256433890775}
   - component: {fileID: 8446699259834373977}
   - component: {fileID: 1453391854704292000}
+  - component: {fileID: 1794807445101089374}
+  - component: {fileID: 7746848702301649530}
   m_Layer: 9
   m_Name: Base_mesh_Skin1
   m_TagString: BossCanto
@@ -977,7 +980,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec91152f257ee3a4eb6f11322663207c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: PlayerHealthAssembly::CantoFSM
-  enemyLife: {fileID: 0}
+  enemyLife: {fileID: 1666200045124129912}
   visDist: 10
   moveSpeed: 5
   agent: {fileID: 1309259542819171598}
@@ -998,6 +1001,130 @@ MonoBehaviour:
   isFinishingAttack: 0
   magicAttackCasted: 0
   deathHappened: 0
+  audioSource: {fileID: 1794807445101089374}
+  growlFBX: {fileID: 8300000, guid: 989d523b213d4454bb4b4d76a57c8aaa, type: 3}
+  castingFBX: {fileID: 8300000, guid: d837d4afcd73a0e4f96aae90f6fcd771, type: 3}
+  magicCastAttackSFX: {fileID: 8300000, guid: ca79334ac67818b409c784818d9bfc58, type: 3}
+  attack1SFX: {fileID: 8300000, guid: e8c33ed8589f76e4783f74870b9b600a, type: 3}
+  attack2SFX: {fileID: 8300000, guid: d8b9eba72d7ca084d93002ecdd732d91, type: 3}
+  attack3SFX: {fileID: 8300000, guid: 38eeebdfb0518ef44b72745110ab3e16, type: 3}
+  attack4SFX: {fileID: 8300000, guid: 6aa78ffc19de7fa47bdf32979862d65f, type: 3}
+  magicCastExplosion: {fileID: 5207658513955549028}
+  cantoCastMagicAttack: {fileID: 7746848702301649530}
+--- !u!82 &1794807445101089374
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2369049315509284897}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &7746848702301649530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2369049315509284897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa262739fb9c8a640aa56cb6e8321c0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PlayerHealthAssembly::CantoCastMagicAttack
+  projectile: {fileID: 5627696518775099638, guid: 00dd6efc06d3d904f8c54712b85f5042, type: 3}
+  thunderClip: {fileID: 8300000, guid: 479e41a672e01504fb40657fc89c0dfb, type: 3}
+  amount: 15
+  spawnAreaX: 2
+  spawnAreaZ: 2
 --- !u!1 &2399109204944608482
 GameObject:
   m_ObjectHideFlags: 0
@@ -4032,4 +4159,79 @@ ParticleSystem:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4448219369109366, guid: 6c86c599d7bf3464eb4506d2584fbe57, type: 3}
   m_PrefabInstance: {fileID: 5104022036041477817}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5369963874800880680
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1275458929128825103}
+    m_Modifications:
+    - target: {fileID: 1368782967120030, guid: bdbdcfd7c511df246af535551f842df5, type: 3}
+      propertyPath: m_Name
+      value: Explosion01_HighPerformance
+      objectReference: {fileID: 0}
+    - target: {fileID: 4901495017684040, guid: bdbdcfd7c511df246af535551f842df5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4901495017684040, guid: bdbdcfd7c511df246af535551f842df5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4901495017684040, guid: bdbdcfd7c511df246af535551f842df5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4901495017684040, guid: bdbdcfd7c511df246af535551f842df5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4901495017684040, guid: bdbdcfd7c511df246af535551f842df5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4901495017684040, guid: bdbdcfd7c511df246af535551f842df5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4901495017684040, guid: bdbdcfd7c511df246af535551f842df5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4901495017684040, guid: bdbdcfd7c511df246af535551f842df5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4901495017684040, guid: bdbdcfd7c511df246af535551f842df5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4901495017684040, guid: bdbdcfd7c511df246af535551f842df5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 199474463707621028, guid: bdbdcfd7c511df246af535551f842df5, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 199555301852671132, guid: bdbdcfd7c511df246af535551f842df5, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bdbdcfd7c511df246af535551f842df5, type: 3}
+--- !u!198 &5207658513955549028 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198334730229523276, guid: bdbdcfd7c511df246af535551f842df5, type: 3}
+  m_PrefabInstance: {fileID: 5369963874800880680}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5374087739275374688 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4901495017684040, guid: bdbdcfd7c511df246af535551f842df5, type: 3}
+  m_PrefabInstance: {fileID: 5369963874800880680}
   m_PrefabAsset: {fileID: 0}

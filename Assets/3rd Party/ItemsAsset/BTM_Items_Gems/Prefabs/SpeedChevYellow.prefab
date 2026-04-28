@@ -116,13 +116,13 @@ MonoBehaviour:
   rotateY: 1
   rotateZ: 0
   rotationSpeed: 85.67
-  isFloating: 1
-  useEasingForFloating: 1
+  isFloating: 0
+  useEasingForFloating: 0
   floatHeight: 1.93
   floatSpeed: 0.4
   startScale: {x: 0.7, y: 0.7, z: 0.7}
   endScale: {x: 1, y: 1, z: 1}
-  isScaling: 1
+  isScaling: 0
   useEasingForScaling: 1
   scaleLerpSpeed: 1.11
 --- !u!114 &-5477201989951366873
@@ -140,6 +140,7 @@ MonoBehaviour:
   itemID: 
   icon: {fileID: 21300000, guid: a524ae07913ad3e4dabd762800ea9bb6, type: 3}
   description: + Interfalo de ataque.
+  price: 7
 --- !u!114 &5147288548952374421
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -46,9 +46,23 @@ public class CantoFSM : BasicEnemyInterface
     public bool isFinishingAttack = false;
     public bool magicAttackCasted = false;
     public bool deathHappened = false;
+    public AudioSource audioSource;
+    public AudioClip growlFBX;
+    public AudioClip castingFBX;
+    public AudioClip magicCastAttackSFX;
+    public AudioClip attack1SFX;
+    public AudioClip attack2SFX;
+    public AudioClip attack3SFX;
+    public AudioClip attack4SFX;
+
+    public ParticleSystem magicCastExplosion;
+    public CantoCastMagicAttack cantoCastMagicAttack;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        magicCastExplosion.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        magicCastExplosion.Clear(true);
         InitComponents();
     }
 
@@ -62,6 +76,7 @@ public class CantoFSM : BasicEnemyInterface
     {
         cantoAnimator = GetComponent<CantoAnimatorController>();
         enemyLife = GetComponent<EnemyLife>();
+        cantoCastMagicAttack = GetComponent<CantoCastMagicAttack>();
         state = STATE.IDLE;
         currentAttack = ATTACK_TYPE.NONE;
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -80,6 +95,9 @@ public class CantoFSM : BasicEnemyInterface
         if (player == null) return;
         if (isFrozen) return;
         if (isHit) return;
+
+        audioSource.clip = growlFBX;
+        audioSource.Play();
 
         spawnTimer += Time.deltaTime;
         attackTimer += Time.deltaTime;
@@ -191,16 +209,20 @@ public class CantoFSM : BasicEnemyInterface
         switch (randomAttack)
         {
             case 1:
+                audioSource.PlayOneShot(attack1SFX);
                 currentAttack = ATTACK_TYPE.ATTACK1;
                 break;
-            case 2: // Punch3
+            case 2:
+                audioSource.PlayOneShot(attack2SFX);
                 currentAttack = ATTACK_TYPE.ATTACK2;
                 break;
 
-            case 3: // Throw
+            case 3:
+                audioSource.PlayOneShot(attack3SFX);
                 currentAttack = ATTACK_TYPE.ATTACK3;
                 break;
-            case 4: // Magic Attack
+            case 4:
+                audioSource.PlayOneShot(attack4SFX);
                 currentAttack = ATTACK_TYPE.ATTACK4;
                 break;
 
@@ -212,13 +234,29 @@ public class CantoFSM : BasicEnemyInterface
         }
         else
         {
+            StartCoroutine(CastMagicSequence());
+            StartCoroutine(CastMagicExplosion());
             magicAttackCasted = true;
             agent.speed = 0f;
             cantoAnimator.SetCastMagicAttack();
         }
         StartCoroutine(WaitForAttack());
     }
+    IEnumerator CastMagicSequence()
+    {
+        audioSource.PlayOneShot(castingFBX);
 
+        yield return new WaitForSeconds(0.1f);
+        audioSource.PlayOneShot(magicCastAttackSFX);
+    }
+
+    IEnumerator CastMagicExplosion()
+    {
+        yield return new WaitForSecondsRealtime(2.5f);
+        cantoCastMagicAttack.CastThunders();
+        magicCastExplosion.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        magicCastExplosion.Play();
+    }
     private IEnumerator WaitForAttack()
     {
         isFinishingAttack = true;

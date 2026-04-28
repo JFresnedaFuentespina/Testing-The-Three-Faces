@@ -1557,6 +1557,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ScoreGenerator
       objectReference: {fileID: 0}
+    - target: {fileID: 687533679602862702, guid: 3809fba094336fb4593437866df1ef33, type: 3}
+      propertyPath: m_TagString
+      value: Finish
+      objectReference: {fileID: 0}
     - target: {fileID: 2195146971195187046, guid: 3809fba094336fb4593437866df1ef33, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

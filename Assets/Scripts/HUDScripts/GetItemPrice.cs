@@ -13,9 +13,11 @@ public class GetItemPrice : MonoBehaviour
     public float holdTimeRequierd = 5f;
     private float holdTimer = 0f;
     private bool itemReady = false;
+    private bool itemPurchased = false;
     private PlayerMoney playerMoney;
     void Start()
     {
+        playerMoney = FindAnyObjectByType<PlayerMoney>();
         StartCoroutine(WaitForItem());
     }
 
@@ -34,9 +36,10 @@ public class GetItemPrice : MonoBehaviour
     void Update()
     {
         if (!itemReady) return;
-
-        playerMoney = FindAnyObjectByType<PlayerMoney>();
+        if (itemPurchased) return;
         if (playerMoney.amount < itemGenerated.price) return;
+
+        SetPriceColor();
 
         Ray ray = new Ray(transform.position, -transform.forward);
         RaycastHit hit;
@@ -69,9 +72,23 @@ public class GetItemPrice : MonoBehaviour
 
     }
 
+    void SetPriceColor()
+    {
+        if (playerMoney.amount < itemGenerated.price)
+        {
+            priceText.color = Color.red;
+        }
+        else
+        {
+            priceText.color = Color.green;
+        }
+    }
+
     public void Buy()
     {
+        itemPurchased = true;
         playerMoney.SubstractAmount(itemGenerated.price);
+        priceText.text = "";
 
         PickupItem pickupItem = FindAnyObjectByType<PickupItem>();
         pickupItem.AddItemToHUD(itemGenerated.icon, itemGenerated.itemID, itemGenerated.description);

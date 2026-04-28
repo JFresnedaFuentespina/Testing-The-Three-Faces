@@ -55,6 +55,6 @@ public class PlayerMoney : MonoBehaviour
     public void SubstractAmount(int amount)
     {
         this.amount -= amount;
-        coinsText.text = "X " + amount;
+        coinsText.text = "X " + this.amount;
     }
 }

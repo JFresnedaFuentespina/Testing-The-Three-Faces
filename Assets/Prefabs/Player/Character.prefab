@@ -521,7 +521,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a086a19ffcd7cc24db689883a0bba040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: PlayerHealthAssembly::PlayerMoney
-  amount: 100
+  amount: 0
   hud: {fileID: 0}
   coinsPanel: {fileID: 0}
   coinsText: {fileID: 0}

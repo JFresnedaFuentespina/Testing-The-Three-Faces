@@ -3115,6 +3115,10 @@ PrefabInstance:
       propertyPath: minimap
       value: 
       objectReference: {fileID: 779359651}
+    - target: {fileID: 9041702954782447580, guid: 651dc996a679e43418f2fce0f6a20f82, type: 3}
+      propertyPath: orthographic size
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

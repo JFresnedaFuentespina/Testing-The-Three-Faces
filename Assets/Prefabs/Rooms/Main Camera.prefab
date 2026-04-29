@@ -459,6 +459,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5316046413514025811, guid: 351baf954590df348a71254a311227b1, type: 3}
+      propertyPath: m_IgnoreReversedGraphics
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5316046414844214690, guid: 351baf954590df348a71254a311227b1, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -469,6 +473,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5316046414844214690, guid: 351baf954590df348a71254a311227b1, type: 3}
       propertyPath: m_FillMethod
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5316046414844214690, guid: 351baf954590df348a71254a311227b1, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5316046414947681697, guid: 351baf954590df348a71254a311227b1, type: 3}
+      propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6728966169671173045, guid: 351baf954590df348a71254a311227b1, type: 3}

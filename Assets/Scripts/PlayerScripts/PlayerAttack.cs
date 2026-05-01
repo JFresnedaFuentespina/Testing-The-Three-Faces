@@ -179,7 +179,7 @@ public class PlayerAttack : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         swordGO.GetComponent<BoxCollider>().enabled = true;
 
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.4f);
         audioSource.PlayOneShot(swordSwingAudioClip);
 
         yield return new WaitForSeconds(0.5f);

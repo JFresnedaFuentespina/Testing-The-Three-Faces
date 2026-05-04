@@ -5,21 +5,12 @@ using UnityEngine;
 public class DoorsEnabler : MonoBehaviour
 {
     private EnemiesGenerator generator;
-    private NextRoomCalculator calc;
     private bool doorsReenabled = false;
     public List<GameObject> torches;
-    private GameObject player;
-    private PlayerInventory inventory;
 
     void Start()
     {
-        calc = GetComponentInChildren<NextRoomCalculator>();
         generator = GetComponent<EnemiesGenerator>();
-        player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
-        {
-            inventory = player.GetComponent<PlayerInventory>();
-        }
     }
 
     public void StartCheckEnemies()
@@ -90,17 +81,13 @@ public class DoorsEnabler : MonoBehaviour
             if (transform.Find("CuartaPared/TorchDown") != null)
                 torches.Add(transform.Find("CuartaPared/TorchDown").gameObject);
         }
-        
+
         foreach (GameObject torch in torches)
         {
             if (torch == null) continue;
 
             Transform red = torch.transform.Find("FireRed");
             Transform green = torch.transform.Find("FireGreen");
-
-            // Torch frontal requiere llave
-            // bool isFrontTorch = torch.name.Contains("TorchFront");
-            // bool canTurnGreen = (inventory != null && inventory.hasKey);
 
             if (red != null) red.gameObject.SetActive(false);
             if (green != null) green.gameObject.SetActive(true);

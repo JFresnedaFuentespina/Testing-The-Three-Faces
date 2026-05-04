@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
 using TMPro;
@@ -27,6 +28,8 @@ public class ShowPauseMenu : MonoBehaviour
     private GameObject player;
     private bool initialized = false;
     public static bool blockPlayerInput = false;
+    public AudioSource[] sources;
+    public AudioManager audioManager;
     void Awake()
     {
         GameObject hud = GameObject.Find("HUD");
@@ -55,6 +58,8 @@ public class ShowPauseMenu : MonoBehaviour
     {
         AddButtonsListeners();
         StartCoroutine(WaitForPlayer());
+        sources = GameObject.FindObjectsByType<AudioSource>(FindObjectsSortMode.None);
+        audioManager = GameObject.Find("Music").GetComponent<AudioManager>();
     }
 
     public void AddButtonsListeners()
@@ -155,16 +160,32 @@ public class ShowPauseMenu : MonoBehaviour
             pauseMenu.SetActive(show);
         }
 
+        Time.timeScale = show ? 0f : 1f;
+
         if (!show)
         {
-            Time.timeScale = 1f;
             StartCoroutine(BlockInputMomentarily());
         }
-        else
+
+        // BUSCAMOS TODOS LOS AUDIOS QUE EXISTEN EN ESTE INSTANTE
+        AudioSource[] allSources = GameObject.FindObjectsByType<AudioSource>(FindObjectsSortMode.None);
+
+        foreach (AudioSource source in allSources)
         {
-            Time.timeScale = 0f;
+            if (show)
+                source.Pause();
+            else
+                source.UnPause();
+        }
+
+        // Gestionar la música principal
+        if (audioManager != null && audioManager.audioSource != null)
+        {
+            if (show) audioManager.audioSource.Pause();
+            else audioManager.audioSource.UnPause();
         }
     }
+
     IEnumerator BlockInputMomentarily()
     {
         blockPlayerInput = true;

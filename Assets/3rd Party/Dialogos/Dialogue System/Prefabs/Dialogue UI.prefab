@@ -360,6 +360,7 @@ GameObject:
   - component: {fileID: 6449296285370776043}
   - component: {fileID: 563469076907077247}
   - component: {fileID: 4237600530089277237}
+  - component: {fileID: 8485901228898163807}
   m_Layer: 5
   m_Name: Dialogue1
   m_TagString: Untagged
@@ -420,6 +421,7 @@ MonoBehaviour:
   nextDialogue: {fileID: 0}
   hp: {fileID: 0}
   Timer: {fileID: 0}
+  money: {fileID: 0}
   keyToContinue: 32
   pararTiempo: 1
 --- !u!114 &4237600530089277237
@@ -439,6 +441,18 @@ MonoBehaviour:
   bossCamera: {fileID: 0}
   cameraToUse: 0
   nextCameraDialoguemanager: {fileID: 0}
+--- !u!114 &8485901228898163807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6449296285370776052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3814d5e979b37dd41bb7945a3ec3fba5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PlayerHealthAssembly::DialogueGlobalManager
 --- !u!1 &6449296285419502215
 GameObject:
   m_ObjectHideFlags: 0

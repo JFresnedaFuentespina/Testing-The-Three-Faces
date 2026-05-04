@@ -33,8 +33,11 @@ public class EnemyLife : MonoBehaviour
         }
         if (audioSource != null && defaultAudioClip != null)
         {
-            audioSource.PlayOneShot(defaultAudioClip);
+            audioSource.clip = defaultAudioClip;
+            audioSource.loop = true;
+            audioSource.Play();
         }
+
         currentHp = totalHp;
         if (healthBar != null)
         {

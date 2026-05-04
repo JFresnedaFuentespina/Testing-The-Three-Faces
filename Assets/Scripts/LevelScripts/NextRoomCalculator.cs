@@ -367,20 +367,31 @@ public class NextRoomCalculator : MonoBehaviour
 
         FindCameras();
 
-        if (camera1 != null)
-        {
-            camera1.transform.position = new Vector3(roomPos.x - 8f, roomPos.y + 10, roomPos.z - 11.5f);
-            camera1.transform.rotation = Quaternion.Euler(35f, 45f, 0f);
-        }
-        // Convertir posición a grid
         int gridX = Mathf.RoundToInt(roomPos.x / level.offsetW);
         int gridY = Mathf.RoundToInt(roomPos.z / level.offsetH);
         Vector2Int roomGrid = new Vector2Int(gridX, gridY);
 
-        // Buscar habitación por grid
         GameObject roomObj = null;
-        if (level.roomsDictionary.TryGetValue(roomGrid, out GameObject foundRoom))
-            roomObj = foundRoom;
+        level.roomsDictionary.TryGetValue(roomGrid, out roomObj);
+
+        Vector3 targetCameraPos = new Vector3(roomPos.x - 8f, roomPos.y + 9, roomPos.z - 11.5f);
+
+        if (roomObj != null && roomObj.GetComponentInChildren<BossRoom>() != null)
+        {
+            targetCameraPos.x += 2f;
+            targetCameraPos.y -= 2f;
+        }
+        if (roomObj != null && roomObj.GetComponentInChildren<FinalBossRoom>() != null)
+        {
+            targetCameraPos.x -= 5f;
+            targetCameraPos.y += 6f;
+        }
+
+        if (camera1 != null)
+        {
+            camera1.transform.position = targetCameraPos;
+            camera1.transform.rotation = Quaternion.Euler(35f, 45f, 0f);
+        }
 
         if (roomObj != null)
         {
@@ -400,6 +411,7 @@ public class NextRoomCalculator : MonoBehaviour
             }
         }
     }
+
 
     void FindCameras()
     {

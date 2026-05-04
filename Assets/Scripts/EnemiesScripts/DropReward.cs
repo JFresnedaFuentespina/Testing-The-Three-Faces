@@ -10,7 +10,18 @@ public class DropReward : MonoBehaviour
 
     void Start()
     {
-
+        LevelGenerator level = FindAnyObjectByType<LevelGenerator>();
+        switch (level.levelId)
+        {
+            case 2:
+                dropHeartChance /= 2;
+                dropCoinChance /= 2;
+                break;
+            case 3:
+                dropHeartChance /= 2.5f;
+                dropCoinChance /= 2.5f;
+                break;
+        }
     }
 
     // Update is called once per frame

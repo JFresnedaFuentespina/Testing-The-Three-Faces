@@ -167,7 +167,6 @@ public class PlayerAttack : MonoBehaviour
         if (isAttacking) return;
 
         isAttacking = true;
-
         animatorEsqueleto.applyRootMotion = false;
         animatorEsqueleto.ResetTrigger("Attack");
         animatorEsqueleto.SetTrigger("Attack");

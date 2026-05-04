@@ -1707,6 +1707,10 @@ PrefabInstance:
       propertyPath: minimapPanel
       value: 
       objectReference: {fileID: 2010680792}
+    - target: {fileID: 7507056594978238939, guid: 048330b6bb4d2b243a7a55308e02d8dd, type: 3}
+      propertyPath: fogEnabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

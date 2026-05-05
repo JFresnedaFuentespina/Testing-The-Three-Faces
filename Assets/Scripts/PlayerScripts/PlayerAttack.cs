@@ -150,7 +150,7 @@ public class PlayerAttack : MonoBehaviour
         if (isFireball)
         {
             animatorFantasma.SetTrigger("Attack");
-            ShootFire2();
+            ShootFire();
         }
         else if (isThunder)
         {
@@ -189,8 +189,8 @@ public class PlayerAttack : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         isAttacking = false;
     }
-    
-    void ShootFire2()
+
+    void ShootFire()
     {
         audioSource.PlayOneShot(fireballAudioClip);
         isThunder = false;

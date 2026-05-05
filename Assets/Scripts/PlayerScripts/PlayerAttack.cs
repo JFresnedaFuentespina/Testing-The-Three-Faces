@@ -124,7 +124,7 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!canAttack) return;
+        if (!canAttack) return;
         if (EventSystem.current.IsPointerOverGameObject()) return;
 
         if (changeCharacter != null)
@@ -150,7 +150,7 @@ public class PlayerAttack : MonoBehaviour
         if (isFireball)
         {
             animatorFantasma.SetTrigger("Attack");
-            ShootFire();
+            ShootFire2();
         }
         else if (isThunder)
         {
@@ -189,18 +189,35 @@ public class PlayerAttack : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         isAttacking = false;
     }
-
-    void ShootFire()
+    
+    void ShootFire2()
     {
         audioSource.PlayOneShot(fireballAudioClip);
         isThunder = false;
+
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Plane suelo = new Plane(Vector3.up, Vector3.zero);
+
         Vector3 direction = transform.forward;
+
+        if (suelo.Raycast(ray, out float distance))
+        {
+            Vector3 point = ray.GetPoint(distance);
+            direction = point - transform.position;
+            direction.y = 0f;
+            direction.Normalize();
+        }
+
         Vector3 spawnPos = transform.position + Vector3.up * spawnHeight;
 
-        GameObject newFireball = Instantiate(fireball, spawnPos, Quaternion.LookRotation(direction));
+        GameObject newFireball = Instantiate(
+            fireball,
+            spawnPos,
+            Quaternion.LookRotation(direction)
+        );
 
-        // Asignar la dirección al script del proyectil
         FireballBehaviour fbMove = newFireball.GetComponent<FireballBehaviour>();
+
         if (fbMove != null)
         {
             fbMove.direction = direction;

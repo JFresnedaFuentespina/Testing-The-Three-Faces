@@ -84,7 +84,6 @@ public class PickupItem : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Colision con: " + collision.gameObject.name);
         if (!collision.gameObject.CompareTag("Pedestal") &&
             !collision.gameObject.CompareTag("Key") &&
             !collision.gameObject.CompareTag("HeartDropped") &&

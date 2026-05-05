@@ -6,7 +6,6 @@ public class CantoThunderHit : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("IMPACTO AL JUGADOR!!!!!!");
             PlayerHealth ph = other.gameObject.GetComponentInParent<PlayerHealth>();
             ph.Damage();
         }

@@ -297,7 +297,6 @@ public class CruzFSM : BasicEnemyInterface
         if (finishedAttack == ATTACK_TYPE.THROW)
         {
             cruzBallAttack.active = false;
-            Debug.Log("CRUZ BALL ATTACK ACTIVE? " + cruzBallAttack.active);
         }
         state = STATE.PURSUE;
         currentAttack = ATTACK_TYPE.NONE;

@@ -84,7 +84,6 @@ public class ChangeCharacter : MonoBehaviour
 
         if (actions.Contains("Hourglass"))
         {
-            Debug.Log("FREEZE TIME!");
             FreezeEnemies();
 
         }

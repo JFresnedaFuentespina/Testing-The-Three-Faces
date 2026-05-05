@@ -228,7 +228,6 @@ public class NextRoomCalculator : MonoBehaviour
 
         int gridX = Mathf.RoundToInt(playerPos.x / level.offsetW);
         int gridY = Mathf.RoundToInt(playerPos.z / level.offsetH);
-        Debug.Log("PREV ROOM: " + gridX + " , " + gridY);
         return new Vector2Int(gridX, gridY);
     }
 

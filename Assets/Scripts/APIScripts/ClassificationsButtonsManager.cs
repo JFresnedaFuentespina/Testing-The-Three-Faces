@@ -23,7 +23,6 @@ public class ClassificationsButtonsManager : MonoBehaviour
             user = JsonUtility.FromJson<UserDTO>(json);
             if (!user.has_rated)
             {
-                Debug.Log("EL USUARIO" + user.name + " " + user.email + "NO HA REALIZADO LA VALORACIÓN");
                 TMP_Text buttonText = restartButton.GetComponentInChildren<TMP_Text>();
                 if (buttonText != null)
                 {

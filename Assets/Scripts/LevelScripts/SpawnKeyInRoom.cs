@@ -59,7 +59,6 @@ public class SpawnKeyInRoom : MonoBehaviour
 
         // Elegir una cuadrícula aleatoria
         selectedRoomGrid = validGrids[Random.Range(0, validGrids.Count)];
-        Debug.Log("Habitación seleccionada para la llave: " + roomsDictionary2[selectedRoomGrid].name);
 
         // Registrar la llave
         if (levelGenerator.roomLogs.ContainsKey(selectedRoomGrid))
@@ -88,7 +87,6 @@ public class SpawnKeyInRoom : MonoBehaviour
         PlayerInventory inventory = player.GetComponent<PlayerInventory>();
         if (inventory.hasKey)
         {
-            Debug.Log("El jugador ya tiene la llave.");
             return;
         }
 
@@ -107,7 +105,5 @@ public class SpawnKeyInRoom : MonoBehaviour
 
         Instantiate(keyPrefab, selectedRoom.transform.position + spawnOffset, Quaternion.identity);
         spawned = true;
-
-        Debug.Log("Llave generada en habitación: " + selectedRoom.name);
     }
 }

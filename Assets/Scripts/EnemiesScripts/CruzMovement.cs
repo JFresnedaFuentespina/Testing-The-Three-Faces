@@ -183,7 +183,6 @@ public class CruzMovement : MonoBehaviour
         if (finishedAttack == AttackType.Throw)
         {
             cruzBallAttack.active = false;
-            Debug.Log("CRUZ BALL ATTACK ACTIVE? " + cruzBallAttack.active);
         }
         StartWalking();
     }

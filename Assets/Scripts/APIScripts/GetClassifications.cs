@@ -64,10 +64,10 @@ public class GetClassifications : MonoBehaviour
 
         classifications = response.data;
 
-        foreach (ScoreResponse score in classifications)
-        {
-            Debug.Log("Player: " + score.name + " - Score: " + score.puntuacion);
-        }
+        // foreach (ScoreResponse score in classifications)
+        // {
+        //     Debug.Log("Player: " + score.name + " - Score: " + score.puntuacion);
+        // }
         DisplayClassifications();
     }
 

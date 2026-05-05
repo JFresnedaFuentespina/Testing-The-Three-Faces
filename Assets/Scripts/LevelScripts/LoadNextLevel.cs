@@ -116,7 +116,6 @@ public class LoadNextLevel : MonoBehaviour
 
     private IEnumerator LoadSceneWithFade(string sceneName)
     {
-        Debug.Log("Cargando escena: " + sceneName);
         AsyncOperation op = SceneManager.LoadSceneAsync(sceneName);
         op.allowSceneActivation = false;
 

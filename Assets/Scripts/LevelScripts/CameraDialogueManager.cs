@@ -60,15 +60,12 @@ public class CameraDialogueManager : MonoBehaviour
         {
             case DialogueCamera.Boss:
                 SetCameraDepths(bossCamera, playerCamera, mainCamera);
-                Debug.Log("CDM: SHOWING BOSS");
                 break;
             case DialogueCamera.Player:
                 SetCameraDepths(playerCamera, bossCamera, mainCamera);
-                Debug.Log("CDM: SHOWING PLAYER");
                 break;
             default:
                 SetCameraDepths(mainCamera, playerCamera, bossCamera);
-                Debug.Log("CDM: SHOWING MAIN");
                 break;
         }
     }

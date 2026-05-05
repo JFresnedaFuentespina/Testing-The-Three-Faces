@@ -115,7 +115,6 @@ public class LevelGenerator : MonoBehaviour
         {
             if (r.type == "TreasureRoom")
             {
-                Debug.Log("Item registred!" + item);
                 r.item = item;
             }
         }
@@ -138,7 +137,6 @@ public class LevelGenerator : MonoBehaviour
     }
     public void RegisterKeyRoom(Vector2Int grid)
     {
-        Debug.Log("Habitación: " + roomLogs[grid].hasKey);
         if (!roomLogs.ContainsKey(grid))
             return;
 
@@ -155,8 +153,6 @@ public class LevelGenerator : MonoBehaviour
         string json = GetLevelLayoutLog();
         string path = Application.persistentDataPath + "/levelLogs_" + levelId + ".json";
         File.AppendAllText(path, json + "\n");
-
-        Debug.Log("LEVEL GENERATOR: Nivel: " + levelId + " guardado en el log: " + json);
     }
 
     public int SpawnRooms()
@@ -263,8 +259,6 @@ public class LevelGenerator : MonoBehaviour
             if (!roomsDictionary.ContainsKey(next))
                 return next;
         }
-
-        Debug.Log("No hay direcciones libres para continuar el dungeon");
         return currentGrid;
     }
     private void ApplyRoomFog(GameObject room)

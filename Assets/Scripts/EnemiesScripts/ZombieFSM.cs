@@ -187,7 +187,6 @@ public class ZombieFSM : BasicEnemyInterface
 
     public override void GetPushed(Vector3 direction, float force, float duration)
     {
-        Debug.Log("BASIC ENEMY AI: PUSH!!");
         state = STATE.PUSHED;
         pushDirection = direction.normalized;
         pushForce = force;

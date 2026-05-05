@@ -173,8 +173,6 @@ public class EndgameManager : MonoBehaviour
         string gameJson = JsonUtility.ToJson(gameLog);
         string gamePath = Application.persistentDataPath + "/gameLogs.json";
         File.AppendAllText(gamePath, gameJson + "\n");
-
-        Debug.Log("GOOD ENDING GAME SAVED: " + gameJson);
     }
 
     public void ReadLevels()

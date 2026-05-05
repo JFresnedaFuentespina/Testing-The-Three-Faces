@@ -59,6 +59,10 @@ public class VideoTriggerBehaviour : MonoBehaviour
         SaveGame();
         string nextScene = "Classifications";
         if (!activeAPI) nextScene = "MainMenu";
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
         SceneManager.LoadScene(nextScene);
     }
 

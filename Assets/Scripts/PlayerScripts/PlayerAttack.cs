@@ -22,6 +22,7 @@ public class PlayerAttack : MonoBehaviour
     public bool isFireball = false;
     public bool isThunder = true;
     private bool isAttacking = false;
+    public bool canAttack = true;
     public AudioClip swordSwingAudioClip;
     public AudioClip fireballAudioClip;
     public AudioClip thunderAudioClip;
@@ -123,6 +124,7 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!canAttack) return;
         if (EventSystem.current.IsPointerOverGameObject()) return;
 
         if (changeCharacter != null)

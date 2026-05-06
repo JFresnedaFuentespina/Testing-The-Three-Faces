@@ -16,6 +16,7 @@ public class NextRoomCalculator : MonoBehaviour
     public GameObject cameraCenital;
     private GameObject hud;
     private TextMeshProUGUI noKeyText;
+    private TextMeshProUGUI ItemMessageText;
     private Coroutine messageRoutine;
     public AudioSource doorAudioSource;
     public AudioClip shopAudioClip;
@@ -23,6 +24,7 @@ public class NextRoomCalculator : MonoBehaviour
     {
         hud = GameObject.Find("HUD");
         noKeyText = hud.transform.Find("NoKeyText").GetComponent<TextMeshProUGUI>();
+        ItemMessageText = hud.transform.Find("ItemMessage").GetComponent<TextMeshProUGUI>();
         level = FindAnyObjectByType<LevelGenerator>();
         audioManagerGO = GameObject.Find("Music");
         audioManager = audioManagerGO.GetComponent<AudioManager>();
@@ -99,28 +101,17 @@ public class NextRoomCalculator : MonoBehaviour
             ? CalculateSpawnPosition(oppositeDoor)
             : nextRoomObj.transform.position;
 
-        // 🚀 TELEPORT ROBUSTO (evita bugs de físicas)
-        CharacterController cc = other.GetComponentInParent<CharacterController>();
-        if (cc != null)
-        {
-            cc.enabled = false;
-            other.transform.root.position = spawnPos;
-            cc.enabled = true;
-        }
-        else
-        {
-            other.transform.root.position = spawnPos;
-        }
+        other.transform.root.position = spawnPos;
+
+        HideHUDMessages();
 
         Vector2Int nextGrid = nextRoomGrid.Value;
         level.AddPathToRoute(new Paths(currentGrid, nextGrid));
 
         MoveCamera(targetPos);
 
-        // 🔥 MUY IMPORTANTE: dejar 1 frame antes de lógica boss
         yield return null;
 
-        // 👑 Boss logic DESPUÉS del teleport
         if (isBossRoom)
         {
             audioManager?.PlayBossMusic();
@@ -133,6 +124,26 @@ public class NextRoomCalculator : MonoBehaviour
         }
 
         StartCoroutine(ReenableCollisionBetween(doorCollider, other, 0.5f));
+    }
+
+    private void HideHUDMessages()
+    {
+        if (noKeyText != null)
+        {
+            StopAllCoroutines();
+            noKeyText.gameObject.SetActive(false);
+            var c = noKeyText.color;
+            c.a = 0f;
+            noKeyText.color = c;
+        }
+
+        if (ItemMessageText != null)
+        {
+            ItemMessageText.gameObject.SetActive(false);
+            var c = ItemMessageText.color;
+            c.a = 0f;
+            ItemMessageText.color = c;
+        }
     }
 
     private void ShowMessage(string message)

@@ -17,6 +17,10 @@ public class CruzFSM : BasicEnemyInterface
     private float pushForce;
     private float pushDuration;
     private float pushElapsed;
+
+    private float punch2Duration = 5f;
+    private float punch3Duration = 5f;
+    private float throwDuration = 5f;
     public enum STATE
     {
         IDLE, PURSUE, ATTACK, PUSHED, END
@@ -192,7 +196,7 @@ public class CruzFSM : BasicEnemyInterface
         cruzAnimator.ResetAttackTriggers();
 
         int randomAttack = Random.Range(0, 3);
-
+        float duration = 0f;
         switch (randomAttack)
         {
             case 0: // Punch2
@@ -200,6 +204,7 @@ public class CruzFSM : BasicEnemyInterface
                 agent.speed = 0f;
                 audioSource.PlayOneShot(growlSFX);
                 cruzAnimator.SetPunch2();
+                duration = punch2Duration;
                 break;
 
             case 1: // Punch3
@@ -207,6 +212,7 @@ public class CruzFSM : BasicEnemyInterface
                 audioSource.PlayOneShot(punch3SFX);
                 agent.speed = punch3MoveSpeed;
                 cruzAnimator.SetPunch3();
+                duration = punch3Duration;
                 break;
 
             case 2: // Throw
@@ -217,21 +223,17 @@ public class CruzFSM : BasicEnemyInterface
                 agent.velocity = Vector3.zero;
                 cruzAnimator.SetThrow();
                 cruzBallAttack.active = true;
+                duration = throwDuration;
                 break;
         }
-        StartCoroutine(WaitForAttack());
+        StartCoroutine(WaitForAttack(duration));
     }
 
-    private IEnumerator WaitForAttack()
+    private IEnumerator WaitForAttack(float duration)
     {
         isFinishingAttack = true;
 
-        yield return null;
-
-        float duration = cruzAnimator.animator.GetCurrentAnimatorStateInfo(0).length;
-
-        yield return new WaitForSecondsRealtime(duration);
-        yield return null;
+        yield return new WaitForSeconds(duration);
 
         FinishAttack();
     }
@@ -240,7 +242,12 @@ public class CruzFSM : BasicEnemyInterface
         if (isHit) return;
 
         StopAllCoroutines();
+
+        FinishAttack();
+
         isAttacking = false;
+        currentAttack = ATTACK_TYPE.NONE;
+        isFinishingAttack = false;
 
         agent.ResetPath();
         agent.isStopped = true;
@@ -301,6 +308,9 @@ public class CruzFSM : BasicEnemyInterface
         state = STATE.PURSUE;
         currentAttack = ATTACK_TYPE.NONE;
         isFinishingAttack = false;
+
+        cruzAnimator.ResetAttackTriggers();
+        cruzAnimator.SetWalking(false);
     }
 
     protected override void Pushed()

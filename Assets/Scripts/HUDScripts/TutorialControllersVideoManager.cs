@@ -15,6 +15,15 @@ public class VideoManagerFinal : MonoBehaviour
         playButton.onClick.AddListener(PlayVideo);
         videoPlayer.loopPointReached += OnVideoEnd;
     }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Escape))
+        {
+            OnVideoEnd(videoPlayer);
+        }
+    }
+
     public void PlayVideo()
     {
         Cursor.visible = false;

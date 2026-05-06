@@ -9,6 +9,7 @@ public class PlayerAttack : MonoBehaviour
 {
     private ChangeCharacter changeCharacter;
     public RadioRayo radioRayo;
+    public RotateCharacterWithJoystick joystick;
     public GameObject fireball;
     public GameObject thunderPrefab;
     public float attackDamage = 5f;
@@ -195,17 +196,20 @@ public class PlayerAttack : MonoBehaviour
         audioSource.PlayOneShot(fireballAudioClip);
         isThunder = false;
 
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Plane suelo = new Plane(Vector3.up, Vector3.zero);
-
         Vector3 direction = transform.forward;
 
-        if (suelo.Raycast(ray, out float distance))
+        if (!joystick.enabled)
         {
-            Vector3 point = ray.GetPoint(distance);
-            direction = point - transform.position;
-            direction.y = 0f;
-            direction.Normalize();
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Plane suelo = new Plane(Vector3.up, Vector3.zero);
+
+            if (suelo.Raycast(ray, out float distance))
+            {
+                Vector3 point = ray.GetPoint(distance);
+                direction = point - transform.position;
+                direction.y = 0f;
+                direction.Normalize();
+            }
         }
 
         Vector3 spawnPos = transform.position + Vector3.up * spawnHeight;
@@ -230,35 +234,35 @@ public class PlayerAttack : MonoBehaviour
         audioSource.PlayOneShot(thunderAudioClip);
         isFireball = false;
 
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         Vector3 origin = transform.position;
-
         Vector3 targetPoint;
 
-        if (Physics.Raycast(ray, out RaycastHit mouseHit))
+        bool usingGamepad = Input.GetJoystickNames().Length > 0;
+
+        if (usingGamepad)
         {
-            Vector3 clickPoint = mouseHit.point;
-
-            float distance = Vector3.Distance(origin, clickPoint);
-
-            if (distance <= attackRange)
-            {
-                targetPoint = clickPoint;
-            }
-            else
-            {
-                // Limitar al rango máximo
-                Vector3 direction = (clickPoint - origin).normalized;
-                targetPoint = origin + direction * attackRange;
-            }
+            targetPoint = origin + transform.forward * attackRange;
         }
         else
         {
-            // Si no golpea nada, usar rango máximo hacia delante
-            targetPoint = origin + transform.forward * attackRange;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out RaycastHit mouseHit))
+            {
+                Vector3 clickPoint = mouseHit.point;
+                float distance = Vector3.Distance(origin, clickPoint);
+
+                if (distance <= attackRange)
+                    targetPoint = clickPoint;
+                else
+                    targetPoint = origin + (clickPoint - origin).normalized * attackRange;
+            }
+            else
+            {
+                targetPoint = origin + transform.forward * attackRange;
+            }
         }
 
-        // Forzar altura del rayo
         Vector3 spawnPos = new Vector3(targetPoint.x, thunderSpawnY, targetPoint.z);
 
         GameObject newThunder = Instantiate(

@@ -210,19 +210,37 @@ public class ShowPauseMenu : MonoBehaviour
     {
         player.GetComponent<RotateCharacterToMouse>().enabled = usingMouseKeyboard;
         player.GetComponent<RotateCharacterWithJoystick>().enabled = !usingMouseKeyboard;
-        string json = JsonConvert.SerializeObject(new ControllersData { usingMouseKeyboard = usingMouseKeyboard });
+
+        string json = JsonConvert.SerializeObject(
+            new ControllersData { usingMouseKeyboard = usingMouseKeyboard }
+        );
+
         string path = Application.persistentDataPath + "/controllersData.json";
         File.WriteAllText(path, json);
+
+        ShowMinimap minimap = GameObject.FindAnyObjectByType<ShowMinimap>();
+        if (minimap != null)
+        {
+            minimap.isGamepad = !usingMouseKeyboard;
+        }
+
+        DialogueManager[] dialogues =
+            GameObject.FindObjectsByType<DialogueManager>(FindObjectsSortMode.None);
+
+        foreach (DialogueManager dialogue in dialogues)
+        {
+            dialogue.isGamepad = !usingMouseKeyboard;
+        }
     }
 
     public void BackToMainMenu()
     {
         Time.timeScale = 1f;
-        string path = Application.persistentDataPath + "/controllersData.json";
+        // string path = Application.persistentDataPath + "/controllersData.json";
         string playerDataPath = Application.persistentDataPath + "/player.json";
         //borrar los archivos de guardado al volver al menú principal
-        if (File.Exists(path))
-            File.Delete(path);
+        // if (File.Exists(path))
+        //     File.Delete(path);
         if (File.Exists(playerDataPath))
             File.Delete(playerDataPath);
         UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("MainMenu");

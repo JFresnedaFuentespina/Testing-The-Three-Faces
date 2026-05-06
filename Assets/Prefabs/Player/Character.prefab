@@ -156,7 +156,6 @@ GameObject:
   - component: {fileID: 5973908844157556360}
   - component: {fileID: 5796004613305379900}
   - component: {fileID: 7882462874895623761}
-  - component: {fileID: -5288870614308572272}
   - component: {fileID: 9124251553776601157}
   - component: {fileID: 8035337212567526722}
   m_Layer: 0
@@ -283,6 +282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radioRayo: {fileID: 6194893347541140970}
+  joystick: {fileID: 7930126595310468041}
   fireball: {fileID: 7251879486380165639, guid: c2f6a8962aac3814aa56cb9647c93470, type: 3}
   thunderPrefab: {fileID: 5627696518775099638, guid: 6839a8d6998e86d4282063ffdacb0c15, type: 3}
   attackDamage: 25
@@ -293,6 +293,7 @@ MonoBehaviour:
   thunderLifeTime: 1
   isFireball: 1
   isThunder: 0
+  canAttack: 1
   swordSwingAudioClip: {fileID: 8300000, guid: 75007150f322cce46a01a6c889e3402d, type: 3}
   fireballAudioClip: {fileID: 8300000, guid: d8c9f6964b00f354ea48560606339ed6, type: 3}
   thunderAudioClip: {fileID: 8300000, guid: a9449fecf89446045bed0884d893b12f, type: 3}
@@ -382,36 +383,6 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   isBlocking: 0
---- !u!114 &-5288870614308572272
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7930126595310468033}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
-  m_Actions: {fileID: 0}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: 
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!82 &9124251553776601157
 AudioSource:
   m_ObjectHideFlags: 0

@@ -1084,12 +1084,14 @@ MonoBehaviour:
   letterSpeed: 0.05
   fullMessage: Solo caos.
   inputMessage: Pulsa "Espacio" para avanzar
+  inputGamepadMessage: "Pulsa \"Bot\xF3n A\" para avanzar"
   nextDialogue: {fileID: 0}
   hp: {fileID: 355301824}
   Timer: {fileID: 2067796230}
   money: {fileID: 513918074}
   keyToContinue: 32
   pararTiempo: 1
+  isGamepad: 0
 --- !u!114 &342017182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1586,12 +1588,14 @@ MonoBehaviour:
   letterSpeed: 0.05
   fullMessage: "Aqu\xED no hay elecci\xF3n correcta."
   inputMessage: Pulsa "Espacio" para avanzar
+  inputGamepadMessage: "Pulsa \"Bot\xF3n A\" para avanzar"
   nextDialogue: {fileID: 342017179}
   hp: {fileID: 355301824}
   Timer: {fileID: 2067796230}
   money: {fileID: 513918074}
   keyToContinue: 32
   pararTiempo: 1
+  isGamepad: 0
 --- !u!114 &414908642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1688,12 +1692,14 @@ MonoBehaviour:
   letterSpeed: 0.05
   fullMessage: "No. Empez\xF3 cuando intentaron decidirlo todo."
   inputMessage: Pulsa "Espacio" para avanzar
+  inputGamepadMessage: "Pulsa \"Bot\xF3n A\" para avanzar"
   nextDialogue: {fileID: 414908639}
   hp: {fileID: 355301824}
   Timer: {fileID: 2067796230}
   money: {fileID: 513918074}
   keyToContinue: 32
   pararTiempo: 1
+  isGamepad: 0
 --- !u!114 &477368283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2573,12 +2579,14 @@ MonoBehaviour:
   letterSpeed: 0.05
   fullMessage: "Aqu\xED las tienes."
   inputMessage: Pulsa "Espacio" para avanzar
+  inputGamepadMessage: "Pulsa \"Bot\xF3n A\" para avanzar"
   nextDialogue: {fileID: 1438931031}
   hp: {fileID: 355301824}
   Timer: {fileID: 2067796230}
   money: {fileID: 513918074}
   keyToContinue: 32
   pararTiempo: 1
+  isGamepad: 0
 --- !u!114 &679086721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5894,12 +5902,14 @@ MonoBehaviour:
   letterSpeed: 0.05
   fullMessage: "\xBFY cruz?"
   inputMessage: Pulsa "Espacio" para avanzar
+  inputGamepadMessage: "Pulsa \"Bot\xF3n A\" para avanzar"
   nextDialogue: {fileID: 1974065321}
   hp: {fileID: 355301824}
   Timer: {fileID: 2067796230}
   money: {fileID: 513918074}
   keyToContinue: 32
   pararTiempo: 1
+  isGamepad: 0
 --- !u!114 &1414208674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6064,12 +6074,14 @@ MonoBehaviour:
   letterSpeed: 0.05
   fullMessage: Ni idea, pero pronto lo descubriremos.
   inputMessage: Pulsa "Espacio" para avanzar
+  inputGamepadMessage: "Pulsa \"Bot\xF3n A\" para avanzar"
   nextDialogue: {fileID: 0}
   hp: {fileID: 355301824}
   Timer: {fileID: 2067796230}
   money: {fileID: 513918074}
   keyToContinue: 32
   pararTiempo: 0
+  isGamepad: 0
 --- !u!114 &1436763692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6292,12 +6304,14 @@ MonoBehaviour:
   letterSpeed: 0.05
   fullMessage: "Todo esto empez\xF3 cuando desapareciste."
   inputMessage: Pulsa "Espacio" para avanzar
+  inputGamepadMessage: "Pulsa \"Bot\xF3n A\" para avanzar"
   nextDialogue: {fileID: 477368280}
   hp: {fileID: 355301824}
   Timer: {fileID: 2067796230}
   money: {fileID: 513918074}
   keyToContinue: 32
   pararTiempo: 1
+  isGamepad: 0
 --- !u!114 &1438931034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6538,12 +6552,14 @@ MonoBehaviour:
   letterSpeed: 0.05
   fullMessage: "\xBFEsperabas respuestas?"
   inputMessage: Pulsa "Espacio" para avanzar
+  inputGamepadMessage: "Pulsa \"Bot\xF3n A\" para avanzar"
   nextDialogue: {fileID: 679086718}
   hp: {fileID: 355301824}
   Timer: {fileID: 2067796230}
   money: {fileID: 513918074}
   keyToContinue: 32
   pararTiempo: 1
+  isGamepad: 0
 --- !u!114 &1523184489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7915,12 +7931,14 @@ MonoBehaviour:
   letterSpeed: 0.05
   fullMessage: Cara para restaurar el equilibrio.
   inputMessage: Pulsa "Espacio" para avanzar
+  inputGamepadMessage: "Pulsa \"Bot\xF3n A\" para avanzar"
   nextDialogue: {fileID: 2019961488}
   hp: {fileID: 355301824}
   Timer: {fileID: 2067796230}
   money: {fileID: 513918074}
   keyToContinue: 32
   pararTiempo: 1
+  isGamepad: 0
 --- !u!114 &1773268503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8006,12 +8024,14 @@ MonoBehaviour:
   letterSpeed: 0.05
   fullMessage: "T\xFA eliges..."
   inputMessage: Pulsa "Espacio" para avanzar
+  inputGamepadMessage: "Pulsa \"Bot\xF3n A\" para avanzar"
   nextDialogue: {fileID: 0}
   hp: {fileID: 355301824}
   Timer: {fileID: 2067796230}
   money: {fileID: 513918074}
   keyToContinue: 32
   pararTiempo: 1
+  isGamepad: 0
 --- !u!114 &1856902801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8545,12 +8565,14 @@ MonoBehaviour:
   letterSpeed: 0.05
   fullMessage: "Ahora solo os queda un \xFAltimo lanzamiento."
   inputMessage: Pulsa "Espacio" para avanzar
+  inputGamepadMessage: "Pulsa \"Bot\xF3n A\" para avanzar"
   nextDialogue: {fileID: 1773268500}
   hp: {fileID: 355301824}
   Timer: {fileID: 2067796230}
   money: {fileID: 513918074}
   keyToContinue: 32
   pararTiempo: 1
+  isGamepad: 0
 --- !u!114 &1900154079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8985,12 +9007,14 @@ MonoBehaviour:
   letterSpeed: 0.05
   fullMessage: "Cruz demostrar\xE1 que sois capaces de triunfar donde yo fracas\xE9."
   inputMessage: Pulsa "Espacio" para avanzar
+  inputGamepadMessage: "Pulsa \"Bot\xF3n A\" para avanzar"
   nextDialogue: {fileID: 1856902798}
   hp: {fileID: 355301824}
   Timer: {fileID: 2067796230}
   money: {fileID: 513918074}
   keyToContinue: 32
   pararTiempo: 1
+  isGamepad: 0
 --- !u!114 &1974065324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9323,12 +9347,14 @@ MonoBehaviour:
   letterSpeed: 0.05
   fullMessage: Y que todo sea como antes.
   inputMessage: Pulsa "Espacio" para avanzar
+  inputGamepadMessage: "Pulsa \"Bot\xF3n A\" para avanzar"
   nextDialogue: {fileID: 1414208671}
   hp: {fileID: 355301824}
   Timer: {fileID: 2067796230}
   money: {fileID: 513918074}
   keyToContinue: 32
   pararTiempo: 1
+  isGamepad: 0
 --- !u!114 &2019961491
 MonoBehaviour:
   m_ObjectHideFlags: 0

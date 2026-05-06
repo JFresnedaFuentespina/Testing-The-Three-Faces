@@ -798,6 +798,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 759253634}
     - target: {fileID: 4918913797124257592, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: isGamepad
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4918913797124257592, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: pararTiempo
       value: 1
       objectReference: {fileID: 0}

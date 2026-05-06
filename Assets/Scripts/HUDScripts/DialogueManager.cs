@@ -1,5 +1,6 @@
 using System.Collections;
 using System.IO;
+using Newtonsoft.Json;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,6 +25,7 @@ public class DialogueManager : MonoBehaviour
     public float letterSpeed = 0.05f;
     public string fullMessage;
     public string inputMessage;
+    public string inputGamepadMessage;
     private Coroutine typingCoroutine;
     public GameObject nextDialogue;
     public GameObject hp;
@@ -31,11 +33,29 @@ public class DialogueManager : MonoBehaviour
     public GameObject money;
     public KeyCode keyToContinue;
     public bool pararTiempo = true;
-
+    public bool isGamepad = false;
+    private InputSystem_Actions input;
     public delegate void OnRestoreHealth();
     public static event OnRestoreHealth OnRestoreHealthEvent;
+    void Awake()
+    {
+        input = new InputSystem_Actions();
+    }
+    void OnEnable()
+    {
+        input.Enable();
+    }
+    void OnDisable()
+    {
+        input.Disable();
 
+        if (pararTiempo)
+        {
+            Time.timeScale = 1f;
+        }
 
+        SetGameplayUI(true);
+    }
     void Start()
     {
         string path = Application.persistentDataPath + "/user.json";
@@ -55,9 +75,27 @@ public class DialogueManager : MonoBehaviour
             displayName = bossName;
         }
 
+        string pathcontrollers = Application.persistentDataPath + "/controllersData.json";
+        if (File.Exists(pathcontrollers))
+        {
+            string json = File.ReadAllText(pathcontrollers);
+            ControllersData controllersData = JsonConvert.DeserializeObject<ControllersData>(json);
+            isGamepad = !controllersData.usingMouseKeyboard;
+        }
+        else
+        {
+            Debug.LogWarning("Fichero controllersData.json no existe");
+        }
 
         nameText.text = displayName;
-        inputText.text = inputMessage;
+        if (!isGamepad)
+        {
+            inputText.text = inputMessage;
+        }
+        else
+        {
+            inputText.text = inputGamepadMessage;
+        }
         if (bossName == "")
         {
             RefreshPortraitImage();
@@ -93,16 +131,6 @@ public class DialogueManager : MonoBehaviour
         {
             portraitImage.sprite = portraitPlayerGE;
         }
-    }
-
-    void OnDisable()
-    {
-        if (pararTiempo)
-        {
-            Time.timeScale = 1f;
-        }
-        SetGameplayUI(true);
-
     }
 
     private void SetGameplayUI(bool value)
@@ -152,6 +180,55 @@ public class DialogueManager : MonoBehaviour
     }
 
     void Update()
+    {
+        if (!isGamepad)
+        {
+            SkipDialogueWithKeyboard();
+        }
+        else
+        {
+            SkipDialogueWithGamepad();
+        }
+    }
+
+    private void SkipDialogueWithGamepad()
+    {
+        if (Input.GetButtonDown("ChangeCharacter"))
+        {
+            SkipDialogWithE();
+        }
+        else if (input.Player.Jump.WasPressedThisFrame())
+        {
+            if (isTyping)
+            {
+                // Termina de escribir
+                StopCoroutine(typingCoroutine);
+                message.text = fullMessage;
+                isTyping = false;
+                dialogueFinished = true;
+            }
+            else if (dialogueFinished)
+            {
+                // Cierra el diálogo y activa el siguiente
+                if (pararTiempo)
+                {
+                    Time.timeScale = 1f;
+                }
+
+                gameObject.SetActive(false);
+
+                if (nextDialogue != null)
+                {
+                    nextDialogue.SetActive(true);
+                }
+                else
+                {
+                    DialogueGlobalManager.Instance.EndDialogue();
+                }
+            }
+        }
+    }
+    private void SkipDialogueWithKeyboard()
     {
         if (Input.GetKeyDown(keyToContinue))
         {

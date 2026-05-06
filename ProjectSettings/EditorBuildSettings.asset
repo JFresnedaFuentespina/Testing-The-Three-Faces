@@ -39,5 +39,6 @@ EditorBuildSettings:
     path: Assets/Scenes/RateScene.unity
     guid: 3b64085dc6c8c254b84849e20a47a4cf
   m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: 79841e139336dfa4c8f21257820f6029, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 3e13b77cc903df945b50d8a94280533f, type: 3}
   m_UseUCBPForAssetBundles: 0

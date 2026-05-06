@@ -987,12 +987,14 @@ MonoBehaviour:
   letterSpeed: 0.05
   fullMessage: "Vuestra guerra nos conden\xF3."
   inputMessage: Pulsa "Espacio" para avanzar
+  inputGamepadMessage: "Pulsa \"Bot\xF3n A\" para avanzar"
   nextDialogue: {fileID: 1550098782}
   hp: {fileID: 10717360}
   Timer: {fileID: 383209253}
   money: {fileID: 599080464}
   keyToContinue: 32
   pararTiempo: 1
+  isGamepad: 0
 --- !u!114 &428690541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3975,12 +3977,14 @@ MonoBehaviour:
   letterSpeed: 0.05
   fullMessage: Este sitio... Me resulta familiar.
   inputMessage: Pulsa "Espacio" para avanzar
+  inputGamepadMessage: "Pulsa \"Bot\xF3n A\" para avanzar"
   nextDialogue: {fileID: 0}
   hp: {fileID: 10717360}
   Timer: {fileID: 383209253}
   money: {fileID: 599080464}
   keyToContinue: 32
   pararTiempo: 0
+  isGamepad: 0
 --- !u!114 &1060385612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4795,12 +4799,14 @@ MonoBehaviour:
   letterSpeed: 0.05
   fullMessage: Pero le pondremos fin.
   inputMessage: Pulsa "Espacio" para avanzar
+  inputGamepadMessage: "Pulsa \"Bot\xF3n A\" para avanzar"
   nextDialogue: {fileID: 0}
   hp: {fileID: 10717360}
   Timer: {fileID: 383209253}
   money: {fileID: 599080464}
   keyToContinue: 32
   pararTiempo: 1
+  isGamepad: 0
 --- !u!114 &1550098785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5447,12 +5453,14 @@ MonoBehaviour:
   letterSpeed: 0.05
   fullMessage: No eres como el resto.
   inputMessage: Pulsa "Espacio" para avanzar
+  inputGamepadMessage: "Pulsa \"Bot\xF3n A\" para avanzar"
   nextDialogue: {fileID: 428690538}
   hp: {fileID: 10717360}
   Timer: {fileID: 383209253}
   money: {fileID: 599080464}
   keyToContinue: 32
   pararTiempo: 1
+  isGamepad: 0
 --- !u!114 &1867687075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5543,12 +5551,14 @@ MonoBehaviour:
   letterSpeed: 0.05
   fullMessage: Pal lobby tontito.
   inputMessage: Pulsa "Espacio" para avanzar
+  inputGamepadMessage: "Pulsa \"Bot\xF3n A\" para avanzar"
   nextDialogue: {fileID: 0}
   hp: {fileID: 10717360}
   Timer: {fileID: 383209253}
   money: {fileID: 599080464}
   keyToContinue: 32
   pararTiempo: 1
+  isGamepad: 0
 --- !u!114 &1983496190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5846,12 +5856,14 @@ MonoBehaviour:
   letterSpeed: 0.05
   fullMessage: "Te siento\u2026 a medias. Ni vivo, ni muerto."
   inputMessage: Pulsa "Espacio" para avanzar
+  inputGamepadMessage: "Pulsa \"Bot\xF3n A\" para avanzar"
   nextDialogue: {fileID: 1867687072}
   hp: {fileID: 10717360}
   Timer: {fileID: 383209253}
   money: {fileID: 599080464}
   keyToContinue: 32
   pararTiempo: 1
+  isGamepad: 0
 --- !u!114 &2067470486
 MonoBehaviour:
   m_ObjectHideFlags: 0

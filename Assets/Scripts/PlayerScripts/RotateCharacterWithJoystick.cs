@@ -6,31 +6,30 @@ public class RotateCharacterWithJoystick : MonoBehaviour
     public float velocidadRotacion = 1440f;
 
     private Rigidbody rb;
-    private PlayerInputActions input;
+    // 1. Asegúrate de que este nombre sea el mismo que el de tu archivo de acciones
+    private InputSystem_Actions input;
     private Vector2 lookDirection;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        if (rb == null)
-            Debug.LogError("RotateCharacter: No tiene Rigidbody");
+        if (rb == null) Debug.LogError("RotateCharacter: No tiene Rigidbody");
 
-        input = new PlayerInputActions();
+        input = new InputSystem_Actions();
     }
 
     void OnEnable()
     {
         input.Enable();
-
-        // Suscribirse a la acción correcta
-        input.Player.LookDirection.performed += OnLook;
-        input.Player.LookDirection.canceled += OnLookCanceled;
+        // 3. En tu imagen la acción se llama "Look", NO "LookDirection"
+        input.Player.Look.performed += OnLook;
+        input.Player.Look.canceled += OnLookCanceled;
     }
 
     void OnDisable()
     {
-        input.Player.LookDirection.performed -= OnLook;
-        input.Player.LookDirection.canceled -= OnLookCanceled;
+        input.Player.Look.performed -= OnLook;
+        input.Player.Look.canceled -= OnLookCanceled;
         input.Disable();
     }
 
@@ -46,8 +45,7 @@ public class RotateCharacterWithJoystick : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (lookDirection.sqrMagnitude < 0.01f)
-            return;
+        if (lookDirection.sqrMagnitude < 0.1f) return;
 
         float angulo = Mathf.Atan2(lookDirection.x, lookDirection.y) * Mathf.Rad2Deg;
         Quaternion rotacionObjetivo = Quaternion.Euler(0f, angulo, 0f);

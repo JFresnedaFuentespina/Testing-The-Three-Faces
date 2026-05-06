@@ -109,8 +109,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 317.5, y: -53.6}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 219.31195, y: -53.6}
+  m_SizeDelta: {x: 396.3761, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5297935178409787650
 CanvasRenderer:
@@ -418,12 +418,14 @@ MonoBehaviour:
   letterSpeed: 0.05
   fullMessage: Message...
   inputMessage: Pulsa "Espacio" para avanzar
+  inputGamepadMessage: 
   nextDialogue: {fileID: 0}
   hp: {fileID: 0}
   Timer: {fileID: 0}
   money: {fileID: 0}
   keyToContinue: 32
   pararTiempo: 1
+  isGamepad: 0
 --- !u!114 &4237600530089277237
 MonoBehaviour:
   m_ObjectHideFlags: 0

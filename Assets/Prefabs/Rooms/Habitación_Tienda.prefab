@@ -2212,6 +2212,10 @@ PrefabInstance:
       propertyPath: doorAudioSource
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7997259513853481830, guid: ea0e997c18d44284aa5fbfb804a542f6, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

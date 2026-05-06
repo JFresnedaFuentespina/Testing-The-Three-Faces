@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Video;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using System.Collections;
 using System.IO;
 using Newtonsoft.Json;
@@ -8,39 +9,39 @@ using Newtonsoft.Json;
 public class VideoTriggerBehaviour : MonoBehaviour
 {
     private VideoPlayer videoPlayer;
+
     public PostScore postScoreScript;
     public GameLog gameLog;
     public bool activeAPI = false;
 
+    [Header("Fade")]
+    public Image fadeImage;
+    public float fadeSpeed = 2f;
+
     private bool playingSecondVideo = false;
+    private bool isFading = false;
 
     void Start()
     {
         videoPlayer = GetComponent<VideoPlayer>();
         gameLog = new GameLog();
 
-        if (videoPlayer == null)
-        {
-            Debug.LogError("No hay VideoPlayer en este GameObject");
-            return;
-        }
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 
         videoPlayer.source = VideoSource.Url;
+        videoPlayer.renderMode = VideoRenderMode.CameraNearPlane;
+        videoPlayer.targetCamera = GameObject.Find("Camera").GetComponent<Camera>();
+        videoPlayer.targetCameraAlpha = 1f;
+
         videoPlayer.loopPointReached += OnVideoFinished;
 
-        PlayFirstVideo();
+        PlayVideo("/BadEndingStart.mp4");
     }
 
-    void PlayFirstVideo()
+    void PlayVideo(string fileName)
     {
-        videoPlayer.url = Application.streamingAssetsPath + "/BadEndingStart.mp4";
-        StartCoroutine(PrepareAndPlay());
-    }
-
-    void PlaySecondVideo()
-    {
-        playingSecondVideo = true;
-        videoPlayer.url = Application.streamingAssetsPath + "/BadEndgame.mp4";
+        videoPlayer.url = Application.streamingAssetsPath + fileName;
         StartCoroutine(PrepareAndPlay());
     }
 
@@ -48,9 +49,8 @@ public class VideoTriggerBehaviour : MonoBehaviour
     {
         videoPlayer.Prepare();
         while (!videoPlayer.isPrepared)
-        {
             yield return null;
-        }
+
         videoPlayer.Play();
     }
 
@@ -58,19 +58,69 @@ public class VideoTriggerBehaviour : MonoBehaviour
     {
         if (!playingSecondVideo)
         {
-            PlaySecondVideo();
-            return;
+            StartCoroutine(SwitchToSecondVideo());
         }
+        else
+        {
+            StartCoroutine(EndSequence());
+        }
+    }
+
+    private IEnumerator SwitchToSecondVideo()
+    {
+        yield return StartCoroutine(FadeToBlack());
+
+        playingSecondVideo = true;
+        PlayVideo("/BadEndgame.mp4");
+
+        yield return StartCoroutine(FadeFromBlack());
+    }
+
+    private IEnumerator EndSequence()
+    {
+        yield return StartCoroutine(FadeToBlack());
 
         SaveGame();
 
-        string nextScene = "Classifications";
-        if (!activeAPI) nextScene = "MainMenu";
+        string nextScene = activeAPI ? "Classifications" : "MainMenu";
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
         SceneManager.LoadScene(nextScene);
+    }
+
+    private IEnumerator FadeToBlack()
+    {
+        if (isFading) yield break;
+        isFading = true;
+
+        float t = 0f;
+        Color c = fadeImage.color;
+
+        while (t < 1f)
+        {
+            t += Time.deltaTime * fadeSpeed;
+            c.a = Mathf.Lerp(0f, 1f, t);
+            fadeImage.color = c;
+            yield return null;
+        }
+
+        isFading = false;
+    }
+
+    private IEnumerator FadeFromBlack()
+    {
+        float t = 0f;
+        Color c = fadeImage.color;
+
+        while (t < 1f)
+        {
+            t += Time.deltaTime * fadeSpeed;
+            c.a = Mathf.Lerp(1f, 0f, t);
+            fadeImage.color = c;
+            yield return null;
+        }
     }
 
     void OnDestroy()
@@ -98,6 +148,7 @@ public class VideoTriggerBehaviour : MonoBehaviour
         for (int i = 1; i < 4; i++)
         {
             string path = Application.persistentDataPath + "/levelLogs_" + i + ".json";
+
             if (File.Exists(path))
             {
                 string fileContent = File.ReadAllText(path);
@@ -110,7 +161,8 @@ public class VideoTriggerBehaviour : MonoBehaviour
                     if (!lastJson.StartsWith("{"))
                         lastJson = "{" + lastJson;
 
-                    LevelLayoutLog level = JsonConvert.DeserializeObject<LevelLayoutLog>(lastJson);
+                    LevelLayoutLog level =
+                        JsonConvert.DeserializeObject<LevelLayoutLog>(lastJson);
 
                     switch (i)
                     {
@@ -125,10 +177,11 @@ public class VideoTriggerBehaviour : MonoBehaviour
 
     public void ReadScore()
     {
-        string scorePath = Application.persistentDataPath + "/score.json";
-        if (File.Exists(scorePath))
+        string path = Application.persistentDataPath + "/score.json";
+
+        if (File.Exists(path))
         {
-            string json = File.ReadAllText(scorePath);
+            string json = File.ReadAllText(path);
             ScoreDTO scoreDTO = JsonUtility.FromJson<ScoreDTO>(json);
             gameLog.score = scoreDTO.score;
         }
@@ -136,10 +189,11 @@ public class VideoTriggerBehaviour : MonoBehaviour
 
     public void ReadTimer()
     {
-        string timerPath = Application.persistentDataPath + "/timer.json";
-        if (File.Exists(timerPath))
+        string path = Application.persistentDataPath + "/timer.json";
+
+        if (File.Exists(path))
         {
-            string json = File.ReadAllText(timerPath);
+            string json = File.ReadAllText(path);
             TimerData timerData = JsonUtility.FromJson<TimerData>(json);
             gameLog.time = timerData.time;
         }

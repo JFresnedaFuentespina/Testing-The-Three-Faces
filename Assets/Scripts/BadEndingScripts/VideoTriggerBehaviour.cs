@@ -12,6 +12,7 @@ public class VideoTriggerBehaviour : MonoBehaviour
     public GameLog gameLog;
     public bool activeAPI = false;
 
+    private bool playingSecondVideo = false;
 
     void Start()
     {
@@ -25,25 +26,24 @@ public class VideoTriggerBehaviour : MonoBehaviour
         }
 
         videoPlayer.source = VideoSource.Url;
-        videoPlayer.url = Application.streamingAssetsPath + "/BadEndgame.mp4";
-
-        videoPlayer.renderMode = VideoRenderMode.CameraNearPlane;
-        videoPlayer.targetCamera = GameObject.Find("Camera").GetComponent<Camera>();
-        videoPlayer.targetCameraAlpha = 1f;
-
         videoPlayer.loopPointReached += OnVideoFinished;
+
+        PlayFirstVideo();
     }
 
-
-    void OnTriggerEnter(Collider other)
+    void PlayFirstVideo()
     {
-        if (!other.CompareTag("Player"))
-            return;
-
-        other.gameObject.SetActive(false);
-        postScoreScript.PostScoreToAPI();
+        videoPlayer.url = Application.streamingAssetsPath + "/BadEndingStart.mp4";
         StartCoroutine(PrepareAndPlay());
     }
+
+    void PlaySecondVideo()
+    {
+        playingSecondVideo = true;
+        videoPlayer.url = Application.streamingAssetsPath + "/BadEndgame.mp4";
+        StartCoroutine(PrepareAndPlay());
+    }
+
     private IEnumerator PrepareAndPlay()
     {
         videoPlayer.Prepare();
@@ -56,7 +56,14 @@ public class VideoTriggerBehaviour : MonoBehaviour
 
     private void OnVideoFinished(VideoPlayer vp)
     {
+        if (!playingSecondVideo)
+        {
+            PlaySecondVideo();
+            return;
+        }
+
         SaveGame();
+
         string nextScene = "Classifications";
         if (!activeAPI) nextScene = "MainMenu";
 
@@ -71,6 +78,7 @@ public class VideoTriggerBehaviour : MonoBehaviour
         if (videoPlayer != null)
             videoPlayer.loopPointReached -= OnVideoFinished;
     }
+
     public void SaveGame()
     {
         GameLog.id++;
@@ -93,15 +101,12 @@ public class VideoTriggerBehaviour : MonoBehaviour
             if (File.Exists(path))
             {
                 string fileContent = File.ReadAllText(path);
-
-                // separa cada JSON (asumiendo que empiezan por '{')
                 string[] jsons = fileContent.Split(new[] { "\n{" }, System.StringSplitOptions.RemoveEmptyEntries);
 
                 if (jsons.Length > 0)
                 {
                     string lastJson = jsons[jsons.Length - 1];
 
-                    // arregla el '{' que se pierde al hacer split
                     if (!lastJson.StartsWith("{"))
                         lastJson = "{" + lastJson;
 

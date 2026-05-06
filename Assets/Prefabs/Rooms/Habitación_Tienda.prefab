@@ -1529,8 +1529,30 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 519803761242882769, guid: 4ebb1faff0270f747b785e9797f918fd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 9187715271150355345}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2062608521807869222, guid: 4ebb1faff0270f747b785e9797f918fd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 876252669182484746}
   m_SourcePrefab: {fileID: 100100000, guid: 4ebb1faff0270f747b785e9797f918fd, type: 3}
+--- !u!1 &4971286643740721627 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2062608521807869222, guid: 4ebb1faff0270f747b785e9797f918fd, type: 3}
+  m_PrefabInstance: {fileID: 6368746662483096829}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &876252669182484746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4971286643740721627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29b538b6f6106dc439074187df3144f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  buyMessage: {fileID: 3356965750238815517}
+  isGamepad: 0
 --- !u!224 &6869365595029714476 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 519803761242882769, guid: 4ebb1faff0270f747b785e9797f918fd, type: 3}

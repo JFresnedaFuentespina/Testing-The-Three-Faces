@@ -231,6 +231,10 @@ public class ShowPauseMenu : MonoBehaviour
         {
             dialogue.isGamepad = !usingMouseKeyboard;
         }
+
+        UpdateBuyText buyText = FindAnyObjectByType<UpdateBuyText>();
+        buyText.isGamepad = !usingMouseKeyboard;
+        buyText.UpdateText();
     }
 
     public void BackToMainMenu()

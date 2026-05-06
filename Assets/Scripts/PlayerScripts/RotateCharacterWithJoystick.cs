@@ -45,15 +45,31 @@ public class RotateCharacterWithJoystick : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (lookDirection.sqrMagnitude < 0.1f) return;
+        if (lookDirection.sqrMagnitude < 0.1f)
+            return;
 
-        float angulo = Mathf.Atan2(lookDirection.x, lookDirection.y) * Mathf.Rad2Deg;
-        Quaternion rotacionObjetivo = Quaternion.Euler(0f, angulo, 0f);
+        Transform cam = Camera.main.transform;
+
+        Vector3 forward = cam.forward;
+        Vector3 right = cam.right;
+
+        forward.y = 0f;
+        right.y = 0f;
+
+        forward.Normalize();
+        right.Normalize();
+
+        Vector3 moveDir =
+            forward * lookDirection.y +
+            right * lookDirection.x;
+
+        Quaternion targetRotation =
+            Quaternion.LookRotation(moveDir, Vector3.up);
 
         rb.MoveRotation(
             Quaternion.RotateTowards(
                 rb.rotation,
-                rotacionObjetivo,
+                targetRotation,
                 velocidadRotacion * Time.fixedDeltaTime
             )
         );

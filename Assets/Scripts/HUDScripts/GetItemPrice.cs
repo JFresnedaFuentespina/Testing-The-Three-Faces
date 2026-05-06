@@ -17,10 +17,25 @@ public class GetItemPrice : MonoBehaviour
     private bool itemReady = false;
     private bool itemPurchased = false;
     private PlayerMoney playerMoney;
+    private InputSystem_Actions inputActions;
     void Start()
     {
         playerMoney = FindAnyObjectByType<PlayerMoney>();
         StartCoroutine(WaitForItem());
+    }
+    void Awake()
+    {
+        inputActions = new InputSystem_Actions();
+    }
+
+    void OnEnable()
+    {
+        inputActions.Enable();
+    }
+
+    void OnDisable()
+    {
+        inputActions.Disable();
     }
 
     private IEnumerator WaitForItem()
@@ -55,7 +70,7 @@ public class GetItemPrice : MonoBehaviour
             }
         }
 
-        if (isLookingAtPlayer && Input.GetKey(KeyCode.F))
+        if (isLookingAtPlayer && (inputActions.Player.Buy.IsPressed() || Input.GetKey(KeyCode.F)))
         {
             holdTimer += Time.deltaTime;
             panelBackground.fillAmount = Mathf.Clamp01(holdTimer / holdTimeRequierd);

@@ -17,10 +17,13 @@ public class GetItemPrice : MonoBehaviour
     private bool itemReady = false;
     private bool itemPurchased = false;
     private PlayerMoney playerMoney;
+    private PlayerInventory playerInventory;
     private InputSystem_Actions inputActions;
     void Start()
     {
         playerMoney = FindAnyObjectByType<PlayerMoney>();
+        playerInventory = FindAnyObjectByType<PlayerInventory>();
+        
         StartCoroutine(WaitForItem());
     }
     void Awake()
@@ -109,6 +112,7 @@ public class GetItemPrice : MonoBehaviour
 
         PickupItem pickupItem = FindAnyObjectByType<PickupItem>();
         pickupItem.AddItemToHUD(itemGenerated.icon, itemGenerated.itemID, itemGenerated.description);
+        playerInventory.AddItem(itemGenerated.itemID, itemGenerated.icon, itemGenerated.description);
         pickupItem.ApplyItemEffects(itemGenerated.gameObject);
     }
 }

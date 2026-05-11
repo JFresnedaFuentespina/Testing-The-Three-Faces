@@ -328,14 +328,14 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
   m_Enabled: 1
-  serializedVersion: 11
+  serializedVersion: 12
   m_Type: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
+  m_CookieSize2D: {x: 10, y: 10}
   m_Shadows:
     m_Type: 2
     m_Resolution: -1
@@ -478,13 +478,20 @@ MonoBehaviour:
   treasureRoomPrefab: {fileID: 6255862597455320277, guid: ef7569f98cd8558468b84a214f6ce4e9, type: 3}
   bossRoomPrefab: {fileID: 8213333198550572446, guid: 371ca3a3b749625468353f60baf52fba, type: 3}
   finalBossRoomPrefab: {fileID: 0}
+  shopRoomPrefab: {fileID: 0}
   characterPrefab: {fileID: 7930126595310468033, guid: e94499e9e8effe247ace11156ea23664, type: 3}
   levelWidth: 0
   levelId: 0
   levelBaseY: 0
   offsetW: 50
+  offsetH: 50
   maxEnemiesPerRoom: 3
   character: {fileID: 0}
+  log:
+    levelId: 0
+    date: 
+    rooms: []
+    paths: []
   fogEnabled: 0
 --- !u!114 &886833402
 MonoBehaviour:
@@ -498,6 +505,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3ffec93ca1fb8745b69a01ca70aff7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelWidth: 5
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -753,6 +761,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &1289023468
 MonoBehaviour:
@@ -34840,6 +34849,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &1446197623
 MeshFilter:

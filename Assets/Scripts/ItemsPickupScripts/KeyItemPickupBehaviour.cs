@@ -4,6 +4,6 @@ public class KeyItemPickupBehaviour : MonoBehaviour, ItemPickupBehaviour
 {
     public string ApplyItemEffects()
     {
-        return "Key";
+        return "¡Llave encontrada!\nAhora puedes enfrentarte al jefe";
     }
 }

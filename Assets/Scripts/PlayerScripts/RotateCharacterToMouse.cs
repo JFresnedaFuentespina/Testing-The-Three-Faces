@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using Newtonsoft.Json;
 using UnityEngine;
 
 public class RotateCharacterToMouse : MonoBehaviour
@@ -7,6 +9,21 @@ public class RotateCharacterToMouse : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        string pathcontrollers = Application.persistentDataPath + "/controllersData.json";
+
+        if (File.Exists(pathcontrollers))
+        {
+            string json = File.ReadAllText(pathcontrollers);
+            ControllersData controllersData = JsonConvert.DeserializeObject<ControllersData>(json);
+            if (controllersData.usingMouseKeyboard)
+            {
+                enabled = true;
+            }
+            else
+            {
+                enabled = false;
+            }
+        }
     }
 
     // Update is called once per frame

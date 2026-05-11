@@ -285,7 +285,7 @@ MonoBehaviour:
   joystick: {fileID: 7930126595310468041}
   fireball: {fileID: 7251879486380165639, guid: c2f6a8962aac3814aa56cb9647c93470, type: 3}
   thunderPrefab: {fileID: 5627696518775099638, guid: 6839a8d6998e86d4282063ffdacb0c15, type: 3}
-  attackDamage: 25
+  attackDamage: 5
   attackSpeed: 5
   spawnHeight: 1
   attackRange: 5
@@ -494,7 +494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a086a19ffcd7cc24db689883a0bba040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: PlayerHealthAssembly::PlayerMoney
-  amount: 0
+  amount: 5
   hud: {fileID: 0}
   coinsPanel: {fileID: 0}
   coinsText: {fileID: 0}

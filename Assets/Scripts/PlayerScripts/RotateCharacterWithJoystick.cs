@@ -1,3 +1,5 @@
+using System.IO;
+using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,6 +18,21 @@ public class RotateCharacterWithJoystick : MonoBehaviour
         if (rb == null) Debug.LogError("RotateCharacter: No tiene Rigidbody");
 
         input = new InputSystem_Actions();
+        string pathcontrollers = Application.persistentDataPath + "/controllersData.json";
+
+        if (File.Exists(pathcontrollers))
+        {
+            string json = File.ReadAllText(pathcontrollers);
+            ControllersData controllersData = JsonConvert.DeserializeObject<ControllersData>(json);
+            if (controllersData.usingMouseKeyboard)
+            {
+                enabled = false;
+            }
+            else
+            {
+                enabled = true;
+            }
+        }
     }
 
     void OnEnable()

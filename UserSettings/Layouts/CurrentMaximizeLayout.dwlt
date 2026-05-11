@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 112}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 6828
+  controlID: 11376
   draggingID: 0
 --- !u!114 &2
 MonoBehaviour:
@@ -153,7 +153,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 112}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 6829
+  controlID: 11377
   draggingID: 0
 --- !u!114 &4
 MonoBehaviour:
@@ -180,7 +180,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 56}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 6830
+  controlID: 11378
   draggingID: 0
 --- !u!114 &5
 MonoBehaviour:
@@ -249,13 +249,20 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs:
-      - m_Data: 67484
+      m_SelectedIDs: []
       m_LastClickedID:
         m_Data: 0
       m_ExpandedIDs:
-      - m_Data: -269814
-      - m_Data: 102790
+      - m_Data: -931792
+      - m_Data: -881362
+      - m_Data: -835958
+      - m_Data: -835200
+      - m_Data: -166760
+      - m_Data: -166750
+      - m_Data: -166640
+      - m_Data: -158590
+      - m_Data: -1384
+      - m_Data: 80046
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -796,8 +803,8 @@ MonoBehaviour:
     m_DynamicPanelBehavior: 0
   m_WindowGUID: cc27987af1a868c49b0894db9c0f5429
   m_Gizmos: 1
-  m_OverrideSceneCullingMask: 0
-  m_SceneIsLit: 0
+  m_OverrideSceneCullingMask: 6917529027641081856
+  m_SceneIsLit: 1
   m_SceneLighting: 1
   m_2DMode: 0
   m_isRotationLocked: 0
@@ -805,9 +812,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: -0.15792406, y: 0.6540344, z: -0.2435796}
+    m_Target: {x: 56.76106, y: -2.836066, z: 59.31632}
     speed: 2
-    m_Value: {x: -0.15792406, y: 0.6540344, z: -0.2435796}
+    m_Value: {x: 56.76106, y: -2.836066, z: 59.31632}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -853,13 +860,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.17699608, y: 0.7600957, z: -0.2316562, w: 0.5808587}
+    m_Target: {x: -0.17538156, y: -0.6038453, z: 0.13840255, w: -0.7651861}
     speed: 2
-    m_Value: {x: 0.17698418, y: 0.76004463, z: -0.23164062, w: 0.58081967}
+    m_Value: {x: -0.17537694, y: -0.6038294, z: 0.1383989, w: -0.7651659}
   m_Size:
-    m_Target: 1.8847262
+    m_Target: 10.084913
     speed: 2
-    m_Value: 1.8847262
+    m_Value: 10.084913
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -986,14 +993,14 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
-    - e00: 0.91770655
+    - e00: 0.61165047
       e01: 0
       e02: 0
-      e03: 180.82115
+      e03: 33.349518
       e10: 0
-      e11: 0.91770655
+      e11: 0.61165047
       e12: 0
-      e13: 240.13014
+      e13: 243.66019
       e20: 0
       e21: 0
       e22: 1
@@ -1146,14 +1153,14 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
-    - e00: 0.7262878
+    - e00: 0.52448076
       e01: 0
       e02: 0
-      e03: -116.65869
+      e03: 54.404175
       e10: 0
-      e11: 0.7262878
+      e11: 0.52448076
       e12: 0
-      e13: 327.69638
+      e13: 331.80322
       e20: 0
       e21: 0
       e22: 1
@@ -1392,8 +1399,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/3rd Party/Ghost Spook Phantom Evolution Pack Cute series/Phantom Ghost
-      Cute Series/FBX
+    - Assets/Prefabs/Player
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1403,19 +1409,18 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/3rd Party/Ghost Spook Phantom Evolution Pack Cute series/Phantom Ghost
-    Cute Series/FBX
+  - Assets/Prefabs/Player
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\EVRV\Desktop\UnityProjects\The Three Faces Testing\Test-The-Three-Faces
   m_LockTracker:
     m_IsLocked: 0
   m_LastLocalAssetsSearchArea: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 655}
+    scrollPos: {x: 0, y: 975}
     m_SelectedIDs:
-    - m_Data: 102828
+    - m_Data: 68034
     m_LastClickedID:
-      m_Data: 102828
+      m_Data: 68034
     m_ExpandedIDs:
     - m_Data: 0
     - m_Data: 67600
@@ -1520,7 +1525,6 @@ MonoBehaviour:
     - m_Data: 67798
     - m_Data: 67800
     - m_Data: 67802
-    - m_Data: 67976
     - m_Data: 1000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1683,10 +1687,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs:
-    - m_Data: 67484
-    m_LastClickedInstanceID: 67484
-    m_HadKeyboardFocusLastEvent: 1
+    m_SelectedInstanceIDs: []
+    m_LastClickedInstanceID: 0
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs:
     - m_Data: 335368
     - m_Data: 59846
@@ -1734,7 +1737,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 12.100006}
+    m_ScrollPosition: {x: 0, y: 0}
     m_GridSize: 16
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 208

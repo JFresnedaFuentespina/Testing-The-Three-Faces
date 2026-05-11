@@ -28,8 +28,8 @@ public class PlayerAttack : MonoBehaviour
     public AudioClip fireballAudioClip;
     public AudioClip thunderAudioClip;
     private AudioSource audioSource;
-    private Animator animatorEsqueleto;
-    private Animator animatorFantasma;
+    public Animator animatorEsqueleto;
+    public Animator animatorFantasma;
 
     public GameObject swordGO;
     public bool appliesPoison = false;
@@ -68,8 +68,6 @@ public class PlayerAttack : MonoBehaviour
         }
         radioRayo.isThunderActive = isThunder;
         changeCharacter = GetComponent<ChangeCharacter>();
-        animatorEsqueleto = FindEsqueletoAnimator(transform);
-        animatorFantasma = FindGhostAnimator(transform);
         MeleeAttackHit weapon = this.gameObject.GetComponentInChildren<MeleeAttackHit>();
         weapon.attackDamage = attackDamage;
         swordGO = GameObject.Find("Sword");
@@ -87,39 +85,6 @@ public class PlayerAttack : MonoBehaviour
         StarItemPickupBehaviour.OnPlayerAttackEvent += DecideChanges;
         GreenPotionItemPickupBehaviour.OnPlayerAttackEvent += DecideChanges;
         SkullItemPickupBehaviour.OnPlayerAttackEvent += DecideChanges;
-    }
-
-    // Buscar el animator del esqueleto
-    Animator FindEsqueletoAnimator(Transform raiz)
-    {
-        foreach (Transform t in raiz)
-        {
-            if (t.name == "Esqueleto")
-            {
-                return t.GetComponent<Animator>();
-            }
-
-            Animator encontrado = FindEsqueletoAnimator(t);
-            if (encontrado != null)
-                return encontrado;
-        }
-        return null;
-    }
-    // Buscar el animator del fantasma
-    Animator FindGhostAnimator(Transform raiz)
-    {
-        foreach (Transform t in raiz)
-        {
-            if (t.name == "Ghost")
-            {
-                return t.GetComponent<Animator>();
-            }
-
-            Animator encontrado = FindGhostAnimator(t);
-            if (encontrado != null)
-                return encontrado;
-        }
-        return null;
     }
 
     // Update is called once per frame
@@ -317,15 +282,27 @@ public class PlayerAttack : MonoBehaviour
 
     public void OnPickupIncreaseAttackSpeed()
     {
-        attackInterval = attackInterval * 0.8f;
-        float current = animatorFantasma.GetFloat("AttackInterval");
-        animatorEsqueleto.SetFloat("AttackInterval", current * 1.2f);
-    }
+        attackInterval *= 0.8f;
 
+        if (animatorFantasma != null)
+        {
+            float current = animatorFantasma.GetFloat("AttackInterval");
+            animatorFantasma.SetFloat("AttackInterval", current * 1.2f);
+        }
+
+        NotifyAttackStatsChanged();
+    }
     public void OnPickupStar()
     {
         attackDamage += 2f;
-        attackInterval -= 0.5f;
+        attackInterval *= 0.5f;
+
+        if (animatorFantasma != null)
+        {
+            float current = animatorFantasma.GetFloat("AttackInterval");
+            animatorFantasma.SetFloat("AttackInterval", current * 1.5f);
+        }
+
         NotifyAttackStatsChanged();
     }
 
@@ -350,4 +327,5 @@ public class PlayerAttack : MonoBehaviour
     {
         appliesPoison = true;
     }
+
 }

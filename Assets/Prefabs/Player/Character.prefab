@@ -297,6 +297,8 @@ MonoBehaviour:
   swordSwingAudioClip: {fileID: 8300000, guid: 75007150f322cce46a01a6c889e3402d, type: 3}
   fireballAudioClip: {fileID: 8300000, guid: d8c9f6964b00f354ea48560606339ed6, type: 3}
   thunderAudioClip: {fileID: 8300000, guid: a9449fecf89446045bed0884d893b12f, type: 3}
+  animatorEsqueleto: {fileID: 7022059923402208222}
+  animatorFantasma: {fileID: 620998721938204968}
   swordGO: {fileID: 0}
   appliesPoison: 0
 --- !u!114 &7930126595310468040
@@ -575,6 +577,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 3136132285449810611}
   m_SourcePrefab: {fileID: 100100000, guid: 6b336ea420ed6b54db7e2bf7ec19606b, type: 3}
+--- !u!95 &620998721938204968 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2611149553086614375, guid: 6b336ea420ed6b54db7e2bf7ec19606b, type: 3}
+  m_PrefabInstance: {fileID: 3216293214172275279}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &620998721945492200 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2611149553095981223, guid: 6b336ea420ed6b54db7e2bf7ec19606b, type: 3}

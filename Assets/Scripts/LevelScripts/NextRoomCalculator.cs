@@ -39,6 +39,7 @@ public class NextRoomCalculator : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
 
+        if (enabledTemporarily) return;
         StartCoroutine(HandleDoorTransition(other));
     }
 
@@ -47,7 +48,6 @@ public class NextRoomCalculator : MonoBehaviour
         if (enabledTemporarily)
             yield break;
 
-        // 👾 Enemigos
         DoorsEnabler doorsEnabler = transform.root.GetComponent<DoorsEnabler>();
         if (doorsEnabler != null && !doorsEnabler.AreDoorsReenabled())
         {
@@ -55,7 +55,6 @@ public class NextRoomCalculator : MonoBehaviour
             yield break;
         }
 
-        // 🔒 Candado
         DropLock lockObj = GetComponentInChildren<DropLock>();
         if (lockObj != null && lockObj.isLocked)
         {
@@ -128,9 +127,14 @@ public class NextRoomCalculator : MonoBehaviour
 
     private void HideHUDMessages()
     {
+        if (messageRoutine != null)
+        {
+            StopCoroutine(messageRoutine);
+            messageRoutine = null;
+        }
+
         if (noKeyText != null)
         {
-            StopAllCoroutines();
             noKeyText.gameObject.SetActive(false);
             var c = noKeyText.color;
             c.a = 0f;

@@ -317,7 +317,9 @@ public class PlayerAttack : MonoBehaviour
 
     public void OnPickupIncreaseAttackSpeed()
     {
-        attackInterval -= 1f;
+        attackInterval = attackInterval * 0.8f;
+        float current = animatorFantasma.GetFloat("AttackInterval");
+        animatorEsqueleto.SetFloat("AttackInterval", current * 1.2f);
     }
 
     public void OnPickupStar()

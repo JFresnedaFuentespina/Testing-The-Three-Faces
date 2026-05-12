@@ -33,6 +33,7 @@ public class PlayerAttack : MonoBehaviour
 
     public GameObject swordGO;
     public bool appliesPoison = false;
+    public bool isGamepadActive = false;
 
     public delegate void OnAttackStatsChanged(float damage, float interval);
     public static event OnAttackStatsChanged OnAttackStatsChangedEvent;
@@ -71,6 +72,14 @@ public class PlayerAttack : MonoBehaviour
         MeleeAttackHit weapon = this.gameObject.GetComponentInChildren<MeleeAttackHit>();
         weapon.attackDamage = attackDamage;
         swordGO = GameObject.Find("Sword");
+
+        string pathController = Application.persistentDataPath + "/controllersData.json";
+        if(File.Exists(pathController))
+        {
+            string json = File.ReadAllText(pathController);
+            ControllersData controllersData = JsonConvert.DeserializeObject<ControllersData>(json);
+            isGamepadActive = !controllersData.usingMouseKeyboard;
+        }
     }
 
     public static void RequestAttackStats()
@@ -202,9 +211,7 @@ public class PlayerAttack : MonoBehaviour
         Vector3 origin = transform.position;
         Vector3 targetPoint;
 
-        bool usingGamepad = Input.GetJoystickNames().Length > 0;
-
-        if (usingGamepad)
+        if (isGamepadActive)
         {
             targetPoint = origin + transform.forward * attackRange;
         }

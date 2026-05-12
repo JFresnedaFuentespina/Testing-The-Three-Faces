@@ -7,8 +7,15 @@ using UnityEngine;
 public class RotateCharacterToMouse : MonoBehaviour
 {
     // Start is called before the first frame update
+    private Camera cam;
+    float speed = 720f;
     void Start()
     {
+        cam = Camera.main;
+        
+        Application.targetFrameRate = 144;
+        QualitySettings.vSyncCount = 0;
+
         string pathcontrollers = Application.persistentDataPath + "/controllersData.json";
 
         if (File.Exists(pathcontrollers))
@@ -27,10 +34,10 @@ public class RotateCharacterToMouse : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         // Lanzamos un rayo desde la camara hacia la posición del ratón
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
         Plane suelo = new Plane(Vector3.up, Vector3.zero);
 
         // Calculamos donde el rayo intersecta al plano del suelo
@@ -45,10 +52,10 @@ public class RotateCharacterToMouse : MonoBehaviour
             if (direction.sqrMagnitude > 0.001f) //Evitar dividir entre 0
             {
                 Quaternion rotation = Quaternion.LookRotation(direction);
-                transform.rotation = Quaternion.Slerp(
+                transform.rotation = Quaternion.RotateTowards(
                     transform.rotation,
-                    Quaternion.LookRotation(direction),
-                    Time.deltaTime * 10f
+                    rotation,
+                    speed * Time.deltaTime
                 );
             }
         }

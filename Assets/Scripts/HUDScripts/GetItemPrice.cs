@@ -19,11 +19,13 @@ public class GetItemPrice : MonoBehaviour
     private PlayerMoney playerMoney;
     private PlayerInventory playerInventory;
     private InputSystem_Actions inputActions;
+    public TextMeshProUGUI otherPriceText1;
+    public TextMeshProUGUI otherPriceText2;
     void Start()
     {
         playerMoney = FindAnyObjectByType<PlayerMoney>();
         playerInventory = FindAnyObjectByType<PlayerInventory>();
-        
+
         StartCoroutine(WaitForItem());
     }
     void Awake()
@@ -48,9 +50,9 @@ public class GetItemPrice : MonoBehaviour
             itemGenerated = GetComponentInChildren<ItemIcon>();
             yield return null;
         }
-
         priceText.text = itemGenerated.price.ToString();
         itemReady = true;
+        SetPriceColor();
     }
 
     void Update()
@@ -58,8 +60,6 @@ public class GetItemPrice : MonoBehaviour
         if (!itemReady) return;
         if (itemPurchased) return;
         if (playerMoney.amount < itemGenerated.price) return;
-
-        SetPriceColor();
 
         Ray ray = new Ray(transform.position, -transform.forward);
         RaycastHit hit;
@@ -109,6 +109,19 @@ public class GetItemPrice : MonoBehaviour
         itemPurchased = true;
         playerMoney.SubstractAmount(itemGenerated.price);
         priceText.text = "";
+
+        float price1 = otherPriceText1.text != "" ? float.Parse(otherPriceText1.text) : 0f;
+        float price2 = otherPriceText2.text != "" ? float.Parse(otherPriceText2.text) : 0f;
+
+        if (playerMoney.amount < price1)
+        {
+            otherPriceText1.color = Color.red;
+        }
+
+        if (playerMoney.amount < price2)
+        {
+            otherPriceText2.color = Color.red;
+        }
 
         PickupItem pickupItem = FindAnyObjectByType<PickupItem>();
         pickupItem.AddItemToHUD(itemGenerated.icon, itemGenerated.itemID, itemGenerated.description);

@@ -1427,6 +1427,8 @@ MonoBehaviour:
   panelBackground: {fileID: 2996851215597840485}
   distance: 5
   holdTimeRequierd: 5
+  otherPriceText1: {fileID: 4305771445857460979}
+  otherPriceText2: {fileID: 8081646562735388012}
 --- !u!1001 &6368746662483096829
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1695,6 +1697,8 @@ MonoBehaviour:
   panelBackground: {fileID: 1756627140772730794}
   distance: 5
   holdTimeRequierd: 5
+  otherPriceText1: {fileID: 8691266900535172226}
+  otherPriceText2: {fileID: 4305771445857460979}
 --- !u!4 &4620624640589909358 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2991030632886021001, guid: 9db138c2bc1cbeb78bca36102211ac4e, type: 3}
@@ -1837,6 +1841,8 @@ MonoBehaviour:
   panelBackground: {fileID: 7204476063199239911}
   distance: 5
   holdTimeRequierd: 5
+  otherPriceText1: {fileID: 8691266900535172226}
+  otherPriceText2: {fileID: 8081646562735388012}
 --- !u!4 &5055230236734396716 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2991030632886021001, guid: 9db138c2bc1cbeb78bca36102211ac4e, type: 3}

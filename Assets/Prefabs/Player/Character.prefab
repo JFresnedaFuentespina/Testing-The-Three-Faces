@@ -301,6 +301,7 @@ MonoBehaviour:
   animatorFantasma: {fileID: 620998721938204968}
   swordGO: {fileID: 0}
   appliesPoison: 0
+  isGamepadActive: 0
 --- !u!114 &7930126595310468040
 MonoBehaviour:
   m_ObjectHideFlags: 0

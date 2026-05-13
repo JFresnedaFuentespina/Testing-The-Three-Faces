@@ -65,6 +65,8 @@ public class GetItemPrice : MonoBehaviour
         RaycastHit hit;
         bool isLookingAtPlayer = false;
 
+        SetPriceColor();
+
         if (Physics.Raycast(ray, out hit, distance))
         {
             if (hit.transform.CompareTag("Player"))

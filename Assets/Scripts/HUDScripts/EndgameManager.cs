@@ -36,10 +36,14 @@ public class EndgameManager : MonoBehaviour
     {
         exitButtonDeath.onClick.AddListener(ExitGame);
         restartButtonDeath.onClick.AddListener(RestartGame);
-        puntuarButton.onClick.AddListener(() =>
+        if (activeAPI)
         {
-            if (activeAPI) SceneManager.LoadScene("RateScene");
-        });
+            puntuarButton.gameObject.SetActive(true);
+            puntuarButton.onClick.AddListener(() =>
+            {
+                if (activeAPI) SceneManager.LoadScene("RateScene");
+            });
+        }
     }
 
 

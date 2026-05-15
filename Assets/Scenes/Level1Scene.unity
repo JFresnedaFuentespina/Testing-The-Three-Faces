@@ -809,6 +809,10 @@ PrefabInstance:
       propertyPath: money
       value: 
       objectReference: {fileID: 759253634}
+    - target: {fileID: 4458383154401370381, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4466202164923412907, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: mainCamera
       value: 
@@ -840,6 +844,10 @@ PrefabInstance:
     - target: {fileID: 4918913797124257592, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: firstDialogue
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4982505019415147222, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6050398862407550414, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
       propertyPath: mainCamera
@@ -1305,7 +1313,7 @@ PrefabInstance:
       objectReference: {fileID: 1514585173}
     - target: {fileID: 8269909501135449399, guid: 149a16642a3221045b23d37a3e79609e, type: 3}
       propertyPath: activeAPI
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8269909501135449399, guid: 149a16642a3221045b23d37a3e79609e, type: 3}
       propertyPath: postScore

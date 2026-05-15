@@ -461,11 +461,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
---- !u!1 &209233040 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4842354467680373937, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
-  m_PrefabInstance: {fileID: 779359650}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &289001865
 GameObject:
   m_ObjectHideFlags: 0
@@ -1640,10 +1635,10 @@ PrefabInstance:
     - target: {fileID: 8269909501135449399, guid: 149a16642a3221045b23d37a3e79609e, type: 3}
       propertyPath: timerTxt
       value: 
-      objectReference: {fileID: 850513363}
+      objectReference: {fileID: 0}
     - target: {fileID: 8269909501135449399, guid: 149a16642a3221045b23d37a3e79609e, type: 3}
       propertyPath: activeAPI
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8269909501135449399, guid: 149a16642a3221045b23d37a3e79609e, type: 3}
       propertyPath: postScore
@@ -1660,7 +1655,7 @@ PrefabInstance:
     - target: {fileID: 8269909501135449399, guid: 149a16642a3221045b23d37a3e79609e, type: 3}
       propertyPath: exitButtonWin
       value: 
-      objectReference: {fileID: 842087244}
+      objectReference: {fileID: 0}
     - target: {fileID: 8269909501135449399, guid: 149a16642a3221045b23d37a3e79609e, type: 3}
       propertyPath: puntuarButton
       value: 
@@ -1680,7 +1675,7 @@ PrefabInstance:
     - target: {fileID: 8269909501135449399, guid: 149a16642a3221045b23d37a3e79609e, type: 3}
       propertyPath: endgameWinPanel
       value: 
-      objectReference: {fileID: 209233040}
+      objectReference: {fileID: 0}
     - target: {fileID: 8269909501135449399, guid: 149a16642a3221045b23d37a3e79609e, type: 3}
       propertyPath: exitButtonDeath
       value: 
@@ -1696,7 +1691,7 @@ PrefabInstance:
     - target: {fileID: 8269909501135449399, guid: 149a16642a3221045b23d37a3e79609e, type: 3}
       propertyPath: restartButtonWin
       value: 
-      objectReference: {fileID: 842087243}
+      objectReference: {fileID: 0}
     - target: {fileID: 8269909501135449399, guid: 149a16642a3221045b23d37a3e79609e, type: 3}
       propertyPath: endgameDeathPanel
       value: 
@@ -1704,7 +1699,7 @@ PrefabInstance:
     - target: {fileID: 8269909501135449399, guid: 149a16642a3221045b23d37a3e79609e, type: 3}
       propertyPath: inventoryPanelWin
       value: 
-      objectReference: {fileID: 1943112773}
+      objectReference: {fileID: 0}
     - target: {fileID: 8269909501135449399, guid: 149a16642a3221045b23d37a3e79609e, type: 3}
       propertyPath: restartButtonDeath
       value: 
@@ -1712,7 +1707,7 @@ PrefabInstance:
     - target: {fileID: 8269909501135449399, guid: 149a16642a3221045b23d37a3e79609e, type: 3}
       propertyPath: enemiesKilledTxtWin
       value: 
-      objectReference: {fileID: 842087245}
+      objectReference: {fileID: 0}
     - target: {fileID: 8269909501135449399, guid: 149a16642a3221045b23d37a3e79609e, type: 3}
       propertyPath: inventoryPanelDeath
       value: 
@@ -2771,50 +2766,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 800271556}
   m_CullTransparentMesh: 0
---- !u!114 &842087243 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2165010723470753999, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
-  m_PrefabInstance: {fileID: 779359650}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
---- !u!114 &842087244 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2445555404492407014, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
-  m_PrefabInstance: {fileID: 779359650}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
---- !u!114 &842087245 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3031174105934012961, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
-  m_PrefabInstance: {fileID: 779359650}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
---- !u!114 &850513363 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5944919036071274420, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
-  m_PrefabInstance: {fileID: 779359650}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &850513364 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8504404536848219835, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
@@ -5478,11 +5429,6 @@ MonoBehaviour:
   bossCamera: {fileID: 0}
   cameraToUse: 2
   nextCameraDialoguemanager: {fileID: 428690541}
---- !u!1 &1943112773 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6391020918832245350, guid: 519c87607748a6648b3d503d073a62b1, type: 3}
-  m_PrefabInstance: {fileID: 779359650}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1983496187
 GameObject:
   m_ObjectHideFlags: 0

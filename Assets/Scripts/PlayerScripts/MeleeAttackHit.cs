@@ -34,8 +34,8 @@ public class MeleeAttackHit : MonoBehaviour
             {
                 enemyLife.Damage(attackDamage);
                 enemyLife.UpdateIsAlive();
-                caraFSM.SetStunned(2f);
-                caraFSM.Hit();
+                // caraFSM.SetStunned(2f);
+                // caraFSM.Hit();
             }
         }
         else if (other.CompareTag("BossCruz"))
@@ -45,8 +45,8 @@ public class MeleeAttackHit : MonoBehaviour
             {
                 enemyLife.Damage(attackDamage);
                 enemyLife.UpdateIsAlive();
-                cruzAI.SetStunned(2f);
-                cruzAI.Hit();
+                // cruzAI.SetStunned(2f);
+                // cruzAI.Hit();
             }
             else
             {
@@ -55,8 +55,8 @@ public class MeleeAttackHit : MonoBehaviour
                 {
                     enemyLife.Damage(attackDamage);
                     enemyLife.UpdateIsAlive();
-                    cruzFSM.SetStunned(2f);
-                    cruzFSM.Hit();
+                    // cruzFSM.SetStunned(2f);
+                    // cruzFSM.Hit();
                 }
             }
         }

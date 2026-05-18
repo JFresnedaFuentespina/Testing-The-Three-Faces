@@ -40,7 +40,7 @@ public class FireAttackHit : MonoBehaviour
             if (caraFSM != null)
             {
                 enemyLife.Damage(attackDamage);
-                caraFSM.Hit();
+                // caraFSM.Hit();
                 enemyLife.UpdateIsAlive();
             }
             Destroy(gameObject, destroyDelay);
@@ -52,8 +52,8 @@ public class FireAttackHit : MonoBehaviour
             {
                 enemyLife.Damage(attackDamage);
                 enemyLife.UpdateIsAlive();
-                cruzAI.SetStunned(2f);
-                cruzAI.Hit();
+                // cruzAI.SetStunned(2f);
+                // cruzAI.Hit();
             }
             Destroy(gameObject, destroyDelay);
         }
@@ -64,8 +64,8 @@ public class FireAttackHit : MonoBehaviour
             {
                 enemyLife.Damage(attackDamage);
                 enemyLife.UpdateIsAlive();
-                cantoFSM.SetStunned(2f);
-                cantoFSM.Hit();
+                // cantoFSM.SetStunned(2f);
+                // cantoFSM.Hit();
             }
             Destroy(gameObject, destroyDelay);
         }

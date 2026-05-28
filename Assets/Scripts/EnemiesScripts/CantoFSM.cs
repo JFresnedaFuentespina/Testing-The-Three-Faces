@@ -259,6 +259,7 @@ public class CantoFSM : BasicEnemyInterface
     }
     private IEnumerator WaitForAttack()
     {
+        enemyLife.canGetHit = false;
         isFinishingAttack = true;
 
         yield return null;
@@ -269,6 +270,7 @@ public class CantoFSM : BasicEnemyInterface
 
         FinishAttack();
         isFinishingAttack = false;
+        enemyLife.canGetHit = true;
     }
     public void Hit()
     {

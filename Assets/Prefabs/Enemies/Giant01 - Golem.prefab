@@ -2419,6 +2419,7 @@ MonoBehaviour:
   growl: {fileID: 8300000, guid: 31d65109d7e095a40b65142411aea03c, type: 3}
   jumpAttackEnd: {fileID: 8300000, guid: ee71f78c468724240bd614ac61c627a1, type: 3}
   dustOnJumpAttack: {fileID: 2874531496019812236}
+  collider: {fileID: 8886649879476324094}
 --- !u!195 &3316389659019996837
 NavMeshAgent:
   m_ObjectHideFlags: 0

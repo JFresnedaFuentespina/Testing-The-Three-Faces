@@ -231,11 +231,13 @@ public class CruzFSM : BasicEnemyInterface
 
     private IEnumerator WaitForAttack(float duration)
     {
+        enemyLife.canGetHit = false;
         isFinishingAttack = true;
 
         yield return new WaitForSeconds(duration);
 
         FinishAttack();
+        enemyLife.canGetHit = true;
     }
     public void Hit()
     {

@@ -37,7 +37,7 @@ public class FireAttackHit : MonoBehaviour
         if (other.CompareTag("BossCara"))
         {
             CaraFSM caraFSM = other.GetComponent<CaraFSM>();
-            if (caraFSM != null)
+            if (caraFSM != null && enemyLife.canGetHit)
             {
                 enemyLife.Damage(attackDamage);
                 // caraFSM.Hit();
@@ -48,7 +48,7 @@ public class FireAttackHit : MonoBehaviour
         else if (other.CompareTag("BossCruz"))
         {
             CruzFSM cruzAI = other.GetComponent<CruzFSM>();
-            if (cruzAI != null)
+            if (cruzAI != null && enemyLife.canGetHit)
             {
                 enemyLife.Damage(attackDamage);
                 enemyLife.UpdateIsAlive();
@@ -60,7 +60,7 @@ public class FireAttackHit : MonoBehaviour
         else if (other.CompareTag("BossCanto"))
         {
             CantoFSM cantoFSM = other.GetComponent<CantoFSM>();
-            if (cantoFSM != null)
+            if (cantoFSM != null && enemyLife.canGetHit)
             {
                 enemyLife.Damage(attackDamage);
                 enemyLife.UpdateIsAlive();
@@ -71,7 +71,7 @@ public class FireAttackHit : MonoBehaviour
         }
         else if (other.CompareTag("Enemy_Zombie") || other.CompareTag("Enemy_Ghost"))
         {
-            if (enemyLife != null)
+            if (enemyLife != null && enemyLife.canGetHit)
             {
                 enemyLife.Damage(attackDamage);
                 enemyLife.UpdateIsAlive();

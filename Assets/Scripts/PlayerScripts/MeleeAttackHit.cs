@@ -30,7 +30,7 @@ public class MeleeAttackHit : MonoBehaviour
         if (other.CompareTag("BossCara"))
         {
             CaraFSM caraFSM = other.GetComponent<CaraFSM>();
-            if (caraFSM != null)
+            if (caraFSM != null && enemyLife.canGetHit)
             {
                 enemyLife.Damage(attackDamage);
                 enemyLife.UpdateIsAlive();
@@ -41,29 +41,18 @@ public class MeleeAttackHit : MonoBehaviour
         else if (other.CompareTag("BossCruz"))
         {
             CruzFSM cruzAI = other.GetComponent<CruzFSM>();
-            if (cruzAI != null)
+            if (cruzAI != null && enemyLife.canGetHit)
             {
                 enemyLife.Damage(attackDamage);
                 enemyLife.UpdateIsAlive();
                 // cruzAI.SetStunned(2f);
                 // cruzAI.Hit();
             }
-            else
-            {
-                CruzFSM cruzFSM = other.GetComponent<CruzFSM>();
-                if (cruzFSM != null)
-                {
-                    enemyLife.Damage(attackDamage);
-                    enemyLife.UpdateIsAlive();
-                    // cruzFSM.SetStunned(2f);
-                    // cruzFSM.Hit();
-                }
-            }
         }
         else if (other.CompareTag("BossCanto"))
         {
             CantoAnimatorController cantoAI = other.GetComponent<CantoAnimatorController>();
-            if (cantoAI != null)
+            if (cantoAI != null && enemyLife.canGetHit)
             {
                 enemyLife.Damage(attackDamage);
                 enemyLife.UpdateIsAlive();
@@ -71,14 +60,13 @@ public class MeleeAttackHit : MonoBehaviour
         }
         else if (other.CompareTag("Enemy_Zombie") || other.CompareTag("Enemy_Ghost"))
         {
-            if (enemyLife != null)
+            if (enemyLife != null && enemyLife.canGetHit)
             {
                 enemyLife.Damage(attackDamage);
                 enemyLife.UpdateIsAlive();
                 other.GetComponent<ZombieFSM>().SetStunned(2f);
             }
         }
-        //! FIX
         if (other.CompareTag("BossCara") || other.CompareTag("BossCruz") || other.CompareTag("BossCanto") || other.CompareTag("Enemy_Zombie") || other.CompareTag("Enemy_Ghost"))
         {
             // Empujar enemigos al ser golpeados por ataque cuerpo a cuerpo

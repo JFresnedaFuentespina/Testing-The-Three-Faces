@@ -35,7 +35,7 @@ public class BombAttackHit : MonoBehaviour
             {
                 EnemyLife enemyLife = hitCollider.GetComponent<EnemyLife>();
                 if (enemyLife == null) continue;
-
+                if (!enemyLife.canGetHit) continue;
                 if (damagedEnemies.Contains(enemyLife)) continue;
                 damagedEnemies.Add(enemyLife);
                 enemyLife.Damage(bombDamage);

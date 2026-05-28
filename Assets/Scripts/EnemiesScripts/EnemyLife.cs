@@ -24,6 +24,8 @@ public class EnemyLife : MonoBehaviour
     public DropReward dropRewardScript;
     private Color originalColor;
     public List<ParticleSystem> hitEffects;
+    public bool canGetHit = true;
+
     void Start()
     {
         enemiesDeathCounterGO = GameObject.Find("EnemiesDeathCounterGO");

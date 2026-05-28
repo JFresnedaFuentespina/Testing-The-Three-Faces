@@ -231,8 +231,7 @@ public class CaraFSM : BasicEnemyInterface
     private IEnumerator AttackCoroutine()
     {
         isAttacking = true;
-
-        agent.isStopped = true;
+        enemyLife.canGetHit = false;
         caraAnimator.SetAttackTrigger();
 
         yield return null;
@@ -242,6 +241,7 @@ public class CaraFSM : BasicEnemyInterface
         yield return new WaitForSecondsRealtime(duration);
 
         isAttacking = false;
+        enemyLife.canGetHit = true;
         state = STATE.PURSUE;
     }
 
@@ -258,7 +258,7 @@ public class CaraFSM : BasicEnemyInterface
     {
         isJumping = true;
         canJumpAttack = false;
-
+        enemyLife.canGetHit = false;
         agent.isStopped = true;
         caraAnimator.SetJumpAttackTrigger();
 
@@ -300,7 +300,7 @@ public class CaraFSM : BasicEnemyInterface
 
         dustOnJumpAttack.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
         dustOnJumpAttack.Play();
-        
+
         agent.Warp(transform.position);
 
         yield return new WaitForSecondsRealtime(0.8f);
@@ -310,6 +310,7 @@ public class CaraFSM : BasicEnemyInterface
         state = STATE.PURSUE;
         dustOnJumpAttack.Stop();
         yield return new WaitForSecondsRealtime(jumpCooldown);
+        enemyLife.canGetHit = true;
         canJumpAttack = true;
     }
 
